@@ -5,86 +5,208 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lynq Tech</title>
   <meta name="description" content="Lynq Tech — building tools for clearer thinking." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #09090b;
+      --surface: #18181b;
+      --border:  #27272a;
+      --text:    #f4f4f5;
+      --muted:   #a1a1aa;
+      --dim:     #71717a;
+      --accent:  #34d399;
+    }
+
+    html { height: 100%; }
+
     body {
-      background: #09090b;
-      color: #f4f4f5;
-      font-family: -apple-system, 'DM Sans', sans-serif;
-      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      min-height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 32px;
-      padding: 24px;
-      text-align: center;
+      padding: 48px 24px;
+      position: relative;
+      overflow: hidden;
     }
+
+    /* Grain texture */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    /* Atmospheric glow */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(52,211,153,0.055) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .inner {
+      max-width: 480px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header block */
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
     .brand {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      color: #34d399;
+      color: var(--accent);
+      opacity: 0.8;
     }
+
     h1 {
-      font-size: clamp(28px, 5vw, 48px);
-      font-weight: 400;
-      color: #f4f4f5;
-      line-height: 1.3;
-      max-width: 520px;
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(32px, 6vw, 54px);
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.2;
+      letter-spacing: -0.5px;
     }
-    p {
-      font-size: 17px;
-      color: #71717a;
-      max-width: 400px;
+
+    h1 em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .sub {
+      font-size: 15px;
+      color: var(--dim);
       line-height: 1.7;
+      max-width: 340px;
     }
+
+    /* Divider */
+    .rule {
+      width: 40px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Products */
     .products {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 16px;
+      gap: 10px;
     }
+
+    .products-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 6px;
+    }
+
     .product-link {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      background: #18181b;
-      border: 1px solid #27272a;
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 18px 24px;
+      padding: 20px 24px;
       text-decoration: none;
-      transition: border-color 0.15s;
-      width: 320px;
+      transition: border-color 0.2s, background 0.2s;
+      gap: 16px;
     }
-    .product-link:hover { border-color: rgba(52,211,153,0.35); }
+
+    .product-link:hover {
+      border-color: rgba(52,211,153,0.3);
+      background: rgba(52,211,153,0.03);
+    }
+
+    .product-info { display: flex; flex-direction: column; gap: 4px; }
+
     .product-name {
       font-size: 15px;
       font-weight: 600;
-      color: #f4f4f5;
+      color: var(--text);
     }
+
     .product-desc {
+      font-family: 'Fraunces', Georgia, serif;
       font-size: 13px;
-      color: #71717a;
-      margin-top: 2px;
+      font-style: italic;
+      color: var(--dim);
     }
-    .product-arrow { color: #34d399; font-size: 18px; }
+
+    .product-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(52,211,153,0.08);
+      border: 1px solid rgba(52,211,153,0.18);
+      border-radius: 6px;
+      padding: 3px 8px;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    .footer {
+      font-size: 12px;
+      color: #3f3f46;
+    }
   </style>
 </head>
 <body>
-  <p class="brand">Lynq Tech</p>
-  <h1>Building tools for clearer thinking.</h1>
-  <p>Small, focused products for the decisions and moments that matter.</p>
-  <div class="products">
-    <a href="/mydecision" class="product-link">
-      <div>
-        <div class="product-name">MyDecision</div>
-        <div class="product-desc">An anchor for your decisions</div>
-      </div>
-      <span class="product-arrow">→</span>
-    </a>
+  <div class="inner">
+    <div class="header">
+      <span class="brand">Lynq Tech</span>
+      <h1>Building tools for<br /><em>clearer thinking.</em></h1>
+      <p class="sub">Small, focused products for the decisions and moments that matter.</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="products">
+      <p class="products-label">Products</p>
+      <a href="/mydecision" class="product-link">
+        <div class="product-info">
+          <span class="product-name">MyDecision</span>
+          <span class="product-desc">An anchor for your decisions</span>
+        </div>
+        <span class="product-badge">Waitlist</span>
+      </a>
+    </div>
+
+    <p class="footer">© 2026 Lynq Tech</p>
   </div>
 </body>
 </html>

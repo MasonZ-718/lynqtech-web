@@ -726,6 +726,191 @@
     .pain-body { font-size: clamp(20px, 3vw, 32px); }
 
     /* ─────────────────────────────────────
+       GRAIN TEXTURE OVERLAY
+    ───────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    /* ─────────────────────────────────────
+       HERO ATMOSPHERE
+    ───────────────────────────────────── */
+    #hook {
+      position: relative;
+      overflow: hidden;
+    }
+    #hook::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, rgba(52,211,153,0.07) 0%, rgba(52,211,153,0.02) 35%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Larger, more dramatic hook headline */
+    .hook-headline {
+      font-size: clamp(46px, 8vw, 92px) !important;
+      letter-spacing: -1.5px;
+    }
+
+    /* ─────────────────────────────────────
+       DRAMATIC PAIN TIMESTAMP
+    ───────────────────────────────────── */
+    .pain-time {
+      font-family: 'Fraunces', Georgia, serif !important;
+      font-size: clamp(52px, 10vw, 96px) !important;
+      font-weight: 600 !important;
+      letter-spacing: -2px !important;
+      text-transform: none !important;
+      color: #1f1f22 !important;
+      margin-bottom: 40px !important;
+      line-height: 0.95 !important;
+      position: relative;
+    }
+    .pain-time::before {
+      width: 8px !important;
+      height: 8px !important;
+      position: absolute;
+      top: 18px;
+      left: -22px;
+      background: var(--danger) !important;
+      box-shadow: 0 0 12px var(--danger) !important;
+    }
+    .pain-time-inner {
+      display: block;
+      color: var(--dim);
+      font-size: clamp(13px, 1.2vw, 15px);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+
+    /* ─────────────────────────────────────
+       PHILOSOPHY QUOTE TREATMENT
+    ───────────────────────────────────── */
+    #philosophy {
+      position: relative;
+      overflow: hidden;
+    }
+    #philosophy::before {
+      content: '\201C';
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(160px, 20vw, 280px);
+      line-height: 1;
+      color: rgba(52,211,153,0.045);
+      pointer-events: none;
+      user-select: none;
+    }
+    .philosophy-quote {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(22px, 3.2vw, 38px) !important;
+      border-left: 2px solid rgba(52,211,153,0.25);
+      padding-left: 28px;
+      text-align: left !important;
+      max-width: 580px !important;
+      margin: 0 0 20px !important;
+    }
+    .philosophy-attr {
+      padding-left: 28px;
+      text-align: left !important;
+      font-size: 14px !important;
+      color: var(--accent) !important;
+      opacity: 0.7;
+    }
+    #philosophy .container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    #philosophy .insight-sub {
+      text-align: left;
+      margin: 0 0 40px !important;
+    }
+
+    /* ─────────────────────────────────────
+       WAITLIST ATMOSPHERIC GLOW
+    ───────────────────────────────────── */
+    #waitlist {
+      position: relative;
+      overflow: hidden;
+    }
+    #waitlist::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse at center bottom, rgba(52,211,153,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    #waitlist .container { position: relative; z-index: 1; }
+
+    /* Bolder waitlist headline */
+    .waitlist-headline {
+      font-size: clamp(36px, 6vw, 66px) !important;
+      letter-spacing: -1px;
+    }
+
+    /* ─────────────────────────────────────
+       STAT ROW — MORE IMPACT
+    ───────────────────────────────────── */
+    .stat-number {
+      font-size: clamp(48px, 7vw, 72px) !important;
+      letter-spacing: -2px;
+    }
+
+    /* ─────────────────────────────────────
+       THOUGHT BUBBLE REFINEMENT
+    ───────────────────────────────────── */
+    .thought {
+      border-left: 2px solid rgba(251,113,133,0.2) !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .thought:nth-child(2) { margin-left: 16px; }
+    .thought:nth-child(3) { margin-left: 32px; }
+    .thought:nth-child(4) { margin-left: 48px; }
+
+    /* ─────────────────────────────────────
+       INSIGHT SECTION REFINEMENT
+    ───────────────────────────────────── */
+    .insight-headline {
+      font-size: clamp(30px, 5vw, 58px) !important;
+      letter-spacing: -0.5px;
+    }
+    .insight-label {
+      font-size: 10px !important;
+      letter-spacing: 4px !important;
+    }
+
+    /* ─────────────────────────────────────
+       NAV REFINEMENT
+    ───────────────────────────────────── */
+    nav {
+      background: rgba(9,9,11,0.8) !important;
+      border-color: rgba(255,255,255,0.06) !important;
+    }
+
+    /* ─────────────────────────────────────
        iPHONE MOCKUP
     ───────────────────────────────────── */
     .phones-wrap {
@@ -1080,7 +1265,7 @@
   ═══════════════════════════════════ -->
   <section id="pain" aria-label="The problem">
     <div class="container">
-      <div class="pain-time reveal">2:47 AM</div>
+      <div class="pain-time reveal">2:47 AM<span class="pain-time-inner">The doubt comes back</span></div>
 
       <p class="pain-body reveal reveal-delay-1">
         You made a decision weeks ago.<br />
@@ -1281,7 +1466,7 @@
   ═══════════════════════════════════ -->
   <section id="philosophy" aria-label="Philosophy">
     <div class="container">
-      <p class="insight-sub reveal" style="max-width: 520px; margin: 0 auto 40px; font-style: italic;">
+      <p class="insight-sub reveal" style="max-width: 520px; margin: 0 0 40px; font-style: italic;">
         When I finally made the hardest decision of my life — leaving a stable job to build something — I wrote down why. Not for anyone else. For the moment the doubt would come back.<br /><br />
         It did. This is what I told myself:
       </p>
