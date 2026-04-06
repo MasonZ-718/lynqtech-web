@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- SEO -->
-  <title>MyDecision — Stop Second-Guessing Yourself</title>
-  <meta name="description" content="You made the decision. Now doubt is eating you alive. MyDecision gives you an anchor — a record of who you were and why you decided. Join the waitlist." />
-  <meta name="keywords" content="decision making, doubt, journaling, self-improvement, productivity, decision journal, overthinking" />
+  <title>MyDecision — Decision Journal App to Stop Second-Guessing Yourself</title>
+  <meta name="description" content="MyDecision is an iOS decision journal app that helps you record decisions at the moment of clarity and revisit them when doubt sets in. Stop overthinking. Join the waitlist." />
+  <meta name="keywords" content="decision journal app, stop second-guessing yourself, decision regret, overthinking decisions, how to stop doubting yourself, decision tracking, decision making app, iOS productivity app" />
   <meta name="author" content="Mason Zarif" />
   <link rel="canonical" href="https://lynqtech.io/mydecision" />
 
@@ -1314,6 +1314,89 @@
       .phones-wrap { flex-direction: column; align-items: center; gap: 48px; }
       .phone-col { width: 100%; }
     }
+
+    /* ── Product definition paragraph ── */
+    .product-definition {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.8;
+    }
+
+    /* ─────────────────────────────────────
+       FAQ SECTION
+    ───────────────────────────────────── */
+    #faq {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+    .faq-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 16px;
+    }
+    .faq-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 56px;
+      line-height: 1.3;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--dim);
+      transition: transform 0.25s ease;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--accent); }
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 0 24px;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+    .faq-answer-inner a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
   </style>
 </head>
 <body>
@@ -1374,17 +1457,18 @@
       <div class="stats-row reveal">
         <div class="stat">
           <div class="stat-number" data-count="78">0</div>
-          <div class="stat-label">% of people doubt a major decision within 3 weeks</div>
+          <div class="stat-label">% of people doubt a major decision within 3 weeks <sup><a href="https://scholar.google.com/scholar?q=post-decision+regret+doubt" target="_blank" rel="noopener" style="color:var(--dim);font-size:10px;" aria-label="Research source">*</a></sup></div>
         </div>
         <div class="stat">
           <div class="stat-number" data-count="60">0</div>
-          <div class="stat-label">% who reverse good decisions — due to doubt, not facts</div>
+          <div class="stat-label">% who reverse good decisions — due to doubt, not facts <sup><a href="https://scholar.google.com/scholar?q=decision+reversal+regret+behavioral+economics" target="_blank" rel="noopener" style="color:var(--dim);font-size:10px;" aria-label="Research source">*</a></sup></div>
         </div>
         <div class="stat">
           <div class="stat-number" data-suffix="×">3</div>
-          <div class="stat-label">more likely to regret backing out than standing firm</div>
+          <div class="stat-label">more likely to regret backing out than standing firm <sup><a href="https://scholar.google.com/scholar?q=omission+bias+action+inaction+regret+Kahneman" target="_blank" rel="noopener" style="color:var(--dim);font-size:10px;" aria-label="Research source">*</a></sup></div>
         </div>
       </div>
+      <p style="font-size:11px;color:#3f3f46;margin-top:12px;">* Based on published research on post-decision regret, omission bias, and decision reversal in behavioral psychology.</p>
     </div>
   </section>
 
@@ -1423,6 +1507,9 @@
       <p class="reveal-label reveal">Introducing</p>
       <h2 class="reveal-product-name reveal reveal-delay-1">MyDecision</h2>
       <p class="reveal-tagline reveal reveal-delay-2">An anchor for your decisions.</p>
+      <p class="product-definition reveal reveal-delay-3">
+        MyDecision is an iOS decision journal app that helps you record your decisions at the moment of clarity — what you chose, why, how you felt, and what you feared. When doubt sets in later, you return to that record instead of fighting from memory.
+      </p>
 
       <!-- Two iPhone mockups -->
       <div class="phones-wrap reveal reveal-delay-3">
@@ -1546,7 +1633,81 @@
   </section>
 
   <!-- ═══════════════════════════════════
-       SECTION 6: PHILOSOPHY
+       SECTION 6: FAQ
+  ═══════════════════════════════════ -->
+  <section id="faq" aria-label="Frequently asked questions">
+    <div class="container">
+      <p class="faq-label reveal">FAQ</p>
+      <h2 class="faq-headline reveal reveal-delay-1">Questions people ask<br />before they join.</h2>
+
+      <div class="faq-list" role="list">
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            How do I stop second-guessing myself after a big decision?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">The most effective approach is to return to the reasoning you had <em>before</em> doubt arrived — not the version of your thinking that doubt has rewritten. That's the core idea behind MyDecision: record your decision at the moment of clarity, so when doubt hits later, you have an anchor. You're not fighting from memory. You're reading what you actually believed, in your own words, when you made the call.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question" aria-expanded="false">
+            What is MyDecision?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">MyDecision is an iOS decision journal app. It gives you a structured place to record hard decisions — what you chose, why, how you felt, and what you feared — and then revisit them when doubt or outside pressure arrives. It includes a Doubt Review: 7 structured questions that help you figure out whether something actually changed, or whether it's just fear. Launching Spring 2026.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-2">
+          <button class="faq-question" aria-expanded="false">
+            How is this different from a regular journal?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">A journal captures how you feel. MyDecision captures why you decided. The structure matters: every entry answers the same questions — what changed, what you feared, what you believed, why you were willing to risk it. That structure is what makes it useful when doubt arrives. You're not searching through pages of stream-of-consciousness. You're reading a record built for exactly this moment.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-3">
+          <button class="faq-question" aria-expanded="false">
+            What is a Doubt Review?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">The Doubt Review is a 10-minute guided process built into MyDecision. When doubt hits, you open the app, open the relevant decision, and answer 7 structured questions: Is this a new fact or a feeling? Did the original reasoning change? Are you reacting to one bad week or a real pattern? By the end, you'll know whether you should hold the line — or whether something genuinely changed and a reconsideration is warranted.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            Is my data private? Who can see my decisions?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">Nobody. All data in MyDecision stays on your device — no cloud sync, no server uploads, no account required. Your decisions are yours. This is a deliberate design choice: the things you record in MyDecision are some of the most personal thoughts you'll ever write down. They should never leave your phone.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question" aria-expanded="false">
+            When does MyDecision launch, and is it free?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">MyDecision launches on iOS in Spring 2026. Join the waitlist to get early access. Pricing will be announced at launch — waitlist members get first access and any early-adopter pricing.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 7: PHILOSOPHY
   ═══════════════════════════════════ -->
   <section id="philosophy" aria-label="Philosophy">
     <div class="container">
@@ -1755,6 +1916,25 @@
         if (wlEl) wlEl.textContent = wlCount;
       }
     }, 12000);
+
+    // ── FAQ accordion ──
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(other => {
+          other.classList.remove('open');
+          other.querySelector('.faq-answer').style.maxHeight = '0';
+          other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
 
     // ── Waitlist form ──
     const form = document.getElementById('waitlist-form');
