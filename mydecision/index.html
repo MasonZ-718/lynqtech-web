@@ -8,14 +8,98 @@
   <title>MyDecision — Stop Second-Guessing Yourself</title>
   <meta name="description" content="You made the decision. Now doubt is eating you alive. MyDecision gives you an anchor — a record of who you were and why you decided. Join the waitlist." />
   <meta name="keywords" content="decision making, doubt, journaling, self-improvement, productivity, decision journal, overthinking" />
-  <meta name="author" content="MyDecision" />
+  <meta name="author" content="Mason Zarif" />
+  <link rel="canonical" href="https://lynqtech.io/mydecision" />
+
+  <!-- Open Graph -->
   <meta property="og:title" content="MyDecision — Stop Second-Guessing Yourself" />
-  <meta property="og:description" content="An anchor for your decisions. Built for the moment doubt comes back." />
+  <meta property="og:description" content="Record your decisions at the moment of clarity. Return to them when doubt shows up at 2am. An anchor for the calls that keep you up at night." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://mydecision.app" />
+  <meta property="og:url" content="https://lynqtech.io/mydecision" />
+  <meta property="og:site_name" content="MyDecision by Lynq Tech" />
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="MyDecision — Stop Second-Guessing Yourself" />
-  <meta name="twitter:description" content="An anchor for your decisions. Built for the moment doubt comes back." />
+  <meta name="twitter:description" content="Record your decisions at the moment of clarity. Return to them when doubt shows up at 2am." />
+
+  <!-- JSON-LD: MobileApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "MyDecision",
+    "url": "https://lynqtech.io/mydecision",
+    "description": "MyDecision is an iOS app that helps you record your decisions at the moment of clarity, so you can return to them when doubt sets in. It includes a structured Doubt Review flow — 7 questions in 10 minutes — to help you separate new facts from old fears.",
+    "operatingSystem": "iOS",
+    "applicationCategory": "LifestyleApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Mason Zarif",
+      "url": "https://lynqtech.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Lynq Tech",
+      "url": "https://lynqtech.io"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is MyDecision?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MyDecision is an iOS app that helps you record your decisions at the moment of clarity — what you decided, why, how you felt, and what you feared. When doubt sets in later, you return to that record instead of fighting from memory."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does MyDecision work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You anchor a decision by writing what you decided, why you decided it, how you felt, and what you feared. When doubt arrives — at 2am, after a hard week, or when someone asks 'are you sure?' — you open the app and do a Doubt Review: 7 structured questions in 10 minutes that help you determine whether something actually changed or whether it's just fear."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is MyDecision for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MyDecision is for anyone who has made a hard decision — leaving a job, ending a relationship, starting a company, moving cities — and later struggled to stay confident in it when doubt or outside pressure arrived."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When does MyDecision launch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MyDecision is launching on iOS in Spring 2026. You can join the waitlist at lynqtech.io/mydecision to be among the first to access it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data private?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All data in MyDecision stays on your device. Nothing is uploaded to external servers."
+        }
+      }
+    ]
+  }
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1651,17 +1735,26 @@
       el.textContent = el.textContent; // already set in HTML
     });
 
-    // ── Waitlist counter slow tick ──
-    let wlCount = 247;
+    // ── Waitlist counter: base offset + real Netlify submissions ──
+    const BASE_COUNT = 247;
+    let wlCount = BASE_COUNT;
     const wlEl = document.getElementById('waitlist-counter');
-    if (wlEl) {
-      setInterval(() => {
-        if (Math.random() < 0.3) {
-          wlCount++;
-          wlEl.textContent = wlCount;
-        }
-      }, 8000);
-    }
+
+    fetch('/.netlify/functions/waitlist-count')
+      .then(r => r.json())
+      .then(({ count }) => {
+        wlCount = BASE_COUNT + count;
+        if (wlEl) wlEl.textContent = wlCount;
+      })
+      .catch(() => { /* keep base count on error */ });
+
+    // Slow ambient tick to feel alive
+    setInterval(() => {
+      if (Math.random() < 0.2) {
+        wlCount++;
+        if (wlEl) wlEl.textContent = wlCount;
+      }
+    }, 12000);
 
     // ── Waitlist form ──
     const form = document.getElementById('waitlist-form');
@@ -1679,9 +1772,15 @@
       submitBtn.disabled = true;
       submitBtn.textContent = 'Joining...';
 
-      // TODO: Replace with real endpoint (Mailchimp / ConvertKit / Airtable)
-      // await fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email }), headers: { 'Content-Type': 'application/json' } });
-      await new Promise(resolve => setTimeout(resolve, 900));
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+      } catch (_) {
+        // best-effort — still show success to avoid blocking UX
+      }
 
       morphStopped = true;
       formWrap.style.display = 'none';

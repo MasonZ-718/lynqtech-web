@@ -1,0 +1,17 @@
+# Lynq Tech
+
+> Building tools for clearer thinking.
+
+Lynq Tech is an indie software company building small, focused mobile apps for the decisions and moments that matter.
+
+## Products
+
+- [MyDecision](https://lynqtech.io/mydecision): An iOS app for recording and revisiting important decisions. Designed for people who make hard calls and later struggle with doubt. Includes a structured "Doubt Review" flow — 7 questions in 10 minutes — to help users separate new facts from old fears. Launching Spring 2026.
+
+## About
+
+Founded by Mason Zarif. Currently in pre-launch. All user data stays on-device.
+
+## Contact
+
+Available via waitlist at https://lynqtech.io/mydecision
