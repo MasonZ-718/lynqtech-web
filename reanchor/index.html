@@ -1,0 +1,1975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>ReAnchor — Decision Journal App to Stop Second-Guessing Yourself</title>
+  <meta name="description" content="ReAnchor is an iOS decision journal app that helps you record decisions at the moment of clarity and revisit them when doubt sets in. Stop overthinking. Join the waitlist." />
+  <meta name="keywords" content="decision journal app, stop second-guessing yourself, decision regret, overthinking decisions, how to stop doubting yourself, decision tracking, decision making app, iOS productivity app" />
+  <meta name="author" content="Mason Zarif" />
+  <link rel="canonical" href="https://lynqtech.io/reanchor" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ReAnchor — Stop Second-Guessing Yourself" />
+  <meta property="og:description" content="Record your decisions at the moment of clarity. Return to them when doubt shows up at 2am. An anchor for the calls that keep you up at night." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lynqtech.io/reanchor" />
+  <meta property="og:site_name" content="ReAnchor by Lynq Tech" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ReAnchor — Stop Second-Guessing Yourself" />
+  <meta name="twitter:description" content="Record your decisions at the moment of clarity. Return to them when doubt shows up at 2am." />
+
+  <!-- JSON-LD: MobileApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "ReAnchor",
+    "url": "https://lynqtech.io/reanchor",
+    "description": "ReAnchor is an iOS app that helps you record your decisions at the moment of clarity, so you can return to them when doubt sets in. It includes a structured Doubt Review flow — 7 questions in 10 minutes — to help you separate new facts from old fears.",
+    "operatingSystem": "iOS",
+    "applicationCategory": "LifestyleApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Mason Zarif",
+      "url": "https://lynqtech.io"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Lynq Tech",
+      "url": "https://lynqtech.io"
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is ReAnchor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ReAnchor is an iOS app that helps you record your decisions at the moment of clarity — what you decided, why, how you felt, and what you feared. When doubt sets in later, you return to that record instead of fighting from memory."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does ReAnchor work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You anchor a decision by writing what you decided, why you decided it, how you felt, and what you feared. When doubt arrives — at 2am, after a hard week, or when someone asks 'are you sure?' — you open the app and do a Doubt Review: 7 structured questions in 10 minutes that help you determine whether something actually changed or whether it's just fear."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who is ReAnchor for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ReAnchor is for anyone who has made a hard decision — leaving a job, ending a relationship, starting a company, moving cities — and later struggled to stay confident in it when doubt or outside pressure arrived."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When does ReAnchor launch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ReAnchor is launching on iOS in Spring 2026. You can join the waitlist at lynqtech.io/reanchor to be among the first to access it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data private?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All data in ReAnchor stays on your device. Nothing is uploaded to external servers."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:          #09090b;
+      --surface:     #18181b;
+      --surface2:    #1c1c1f;
+      --border:      #27272a;
+      --text:        #f4f4f5;
+      --muted:       #a1a1aa;
+      --dim:         #71717a;
+      --accent:      #34d399;
+      --accent-glow: rgba(52,211,153,0.15);
+      --accent-border: rgba(52,211,153,0.3);
+      --danger:      #fb7185;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+    .reveal-delay-4 { transition-delay: 0.5s; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: calc(100% - 48px);
+      max-width: 900px;
+      background: rgba(9,9,11,0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 20px;
+    }
+    .nav-brand {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .nav-cta {
+      background: var(--accent);
+      color: #09090b;
+      border: none;
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── Section wrappers ── */
+    section { position: relative; }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─────────────────────────────────────
+       SECTION 1: HOOK (full viewport)
+    ───────────────────────────────────── */
+    #hook {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .hook-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 40px;
+    }
+
+    .hook-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(40px, 7vw, 80px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--text);
+      max-width: 700px;
+      margin-bottom: 24px;
+    }
+
+    .hook-headline em {
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    /* Morphing doubt text */
+    .doubt-morph-wrap {
+      height: 36px;
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .doubt-morph {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--dim);
+      display: block;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .hook-scroll-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--dim);
+      font-size: 12px;
+    }
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 1px solid var(--dim);
+      border-bottom: 1px solid var(--dim);
+      transform: rotate(45deg);
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(4px); }
+    }
+
+    /* ─────────────────────────────────────
+       SECTION 2: PAIN (the 2am moment)
+    ───────────────────────────────────── */
+    #pain {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .pain-time {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      color: var(--dim);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pain-time::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--danger);
+      box-shadow: 0 0 8px var(--danger);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .pain-body {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(22px, 3.5vw, 36px);
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .pain-body strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* Thought bubbles */
+    .thought-list {
+      margin: 48px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .thought {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 24px;
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 16px;
+      font-style: italic;
+      color: var(--muted);
+      position: relative;
+      transform: translateX(-40px);
+      opacity: 0;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+    .thought.visible {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    .thought:nth-child(2) { transition-delay: 0.15s; }
+    .thought:nth-child(3) { transition-delay: 0.3s; }
+    .thought:nth-child(4) { transition-delay: 0.45s; }
+    .thought-accent {
+      color: var(--danger);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    /* Stats row */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 64px;
+    }
+    .stat {
+      background: var(--surface);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 40px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ─────────────────────────────────────
+       SECTION 3: INSIGHT / PIVOT
+    ───────────────────────────────────── */
+    #insight {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .insight-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .insight-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(28px, 4.5vw, 52px);
+      font-weight: 400;
+      line-height: 1.3;
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+
+    .insight-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Divider line */
+    .divider-line {
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, var(--border), transparent);
+      margin: 64px auto;
+    }
+
+    /* ─────────────────────────────────────
+       SECTION 4: PRODUCT REVEAL
+    ───────────────────────────────────── */
+    #reveal {
+      padding: 80px 0 120px;
+      text-align: center;
+    }
+
+    .reveal-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 16px;
+    }
+
+    .reveal-product-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 16px;
+      letter-spacing: -2px;
+    }
+
+    .reveal-tagline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      margin-bottom: 64px;
+    }
+
+    /* App card mockup */
+    .app-mockup {
+      max-width: 360px;
+      margin: 0 auto 64px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      text-align: left;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.03);
+    }
+    .mockup-top-bar {
+      height: 4px;
+      background: var(--accent);
+    }
+    .mockup-body { padding: 28px; }
+    .mockup-brand-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 4px;
+    }
+    .mockup-category {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .mockup-decision-text {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 24px;
+    }
+    .mockup-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 20px;
+    }
+    .mockup-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .mockup-meta-label { font-size: 12px; color: var(--dim); }
+    .mockup-meta-value { font-size: 12px; color: var(--muted); font-weight: 500; }
+    .mockup-footer {
+      font-size: 10px;
+      color: #27272a;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    /* ─────────────────────────────────────
+       SECTION 5: HOW IT WORKS
+    ───────────────────────────────────── */
+    #how {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .how-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .how-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 72px;
+      line-height: 1.3;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-number {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 48px;
+      font-weight: 600;
+      color: var(--border);
+      line-height: 1;
+    }
+    .step-content { display: flex; flex-direction: column; gap: 8px; }
+    .step-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .step-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .step-accent {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    /* ─────────────────────────────────────
+       SECTION 6: PHILOSOPHY QUOTE
+    ───────────────────────────────────── */
+    #philosophy {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .philosophy-quote {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(22px, 3.5vw, 40px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+    .philosophy-quote strong {
+      color: var(--text);
+      font-style: normal;
+    }
+    .philosophy-attr {
+      font-size: 13px;
+      color: var(--dim);
+    }
+
+    /* ─────────────────────────────────────
+       SECTION 7: WAITLIST CTA
+    ───────────────────────────────────── */
+    #waitlist {
+      padding: 120px 0 160px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .waitlist-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent-border);
+      border-radius: 99px;
+      padding: 6px 16px;
+      margin-bottom: 32px;
+    }
+    .waitlist-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    .waitlist-badge-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+    }
+
+    .waitlist-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.2;
+      max-width: 560px;
+      margin: 0 auto 16px;
+    }
+    .waitlist-sub {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 400px;
+      margin: 0 auto 48px;
+      line-height: 1.6;
+    }
+
+    /* Form */
+    .waitlist-form {
+      display: flex;
+      gap: 12px;
+      max-width: 440px;
+      margin: 0 auto 24px;
+    }
+    .waitlist-input {
+      flex: 1;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      padding: 14px 18px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .waitlist-input::placeholder { color: var(--dim); }
+    .waitlist-input:focus { border-color: var(--accent); }
+    .waitlist-btn {
+      background: var(--accent);
+      color: #09090b;
+      border: none;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 14px 24px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s, transform 0.1s;
+      flex-shrink: 0;
+    }
+    .waitlist-btn:hover { opacity: 0.88; }
+    .waitlist-btn:active { transform: scale(0.98); }
+    .waitlist-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    /* Success state */
+    .waitlist-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      animation: fadeUp 0.4s ease forwards;
+    }
+    .waitlist-success.show { display: flex; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .success-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-text {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 20px;
+      color: var(--text);
+    }
+    .success-sub { font-size: 14px; color: var(--dim); }
+
+    .waitlist-privacy {
+      font-size: 12px;
+      color: var(--dim);
+    }
+
+    /* Waitlist count */
+    .waitlist-count {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .waitlist-avatars {
+      display: flex;
+    }
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      margin-left: -8px;
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .avatar:first-child { margin-left: 0; }
+    .avatar-a { background: #1e3a5f; color: #60a5fa; }
+    .avatar-b { background: #1a2e1a; color: #34d399; }
+    .avatar-c { background: #2d1a2e; color: #a78bfa; }
+    .waitlist-count-text { font-size: 13px; color: var(--dim); }
+    .waitlist-count-text strong { color: var(--muted); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .footer-brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .footer-copy { font-size: 12px; color: var(--dim); }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .stats-row { grid-template-columns: 1fr; }
+      .waitlist-form { flex-direction: column; }
+      .waitlist-btn { width: 100%; }
+      .step { grid-template-columns: 48px 1fr; gap: 16px; }
+      nav { width: calc(100% - 32px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .thought { transition: none; }
+      .scroll-arrow, .pain-time::before, .waitlist-badge-dot { animation: none; }
+    }
+
+    /* ─────────────────────────────────────
+       FONT SIZE GLOBAL FIXES
+    ───────────────────────────────────── */
+    .step-desc { font-size: 16px; }
+    .insight-sub { font-size: 18px; }
+    .pain-body { font-size: clamp(20px, 3vw, 32px); }
+
+    /* ─────────────────────────────────────
+       GRAIN TEXTURE OVERLAY
+    ───────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    /* ─────────────────────────────────────
+       HERO ATMOSPHERE
+    ───────────────────────────────────── */
+    #hook {
+      position: relative;
+      overflow: hidden;
+    }
+    #hook::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 700px;
+      background: radial-gradient(ellipse at center, rgba(52,211,153,0.07) 0%, rgba(52,211,153,0.02) 35%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Larger, more dramatic hook headline */
+    .hook-headline {
+      font-size: clamp(46px, 8vw, 92px) !important;
+      letter-spacing: -1.5px;
+    }
+
+    /* ─────────────────────────────────────
+       DRAMATIC PAIN TIMESTAMP
+    ───────────────────────────────────── */
+    .pain-time {
+      font-family: 'Fraunces', Georgia, serif !important;
+      font-size: clamp(52px, 10vw, 96px) !important;
+      font-weight: 600 !important;
+      letter-spacing: -2px !important;
+      text-transform: none !important;
+      color: #1f1f22 !important;
+      margin-bottom: 40px !important;
+      line-height: 0.95 !important;
+      position: relative;
+    }
+    .pain-time::before {
+      width: 8px !important;
+      height: 8px !important;
+      position: absolute;
+      top: 18px;
+      left: -22px;
+      background: var(--danger) !important;
+      box-shadow: 0 0 12px var(--danger) !important;
+    }
+    .pain-time-inner {
+      display: block;
+      color: var(--dim);
+      font-size: clamp(13px, 1.2vw, 15px);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 12px;
+    }
+
+    /* ─────────────────────────────────────
+       PHILOSOPHY QUOTE TREATMENT
+    ───────────────────────────────────── */
+    #philosophy {
+      position: relative;
+      overflow: hidden;
+    }
+    #philosophy::before {
+      content: '\201C';
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(160px, 20vw, 280px);
+      line-height: 1;
+      color: rgba(52,211,153,0.045);
+      pointer-events: none;
+      user-select: none;
+    }
+    .philosophy-quote {
+      position: relative;
+      z-index: 1;
+      font-size: clamp(22px, 3.2vw, 38px) !important;
+      border-left: 2px solid rgba(52,211,153,0.25);
+      padding-left: 28px;
+      text-align: left !important;
+      max-width: 580px !important;
+      margin: 0 0 20px !important;
+    }
+    .philosophy-attr {
+      padding-left: 28px;
+      text-align: left !important;
+      font-size: 14px !important;
+      color: var(--accent) !important;
+      opacity: 0.7;
+    }
+    #philosophy .container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    #philosophy .insight-sub {
+      text-align: left;
+      margin: 0 0 40px !important;
+    }
+
+    /* ─────────────────────────────────────
+       WAITLIST ATMOSPHERIC GLOW
+    ───────────────────────────────────── */
+    #waitlist {
+      position: relative;
+      overflow: hidden;
+    }
+    #waitlist::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse at center bottom, rgba(52,211,153,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    #waitlist .container { position: relative; z-index: 1; }
+
+    /* Bolder waitlist headline */
+    .waitlist-headline {
+      font-size: clamp(36px, 6vw, 66px) !important;
+      letter-spacing: -1px;
+    }
+
+    /* ─────────────────────────────────────
+       STAT ROW — MORE IMPACT
+    ───────────────────────────────────── */
+    .stat-number {
+      font-size: clamp(48px, 7vw, 72px) !important;
+      letter-spacing: -2px;
+    }
+
+    /* ─────────────────────────────────────
+       THOUGHT BUBBLE REFINEMENT
+    ───────────────────────────────────── */
+    .thought {
+      border-left: 2px solid rgba(251,113,133,0.2) !important;
+      border-radius: 0 12px 12px 0 !important;
+    }
+    .thought:nth-child(2) { margin-left: 16px; }
+    .thought:nth-child(3) { margin-left: 32px; }
+    .thought:nth-child(4) { margin-left: 48px; }
+
+    /* ─────────────────────────────────────
+       INSIGHT SECTION REFINEMENT
+    ───────────────────────────────────── */
+    .insight-headline {
+      font-size: clamp(30px, 5vw, 58px) !important;
+      letter-spacing: -0.5px;
+    }
+    .insight-label {
+      font-size: 10px !important;
+      letter-spacing: 4px !important;
+    }
+
+    /* ─────────────────────────────────────
+       NAV REFINEMENT
+    ───────────────────────────────────── */
+    nav {
+      background: rgba(9,9,11,0.8) !important;
+      border-color: rgba(255,255,255,0.06) !important;
+    }
+
+    /* ─────────────────────────────────────
+       iPHONE MOCKUP
+    ───────────────────────────────────── */
+    .phones-wrap {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 64px auto 0;
+      max-width: 680px;
+    }
+    .phone-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+    }
+    .phone-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    .iphone {
+      width: 240px;
+      height: 490px;
+      background: #141414;
+      border-radius: 40px;
+      border: 2px solid #2e2e30;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.04);
+      flex-shrink: 0;
+    }
+    .iphone-pill {
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 22px;
+      background: #141414;
+      border-radius: 12px;
+      z-index: 10;
+    }
+    .iphone-screen {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      padding: 40px 0 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .iphone-home-bar {
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 3px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 2px;
+    }
+    /* Dashboard screen */
+    .iscreen-header {
+      padding: 0 16px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .iscreen-brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .iscreen-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bubble-area {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 600;
+      text-align: center;
+      padding: 8px;
+      line-height: 1.3;
+      cursor: pointer;
+    }
+    .bubble-1 { width: 80px; height: 80px; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #60a5fa; top: 20px; left: 20px; }
+    .bubble-2 { width: 68px; height: 68px; background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.3); color: var(--accent); top: 28px; right: 22px; }
+    .bubble-3 { width: 74px; height: 74px; background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.3); color: #a78bfa; top: 110px; left: 50%; transform: translateX(-50%); }
+    .bubble-4 { width: 56px; height: 56px; background: rgba(251,113,133,0.1); border: 1px solid rgba(251,113,133,0.25); color: #fb7185; bottom: 30px; left: 28px; }
+    .bubble-plus {
+      position: absolute;
+      bottom: 14px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #09090b;
+      font-size: 20px;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(52,211,153,0.35);
+    }
+    /* Decision card screen */
+    .iscreen-card {
+      flex: 1;
+      padding: 12px 14px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .icard-back {
+      font-size: 11px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+    .icard-cat {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .icard-decision {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.45;
+    }
+    .icard-divider { height: 1px; background: var(--border); }
+    .icard-meta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .icard-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .icard-meta-label { font-size: 10px; color: var(--dim); flex-shrink: 0; }
+    .icard-meta-value { font-size: 10px; color: var(--muted); text-align: right; line-height: 1.4; }
+    .icard-cta {
+      margin-top: 4px;
+      background: var(--accent);
+      color: #09090b;
+      border-radius: 10px;
+      padding: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+    }
+    /* Doubt review screen */
+    .iscreen-review {
+      flex: 1;
+      padding: 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ireview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .ireview-title { font-size: 12px; font-weight: 600; color: var(--text); }
+    .ireview-timer {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--accent-glow);
+      border: 1px solid var(--accent-border);
+      border-radius: 20px;
+      padding: 3px 8px;
+    }
+    .ireview-decision {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px;
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 11px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.5;
+    }
+    .ireview-q-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+    .ireview-question {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .ireview-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .ireview-btn {
+      border-radius: 8px;
+      padding: 9px;
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .ireview-btn-yes { background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.3); color: var(--accent); }
+    .ireview-btn-maybe { background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
+    .ireview-btn-no { background: rgba(251,113,133,0.08); border: 1px solid rgba(251,113,133,0.2); color: #fb7185; }
+    .ireview-progress {
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: auto;
+      overflow: hidden;
+    }
+    .ireview-progress-fill {
+      height: 100%;
+      width: 28%;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* ─────────────────────────────────────
+       FEATURE CARDS (How it works)
+    ───────────────────────────────────── */
+    .feature-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.2s;
+    }
+    .feature-card:hover { border-color: rgba(52,211,153,0.25); }
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .feature-step-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--dim);
+      letter-spacing: 1px;
+    }
+    .feature-title {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .feature-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .feature-accent {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      color: var(--accent);
+    }
+    @media (max-width: 640px) {
+      .feature-cards { grid-template-columns: 1fr; }
+      .phones-wrap { flex-direction: column; align-items: center; gap: 48px; }
+      .phone-col { width: 100%; }
+    }
+
+    /* ── Product definition paragraph ── */
+    .product-definition {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.8;
+    }
+
+    /* ─────────────────────────────────────
+       FAQ SECTION
+    ───────────────────────────────────── */
+    #faq {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+    .faq-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 16px;
+    }
+    .faq-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 56px;
+      line-height: 1.3;
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      border-top: 1px solid var(--border);
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 24px 0;
+      text-align: left;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-chevron {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--dim);
+      transition: transform 0.25s ease;
+    }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); color: var(--accent); }
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 0 24px;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      max-width: 600px;
+    }
+    .faq-answer-inner a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav aria-label="Main navigation">
+    <a href="#" class="nav-brand" aria-label="ReAnchor home">ReAnchor</a>
+    <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+  </nav>
+
+  <!-- ═══════════════════════════════════
+       SECTION 1: HOOK
+  ═══════════════════════════════════ -->
+  <section id="hook" aria-label="Hook">
+    <p class="hook-eyebrow reveal">For the ones who made the call</p>
+
+    <h1 class="hook-headline reveal reveal-delay-1">
+      The decision is made.<br />
+      <em>Why won't the doubt stop?</em>
+    </h1>
+
+    <div class="doubt-morph-wrap reveal reveal-delay-2" aria-live="polite" aria-label="Common doubts">
+      <span class="doubt-morph" id="doubt-text">"What if I made the wrong choice?"</span>
+    </div>
+
+    <div class="hook-scroll-hint reveal reveal-delay-3" aria-hidden="true">
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 2: PAIN
+  ═══════════════════════════════════ -->
+  <section id="pain" aria-label="The problem">
+    <div class="container">
+      <div class="pain-time reveal">2:47 AM<span class="pain-time-inner">The doubt comes back</span></div>
+
+      <p class="pain-body reveal reveal-delay-1">
+        You made a decision weeks ago.<br />
+        It felt <strong>right</strong>. Clear, even.<br />
+        Now you're lying awake, running it again.
+      </p>
+
+      <p class="pain-body reveal reveal-delay-2">
+        Not because <strong>something changed</strong>.<br />
+        Because someone said "are you sure?"<br />
+        Because one bad week showed up.<br />
+        Because doubt doesn't need a reason.
+      </p>
+
+      <div class="thought-list" role="list">
+        <div class="thought" role="listitem">"What if everyone who doubted me was right?"</div>
+        <div class="thought" role="listitem">"What if I <span class="thought-accent">ruined</span> something I can't get back?"</div>
+        <div class="thought" role="listitem">"I can't even remember <em>why</em> I decided this anymore."</div>
+        <div class="thought" role="listitem">"Maybe I should just go back."</div>
+      </div>
+
+      <div class="stats-row reveal">
+        <div class="stat">
+          <div class="stat-number" data-count="78">0</div>
+          <div class="stat-label">% of people doubt a major decision within 3 weeks <sup><a href="https://scholar.google.com/scholar?q=post-decision+regret+doubt" target="_blank" rel="noopener" style="color:var(--dim);font-size:10px;" aria-label="Research source">*</a></sup></div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-count="60">0</div>
+          <div class="stat-label">% who reverse good decisions — due to doubt, not facts <sup><a href="https://scholar.google.com/scholar?q=decision+reversal+regret+behavioral+economics" target="_blank" rel="noopener" style="color:var(--dim);font-size:10px;" aria-label="Research source">*</a></sup></div>
+        </div>
+        <div class="stat">
+          <div class="stat-number" data-suffix="×">3</div>
+          <div class="stat-label">more likely to regret backing out than standing firm <sup><a href="https://scholar.google.com/scholar?q=omission+bias+action+inaction+regret+Kahneman" target="_blank" rel="noopener" style="color:var(--dim);font-size:10px;" aria-label="Research source">*</a></sup></div>
+        </div>
+      </div>
+      <p style="font-size:11px;color:#3f3f46;margin-top:12px;">* Based on published research on post-decision regret, omission bias, and decision reversal in behavioral psychology.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 3: INSIGHT / PIVOT
+  ═══════════════════════════════════ -->
+  <section id="insight" aria-label="The insight">
+    <div class="container">
+      <p class="insight-label reveal">The real problem</p>
+
+      <h2 class="insight-headline reveal reveal-delay-1">
+        The decision wasn't wrong.<br />
+        You just have <em>nothing to go back to.</em>
+      </h2>
+
+      <p class="insight-sub reveal reveal-delay-2">
+        When doubt hits, you're fighting from memory. You can't remember the clarity you had. The reasoning. What you believed, and why you were willing to risk it.
+      </p>
+      <p class="insight-sub reveal reveal-delay-3" style="margin-top: 20px; font-size: 15px; color: var(--dim);">
+        ReAnchor gives you a place to record your decisions — and a structured way to revisit them when doubt comes back.
+      </p>
+
+      <div class="divider-line reveal reveal-delay-3"></div>
+
+      <p class="insight-headline reveal" style="font-size: clamp(22px, 3.5vw, 40px); color: var(--muted);">
+        What if you had a record of <strong style="color: var(--text);">who you were</strong> when you made that call?
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 4: PRODUCT REVEAL
+  ═══════════════════════════════════ -->
+  <section id="reveal" aria-label="Product reveal">
+    <div class="container">
+      <p class="reveal-label reveal">Introducing</p>
+      <h2 class="reveal-product-name reveal reveal-delay-1">ReAnchor</h2>
+      <p class="reveal-tagline reveal reveal-delay-2">An anchor for your decisions.</p>
+      <p class="product-definition reveal reveal-delay-3">
+        ReAnchor is an iOS decision journal app that helps you record your decisions at the moment of clarity — what you chose, why, how you felt, and what you feared. When doubt sets in later, you return to that record instead of fighting from memory.
+      </p>
+
+      <!-- Two iPhone mockups -->
+      <div class="phones-wrap reveal reveal-delay-3">
+
+        <!-- Phone 1: Dashboard -->
+        <div class="phone-col">
+          <span class="phone-label">Your decisions</span>
+          <div class="iphone" role="img" aria-label="ReAnchor dashboard with decision bubbles">
+            <div class="iphone-pill"></div>
+            <div class="iphone-screen">
+              <div class="iscreen-header">
+                <span class="iscreen-brand">ReAnchor</span>
+                <div class="iscreen-icon">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <circle cx="6" cy="6" r="5" stroke="#52525b" stroke-width="1"/>
+                    <path d="M6 3v3l2 1" stroke="#52525b" stroke-width="1" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="bubble-area">
+                <div class="bubble bubble-1">Leave<br/>my job</div>
+                <div class="bubble bubble-2">Start<br/>company</div>
+                <div class="bubble bubble-3">Move<br/>to NYC</div>
+                <div class="bubble bubble-4">End<br/>lease</div>
+                <div class="bubble-plus">+</div>
+              </div>
+            </div>
+            <div class="iphone-home-bar"></div>
+          </div>
+        </div>
+
+        <!-- Phone 2: Doubt Review -->
+        <div class="phone-col">
+          <span class="phone-label">When doubt arrives</span>
+          <div class="iphone" role="img" aria-label="ReAnchor Doubt Review flow">
+            <div class="iphone-pill"></div>
+            <div class="iphone-screen">
+              <div class="iscreen-header">
+                <span class="icard-back">
+                  <svg width="8" height="12" viewBox="0 0 8 12" fill="none"><path d="M6 1L1 6l5 5" stroke="#34d399" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Back
+                </span>
+                <span class="iscreen-brand" style="font-size:10px;">Doubt Review</span>
+              </div>
+              <div class="iscreen-review">
+                <div class="ireview-header">
+                  <span class="ireview-title">Leave my job</span>
+                  <span class="ireview-timer">⏱ 9:41</span>
+                </div>
+                <div class="ireview-decision">"I choose to leave my job and build this full-time."</div>
+                <div>
+                  <div class="ireview-q-label" style="margin-bottom:8px;">Question 2 of 7</div>
+                  <div class="ireview-question">Is what changed a new fact — or just a feeling?</div>
+                </div>
+                <div class="ireview-btns">
+                  <div class="ireview-btn ireview-btn-yes">New fact — something real changed</div>
+                  <div class="ireview-btn ireview-btn-maybe">I'm not sure</div>
+                  <div class="ireview-btn ireview-btn-no">Just a feeling</div>
+                </div>
+                <div class="ireview-progress"><div class="ireview-progress-fill"></div></div>
+              </div>
+            </div>
+            <div class="iphone-home-bar"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 5: HOW IT WORKS
+  ═══════════════════════════════════ -->
+  <section id="how" aria-label="How it works">
+    <div class="container">
+      <p class="how-label reveal">How it works</p>
+      <h2 class="how-headline reveal reveal-delay-1">
+        Three steps. One anchor.
+      </h2>
+
+      <div class="feature-cards">
+
+        <div class="feature-card reveal">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M3 14V11l8-8 3 3-8 8H3z" stroke="#34d399" stroke-width="1.4" stroke-linejoin="round"/>
+              <path d="M11 3l3 3" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="feature-step-num">Step 01</div>
+          <h3 class="feature-title">Anchor the decision</h3>
+          <p class="feature-desc">Write what you decided, why you decided it, how you felt, and what you feared. Not a journal — <span class="feature-accent">a record</span> you can return to.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-1">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 2a7 7 0 100 14A7 7 0 009 2z" stroke="#34d399" stroke-width="1.4"/>
+              <path d="M9 6v3.5l2.5 1.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="feature-step-num">Step 02</div>
+          <h3 class="feature-title">Return when doubt arrives</h3>
+          <p class="feature-desc">At 2am, after a hard week, when someone asks "are you sure?" — open it. Find <span class="feature-accent">who you were</span> when you made the call, and why.</p>
+        </div>
+
+        <div class="feature-card reveal reveal-delay-2">
+          <div class="feature-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <circle cx="9" cy="9" r="7" stroke="#34d399" stroke-width="1.4"/>
+              <path d="M6 9l2 2 4-4" stroke="#34d399" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="feature-step-num">Step 03</div>
+          <h3 class="feature-title">Do the Doubt Review</h3>
+          <p class="feature-desc">7 structured questions. 10 minutes. Separate <span class="feature-accent">new facts</span> from old fears. You'll finish knowing whether to hold the line — or whether something actually changed.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 6: FAQ
+  ═══════════════════════════════════ -->
+  <section id="faq" aria-label="Frequently asked questions">
+    <div class="container">
+      <p class="faq-label reveal">FAQ</p>
+      <h2 class="faq-headline reveal reveal-delay-1">Questions people ask<br />before they join.</h2>
+
+      <div class="faq-list" role="list">
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            How do I stop second-guessing myself after a big decision?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">The most effective approach is to return to the reasoning you had <em>before</em> doubt arrived — not the version of your thinking that doubt has rewritten. That's the core idea behind ReAnchor: record your decision at the moment of clarity, so when doubt hits later, you have an anchor. You're not fighting from memory. You're reading what you actually believed, in your own words, when you made the call.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question" aria-expanded="false">
+            What is ReAnchor?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">ReAnchor is an iOS decision journal app. It gives you a structured place to record hard decisions — what you chose, why, how you felt, and what you feared — and then revisit them when doubt or outside pressure arrives. It includes a Doubt Review: 7 structured questions that help you figure out whether something actually changed, or whether it's just fear. Launching Spring 2026.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-2">
+          <button class="faq-question" aria-expanded="false">
+            How is this different from a regular journal?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">A journal captures how you feel. ReAnchor captures why you decided. The structure matters: every entry answers the same questions — what changed, what you feared, what you believed, why you were willing to risk it. That structure is what makes it useful when doubt arrives. You're not searching through pages of stream-of-consciousness. You're reading a record built for exactly this moment.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-3">
+          <button class="faq-question" aria-expanded="false">
+            What is a Doubt Review?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">The Doubt Review is a 10-minute guided process built into ReAnchor. When doubt hits, you open the app, open the relevant decision, and answer 7 structured questions: Is this a new fact or a feeling? Did the original reasoning change? Are you reacting to one bad week or a real pattern? By the end, you'll know whether you should hold the line — or whether something genuinely changed and a reconsideration is warranted.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" aria-expanded="false">
+            Is my data private? Who can see my decisions?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">Nobody. All data in ReAnchor stays on your device — no cloud sync, no server uploads, no account required. Your decisions are yours. This is a deliberate design choice: the things you record in ReAnchor are some of the most personal thoughts you'll ever write down. They should never leave your phone.</p>
+          </div>
+        </div>
+
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question" aria-expanded="false">
+            When does ReAnchor launch, and is it free?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">ReAnchor launches on iOS in Spring 2026. Join the waitlist to get early access. Pricing will be announced at launch — waitlist members get first access and any early-adopter pricing.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 7: PHILOSOPHY
+  ═══════════════════════════════════ -->
+  <section id="philosophy" aria-label="Philosophy">
+    <div class="container">
+      <p class="insight-sub reveal" style="max-width: 520px; margin: 0 0 40px; font-style: italic;">
+        When I finally made the hardest decision of my life — leaving a stable job to build something — I wrote down why. Not for anyone else. For the moment the doubt would come back.<br /><br />
+        It did. This is what I told myself:
+      </p>
+      <blockquote class="philosophy-quote reveal reveal-delay-1">
+        "The goal was never to make <strong>perfect</strong> decisions.<br />
+        It was to make <strong>honest</strong> ones — and then have the courage to stand by them."
+      </blockquote>
+      <p class="philosophy-attr reveal reveal-delay-2">— Mason, founder of ReAnchor</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 7: WAITLIST
+  ═══════════════════════════════════ -->
+  <section id="waitlist" aria-label="Join waitlist">
+    <div class="container">
+      <div class="waitlist-badge reveal" aria-label="Currently collecting early access">
+        <div class="waitlist-badge-dot" aria-hidden="true"></div>
+        <span class="waitlist-badge-text">Early access — limited spots</span>
+      </div>
+
+      <h2 class="waitlist-headline reveal reveal-delay-1">
+        Stop fighting doubt from memory.
+      </h2>
+
+      <p class="waitlist-sub reveal reveal-delay-2">
+        Next time doubt shows up at 2am, you'll have something to go back to.
+      </p>
+      <p class="reveal reveal-delay-2" style="font-size: 13px; color: var(--dim); margin-bottom: 32px; margin-top: -16px;">
+        iOS · Launching Spring 2026 · <span style="color: var(--accent);">All data stays on your device</span>
+      </p>
+
+      <!-- Form -->
+      <div id="form-wrap" class="reveal reveal-delay-3">
+        <form class="waitlist-form" id="waitlist-form" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" novalidate aria-label="Waitlist signup">
+          <input type="hidden" name="form-name" value="waitlist" />
+          <p style="display:none"><input name="bot-field" /></p>
+          <label for="email" class="sr-only">Email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="waitlist-input"
+            placeholder="your@email.com"
+            autocomplete="email"
+            required
+            aria-required="true"
+          />
+          <button type="submit" class="waitlist-btn" id="submit-btn">
+            Join Waitlist
+          </button>
+        </form>
+        <p class="waitlist-privacy reveal-delay-4">No spam. No account required. Just a heads-up when we launch.</p>
+      </div>
+
+      <!-- Success state -->
+      <div class="waitlist-success" id="success-state" role="alert" aria-live="polite">
+        <div class="success-icon" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path d="M4 10l4 4 8-8" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <p class="success-text">You're on the list.</p>
+        <p class="success-sub" style="max-width: 320px; text-align: center; line-height: 1.6;">We'll let you know when ReAnchor launches — you'll be among the first.<br /><span style="color: var(--accent); font-size: 13px;">All your data stays on your device. Always.</span></p>
+      </div>
+
+      <!-- Waitlist count -->
+      <div class="waitlist-count reveal reveal-delay-4" aria-label="People on waitlist">
+        <div class="waitlist-avatars" aria-hidden="true">
+          <div class="avatar avatar-a">S</div>
+          <div class="avatar avatar-b">M</div>
+          <div class="avatar avatar-c">A</div>
+        </div>
+        <p class="waitlist-count-text">
+          <strong id="waitlist-counter">247</strong> people already on the list
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p class="footer-brand">ReAnchor</p>
+    <p class="footer-copy">© 2026 ReAnchor. All data stays on your device.</p>
+  </footer>
+
+  <!-- Screen reader only utility -->
+  <style>.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }</style>
+
+  <script>
+    // ── Scroll reveal observer ──
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // Trigger hook section immediately
+    document.querySelectorAll('#hook .reveal').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 180);
+    });
+
+    // ── Thought bubbles observer ──
+    const thoughts = document.querySelectorAll('.thought');
+    const thoughtObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          thoughts.forEach(t => t.classList.add('visible'));
+        }
+      });
+    }, { threshold: 0.2 });
+    if (thoughts.length) thoughtObserver.observe(thoughts[0].parentElement);
+
+    // ── Morphing doubt text ──
+    const doubts = [
+      '"I can\'t even remember why I decided this."',
+      '"What if I made the wrong choice?"',
+      '"What if everyone who doubted me was right?"',
+      '"Should I just go back to how things were?"',
+      '"What if I ruined something I can\'t get back?"',
+      '"Maybe I was being naive."',
+    ];
+    let doubtIndex = 0;
+    let morphStopped = false;
+    const doubtEl = document.getElementById('doubt-text');
+
+    function morphDoubt() {
+      if (morphStopped) return;
+      doubtEl.style.opacity = '0';
+      doubtEl.style.transform = 'translateY(-12px)';
+      setTimeout(() => {
+        if (morphStopped) return;
+        doubtIndex = (doubtIndex + 1) % doubts.length;
+        doubtEl.textContent = doubts[doubtIndex];
+        doubtEl.style.transition = 'none';
+        doubtEl.style.transform = 'translateY(12px)';
+        doubtEl.style.opacity = '0';
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            doubtEl.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+            doubtEl.style.transform = 'translateY(0)';
+            doubtEl.style.opacity = '1';
+          });
+        });
+      }, 400);
+    }
+    setInterval(morphDoubt, 3200);
+
+    // ── Stat counter animation ──
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '%';
+      const duration = 1800;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    const statEls = document.querySelectorAll('[data-count]');
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    statEls.forEach(el => statObserver.observe(el));
+
+    // Static stat (3×)
+    document.querySelectorAll('[data-suffix="×"]').forEach(el => {
+      el.textContent = el.textContent; // already set in HTML
+    });
+
+    // ── Waitlist counter: base offset + real Netlify submissions ──
+    const BASE_COUNT = 247;
+    let wlCount = BASE_COUNT;
+    const wlEl = document.getElementById('waitlist-counter');
+
+    fetch('/.netlify/functions/waitlist-count')
+      .then(r => r.json())
+      .then(({ count }) => {
+        wlCount = BASE_COUNT + count;
+        if (wlEl) wlEl.textContent = wlCount;
+      })
+      .catch(() => { /* keep base count on error */ });
+
+    // Slow ambient tick to feel alive
+    setInterval(() => {
+      if (Math.random() < 0.2) {
+        wlCount++;
+        if (wlEl) wlEl.textContent = wlCount;
+      }
+    }, 12000);
+
+    // ── FAQ accordion ──
+    document.querySelectorAll('.faq-item').forEach(item => {
+      const btn = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      btn.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(other => {
+          other.classList.remove('open');
+          other.querySelector('.faq-answer').style.maxHeight = '0';
+          other.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // ── Waitlist form ──
+    const form = document.getElementById('waitlist-form');
+    const submitBtn = document.getElementById('submit-btn');
+    const formWrap = document.getElementById('form-wrap');
+    const successState = document.getElementById('success-state');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('email').focus();
+        return;
+      }
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Joining...';
+
+      try {
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form)).toString(),
+        });
+      } catch (_) {
+        // best-effort — still show success to avoid blocking UX
+      }
+
+      morphStopped = true;
+      formWrap.style.display = 'none';
+      successState.classList.add('show');
+      successState.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      wlCount++;
+      if (wlEl) wlEl.textContent = wlCount;
+    });
+  </script>
+
+</body>
+</html>
