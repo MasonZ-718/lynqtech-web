@@ -803,6 +803,25 @@
       .waitlist-btn { width: 100%; }
       .step { grid-template-columns: 48px 1fr; gap: 16px; }
       nav { width: calc(100% - 32px); }
+      #hook { padding: 100px 20px 60px; }
+      #pain, #insight, #reveal, #how, #waitlist, #faq, #philosophy { padding: 80px 0; }
+      .container { padding: 0 20px; }
+      /* Remove stagger on small screens to prevent overflow */
+      .thought:nth-child(2),
+      .thought:nth-child(3),
+      .thought:nth-child(4) { margin-left: 0; }
+      .pain-time::before { left: 0; position: static; display: inline-block; margin-right: 8px; }
+      .pain-time { padding-left: 0; }
+    }
+
+    @media (max-width: 480px) {
+      nav { padding: 10px 14px; }
+      .nav-brand { font-size: 11px; letter-spacing: 1px; }
+      .nav-cta { font-size: 12px; padding: 7px 12px; }
+      .stats-row { gap: 0; }
+      .stat { padding: 20px 16px; }
+      .waitlist-input { font-size: 15px; }
+      .hook-scroll-hint { display: none; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1327,6 +1346,11 @@
       .feature-cards { grid-template-columns: 1fr; }
       .phones-wrap { flex-direction: column; align-items: center; gap: 48px; }
       .phone-col { width: 100%; }
+      .iphone { width: 200px; height: 408px; }
+    }
+
+    @media (max-width: 480px) {
+      .iphone { width: 180px; height: 368px; }
     }
 
     /* ── Product definition paragraph ── */
