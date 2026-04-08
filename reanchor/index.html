@@ -197,7 +197,7 @@
     .container {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 0 clamp(24px, 5vw, 80px);
+      padding: 0 clamp(20px, 3vw, 48px);
     }
 
     /* ─────────────────────────────────────
@@ -323,6 +323,11 @@
     }
 
     /* Thought bubbles */
+    .pain-body-col {
+      display: flex;
+      flex-direction: column;
+    }
+
     .thought-list {
       margin: 48px 0;
       display: flex;
@@ -530,7 +535,7 @@
        SECTION 5: HOW IT WORKS
     ───────────────────────────────────── */
     #how {
-      padding: 120px 0;
+      padding: 80px 0 100px;
       border-top: 1px solid var(--border);
     }
 
@@ -802,25 +807,31 @@
       #pain .container {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 64px;
+        column-gap: 64px;
         align-items: start;
       }
-      #pain .pain-time { grid-column: 1 / -1; }
-      #pain .stats-row { grid-column: 1 / -1; }
-      #pain > .container > p:last-of-type { grid-column: 1 / -1; }
+      #pain .pain-time     { grid-column: 1 / -1; }
+      #pain .pain-body-col { grid-column: 1; }
+      #pain .thought-list  { grid-column: 2; margin: 0; }
+      #pain .stats-row     { grid-column: 1 / -1; }
+      #pain .container > p { grid-column: 1 / -1; }
+      /* Remove stagger in grid — right column is narrow enough already */
+      #pain .thought:nth-child(2),
+      #pain .thought:nth-child(3),
+      #pain .thought:nth-child(4) { margin-left: 0; }
+
+      /* Reduce pain body font in grid — 32px is too large for a 50%-wide column */
+      #pain .pain-body { font-size: clamp(16px, 1.3vw, 20px) !important; line-height: 1.7; }
 
       /* Reveal section: text left, phones right */
       #reveal .container {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 64px;
+        column-gap: 64px;
         align-items: center;
       }
-      #reveal .reveal-label,
-      #reveal .reveal-product-name,
-      #reveal .reveal-tagline,
-      #reveal .product-definition { grid-column: 1; }
-      #reveal .phones-wrap { grid-column: 2; margin-top: 0; }
+      #reveal .reveal-text-col { grid-column: 1; }
+      #reveal .phones-wrap     { grid-column: 2; margin-top: 0; }
 
       /* Insight section: wider text */
       .insight-headline { max-width: 800px; }
@@ -1514,18 +1525,20 @@
     <div class="container">
       <div class="pain-time reveal">2:47 AM<span class="pain-time-inner">The doubt comes back</span></div>
 
-      <p class="pain-body reveal reveal-delay-1">
-        You made a decision weeks ago.<br />
-        It felt <strong>right</strong>. Clear, even.<br />
-        Now you're lying awake, running it again.
-      </p>
+      <div class="pain-body-col">
+        <p class="pain-body reveal reveal-delay-1">
+          You made a decision weeks ago.<br />
+          It felt <strong>right</strong>. Clear, even.<br />
+          Now you're lying awake, running it again.
+        </p>
 
-      <p class="pain-body reveal reveal-delay-2">
-        Not because <strong>something changed</strong>.<br />
-        Because someone said "are you sure?"<br />
-        Because one bad week showed up.<br />
-        Because doubt doesn't need a reason.
-      </p>
+        <p class="pain-body reveal reveal-delay-2">
+          Not because <strong>something changed</strong>.<br />
+          Because someone said "are you sure?"<br />
+          Because one bad week showed up.<br />
+          Because doubt doesn't need a reason.
+        </p>
+      </div>
 
       <div class="thought-list" role="list">
         <div class="thought" role="listitem">"What if everyone who doubted me was right?"</div>
@@ -1584,12 +1597,14 @@
   ═══════════════════════════════════ -->
   <section id="reveal" aria-label="Product reveal">
     <div class="container">
-      <p class="reveal-label reveal">Introducing</p>
-      <h2 class="reveal-product-name reveal reveal-delay-1">ReAnchor</h2>
-      <p class="reveal-tagline reveal reveal-delay-2">An anchor for your decisions.</p>
-      <p class="product-definition reveal reveal-delay-3">
-        ReAnchor is an iOS decision journal app that helps you record your decisions at the moment of clarity — what you chose, why, how you felt, and what you feared. When doubt sets in later, you return to that record instead of fighting from memory.
-      </p>
+      <div class="reveal-text-col">
+        <p class="reveal-label reveal">Introducing</p>
+        <h2 class="reveal-product-name reveal reveal-delay-1">ReAnchor</h2>
+        <p class="reveal-tagline reveal reveal-delay-2">An anchor for your decisions.</p>
+        <p class="product-definition reveal reveal-delay-3">
+          ReAnchor is an iOS decision journal app that helps you record your decisions at the moment of clarity — what you chose, why, how you felt, and what you feared. When doubt sets in later, you return to that record instead of fighting from memory.
+        </p>
+      </div>
 
       <!-- Two iPhone mockups -->
       <div class="phones-wrap reveal reveal-delay-3">
