@@ -50,13 +50,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:      #09090b;
-      --surface: #18181b;
-      --border:  #27272a;
-      --text:    #f4f4f5;
-      --muted:   #a1a1aa;
-      --dim:     #71717a;
-      --accent:  #34d399;
+      --bg:             #09090b;
+      --surface:        #18181b;
+      --surface-2:      #1c1c1f;
+      --border:         #27272a;
+      --border-subtle:  #1f1f22;
+      --text:           #f4f4f5;
+      --muted:          #a1a1aa;
+      --dim:            #71717a;
+      --accent:         #34d399;
+      --accent-text:    rgba(52, 211, 153, 0.82);
+      --accent-glow:    rgba(52, 211, 153, 0.10);
+      --accent-border:  rgba(52, 211, 153, 0.22);
     }
 
     html { height: 100%; }
@@ -122,8 +127,7 @@
       font-weight: 600;
       letter-spacing: 4px;
       text-transform: uppercase;
-      color: var(--accent);
-      opacity: 0.8;
+      color: var(--accent-text);
     }
 
     h1 {
@@ -131,8 +135,8 @@
       font-size: clamp(32px, 6vw, 54px);
       font-weight: 300;
       color: var(--text);
-      line-height: 1.2;
-      letter-spacing: -0.5px;
+      line-height: 1.12;
+      letter-spacing: -0.6px;
     }
 
     h1 em {
@@ -184,8 +188,9 @@
     }
 
     .product-link:hover {
-      border-color: rgba(52,211,153,0.3);
-      background: rgba(52,211,153,0.03);
+      border-color: var(--accent-border);
+      background: var(--surface-2);
+      box-shadow: 0 4px 24px rgba(52, 211, 153, 0.06);
     }
 
     .product-info { display: flex; flex-direction: column; gap: 4px; }
@@ -209,8 +214,8 @@
       letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--accent);
-      background: rgba(52,211,153,0.08);
-      border: 1px solid rgba(52,211,153,0.18);
+      background: var(--accent-glow);
+      border: 1px solid var(--accent-border);
       border-radius: 6px;
       padding: 3px 8px;
       flex-shrink: 0;
