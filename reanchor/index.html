@@ -190,6 +190,22 @@
       transition: opacity 0.15s;
     }
     .nav-cta:hover { opacity: 0.85; }
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-test {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .nav-test:hover { color: var(--text); border-color: var(--muted); }
 
     /* ── Section wrappers ── */
     section { position: relative; }
@@ -251,6 +267,32 @@
       color: var(--dim);
       display: block;
       transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .hook-test-cta {
+      display: inline-block;
+      text-decoration: none;
+      margin-bottom: 48px;
+    }
+    .hook-test-cta-inner {
+      display: inline-flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: var(--dim);
+      transition: border-color 0.15s, color 0.15s;
+      gap: 2px;
+    }
+    .hook-test-cta:hover .hook-test-cta-inner {
+      border-color: var(--accent-border);
+      color: var(--muted);
+    }
+    .hook-test-cta-link {
+      color: var(--accent-text);
+      font-weight: 500;
     }
 
     .hook-scroll-hint {
@@ -870,6 +912,7 @@
       nav { padding: 10px 14px; }
       .nav-brand { font-size: 11px; letter-spacing: 1px; }
       .nav-cta { font-size: 12px; padding: 7px 12px; }
+      .nav-test { display: none; }
       .stats-row { gap: 0; }
       .stat { padding: 20px 16px; }
       .waitlist-input { font-size: 15px; }
@@ -1647,7 +1690,10 @@
   <!-- Nav -->
   <nav aria-label="Main navigation">
     <a href="#" class="nav-brand" aria-label="ReAnchor home">ReAnchor</a>
-    <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+    <div class="nav-right">
+      <a href="/reanchor/self-test" class="nav-test">Free Self-Test</a>
+      <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+    </div>
   </nav>
 
   <!-- ═══════════════════════════════════
@@ -1665,7 +1711,13 @@
       <span class="doubt-morph" id="doubt-text">"What if I made the wrong choice?"</span>
     </div>
 
-    <div class="hook-scroll-hint reveal reveal-delay-3" aria-hidden="true">
+    <a href="/reanchor/self-test" class="hook-test-cta reveal reveal-delay-3">
+      <span class="hook-test-cta-inner">
+        Not sure if this is you? &nbsp;<span class="hook-test-cta-link">Take the free self-test &rarr;</span>
+      </span>
+    </a>
+
+    <div class="hook-scroll-hint reveal reveal-delay-4" aria-hidden="true">
       <div class="scroll-arrow"></div>
     </div>
   </section>
