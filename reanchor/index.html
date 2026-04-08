@@ -161,7 +161,7 @@
       align-items: center;
       justify-content: space-between;
       width: calc(100% - 48px);
-      max-width: 900px;
+      max-width: 1100px;
       background: rgba(9,9,11,0.85);
       backdrop-filter: blur(12px);
       border: 1px solid var(--border);
@@ -195,9 +195,9 @@
     section { position: relative; }
 
     .container {
-      max-width: 760px;
+      max-width: 1100px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 clamp(24px, 5vw, 80px);
     }
 
     /* ─────────────────────────────────────
@@ -228,7 +228,7 @@
       font-weight: 400;
       line-height: 1.15;
       color: var(--text);
-      max-width: 700px;
+      max-width: 900px;
       margin-bottom: 24px;
     }
 
@@ -796,6 +796,47 @@
     }
     .footer-copy { font-size: 12px; color: var(--dim); }
 
+    /* ── Large screen two-column layouts ── */
+    @media (min-width: 900px) {
+      /* Pain section: text left, thoughts right */
+      #pain .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      #pain .pain-time { grid-column: 1 / -1; }
+      #pain .stats-row { grid-column: 1 / -1; }
+      #pain > .container > p:last-of-type { grid-column: 1 / -1; }
+
+      /* Reveal section: text left, phones right */
+      #reveal .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: center;
+      }
+      #reveal .reveal-label,
+      #reveal .reveal-product-name,
+      #reveal .reveal-tagline,
+      #reveal .product-definition { grid-column: 1; }
+      #reveal .phones-wrap { grid-column: 2; margin-top: 0; }
+
+      /* Insight section: wider text */
+      .insight-headline { max-width: 800px; }
+      .insight-sub { max-width: 660px; }
+
+      /* Waitlist section: wider text */
+      .waitlist-headline { max-width: 800px; }
+      .waitlist-sub { max-width: 600px; }
+
+      /* Philosophy: wider quote */
+      .philosophy-quote { max-width: 760px !important; }
+
+      /* FAQ: wider */
+      .faq-answer-inner { max-width: 800px; }
+    }
+
     /* ── Responsive ── */
     @media (max-width: 640px) {
       .stats-row { grid-template-columns: 1fr; }
@@ -805,7 +846,7 @@
       nav { width: calc(100% - 32px); }
       #hook { padding: 100px 20px 60px; }
       #pain, #insight, #reveal, #how, #waitlist, #faq, #philosophy { padding: 80px 0; }
-      .container { padding: 0 20px; }
+      .container { padding: 0 20px !important; }
       /* Remove stagger on small screens to prevent overflow */
       .thought:nth-child(2),
       .thought:nth-child(3),
