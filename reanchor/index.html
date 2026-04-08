@@ -1009,6 +1009,158 @@
     }
 
     /* ─────────────────────────────────────
+       SELF-TEST TEASER SECTION
+    ───────────────────────────────────── */
+    #self-test {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .self-test-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: clamp(32px, 4vw, 52px);
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .self-test-card::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(52,211,153,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .self-test-left {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .self-test-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .self-test-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--text);
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+    .self-test-headline em {
+      font-style: italic;
+      color: var(--muted);
+    }
+    .self-test-body {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+      max-width: 420px;
+    }
+    .self-test-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #09090b;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 24px;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .self-test-btn:hover { opacity: 0.88; }
+    .self-test-btn:active { transform: scale(0.98); }
+    .self-test-right {
+      flex-shrink: 0;
+      width: 260px;
+      position: relative;
+      z-index: 1;
+    }
+    .test-preview-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .test-preview-dim {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--danger);
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+    .test-preview-q {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 13px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+    .test-preview-scale {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .test-preview-scale span {
+      flex: 1;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Fraunces', Georgia, serif;
+      color: var(--dim);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 4px;
+    }
+    .test-scale-active {
+      background: rgba(251,113,133,0.12) !important;
+      border-color: rgba(251,113,133,0.4) !important;
+      color: var(--danger) !important;
+    }
+    .test-preview-bar-wrap {
+      height: 4px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .test-preview-bar {
+      height: 100%;
+      background: var(--danger);
+      border-radius: 4px;
+    }
+    .test-preview-result {
+      font-size: 12px;
+      color: var(--dim);
+    }
+    @media (max-width: 768px) {
+      .self-test-right { display: none; }
+      .self-test-card { flex-direction: column; }
+    }
+    @media (max-width: 480px) {
+      .self-test-card { padding: 28px 24px; border-radius: 18px; }
+    }
+
+    /* ─────────────────────────────────────
        WAITLIST ATMOSPHERIC GLOW
     ───────────────────────────────────── */
     #waitlist {
@@ -1819,7 +1971,40 @@
   </section>
 
   <!-- ═══════════════════════════════════
-       SECTION 7: WAITLIST
+       SECTION 7: SELF-TEST CTA
+  ═══════════════════════════════════ -->
+  <section id="self-test" aria-label="Self-test">
+    <div class="container">
+      <div class="self-test-card reveal">
+        <div class="self-test-left">
+          <p class="self-test-eyebrow">Free Self-Assessment</p>
+          <h2 class="self-test-headline">
+            Do you have decision anxiety?<br /><em>Find out in 3 minutes.</em>
+          </h2>
+          <p class="self-test-body">
+            16 science-informed questions. Four dimensions: paralysis, rumination, maximizing, avoidance. Instant results — no account, no data collected.
+          </p>
+          <a href="/reanchor/self-test" class="self-test-btn">Take the Self-Test &rarr;</a>
+        </div>
+        <div class="self-test-right" aria-hidden="true">
+          <div class="test-preview-card">
+            <p class="test-preview-dim">Dimension 2 of 4</p>
+            <p class="test-preview-q">"After making a decision, I still replay it in my head wondering if I chose correctly."</p>
+            <div class="test-preview-scale">
+              <span>1</span><span>2</span><span class="test-scale-active">3</span><span>4</span><span>5</span>
+            </div>
+            <div class="test-preview-bar-wrap">
+              <div class="test-preview-bar" style="width: 72%;"></div>
+            </div>
+            <p class="test-preview-result">Post-Decision Rumination · <span style="color: var(--danger);">High</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 8: WAITLIST
   ═══════════════════════════════════ -->
   <section id="waitlist" aria-label="Join waitlist">
     <div class="container">

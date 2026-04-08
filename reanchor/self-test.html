@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>Decision Anxiety Self-Test — ReAnchor</title>
+  <meta name="description" content="A free, science-informed self-assessment to measure your decision anxiety and paralysis across four dimensions: indecisiveness, rumination, maximizing, and avoidance. Takes 3 minutes." />
+  <meta name="keywords" content="decision anxiety test, decision paralysis quiz, am I indecisive, overthinking decisions self-test, decision regret quiz, ReAnchor" />
+  <link rel="canonical" href="https://lynqtech.io/reanchor/self-test" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Decision Anxiety Self-Test — ReAnchor" />
+  <meta property="og:description" content="16 questions. 3 minutes. Find out how decision anxiety shows up in your life — and which dimension is costing you most." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://lynqtech.io/reanchor/self-test" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Decision Anxiety Self-Test — ReAnchor" />
+  <meta name="twitter:description" content="16 questions. 3 minutes. Find out how decision anxiety shows up in your life." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:             #09090b;
+      --surface:        #18181b;
+      --surface-2:      #1c1c1f;
+      --border:         #27272a;
+      --border-subtle:  #1f1f22;
+      --text:           #f4f4f5;
+      --muted:          #a1a1aa;
+      --dim:            #71717a;
+      --accent:         #34d399;
+      --accent-text:    rgba(52, 211, 153, 0.82);
+      --accent-glow:    rgba(52, 211, 153, 0.10);
+      --accent-border:  rgba(52, 211, 153, 0.22);
+      --danger:         #fb7185;
+      --danger-glow:    rgba(251, 113, 133, 0.10);
+      --amber:          #fbbf24;
+      --blue:           #60a5fa;
+      --purple:         #a78bfa;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── Grain texture ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: calc(100% - 48px);
+      max-width: 1100px;
+      background: rgba(9,9,11,0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 20px;
+    }
+    .nav-brand {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-text);
+      text-decoration: none;
+    }
+    .nav-back {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dim);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.15s;
+    }
+    .nav-back:hover { color: var(--muted); }
+    .nav-back svg { flex-shrink: 0; }
+
+    /* ── Main layout ── */
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 100px clamp(20px, 4vw, 40px) 80px;
+    }
+
+    /* ── Progress bar ── */
+    .progress-wrap {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 40px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .progress-wrap.show {
+      display: flex;
+      opacity: 1;
+    }
+    .progress-bar-track {
+      flex: 1;
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+    .progress-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--dim);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    /* ── Step container ── */
+    .step-container {
+      position: relative;
+    }
+    .step {
+      display: none;
+      animation: stepIn 0.4s ease forwards;
+    }
+    .step.active { display: block; }
+    .step.exit {
+      animation: stepOut 0.3s ease forwards;
+    }
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes stepOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(-12px); }
+    }
+
+    /* ── Intro step ── */
+    .intro-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+    .intro-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(32px, 5vw, 54px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 20px;
+      letter-spacing: -0.5px;
+    }
+    .intro-headline em {
+      font-style: italic;
+      color: var(--muted);
+    }
+    .intro-body {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 32px;
+      max-width: 560px;
+    }
+    .intro-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .meta-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* Dimension preview cards */
+    .dimension-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .dim-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+    .dim-card-icon {
+      font-size: 20px;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .dim-card-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .dim-card-desc {
+      font-size: 12px;
+      color: var(--dim);
+      line-height: 1.5;
+    }
+
+    .science-note {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 40px;
+    }
+    .science-note-icon {
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .science-note-text {
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.6;
+    }
+    .science-note-text a {
+      color: var(--accent-text);
+      text-decoration: none;
+    }
+
+    /* ── Question step ── */
+    .step-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .step-dim-badge {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .step-dim-badge.dim-1 { color: var(--blue); border-color: rgba(96,165,250,0.25); background: rgba(96,165,250,0.06); }
+    .step-dim-badge.dim-2 { color: var(--danger); border-color: rgba(251,113,133,0.25); background: rgba(251,113,133,0.06); }
+    .step-dim-badge.dim-3 { color: var(--amber); border-color: rgba(251,191,36,0.25); background: rgba(251,191,36,0.06); }
+    .step-dim-badge.dim-4 { color: var(--purple); border-color: rgba(167,139,250,0.25); background: rgba(167,139,250,0.06); }
+
+    .step-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+    .step-subhead {
+      font-size: 14px;
+      color: var(--dim);
+      margin-bottom: 32px;
+    }
+
+    /* ── Question card ── */
+    .question-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 24px 20px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s ease;
+    }
+    .question-card.answered {
+      border-color: rgba(52,211,153,0.18);
+    }
+    .question-num {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--dim);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .question-text {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(15px, 2vw, 18px);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* Likert scale */
+    .likert {
+      display: flex;
+      gap: 6px;
+    }
+    .likert-option {
+      flex: 1;
+    }
+    .likert-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .likert-option label {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 10px 4px 8px;
+      border-radius: 10px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+      text-align: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .likert-option label:hover {
+      background: rgba(52,211,153,0.06);
+      border-color: var(--accent-border);
+    }
+    .likert-option label:active {
+      transform: scale(0.97);
+    }
+    .likert-option input:checked + label {
+      background: rgba(52,211,153,0.12);
+      border-color: var(--accent);
+    }
+    .likert-val {
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Fraunces', Georgia, serif;
+      color: var(--dim);
+      line-height: 1;
+    }
+    .likert-option input:checked + label .likert-val {
+      color: var(--accent);
+    }
+    .likert-lbl {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--dim);
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+    .likert-option input:checked + label .likert-lbl {
+      color: var(--accent-text);
+    }
+
+    /* Scale legend */
+    .scale-legend {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      padding: 0 2px;
+    }
+    .scale-legend span {
+      font-size: 11px;
+      color: var(--dim);
+    }
+
+    /* ── Navigation buttons ── */
+    .step-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 32px;
+      gap: 12px;
+    }
+    .btn-back {
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-back:hover { border-color: var(--muted); color: var(--text); }
+    .btn-next {
+      background: var(--accent);
+      border: none;
+      border-radius: 12px;
+      color: #09090b;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 13px 28px;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.1s;
+      margin-left: auto;
+    }
+    .btn-next:hover { opacity: 0.88; }
+    .btn-next:active { transform: scale(0.98); }
+    .btn-next:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .btn-next:disabled:hover { opacity: 0.35; }
+
+    .validation-msg {
+      font-size: 13px;
+      color: var(--danger);
+      display: none;
+      align-items: center;
+      gap: 6px;
+    }
+    .validation-msg.show { display: flex; }
+
+    /* ── Results step ── */
+    .results-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .results-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 24px;
+    }
+    .results-score-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+    .results-score-ring {
+      width: 120px;
+      height: 120px;
+    }
+    .score-ring-bg {
+      fill: none;
+      stroke: var(--border);
+      stroke-width: 5;
+    }
+    .score-ring-fill {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-dasharray: 283;
+      stroke-dashoffset: 283;
+      transform-origin: center;
+      transform: rotate(-90deg);
+      transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .score-ring-fill.low    { stroke: var(--accent); }
+    .score-ring-fill.moderate { stroke: var(--amber); }
+    .score-ring-fill.high   { stroke: var(--danger); }
+    .score-ring-fill.severe { stroke: #ef4444; }
+    .results-score-number {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1;
+    }
+    .results-score-label {
+      font-size: 12px;
+      color: var(--dim);
+      margin-top: 4px;
+    }
+    .results-profile-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(28px, 4.5vw, 44px);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .results-profile-desc {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 8px;
+    }
+
+    /* Dimension breakdown */
+    .dimensions-section {
+      margin-bottom: 40px;
+    }
+    .dimensions-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 20px;
+    }
+    .dim-row {
+      margin-bottom: 18px;
+    }
+    .dim-row-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .dim-row-name {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .dim-row-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dim-row-score {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .dim-bar-track {
+      height: 6px;
+      background: var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .dim-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      width: 0%;
+      transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dim-bar-fill.dim-1 { background: var(--blue); }
+    .dim-bar-fill.dim-2 { background: var(--danger); }
+    .dim-bar-fill.dim-3 { background: var(--amber); }
+    .dim-bar-fill.dim-4 { background: var(--purple); }
+    .dim-interpretation {
+      font-size: 12px;
+      color: var(--dim);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    /* Insight card */
+    .insight-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 32px;
+    }
+    .insight-card-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .insight-card-text {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    /* Results CTA */
+    .results-cta {
+      background: var(--surface);
+      border: 1px solid var(--accent-border);
+      border-radius: 20px;
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+    .results-cta::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 200px;
+      background: radial-gradient(ellipse at center bottom, rgba(52,211,153,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .results-cta-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .results-cta-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(22px, 3.5vw, 32px);
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .results-cta-sub {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 420px;
+      margin: 0 auto 28px;
+    }
+    .waitlist-form-inline {
+      display: flex;
+      gap: 10px;
+      max-width: 400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .waitlist-input-inline {
+      flex: 1;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      padding: 13px 16px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .waitlist-input-inline::placeholder { color: var(--dim); }
+    .waitlist-input-inline:focus {
+      border-color: var(--accent-border);
+      box-shadow: 0 0 0 3px rgba(52,211,153,0.10);
+    }
+    .waitlist-btn-inline {
+      background: var(--accent);
+      color: #09090b;
+      border: none;
+      border-radius: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 13px 20px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s;
+      flex-shrink: 0;
+    }
+    .waitlist-btn-inline:hover { opacity: 0.88; }
+    .waitlist-btn-inline:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .inline-success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .inline-success.show { display: flex; }
+    .inline-success-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .inline-success-text {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 18px;
+      color: var(--text);
+    }
+    .inline-success-sub { font-size: 13px; color: var(--dim); }
+
+    .retake-link {
+      text-align: center;
+      font-size: 13px;
+      color: var(--dim);
+      margin-top: 16px;
+    }
+    .retake-link a {
+      color: var(--accent-text);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .retake-link a:hover { text-decoration: underline; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 24px;
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .footer-brand { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .footer-copy { font-size: 12px; color: var(--dim); }
+    .footer-links { display: flex; gap: 16px; justify-content: center; margin-top: 10px; }
+    .footer-links a { font-size: 12px; color: var(--dim); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--muted); }
+
+    /* ── Responsive ── */
+    @media (max-width: 540px) {
+      nav { width: calc(100% - 32px); padding: 10px 14px; }
+      .nav-brand { font-size: 11px; letter-spacing: 1px; }
+      .nav-back { font-size: 12px; }
+      main { padding-top: 88px; }
+      .dimension-grid { grid-template-columns: 1fr; }
+      .likert-lbl { display: none; }
+      .likert-val { font-size: 13px; }
+      .likert-option label { padding: 10px 2px 8px; }
+      .waitlist-form-inline { flex-direction: column; }
+      .waitlist-btn-inline { width: 100%; }
+      .results-cta { padding: 24px 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .step { animation: none; }
+      .score-ring-fill, .dim-bar-fill, .progress-bar-fill { transition: none; }
+    }
+
+    /* Screen reader only */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav>
+    <a href="/reanchor" class="nav-brand">ReAnchor</a>
+    <a href="/reanchor" class="nav-back" aria-label="Back to ReAnchor landing page">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back
+    </a>
+  </nav>
+
+  <main>
+    <!-- Progress bar (hidden on intro + results) -->
+    <div class="progress-wrap" id="progress-wrap" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Quiz progress">
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progress-fill"></div>
+      </div>
+      <span class="progress-label" id="progress-label">Step 1 of 4</span>
+    </div>
+
+    <div class="step-container" id="step-container">
+
+      <!-- ═══════════════════════════════
+           STEP 0: INTRO
+      ═══════════════════════════════ -->
+      <div class="step active" id="step-0" role="region" aria-label="Introduction">
+
+        <p class="intro-eyebrow">Decision Anxiety Self-Test</p>
+
+        <h1 class="intro-headline">
+          How much is doubt<br /><em>actually</em> costing you?
+        </h1>
+
+        <p class="intro-body">
+          Decision anxiety isn't one thing. It can show up as freezing before you choose, spiraling after you commit, chasing the "perfect" option indefinitely, or avoiding the choice entirely. This test maps which patterns are loudest for you — and how intense they are.
+        </p>
+
+        <div class="intro-meta">
+          <span class="meta-pill"><span class="meta-pill-dot"></span>16 questions</span>
+          <span class="meta-pill"><span class="meta-pill-dot"></span>~3 minutes</span>
+          <span class="meta-pill"><span class="meta-pill-dot"></span>No account needed</span>
+          <span class="meta-pill"><span class="meta-pill-dot"></span>Results stay in browser</span>
+        </div>
+
+        <div class="dimension-grid">
+          <div class="dim-card">
+            <span class="dim-card-icon" aria-hidden="true" style="color: var(--blue);">⬡</span>
+            <p class="dim-card-name">Analysis Paralysis</p>
+            <p class="dim-card-desc">Difficulty committing; feeling frozen before the choice is made</p>
+          </div>
+          <div class="dim-card">
+            <span class="dim-card-icon" aria-hidden="true" style="color: var(--danger);">⬡</span>
+            <p class="dim-card-name">Post-Decision Rumination</p>
+            <p class="dim-card-desc">Second-guessing and replaying after you've already decided</p>
+          </div>
+          <div class="dim-card">
+            <span class="dim-card-icon" aria-hidden="true" style="color: var(--amber);">⬡</span>
+            <p class="dim-card-name">Maximizing Tendency</p>
+            <p class="dim-card-desc">Needing the "best" option; never satisfied with "good enough"</p>
+          </div>
+          <div class="dim-card">
+            <span class="dim-card-icon" aria-hidden="true" style="color: var(--purple);">⬡</span>
+            <p class="dim-card-name">Avoidance &amp; Approval</p>
+            <p class="dim-card-desc">Delaying, deferring, or needing reassurance before deciding</p>
+          </div>
+        </div>
+
+        <div class="science-note" role="note">
+          <span class="science-note-icon" aria-hidden="true">&#x1F9EC;</span>
+          <p class="science-note-text">
+            This assessment is informed by four validated instruments: the <em>Frost &amp; Shows Indecisiveness Scale</em> (1993), the <em>Schwartz Maximization Scale</em> (2002), the <em>Scott &amp; Bruce General Decision-Making Style Inventory</em> (1995), and the <em>Nolen-Hoeksema Response Styles Questionnaire</em> (1991). It is an adapted screening tool, not a clinical diagnostic.
+          </p>
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-next" id="btn-start" onclick="startQuiz()">
+            Start the test &rarr;
+          </button>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════
+           STEP 1: ANALYSIS PARALYSIS
+      ═══════════════════════════════ -->
+      <div class="step" id="step-1" role="region" aria-label="Analysis Paralysis questions">
+        <div class="step-eyebrow">
+          <span class="step-dim-badge dim-1">Dimension 1 of 4</span>
+        </div>
+        <h2 class="step-headline">The freeze before the choice</h2>
+        <p class="step-subhead">How you feel <em>before</em> a decision is made</p>
+
+        <div id="questions-1">
+          <!-- Questions injected by JS -->
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-back" onclick="goToStep(0)">Back</button>
+          <span class="validation-msg" id="val-1" role="alert">Please answer all questions above</span>
+          <button class="btn-next" id="btn-next-1" onclick="nextStep(1)">Next &rarr;</button>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════
+           STEP 2: POST-DECISION RUMINATION
+      ═══════════════════════════════ -->
+      <div class="step" id="step-2" role="region" aria-label="Post-Decision Rumination questions">
+        <div class="step-eyebrow">
+          <span class="step-dim-badge dim-2">Dimension 2 of 4</span>
+        </div>
+        <h2 class="step-headline">The spiral after the commitment</h2>
+        <p class="step-subhead">How you feel <em>after</em> a decision is made</p>
+
+        <div id="questions-2">
+          <!-- Questions injected by JS -->
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-back" onclick="goToStep(1)">Back</button>
+          <span class="validation-msg" id="val-2" role="alert">Please answer all questions above</span>
+          <button class="btn-next" id="btn-next-2" onclick="nextStep(2)">Next &rarr;</button>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════
+           STEP 3: MAXIMIZING TENDENCY
+      ═══════════════════════════════ -->
+      <div class="step" id="step-3" role="region" aria-label="Maximizing Tendency questions">
+        <div class="step-eyebrow">
+          <span class="step-dim-badge dim-3">Dimension 3 of 4</span>
+        </div>
+        <h2 class="step-headline">The hunt for the best option</h2>
+        <p class="step-subhead">Your relationship with "good enough"</p>
+
+        <div id="questions-3">
+          <!-- Questions injected by JS -->
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-back" onclick="goToStep(2)">Back</button>
+          <span class="validation-msg" id="val-3" role="alert">Please answer all questions above</span>
+          <button class="btn-next" id="btn-next-3" onclick="nextStep(3)">Next &rarr;</button>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════
+           STEP 4: AVOIDANCE & APPROVAL
+      ═══════════════════════════════ -->
+      <div class="step" id="step-4" role="region" aria-label="Avoidance and Approval questions">
+        <div class="step-eyebrow">
+          <span class="step-dim-badge dim-4">Dimension 4 of 4</span>
+        </div>
+        <h2 class="step-headline">The pull toward deferral</h2>
+        <p class="step-subhead">How you handle the weight of responsibility in decisions</p>
+
+        <div id="questions-4">
+          <!-- Questions injected by JS -->
+        </div>
+
+        <div class="step-nav">
+          <button class="btn-back" onclick="goToStep(3)">Back</button>
+          <span class="validation-msg" id="val-4" role="alert">Please answer all questions above</span>
+          <button class="btn-next" id="btn-submit" onclick="submitTest()">See my results &rarr;</button>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════
+           STEP 5: RESULTS
+      ═══════════════════════════════ -->
+      <div class="step" id="step-5" role="region" aria-label="Your results">
+
+        <div class="results-header">
+          <p class="results-eyebrow">Your Results</p>
+
+          <div class="results-score-wrap" aria-label="Overall score">
+            <svg class="results-score-ring" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="score-ring-bg" cx="60" cy="60" r="45"/>
+              <circle class="score-ring-fill" id="score-ring" cx="60" cy="60" r="45"/>
+            </svg>
+            <div class="results-score-number" id="score-display" aria-live="polite">—</div>
+          </div>
+          <p class="results-score-label">out of 80</p>
+
+          <h2 class="results-profile-name" id="profile-name"></h2>
+          <p class="results-profile-desc" id="profile-desc"></p>
+        </div>
+
+        <!-- Dimension breakdown -->
+        <div class="dimensions-section">
+          <p class="dimensions-title">Breakdown by dimension</p>
+
+          <div class="dim-row">
+            <div class="dim-row-header">
+              <span class="dim-row-name">
+                <span class="dim-row-dot" style="background: var(--blue);"></span>
+                Analysis Paralysis
+              </span>
+              <span class="dim-row-score" id="dim-score-1">—/20</span>
+            </div>
+            <div class="dim-bar-track">
+              <div class="dim-bar-fill dim-1" id="dim-bar-1"></div>
+            </div>
+            <p class="dim-interpretation" id="dim-interp-1"></p>
+          </div>
+
+          <div class="dim-row">
+            <div class="dim-row-header">
+              <span class="dim-row-name">
+                <span class="dim-row-dot" style="background: var(--danger);"></span>
+                Post-Decision Rumination
+              </span>
+              <span class="dim-row-score" id="dim-score-2">—/20</span>
+            </div>
+            <div class="dim-bar-track">
+              <div class="dim-bar-fill dim-2" id="dim-bar-2"></div>
+            </div>
+            <p class="dim-interpretation" id="dim-interp-2"></p>
+          </div>
+
+          <div class="dim-row">
+            <div class="dim-row-header">
+              <span class="dim-row-name">
+                <span class="dim-row-dot" style="background: var(--amber);"></span>
+                Maximizing Tendency
+              </span>
+              <span class="dim-row-score" id="dim-score-3">—/20</span>
+            </div>
+            <div class="dim-bar-track">
+              <div class="dim-bar-fill dim-3" id="dim-bar-3"></div>
+            </div>
+            <p class="dim-interpretation" id="dim-interp-3"></p>
+          </div>
+
+          <div class="dim-row">
+            <div class="dim-row-header">
+              <span class="dim-row-name">
+                <span class="dim-row-dot" style="background: var(--purple);"></span>
+                Avoidance &amp; Approval
+              </span>
+              <span class="dim-row-score" id="dim-score-4">—/20</span>
+            </div>
+            <div class="dim-bar-track">
+              <div class="dim-bar-fill dim-4" id="dim-bar-4"></div>
+            </div>
+            <p class="dim-interpretation" id="dim-interp-4"></p>
+          </div>
+        </div>
+
+        <!-- Personalized insight -->
+        <div class="insight-card" id="insight-card">
+          <p class="insight-card-label">What this means for you</p>
+          <p class="insight-card-text" id="insight-text"></p>
+        </div>
+
+        <!-- CTA -->
+        <div class="results-cta">
+          <p class="results-cta-eyebrow">ReAnchor</p>
+          <h3 class="results-cta-headline">The app built for exactly this.</h3>
+          <p class="results-cta-sub">
+            ReAnchor helps you record decisions at the moment of clarity, so when doubt shows up later — whether it's paralysis, rumination, or pressure from others — you have something to return to.
+          </p>
+
+          <div id="cta-form-wrap">
+            <form class="waitlist-form-inline" id="cta-form" name="waitlist-selftest" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+              <input type="hidden" name="form-name" value="waitlist-selftest" />
+              <p style="display:none"><input name="bot-field" /></p>
+              <label for="cta-email" class="sr-only">Email address</label>
+              <input
+                type="email"
+                id="cta-email"
+                name="email"
+                class="waitlist-input-inline"
+                placeholder="your@email.com"
+                autocomplete="email"
+                required
+              />
+              <button type="submit" class="waitlist-btn-inline" id="cta-submit">
+                Join Waitlist
+              </button>
+            </form>
+            <p style="font-size: 12px; color: var(--dim); margin-top: 12px; position: relative; z-index: 1;">iOS · Spring 2026 · No spam</p>
+          </div>
+
+          <div class="inline-success" id="cta-success">
+            <div class="inline-success-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M3.5 9l3.5 3.5 7-7" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="inline-success-text">You're on the list.</p>
+            <p class="inline-success-sub">We'll reach out when ReAnchor launches.</p>
+          </div>
+        </div>
+
+        <p class="retake-link">
+          <a onclick="retakeTest()" role="button" tabindex="0">Retake the test</a>
+        </p>
+      </div>
+
+    </div><!-- /step-container -->
+  </main>
+
+  <footer>
+    <p class="footer-brand">ReAnchor</p>
+    <p class="footer-copy">© 2026 ReAnchor by Lynq Tech. All data stays in your browser.</p>
+    <div class="footer-links">
+      <a href="/reanchor/privacy.html">Privacy</a>
+      <a href="/reanchor/terms.html">Terms</a>
+      <a href="/reanchor">Back to ReAnchor</a>
+    </div>
+  </footer>
+
+  <script>
+    // ─────────────────────────────────────────────
+    // DATA
+    // ─────────────────────────────────────────────
+
+    const LIKERT_LABELS = ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'];
+
+    const QUESTIONS = {
+      1: [
+        "Even when I know what I want, I struggle to commit to a final decision.",
+        "I feel mentally 'frozen' when facing important choices, unable to move forward.",
+        "I need to gather far more information than others before I feel ready to decide.",
+        "Small decisions can consume a disproportionate amount of my mental energy."
+      ],
+      2: [
+        "After making a decision, I replay it in my head wondering if I chose correctly.",
+        "I find it hard to let go of decisions I've made, even when they worked out.",
+        "When I commit to something, I keep thinking about what I gave up to get there.",
+        "I often revisit past decisions and imagine how things might have gone differently."
+      ],
+      3: [
+        "I find it hard to settle for 'good enough' — I need to know I found the best option.",
+        "Even after choosing, I keep looking at alternatives in case there's something better.",
+        "I spend significantly more time than necessary researching options before deciding.",
+        "After choosing from several options, I often feel dissatisfied because I'm not certain I chose the best one."
+      ],
+      4: [
+        "I tend to delay decisions hoping the situation will resolve itself or become clearer.",
+        "I frequently seek reassurance from others before feeling confident in my choices.",
+        "I often let others decide to avoid the anxiety and responsibility of choosing myself.",
+        "I worry that if my decision turns out badly, others will judge or blame me for it."
+      ]
+    };
+
+    const DIM_INTERPRETATIONS = {
+      1: {
+        low:      "You generally feel confident moving toward a decision once you have enough information. Commitment doesn't tend to be your sticking point.",
+        moderate: "You sometimes get caught in a pre-decision loop — weighing options longer than needed. This is common and manageable with a clearer decision criteria.",
+        high:     "You frequently experience the 'freeze' — difficulty committing even when logically ready. This may be costing you time and mental energy on decisions of all sizes.",
+        severe:   "Analysis paralysis is a dominant pattern for you. Even small choices become significant sources of stress before any commitment is made."
+      },
+      2: {
+        low:      "Once you decide, you tend to move forward. Post-decision doubt doesn't linger long or consume much of your headspace.",
+        moderate: "You occasionally replay past decisions, especially high-stakes ones. Most people do — the key is whether it's pulling you back productively or just generating noise.",
+        high:     "Rumination is a real presence in your life. Even after deciding, part of your mind stays in the decision — replaying, questioning, second-guessing. This is exactly what ReAnchor is built for.",
+        severe:   "Post-decision rumination is significantly affecting you. You may find it hard to feel settled after even clear, well-reasoned choices. Anchoring decisions at the moment of clarity could change this."
+      },
+      3: {
+        low:      "You're comfortable with satisficing — picking a good option without needing to verify it's the objectively best. This is a resilient, low-regret approach.",
+        moderate: "You lean toward maximizing on decisions that matter, which is reasonable — but watch for it bleeding into lower-stakes choices where it just adds friction.",
+        high:     "The drive to find the best option is costing you. It delays decisions, keeps alternatives alive too long, and makes satisfaction harder to reach after choosing.",
+        severe:   "You have a strong maximizing orientation. The constant search for 'the best' likely makes every decision feel high-stakes — and makes satisfaction after choosing rare."
+      },
+      4: {
+        low:      "You're comfortable sitting with the responsibility of your own choices. You don't heavily rely on external validation before or after deciding.",
+        moderate: "You occasionally look to others for reassurance or delay decisions hoping clarity will come on its own. In uncertain situations, this is natural — just watch for it becoming a default.",
+        high:     "Avoidance and approval-seeking are significant patterns. You may frequently delay decisions, defer to others, or feel anxious about being held responsible for your choices.",
+        severe:   "Avoidance is a primary coping mechanism. Decisions carry heavy social weight for you — the fear of judgment or responsibility may be driving more of your choices than you realize."
+      }
+    };
+
+    const PROFILES = [
+      {
+        range: [16, 31],
+        name: "Grounded Decider",
+        level: "low",
+        desc: "Decision anxiety is not a dominant force in your life. You're generally able to commit, move forward, and let go. You may still experience doubt in high-stakes situations — that's human — but it doesn't tend to persist or derail you.",
+        insight: "Your baseline is healthy. The patterns measured here — paralysis, rumination, maximizing, avoidance — are present for most people in extreme situations. For you, they don't appear to be structural. Focus stays on maintaining that groundedness when stakes are unusually high."
+      },
+      {
+        range: [32, 47],
+        name: "Occasional Doubter",
+        level: "moderate",
+        desc: "Decision anxiety shows up for you, particularly in higher-stakes situations. You can generally move forward, but doubt lingers longer than you'd like — and in certain moments, it can quietly accumulate and affect your confidence.",
+        insight: "The patterns are present but not overwhelming. Most people in this range describe a nagging feeling of not being fully at peace with past decisions, or a tendency to over-research before committing. The antidote isn't more certainty — it's a cleaner process for capturing what you knew and why you chose it."
+      },
+      {
+        range: [48, 63],
+        name: "Decision-Anxious",
+        level: "high",
+        desc: "Decision anxiety is meaningfully interfering with your life. Whether it's the freeze before choosing, the spiral after, the endless search for better options, or the reliance on others — one or more of these patterns is consuming real time and mental energy.",
+        insight: "At this level, decision anxiety often becomes self-reinforcing. Each difficult decision that doesn't go perfectly becomes evidence that the next one needs more thought, more validation, or should be avoided entirely. Breaking this loop requires anchoring your reasoning at the moment of clarity — not just deciding, but recording why."
+      },
+      {
+        range: [64, 80],
+        name: "Chronically Paralyzed",
+        level: "severe",
+        desc: "Decision anxiety is a persistent, disruptive force. It likely affects relationships, career, and daily wellbeing. The patterns measured here — across multiple dimensions — are running at high intensity and may be deeply habituated.",
+        insight: "Chronic decision paralysis isn't a character flaw — it's a learned pattern, often rooted in past experiences of regret, judgment, or unpredictable consequences. The work here is structural: building a practice of recording decisions at their clearest moment, and having a defined process for returning to them when doubt arrives — instead of fighting from memory every time."
+      }
+    ];
+
+    // ─────────────────────────────────────────────
+    // STATE
+    // ─────────────────────────────────────────────
+
+    let currentStep = 0;
+    let answers = {}; // { "q_dim_idx": value }
+
+    // ─────────────────────────────────────────────
+    // INIT
+    // ─────────────────────────────────────────────
+
+    function buildQuestions() {
+      for (let dim = 1; dim <= 4; dim++) {
+        const container = document.getElementById('questions-' + dim);
+        const globalOffset = (dim - 1) * 4;
+        let html = '';
+        QUESTIONS[dim].forEach((qText, i) => {
+          const qKey = 'q_' + dim + '_' + i;
+          const qNum = globalOffset + i + 1;
+          html += `
+            <div class="question-card" id="card_${qKey}" role="group" aria-labelledby="qlabel_${qKey}">
+              <p class="question-num" aria-hidden="true">Question ${qNum}</p>
+              <p class="question-text" id="qlabel_${qKey}">${qText}</p>
+              <div class="likert" role="radiogroup" aria-label="${qText}">
+                ${LIKERT_LABELS.map((lbl, v) => `
+                  <div class="likert-option">
+                    <input
+                      type="radio"
+                      name="${qKey}"
+                      id="${qKey}_${v}"
+                      value="${v + 1}"
+                      onchange="recordAnswer('${qKey}', ${v + 1}, '${dim}')"
+                    />
+                    <label for="${qKey}_${v}" title="${lbl}">
+                      <span class="likert-val">${v + 1}</span>
+                      <span class="likert-lbl">${lbl}</span>
+                    </label>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        });
+        container.innerHTML = html;
+      }
+    }
+
+    buildQuestions();
+
+    // ─────────────────────────────────────────────
+    // NAVIGATION
+    // ─────────────────────────────────────────────
+
+    function startQuiz() {
+      goToStep(1);
+    }
+
+    function goToStep(n) {
+      const current = document.getElementById('step-' + currentStep);
+      const next    = document.getElementById('step-' + n);
+
+      current.classList.add('exit');
+      setTimeout(() => {
+        current.classList.remove('active', 'exit');
+        next.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        // Focus management for a11y
+        const focusTarget = next.querySelector('h1, h2, .results-eyebrow');
+        if (focusTarget) { focusTarget.setAttribute('tabindex', '-1'); focusTarget.focus(); }
+      }, 280);
+
+      currentStep = n;
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const wrap = document.getElementById('progress-wrap');
+      const fill = document.getElementById('progress-fill');
+      const label = document.getElementById('progress-label');
+
+      if (currentStep === 0 || currentStep === 5) {
+        wrap.classList.remove('show');
+        return;
+      }
+      wrap.classList.add('show');
+      const pct = ((currentStep - 1) / 4) * 100;
+      fill.style.width = pct + '%';
+      wrap.setAttribute('aria-valuenow', pct);
+      label.textContent = 'Step ' + currentStep + ' of 4';
+    }
+
+    function nextStep(dim) {
+      // Validate all 4 questions answered
+      const allAnswered = QUESTIONS[dim].every((_, i) => {
+        const qKey = 'q_' + dim + '_' + i;
+        return answers[qKey] !== undefined;
+      });
+
+      const valMsg = document.getElementById('val-' + dim);
+      if (!allAnswered) {
+        valMsg.classList.add('show');
+        // Shake the first unanswered card
+        for (let i = 0; i < 4; i++) {
+          const qKey = 'q_' + dim + '_' + i;
+          if (answers[qKey] === undefined) {
+            const card = document.getElementById('card_' + qKey);
+            card.style.borderColor = 'rgba(251,113,133,0.5)';
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            break;
+          }
+        }
+        return;
+      }
+      valMsg.classList.remove('show');
+      goToStep(dim + 1);
+    }
+
+    function recordAnswer(qKey, value, dim) {
+      answers[qKey] = value;
+      // Mark card as answered
+      const card = document.getElementById('card_' + qKey);
+      card.classList.add('answered');
+      card.style.borderColor = '';
+    }
+
+    // ─────────────────────────────────────────────
+    // SUBMIT & RESULTS
+    // ─────────────────────────────────────────────
+
+    function submitTest() {
+      // Validate dim 4
+      const allAnswered = QUESTIONS[4].every((_, i) => {
+        const qKey = 'q_4_' + i;
+        return answers[qKey] !== undefined;
+      });
+
+      const valMsg = document.getElementById('val-4');
+      if (!allAnswered) {
+        valMsg.classList.add('show');
+        for (let i = 0; i < 4; i++) {
+          const qKey = 'q_4_' + i;
+          if (answers[qKey] === undefined) {
+            const card = document.getElementById('card_' + qKey);
+            card.style.borderColor = 'rgba(251,113,133,0.5)';
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            break;
+          }
+        }
+        return;
+      }
+      valMsg.classList.remove('show');
+
+      // Calculate scores
+      const dimScores = [0, 0, 0, 0];
+      for (let dim = 1; dim <= 4; dim++) {
+        for (let i = 0; i < 4; i++) {
+          dimScores[dim - 1] += answers['q_' + dim + '_' + i] || 0;
+        }
+      }
+      const total = dimScores.reduce((a, b) => a + b, 0);
+
+      // Render results
+      renderResults(total, dimScores);
+      goToStep(5);
+
+      // Animate after transition
+      setTimeout(() => animateResults(total, dimScores), 500);
+    }
+
+    function renderResults(total, dimScores) {
+      // Score display
+      document.getElementById('score-display').textContent = total;
+
+      // Profile
+      const profile = PROFILES.find(p => total >= p.range[0] && total <= p.range[1]);
+      document.getElementById('profile-name').textContent = profile.name;
+      document.getElementById('profile-desc').textContent = profile.desc;
+      document.getElementById('insight-text').textContent = profile.insight;
+
+      // Ring color class
+      const ring = document.getElementById('score-ring');
+      ring.className = 'score-ring-fill ' + profile.level;
+
+      // Dim scores
+      const dimNames = ['1', '2', '3', '4'];
+      dimScores.forEach((score, i) => {
+        const dim = i + 1;
+        document.getElementById('dim-score-' + dim).textContent = score + '/20';
+
+        // Interpretation
+        let level;
+        if (score <= 8)  level = 'low';
+        else if (score <= 12) level = 'moderate';
+        else if (score <= 16) level = 'high';
+        else level = 'severe';
+
+        document.getElementById('dim-interp-' + dim).textContent = DIM_INTERPRETATIONS[dim][level];
+      });
+    }
+
+    function animateResults(total, dimScores) {
+      // Animate ring
+      const circumference = 283;
+      const maxScore = 80;
+      const pct = total / maxScore;
+      const offset = circumference - (circumference * pct);
+      document.getElementById('score-ring').style.strokeDashoffset = offset;
+
+      // Animate bars
+      dimScores.forEach((score, i) => {
+        const dim = i + 1;
+        const pct = (score / 20) * 100;
+        setTimeout(() => {
+          document.getElementById('dim-bar-' + dim).style.width = pct + '%';
+        }, 100 + i * 150);
+      });
+    }
+
+    function retakeTest() {
+      // Reset state
+      answers = {};
+      currentStep = 0;
+
+      // Reset ring and bars
+      document.getElementById('score-ring').style.strokeDashoffset = '283';
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById('dim-bar-' + i).style.width = '0%';
+      }
+
+      // Reset all radio inputs
+      document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+      document.querySelectorAll('.question-card').forEach(c => {
+        c.classList.remove('answered');
+        c.style.borderColor = '';
+      });
+      document.querySelectorAll('.validation-msg').forEach(m => m.classList.remove('show'));
+
+      // Go to intro
+      const resultsStep = document.getElementById('step-5');
+      resultsStep.classList.remove('active');
+      const introStep = document.getElementById('step-0');
+      introStep.classList.add('active');
+      currentStep = 0;
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ─────────────────────────────────────────────
+    // WAITLIST FORM (CTA on results page)
+    // ─────────────────────────────────────────────
+
+    document.getElementById('cta-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const emailInput = document.getElementById('cta-email');
+      const btn = document.getElementById('cta-submit');
+      const email = emailInput.value.trim();
+
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailInput.style.borderColor = 'var(--danger)';
+        emailInput.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Joining...';
+
+      // Submit to Netlify
+      const formData = new FormData(this);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        document.getElementById('cta-form-wrap').style.display = 'none';
+        document.getElementById('cta-success').classList.add('show');
+      })
+      .catch(() => {
+        // Show success anyway (graceful degradation)
+        document.getElementById('cta-form-wrap').style.display = 'none';
+        document.getElementById('cta-success').classList.add('show');
+      });
+    });
+
+    // ─────────────────────────────────────────────
+    // KEYBOARD: allow Enter/Space on retake link
+    // ─────────────────────────────────────────────
+    document.querySelector('.retake-link a').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); retakeTest(); }
+    });
+  </script>
+
+</body>
+</html>
