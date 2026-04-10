@@ -1683,7 +1683,271 @@
       text-decoration: underline;
       text-underline-offset: 3px;
     }
-  </style>
+
+    /* ─────────────────────────────────────
+       ROADMAP & VISION SECTION
+    ───────────────────────────────────── */
+    #roadmap {
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+    }
+    .roadmap-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .roadmap-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 400;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 16px;
+      line-height: 1.18;
+      letter-spacing: -0.3px;
+    }
+    .roadmap-sub {
+      font-size: 15px;
+      color: var(--muted);
+      text-align: center;
+      max-width: 520px;
+      margin: 0 auto 64px;
+      line-height: 1.7;
+    }
+
+    /* MVP vs Vision columns */
+    .mvpv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+    .mvpv-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .mvpv-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .mvpv-card.mvp::before {
+      background: radial-gradient(circle, rgba(52,211,153,0.08) 0%, transparent 65%);
+    }
+    .mvpv-card.vision::before {
+      background: radial-gradient(circle, rgba(167,139,250,0.08) 0%, transparent 65%);
+    }
+    .mvpv-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .mvp-badge {
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.25);
+      color: var(--accent);
+    }
+    .mvp-badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .vision-badge {
+      background: rgba(167, 139, 250, 0.1);
+      border: 1px solid rgba(167, 139, 250, 0.25);
+      color: #a78bfa;
+    }
+    .vision-badge-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #a78bfa;
+    }
+    .mvpv-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .mvpv-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .mvpv-list {
+      list-style: none;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .mvpv-list li {
+      font-size: 13px;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+    .mvpv-list li::before {
+      content: '—';
+      color: var(--dim);
+      flex-shrink: 0;
+    }
+
+    /* Upcoming features voting */
+    .upcoming-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .upcoming-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 400;
+      color: var(--text);
+    }
+    .upcoming-sub {
+      font-size: 13px;
+      color: var(--dim);
+      margin-top: 4px;
+    }
+    .vote-count-total {
+      font-size: 12px;
+      color: var(--dim);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+    }
+    .vote-count-total strong { color: var(--accent); }
+
+    .upcoming-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .vote-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .vote-card:hover {
+      border-color: var(--accent-border);
+      box-shadow: 0 4px 24px rgba(52, 211, 153, 0.05);
+    }
+    .vote-card.voted {
+      border-color: rgba(52, 211, 153, 0.35);
+      background: rgba(52, 211, 153, 0.03);
+    }
+    .vote-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .vote-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 5px;
+      padding: 3px 8px;
+      flex-shrink: 0;
+    }
+    .vote-tag.commit { background: rgba(52,211,153,0.12); color: var(--accent); border: 1px solid rgba(52,211,153,0.25); }
+    .vote-tag.clarity { background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.25); }
+    .vote-tag.pattern { background: rgba(167,139,250,0.12); color: #a78bfa; border: 1px solid rgba(167,139,250,0.25); }
+    .vote-tag.commitment { background: rgba(251,113,133,0.1); color: #fb7185; border: 1px solid rgba(251,113,133,0.2); }
+    .vote-card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.35;
+    }
+    .vote-card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .vote-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .vote-meta {
+      font-size: 11px;
+      color: var(--dim);
+    }
+    .vote-btn {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 7px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .vote-btn:hover {
+      background: rgba(52, 211, 153, 0.1);
+      border-color: var(--accent-border);
+      color: var(--accent);
+    }
+    .vote-btn.voted {
+      background: rgba(52, 211, 153, 0.12);
+      border-color: rgba(52, 211, 153, 0.35);
+      color: var(--accent);
+    }
+    .vote-btn svg { flex-shrink: 0; }
+
+    @media (max-width: 768px) {
+      .mvpv-grid { grid-template-columns: 1fr; }
+      .upcoming-grid { grid-template-columns: 1fr; }
+      #roadmap { padding: 80px 0; }
+    }
+    @media (max-width: 480px) {
+      .mvpv-card { padding: 24px 20px; }
+    }
 </head>
 <body>
 
@@ -1932,7 +2196,164 @@
   </section>
 
   <!-- ═══════════════════════════════════
-       SECTION 6: FAQ
+       SECTION 6: ROADMAP & VISION
+  ═══════════════════════════════════ -->
+  <section id="roadmap" aria-label="MVP, vision, and upcoming features">
+    <div class="container">
+
+      <p class="roadmap-label reveal">The roadmap</p>
+      <h2 class="roadmap-headline reveal reveal-delay-1">Where we are. Where we're going.</h2>
+      <p class="roadmap-sub reveal reveal-delay-2">
+        ReAnchor starts with one focused job: helping you stop second-guessing decisions you've already made. But the vision is much bigger.
+      </p>
+
+      <!-- MVP vs Vision -->
+      <div class="mvpv-grid">
+
+        <div class="mvpv-card mvp reveal">
+          <div class="mvpv-badge">
+            <div class="mvp-badge-dot"></div>
+            Current MVP
+          </div>
+          <h3 class="mvpv-title">Decision Journal &amp; Doubt Review</h3>
+          <p class="mvpv-desc">
+            The MVP does two things, extremely well: it records a decision at the moment of clarity, and it gives you a structured Doubt Review to run when 2am hits.
+          </p>
+          <ul class="mvpv-list">
+            <li>Anchor a decision — what you chose, why, how you felt, what you feared</li>
+            <li>Doubt Review — 7 questions, 10 minutes, separates facts from fear</li>
+            <li>All data stays on your device. No cloud. No account.</li>
+          </ul>
+        </div>
+
+        <div class="mvpv-card vision reveal reveal-delay-1">
+          <div class="mvpv-badge">
+            <div class="vision-badge-dot"></div>
+            Long-term vision
+          </div>
+          <h3 class="mvpv-title">DecisionOS — a full operating system for your choices</h3>
+          <p class="mvpv-desc">
+            We believe decision-making is a skill. Most people have tools to track their fitness, finances, and productivity — but nothing for the quality of their decisions. That's the gap ReAnchor will fill.
+          </p>
+          <ul class="mvpv-list">
+            <li>Help you make better decisions before they're made</li>
+            <li>Surface patterns across your decision history</li>
+            <li>Keep you committed and on track after you decide</li>
+            <li>Suggest decisions based on your stated values and past choices</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Upcoming features voting -->
+      <div class="upcoming-header reveal">
+        <div>
+          <h3 class="upcoming-title">Upcoming features</h3>
+          <p class="upcoming-sub">Vote for what you want next. The most-voted features get built first.</p>
+        </div>
+        <div class="vote-count-total">
+          <strong id="total-votes">0</strong> votes cast
+        </div>
+      </div>
+
+      <div class="upcoming-grid">
+
+        <div class="vote-card reveal" data-feature="pre-decision">
+          <div class="vote-card-header">
+            <div class="vote-tag clarity">Clarity</div>
+          </div>
+          <h4 class="vote-card-title">Pre-Decision Builder</h4>
+          <p class="vote-card-desc">Before you commit to a big call, run a structured process to stress-test your reasoning. What are you assuming? What's the alternative? What would have to be true for this to be the wrong call?</p>
+          <div class="vote-card-footer">
+            <span class="vote-meta">Helps you decide more clearly, before doubt has a chance to set in</span>
+            <button class="vote-btn" onclick="castVote(this, 'pre-decision')" aria-label="Vote for Pre-Decision Builder">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Vote
+            </button>
+          </div>
+        </div>
+
+        <div class="vote-card reveal reveal-delay-1" data-feature="pattern-insights">
+          <div class="vote-card-header">
+            <div class="vote-tag pattern">Pattern</div>
+          </div>
+          <h4 class="vote-card-title">Pattern Insights</h4>
+          <p class="vote-card-desc">ReAnchor analyzes your decision history and surfaces patterns: types of decisions you second-guess most, common fears, timing patterns, and what outcomes actually felt right in retrospect.</p>
+          <div class="vote-card-footer">
+            <span class="vote-meta">Understand your decision-making patterns over time</span>
+            <button class="vote-btn" onclick="castVote(this, 'pattern-insights')" aria-label="Vote for Pattern Insights">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Vote
+            </button>
+          </div>
+        </div>
+
+        <div class="vote-card reveal" data-feature="accountability">
+          <div class="vote-card-header">
+            <div class="vote-tag commitment">Commitment</div>
+          </div>
+          <h4 class="vote-card-title">Accountability Partners</h4>
+          <p class="vote-card-desc">Invite a trusted person to follow your decisions. They get a read-only view — no advice, no commentary — just visibility. Knowing someone else knows what you committed to can change everything.</p>
+          <div class="vote-card-footer">
+            <span class="vote-meta">Stay committed by making your decisions visible to someone you trust</span>
+            <button class="vote-btn" onclick="castVote(this, 'accountability')" aria-label="Vote for Accountability Partners">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Vote
+            </button>
+          </div>
+        </div>
+
+        <div class="vote-card reveal reveal-delay-1" data-feature="values-axis">
+          <div class="vote-card-header">
+            <div class="vote-tag clarity">Clarity</div>
+          </div>
+          <h4 class="vote-card-title">Values Axis</h4>
+          <p class="vote-card-desc">Define the values that matter most to you. ReAnchor then weighs your decisions against your stated values — helping you see not just what you decided, but how aligned it was with who you want to be.</p>
+          <div class="vote-card-footer">
+            <span class="vote-meta">Connect every decision back to what you actually stand for</span>
+            <button class="vote-btn" onclick="castVote(this, 'values-axis')" aria-label="Vote for Values Axis">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Vote
+            </button>
+          </div>
+        </div>
+
+        <div class="vote-card reveal" data-feature="decision-forecast">
+          <div class="vote-card-header">
+            <div class="vote-tag pattern">Pattern</div>
+          </div>
+          <h4 class="vote-card-title">Decision Forecast</h4>
+          <p class="vote-card-desc">Based on your past decisions and outcomes, ReAnchor gives you a probabilistic read on how you'd feel about a future decision in 1 month, 3 months, a year. Not prophecy — perspective.</p>
+          <div class="vote-card-footer">
+            <span class="vote-meta">Get a realistic preview of how you'll feel before you decide</span>
+            <button class="vote-btn" onclick="castVote(this, 'decision-forecast')" aria-label="Vote for Decision Forecast">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Vote
+            </button>
+          </div>
+        </div>
+
+        <div class="vote-card reveal reveal-delay-1" data-feature="revisit-prompt">
+          <div class="vote-card-header">
+            <div class="vote-tag commitment">Commitment</div>
+          </div>
+          <h4 class="vote-card-title">Scheduled Revisits</h4>
+          <p class="vote-card-desc">At 30, 60, or 90 days after a major decision, ReAnchor prompts you to revisit and reflect: Is the original reasoning still sound? What have you learned? Update the record — or flag a real problem.</p>
+          <div class="vote-card-footer">
+            <span class="vote-meta">Follow up on your decisions automatically, at the right intervals</span>
+            <button class="vote-btn" onclick="castVote(this, 'revisit-prompt')" aria-label="Vote for Scheduled Revisits">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Vote
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 7: FAQ
   ═══════════════════════════════════ -->
   <section id="faq" aria-label="Frequently asked questions">
     <div class="container">
@@ -2006,7 +2427,7 @@
   </section>
 
   <!-- ═══════════════════════════════════
-       SECTION 7: PHILOSOPHY
+       SECTION 8: PHILOSOPHY
   ═══════════════════════════════════ -->
   <section id="philosophy" aria-label="Philosophy">
     <div class="container">
@@ -2023,7 +2444,7 @@
   </section>
 
   <!-- ═══════════════════════════════════
-       SECTION 7: SELF-TEST CTA
+       SECTION 9: SELF-TEST CTA
   ═══════════════════════════════════ -->
   <section id="self-test" aria-label="Self-test">
     <div class="container">
@@ -2056,7 +2477,7 @@
   </section>
 
   <!-- ═══════════════════════════════════
-       SECTION 8: WAITLIST
+       SECTION 10: WAITLIST
   ═══════════════════════════════════ -->
   <section id="waitlist" aria-label="Join waitlist">
     <div class="container">
@@ -2301,7 +2722,42 @@
       wlCount++;
       if (wlEl) wlEl.textContent = wlCount;
     });
-  </script>
+
+    // ── Feature voting ──
+    const voteStore = JSON.parse(localStorage.getItem('reanchor_votes') || '{}');
+    const totalVotesEl = document.getElementById('total-votes');
+
+    function updateTotalVotes() {
+      const total = Object.values(voteStore).reduce((s, n) => s + n, 0);
+      if (totalVotesEl) totalVotesEl.textContent = total;
+    }
+
+    function renderVotedState() {
+      document.querySelectorAll('.vote-card').forEach(card => {
+        const feature = card.dataset.feature;
+        const btn = card.querySelector('.vote-btn');
+        if (!btn) return;
+        if (voteStore[feature]) {
+          card.classList.add('voted');
+          btn.classList.add('voted');
+          btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Voted`;
+        }
+      });
+      updateTotalVotes();
+    }
+
+    function castVote(btn, feature) {
+      if (voteStore[feature]) return; // already voted
+      voteStore[feature] = 1;
+      localStorage.setItem('reanchor_votes', JSON.stringify(voteStore));
+      const card = btn.closest('.vote-card');
+      card.classList.add('voted');
+      btn.classList.add('voted');
+      btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Voted`;
+      updateTotalVotes();
+    }
+
+    renderVotedState();
 
 </body>
 </html>
