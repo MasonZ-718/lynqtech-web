@@ -1701,8 +1701,9 @@
     }
     .vision-headline {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(32px, 5vw, 56px);
+      font-size: clamp(26px, 3.6vw, 46px);
       font-weight: 400;
+      text-wrap: balance;
       color: var(--text);
       line-height: 1.1;
       letter-spacing: -0.5px;
@@ -1865,6 +1866,8 @@
       cursor: grab;
       user-select: none;
       -webkit-user-select: none;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
     }
     .carousel-outer.is-dragging { cursor: grabbing; }
     .carousel-track {
@@ -1976,6 +1979,17 @@
       cursor: default;
     }
     .feat-vote-btn svg { flex-shrink: 0; }
+    .feat-vote-btn .vote-count {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--dim);
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px;
+      padding: 1px 5px;
+      margin-left: 2px;
+      transition: color 0.15s;
+    }
+    .feat-vote-btn.voted .vote-count { color: var(--accent); }
 
     /* Dots */
     .carousel-dots {
@@ -2014,8 +2028,254 @@
       .vision-split-col.v-now { border-right: none; border-bottom: 1px solid var(--border); }
     }
     @media (max-width: 480px) {
-      .vision-headline { font-size: 30px; }
+      .vision-headline { font-size: 24px; }
       .vision-split-col { padding: 24px 20px; }
+    }
+
+    /* ─────────────────────────────────────
+       DOUBT REVIEW PREVIEW (below How It Works)
+    ───────────────────────────────────── */
+    .doubt-preview {
+      margin-top: 40px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .doubt-preview-bar {
+      height: 3px;
+      background: var(--accent);
+    }
+    .doubt-preview-inner {
+      padding: 28px 32px 24px;
+    }
+    .doubt-preview-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .doubt-preview-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .doubt-preview-progress {
+      font-size: 11px;
+      color: var(--dim);
+    }
+    .doubt-preview-q {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(16px, 1.8vw, 21px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+    .doubt-preview-opts {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .doubt-preview-opt {
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--surface);
+      line-height: 1.45;
+    }
+    .doubt-preview-opt.dp-highlight {
+      border-color: rgba(52, 211, 153, 0.28);
+      background: rgba(52, 211, 153, 0.05);
+      color: var(--text);
+    }
+    .doubt-preview-footer {
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--dim);
+      line-height: 1.6;
+    }
+    .doubt-preview-footer strong { color: var(--muted); font-weight: 500; }
+    @media (max-width: 640px) {
+      .doubt-preview-inner { padding: 20px; }
+      .doubt-preview-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
+    }
+
+    /* ─────────────────────────────────────
+       SECTION 5.5: WHY DIFFERENT
+    ───────────────────────────────────── */
+    #different {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+    .diff-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 32px;
+    }
+    .diff-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(26px, 3.8vw, 48px);
+      font-weight: 400;
+      line-height: 1.18;
+      color: var(--text);
+      max-width: 640px;
+      margin-bottom: 16px;
+      letter-spacing: -0.3px;
+    }
+    .diff-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.7;
+      margin-bottom: 56px;
+    }
+    .diff-sub em { color: var(--text); font-style: italic; }
+
+    /* Three-card comparison grid */
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 20px 20px 0 0;
+      overflow: hidden;
+    }
+    .diff-card {
+      background: var(--surface);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+    }
+    .diff-card-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      flex-shrink: 0;
+    }
+    .diff-card-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 6px;
+    }
+    .diff-card-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+    .diff-card-for {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    .diff-card-for strong {
+      color: var(--dim);
+      font-weight: 600;
+    }
+    .diff-gap-box {
+      background: rgba(251, 113, 133, 0.05);
+      border: 1px solid rgba(251, 113, 133, 0.14);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .diff-gap-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(251, 113, 133, 0.6);
+      margin-bottom: 6px;
+    }
+    .diff-gap-text {
+      font-size: 13px;
+      color: var(--danger);
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+
+    /* ReAnchor answer strip */
+    .diff-anchor-strip {
+      border: 1px solid var(--border);
+      border-top: 1px solid rgba(52, 211, 153, 0.3);
+      border-radius: 0 0 20px 20px;
+      background: linear-gradient(to right, rgba(52,211,153,0.03) 0%, transparent 60%);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .diff-anchor-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .diff-anchor-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 6px var(--accent);
+    }
+    .diff-anchor-sep {
+      width: 1px;
+      height: 28px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+    .diff-anchor-copy {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+    .diff-anchor-copy strong {
+      color: var(--text);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      .diff-grid { grid-template-columns: 1fr; border-radius: 20px 20px 0 0; }
+      .diff-anchor-sep { display: none; }
+    }
+    @media (max-width: 480px) {
+      #different { padding: 80px 0; }
+      .diff-headline { font-size: 24px; }
+      .diff-card { padding: 24px 20px; }
+      .diff-anchor-strip { padding: 22px 20px; }
     }
   </style>
 </head>
@@ -2082,7 +2342,7 @@
         <div class="thought" role="listitem">"What if everyone who doubted me was right?"</div>
         <div class="thought" role="listitem">"What if I <span class="thought-accent">ruined</span> something I can't get back?"</div>
         <div class="thought" role="listitem">"I can't even remember <em>why</em> I decided this anymore."</div>
-        <div class="thought" role="listitem">"Maybe I should just go back."</div>
+        <div class="thought" role="listitem">"I turned down that deal. Now I'm watching them <span class="thought-accent">grow without me</span>."</div>
       </div>
 
       <div class="stats-row reveal">
@@ -2140,7 +2400,7 @@
         <h2 class="reveal-product-name reveal reveal-delay-1">ReAnchor</h2>
         <p class="reveal-tagline reveal reveal-delay-2">An anchor for your decisions.</p>
         <p class="product-definition reveal reveal-delay-3">
-          ReAnchor is an iOS decision journal app that helps you record your decisions at the moment of clarity — what you chose, why, how you felt, and what you feared. When doubt sets in later, you return to that record instead of fighting from memory.
+          ReAnchor is not a journal. It's an iOS app that captures your decisions at the moment of clarity — what you chose, why, what you feared, and what you believed. Not to help you reflect. To give you a record to return to when doubt makes you forget who you were when you made the call.
         </p>
       </div>
 
@@ -2166,7 +2426,7 @@
                 <div class="bubble bubble-1">Leave<br/>my job</div>
                 <div class="bubble bubble-2">Start<br/>company</div>
                 <div class="bubble bubble-3">Move<br/>to NYC</div>
-                <div class="bubble bubble-4">End<br/>lease</div>
+                <div class="bubble bubble-4">Declined<br/>partner</div>
                 <div class="bubble-plus">+</div>
               </div>
             </div>
@@ -2262,6 +2522,117 @@
         </div>
 
       </div>
+
+      <!-- Doubt Review: live question preview -->
+      <div class="doubt-preview reveal reveal-delay-3" aria-label="Example Doubt Review question">
+        <div class="doubt-preview-bar"></div>
+        <div class="doubt-preview-inner">
+          <div class="doubt-preview-meta">
+            <span class="doubt-preview-label">Doubt Review — example question</span>
+            <span class="doubt-preview-progress">Question 3 of 7</span>
+          </div>
+          <p class="doubt-preview-q">"Is what changed a new fact — or just a feeling?"</p>
+          <div class="doubt-preview-opts" aria-hidden="true">
+            <div class="doubt-preview-opt">Something real changed — new information, new circumstances</div>
+            <div class="doubt-preview-opt">I'm not sure yet</div>
+            <div class="doubt-preview-opt dp-highlight">It's a feeling. Nothing actually changed.</div>
+          </div>
+          <p class="doubt-preview-footer">
+            Seven questions. Ten minutes. You finish with a verdict — <strong>hold the line</strong>, or flag that something real shifted. Not more journaling. A protocol.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       SECTION 5.5: WHY DIFFERENT
+  ═══════════════════════════════════ -->
+  <section id="different" aria-label="Why ReAnchor is different">
+    <div class="container">
+
+      <p class="diff-eyebrow reveal">Why ReAnchor</p>
+      <h2 class="diff-headline reveal reveal-delay-1">Every tool answers a question. None of them answer this one.</h2>
+      <p class="diff-sub reveal reveal-delay-2">When doubt hits at 2am — or after a hard week, or when someone asks "are you sure?" — journal apps, AI, and habit trackers all fail at the same thing: giving <em>you</em> back the clarity <em>you</em> had when you made the call.</p>
+
+      <div class="diff-grid reveal reveal-delay-3">
+
+        <!-- Card 1: Journal apps -->
+        <div class="diff-card">
+          <div class="diff-card-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <rect x="3.5" y="2" width="9" height="14" rx="1.5" stroke="#52525b" stroke-width="1.3"/>
+              <path d="M6 6h4M6 9h4M6 12h2.5" stroke="#52525b" stroke-width="1.3" stroke-linecap="round"/>
+              <path d="M12.5 4v10" stroke="#52525b" stroke-width="1.3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="diff-card-label">Journal apps</p>
+          <h3 class="diff-card-title">Day One, Notion, Apple Notes</h3>
+          <p class="diff-card-for">
+            <strong>Great for:</strong> Processing what you think and feel. Creative reflection. Capturing experiences after the fact.
+          </p>
+          <div class="diff-gap-box">
+            <p class="diff-gap-label">The gap</p>
+            <p class="diff-gap-text">Open-ended. No structure for capturing a decision. No protocol for returning to it when doubt hits.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: AI assistants -->
+        <div class="diff-card">
+          <div class="diff-card-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9 2v2.5M9 13.5V16M2 9h2.5M13.5 9H16M4.1 4.1l1.77 1.77M12.13 12.13l1.77 1.77M13.9 4.1l-1.77 1.77M5.87 12.13l-1.77 1.77" stroke="#52525b" stroke-width="1.3" stroke-linecap="round"/>
+              <circle cx="9" cy="9" r="2.5" stroke="#52525b" stroke-width="1.3"/>
+            </svg>
+          </div>
+          <p class="diff-card-label">AI assistants</p>
+          <h3 class="diff-card-title">ChatGPT, Claude, Gemini</h3>
+          <p class="diff-card-for">
+            <strong>Great for:</strong> Exploring new angles, researching options, stress-testing ideas before you decide.
+          </p>
+          <div class="diff-gap-box">
+            <p class="diff-gap-label">The gap</p>
+            <p class="diff-gap-text">They give you more thinking. Doubt is already more thinking. And they don't know what <em>you</em> believed when you made the call.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: Habit trackers -->
+        <div class="diff-card">
+          <div class="diff-card-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M5 9.5l2.5 2.5 5.5-5.5" stroke="#52525b" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="2" y="4" width="4" height="4" rx="1" stroke="#52525b" stroke-width="1.3"/>
+              <rect x="7" y="4" width="4" height="4" rx="1" stroke="#52525b" stroke-width="1.3"/>
+              <rect x="12" y="4" width="4" height="4" rx="1" stroke="#52525b" stroke-width="1.3"/>
+              <path d="M2 13h4M7 13h4M12 13h4" stroke="#52525b" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/>
+            </svg>
+          </div>
+          <p class="diff-card-label">Habit trackers</p>
+          <h3 class="diff-card-title">Streaks, Habitica, Finch</h3>
+          <p class="diff-card-for">
+            <strong>Great for:</strong> Building recurring behaviors, staying consistent over time, tracking streaks.
+          </p>
+          <div class="diff-gap-box">
+            <p class="diff-gap-label">The gap</p>
+            <p class="diff-gap-text">Designed for repeated actions. Decisions are singular, high-stakes moments — not habits you track every day.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ReAnchor answer -->
+      <div class="diff-anchor-strip reveal reveal-delay-4">
+        <div class="diff-anchor-tag">
+          <div class="diff-anchor-tag-dot" aria-hidden="true"></div>
+          ReAnchor
+        </div>
+        <div class="diff-anchor-sep" aria-hidden="true"></div>
+        <p class="diff-anchor-copy">
+          Friends, therapists, and coaches can help — but they're unavailable at 2am, and they forget what you said last time. ReAnchor is <strong>you, structured, always there.</strong> No advice. Just your own clarity, preserved.
+        </p>
+      </div>
+
     </div>
   </section>
 
@@ -2273,7 +2644,7 @@
 
       <!-- Vision header -->
       <p class="vision-eyebrow reveal">Vision</p>
-      <h2 class="vision-headline reveal reveal-delay-1">Decision-making<br>is a skill.<br>We're building the gym.</h2>
+      <h2 class="vision-headline reveal reveal-delay-1">Decision-making is a skill. We're building the gym.</h2>
       <p class="vision-sub reveal reveal-delay-2">Most people have tools for fitness, finances, and productivity — nothing for the quality of their choices. ReAnchor changes that.</p>
 
       <!-- Today ↔ DecisionOS strip -->
@@ -2337,7 +2708,7 @@
               <p class="feat-desc">Stress-test your thinking before you commit. What are you assuming? What would have to be true for this to be the wrong call?</p>
               <button class="feat-vote-btn" onclick="castVote(this, 'pre-decision')" aria-label="Vote for Pre-Decision Builder">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Vote
+                <span class="vote-label">Vote</span><span class="vote-count">89</span>
               </button>
             </div>
           </div>
@@ -2355,7 +2726,7 @@
               <p class="feat-desc">Surface what your decision history actually reveals: recurring fears, timing patterns, what outcomes felt right in retrospect.</p>
               <button class="feat-vote-btn" onclick="castVote(this, 'pattern-insights')" aria-label="Vote for Pattern Insights">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Vote
+                <span class="vote-label">Vote</span><span class="vote-count">74</span>
               </button>
             </div>
           </div>
@@ -2373,7 +2744,7 @@
               <p class="feat-desc">Invite one trusted person to follow your decisions. Read-only. No advice. Knowing someone knows changes everything.</p>
               <button class="feat-vote-btn" onclick="castVote(this, 'accountability')" aria-label="Vote for Accountability Partners">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Vote
+                <span class="vote-label">Vote</span><span class="vote-count">61</span>
               </button>
             </div>
           </div>
@@ -2391,7 +2762,7 @@
               <p class="feat-desc">Define what matters most to you. See how each decision aligns with who you want to be — not just what you chose.</p>
               <button class="feat-vote-btn" onclick="castVote(this, 'values-axis')" aria-label="Vote for Values Axis">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Vote
+                <span class="vote-label">Vote</span><span class="vote-count">53</span>
               </button>
             </div>
           </div>
@@ -2409,7 +2780,7 @@
               <p class="feat-desc">How will you feel about this in 3 months? Based on your history, ReAnchor gives you a probabilistic read. Not prophecy — perspective.</p>
               <button class="feat-vote-btn" onclick="castVote(this, 'decision-forecast')" aria-label="Vote for Decision Forecast">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Vote
+                <span class="vote-label">Vote</span><span class="vote-count">47</span>
               </button>
             </div>
           </div>
@@ -2427,7 +2798,7 @@
               <p class="feat-desc">At 30, 60, or 90 days, ReAnchor asks: is your original reasoning still sound? Reflect. Update. Flag a real problem if one exists.</p>
               <button class="feat-vote-btn" onclick="castVote(this, 'revisit-prompt')" aria-label="Vote for Scheduled Revisits">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                Vote
+                <span class="vote-label">Vote</span><span class="vote-count">38</span>
               </button>
             </div>
           </div>
@@ -2588,9 +2959,7 @@
 
       <!-- Form -->
       <div id="form-wrap" class="reveal reveal-delay-3">
-        <form class="waitlist-form" id="waitlist-form" name="waitlist" data-netlify="true" netlify-honeypot="bot-field" novalidate aria-label="Waitlist signup">
-          <input type="hidden" name="form-name" value="waitlist" />
-          <p style="display:none"><input name="bot-field" /></p>
+        <form class="waitlist-form" id="waitlist-form" novalidate aria-label="Waitlist signup">
           <label for="email" class="sr-only">Email address</label>
           <input
             type="email"
@@ -2643,6 +3012,14 @@
   <!-- Screen reader only utility -->
   <style>.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }</style>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script>
+    // ── Supabase client ──
+    const _supa = window.supabase.createClient(
+      'https://rzxvpkbhortfcaavqjgu.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6eHZwa2Job3J0ZmNhYXZxamd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4MDA1NjYsImV4cCI6MjA5MTM3NjU2Nn0.CFd_xrBxX08sWi80qAkFTEaNYR7JN0_iwmbsJqrg35o'
+    );
+  </script>
   <script>
     // ── Scroll reveal observer ──
     const revealEls = document.querySelectorAll('.reveal');
@@ -2743,10 +3120,9 @@
     let wlCount = BASE_COUNT;
     const wlEl = document.getElementById('waitlist-counter');
 
-    fetch('/.netlify/functions/waitlist-count')
-      .then(r => r.json())
+    _supa.from('waitlist').select('*', { count: 'exact', head: true })
       .then(({ count }) => {
-        wlCount = BASE_COUNT + count;
+        wlCount = BASE_COUNT + (count || 0);
         if (wlEl) wlEl.textContent = wlCount;
       })
       .catch(() => { /* keep base count on error */ });
@@ -2795,11 +3171,7 @@
       submitBtn.textContent = 'Joining...';
 
       try {
-        await fetch('/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: new URLSearchParams(new FormData(form)).toString(),
-        });
+        await _supa.from('waitlist').insert({ email });
       } catch (_) {
         // best-effort — still show success to avoid blocking UX
       }
@@ -2813,56 +3185,93 @@
     });
 
     // ── Feature voting ──
-    const voteStore = JSON.parse(localStorage.getItem('reanchor_votes') || '{}');
+    const VOTE_BASES = {
+      'pre-decision': 89, 'pattern-insights': 74, 'accountability': 61,
+      'values-axis': 53, 'decision-forecast': 47, 'revisit-prompt': 38
+    };
+    const voteStore  = JSON.parse(localStorage.getItem('reanchor_votes') || '{}');
+    const voteCounts = {}; // real counts from Supabase, added on top of bases
     const totalVotesEl = document.getElementById('total-votes');
+
+    const CHECK_SVG  = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const PLUS_SVG   = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`;
+
+    function getCount(feature) {
+      return (VOTE_BASES[feature] || 0) + (voteCounts[feature] || 0);
+    }
 
     function updateTotalVotes() {
       const total = Object.values(voteStore).reduce((s, n) => s + n, 0);
       if (totalVotesEl) totalVotesEl.textContent = total;
     }
 
+    function renderCard(card) {
+      const feature = card.dataset.feature;
+      const btn = card.querySelector('.feat-vote-btn');
+      if (!btn) return;
+      const count = getCount(feature);
+      if (voteStore[feature]) {
+        card.classList.add('voted');
+        btn.classList.add('voted');
+        btn.disabled = true;
+        btn.innerHTML = `${CHECK_SVG}<span class="vote-label">Voted</span><span class="vote-count">${count}</span>`;
+      } else {
+        btn.innerHTML = `${PLUS_SVG}<span class="vote-label">Vote</span><span class="vote-count">${count}</span>`;
+      }
+    }
+
     function renderVotedState() {
-      document.querySelectorAll('.feat-card').forEach(card => {
-        const feature = card.dataset.feature;
-        const btn = card.querySelector('.feat-vote-btn');
-        if (!btn) return;
-        if (voteStore[feature]) {
-          card.classList.add('voted');
-          btn.classList.add('voted');
-          btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Voted`;
-        }
-      });
+      document.querySelectorAll('.feat-card').forEach(renderCard);
       updateTotalVotes();
     }
 
     function castVote(btn, feature) {
-      if (voteStore[feature]) return; // already voted
+      if (voteStore[feature]) return;
       voteStore[feature] = 1;
       localStorage.setItem('reanchor_votes', JSON.stringify(voteStore));
-      const card = btn.closest('.feat-card');
-      card.classList.add('voted');
-      btn.classList.add('voted');
-      btn.innerHTML = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Voted`;
+      // Update all cards (originals + clones) with this feature
+      document.querySelectorAll(`.feat-card[data-feature="${feature}"]`).forEach(renderCard);
       updateTotalVotes();
+      _supa.from('feature_votes').insert({ feature_id: feature }).catch(() => {});
     }
 
-    renderVotedState();
+    // Load real vote counts from Supabase, add to bases
+    _supa.from('feature_votes').select('feature_id')
+      .then(({ data }) => {
+        if (!data) return;
+        data.forEach(r => { voteCounts[r.feature_id] = (voteCounts[r.feature_id] || 0) + 1; });
+        renderVotedState(); // re-render with real counts
+      })
+      .catch(() => {});
 
-    // ── Feature carousel ──
+    renderVotedState(); // initial render with base counts
+
+    // ── Feature carousel (infinite loop) ──
     (function() {
-      const outer  = document.getElementById('carousel-outer');
-      const track  = document.getElementById('carousel-track');
+      const outer   = document.getElementById('carousel-outer');
+      const track   = document.getElementById('carousel-track');
       const prevBtn = document.getElementById('prev-btn');
       const nextBtn = document.getElementById('next-btn');
       const dotsEl  = document.getElementById('carousel-dots');
       if (!track || !outer) return;
 
-      const cards = Array.from(track.querySelectorAll('.feat-card'));
-      const GAP   = 16;
-      let index   = 0;
-      let cardW   = 0;
+      const origCards = Array.from(track.querySelectorAll('.feat-card'));
+      const N   = origCards.length; // 6
+      const GAP = 16;
+      let cardW = 0;
+      let index = N; // start at first real card (after N prepend clones)
+      let transitioning = false;
 
-      // Responsive card width: ~2.5 on desktop, ~1.15 on mobile
+      // Build infinite-loop buffer: [N clones] + [originals] + [N clones]
+      const preFrag  = document.createDocumentFragment();
+      const postFrag = document.createDocumentFragment();
+      origCards.forEach(c => { preFrag.appendChild(c.cloneNode(true)); });
+      origCards.forEach(c => { postFrag.appendChild(c.cloneNode(true)); });
+      track.insertBefore(preFrag, track.firstChild);
+      track.appendChild(postFrag);
+
+      const allCards = Array.from(track.querySelectorAll('.feat-card'));
+
       function calcCardWidth() {
         const ow = outer.clientWidth;
         const visible = window.innerWidth < 640 ? 1.15 : 2.5;
@@ -2871,45 +3280,65 @@
 
       function applyWidths() {
         cardW = calcCardWidth();
-        cards.forEach(c => { c.style.width = cardW + 'px'; });
+        allCards.forEach(c => { c.style.width = cardW + 'px'; });
       }
 
-      function goTo(i, animated = true) {
-        index = Math.max(0, Math.min(i, cards.length - 1));
+      function translate(idx) { return -idx * (cardW + GAP); }
+
+      function setTransform(animated) {
         if (!animated) track.classList.add('no-transition');
-        track.style.transform = `translateX(${-index * (cardW + GAP)}px)`;
+        track.style.transform = `translateX(${translate(index)}px)`;
         if (!animated) requestAnimationFrame(() => track.classList.remove('no-transition'));
-        prevBtn.disabled = index === 0;
-        nextBtn.disabled = index === cards.length - 1;
-        dotsEl.querySelectorAll('.carousel-dot').forEach((d, di) => {
-          d.classList.toggle('active', di === index);
+      }
+
+      function realIndex() { return ((index - N) % N + N) % N; }
+
+      function updateDots() {
+        dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => {
+          d.classList.toggle('active', i === realIndex());
         });
       }
 
-      // Build dots
-      cards.forEach((_, i) => {
+      function goTo(i, animated = true) {
+        if (transitioning && animated) return;
+        index = i;
+        setTransform(animated);
+        updateDots();
+        if (animated) {
+          transitioning = true;
+          setTimeout(() => {
+            if (index < N) { index += N; setTransform(false); }
+            else if (index >= 2 * N) { index -= N; setTransform(false); }
+            transitioning = false;
+          }, 440);
+        }
+      }
+
+      // Build dots (one per original card)
+      origCards.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
         dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
-        dot.addEventListener('click', () => goTo(i));
+        dot.addEventListener('click', () => goTo(N + i));
         dotsEl.appendChild(dot);
       });
 
+      prevBtn.disabled = false;
+      nextBtn.disabled = false;
       prevBtn.addEventListener('click', () => goTo(index - 1));
       nextBtn.addEventListener('click', () => goTo(index + 1));
 
       // Mouse drag
-      let dragging = false, startX = 0, startTranslate = 0;
+      let dragging = false, startX = 0, startT = 0;
       outer.addEventListener('mousedown', e => {
-        dragging = true;
-        startX = e.pageX;
-        startTranslate = -index * (cardW + GAP);
+        if (transitioning) return;
+        dragging = true; startX = e.pageX; startT = translate(index);
         track.classList.add('no-transition');
         outer.classList.add('is-dragging');
       });
       window.addEventListener('mousemove', e => {
         if (!dragging) return;
-        track.style.transform = `translateX(${startTranslate + e.pageX - startX}px)`;
+        track.style.transform = `translateX(${startT + e.pageX - startX}px)`;
       });
       window.addEventListener('mouseup', e => {
         if (!dragging) return;
@@ -2917,41 +3346,29 @@
         outer.classList.remove('is-dragging');
         track.classList.remove('no-transition');
         const diff = e.pageX - startX;
-        if (Math.abs(diff) > cardW * 0.2) {
-          goTo(diff < 0 ? index + 1 : index - 1);
-        } else {
-          goTo(index); // snap back
-        }
+        goTo(Math.abs(diff) > cardW * 0.2 ? (diff < 0 ? index + 1 : index - 1) : index);
       });
 
       // Touch
       let touchStartX = 0, touchStartT = 0;
       outer.addEventListener('touchstart', e => {
+        if (transitioning) return;
         touchStartX = e.touches[0].pageX;
-        touchStartT = -index * (cardW + GAP);
+        touchStartT = translate(index);
         track.classList.add('no-transition');
       }, { passive: true });
       outer.addEventListener('touchmove', e => {
-        const diff = e.touches[0].pageX - touchStartX;
-        track.style.transform = `translateX(${touchStartT + diff}px)`;
+        track.style.transform = `translateX(${touchStartT + e.touches[0].pageX - touchStartX}px)`;
       }, { passive: true });
       outer.addEventListener('touchend', e => {
         track.classList.remove('no-transition');
         const diff = e.changedTouches[0].pageX - touchStartX;
-        if (Math.abs(diff) > cardW * 0.18) {
-          goTo(diff < 0 ? index + 1 : index - 1);
-        } else {
-          goTo(index);
-        }
+        goTo(Math.abs(diff) > cardW * 0.18 ? (diff < 0 ? index + 1 : index - 1) : index);
       });
 
-      // Init & resize
       applyWidths();
-      goTo(0, false);
-      window.addEventListener('resize', () => {
-        applyWidths();
-        goTo(index, false);
-      });
+      goTo(N, false);
+      window.addEventListener('resize', () => { applyWidths(); goTo(index, false); });
     })();
 
   </script>

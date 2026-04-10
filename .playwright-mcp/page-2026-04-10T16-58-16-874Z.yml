@@ -1,0 +1,565 @@
+- generic [active] [ref=e1]:
+  - navigation "Main navigation" [ref=e2]:
+    - link "ReAnchor home" [ref=e3] [cursor=pointer]:
+      - /url: "#"
+      - text: ReAnchor
+    - generic [ref=e4]:
+      - link "Free Self-Test" [ref=e5] [cursor=pointer]:
+        - /url: /reanchor/self-test
+      - link "Join Waitlist" [ref=e6] [cursor=pointer]:
+        - /url: "#waitlist"
+  - region "Hook" [ref=e7]:
+    - paragraph [ref=e8]: For the ones who made the call
+    - heading "The decision is made. How do I stop the second-guessing?" [level=1] [ref=e9]:
+      - text: The decision is made.
+      - emphasis [ref=e10]: How do I stop the second-guessing?
+    - generic "Common doubts" [ref=e11]:
+      - generic [ref=e12]: "\"What if I made the wrong choice?\""
+    - link "Not sure if this is you? Take the free self-test →" [ref=e13] [cursor=pointer]:
+      - /url: /reanchor/self-test
+      - generic [ref=e14]:
+        - text: Not sure if this is you?
+        - generic [ref=e15]: Take the free self-test →
+  - region "The problem" [ref=e18]:
+    - generic [ref=e19]:
+      - generic [ref=e20]:
+        - text: 2:47 AM
+        - generic [ref=e21]: The doubt comes back
+      - generic [ref=e22]:
+        - paragraph [ref=e23]:
+          - text: You made a decision weeks ago.
+          - text: It felt
+          - strong [ref=e24]: right
+          - text: . Clear, even.
+          - text: Now you're lying awake, running it again.
+        - paragraph [ref=e25]:
+          - text: Not because
+          - strong [ref=e26]: something changed
+          - text: .
+          - text: Because someone said "are you sure?"
+          - text: Because one bad week showed up.
+          - text: Because doubt doesn't need a reason.
+      - list [ref=e27]:
+        - listitem [ref=e28]: "\"What if everyone who doubted me was right?\""
+        - listitem [ref=e29]: "\"What if I ruined something I can't get back?\""
+        - listitem [ref=e30]:
+          - text: "\"I can't even remember"
+          - emphasis [ref=e31]: why
+          - text: I decided this anymore."
+        - listitem [ref=e32]: "\"Maybe I should just go back.\""
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - generic [ref=e35]: "0"
+          - generic [ref=e36]:
+            - text: "% of people doubt a major decision within 3 weeks"
+            - superscript [ref=e37]:
+              - link "Research source" [ref=e38] [cursor=pointer]:
+                - /url: https://scholar.google.com/scholar?q=post-decision+regret+doubt
+                - text: "*"
+        - generic [ref=e39]:
+          - generic [ref=e40]: "0"
+          - generic [ref=e41]:
+            - text: "% who reverse good decisions — due to doubt, not facts"
+            - superscript [ref=e42]:
+              - link "Research source" [ref=e43] [cursor=pointer]:
+                - /url: https://scholar.google.com/scholar?q=decision+reversal+regret+behavioral+economics
+                - text: "*"
+        - generic [ref=e44]:
+          - generic [ref=e45]: 3x
+          - generic [ref=e46]:
+            - text: more likely to regret backing out than standing firm
+            - superscript [ref=e47]:
+              - link "Research source" [ref=e48] [cursor=pointer]:
+                - /url: https://scholar.google.com/scholar?q=omission+bias+action+inaction+regret+Kahneman
+                - text: "*"
+      - paragraph [ref=e49]: "* Based on published research on post-decision regret, omission bias, and decision reversal in behavioral psychology."
+  - region "The insight" [ref=e50]:
+    - generic [ref=e51]:
+      - paragraph [ref=e52]: The real problem
+      - heading "The decision wasn't wrong. You just have nothing to go back to." [level=2] [ref=e53]:
+        - text: The decision wasn't wrong.
+        - text: You just have
+        - emphasis [ref=e54]: nothing to go back to.
+      - paragraph [ref=e55]: When doubt hits, you're fighting from memory. You can't remember the clarity you had. The reasoning. What you believed, and why you were willing to risk it.
+      - paragraph [ref=e56]: ReAnchor gives you a place to record your decisions — and a structured way to revisit them when doubt comes back.
+      - paragraph [ref=e58]:
+        - text: What if you had a record of
+        - strong [ref=e59]: who you were
+        - text: when you made that call?
+  - region "Product reveal" [ref=e60]:
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - paragraph [ref=e63]: Introducing
+        - heading "ReAnchor" [level=2] [ref=e64]
+        - paragraph [ref=e65]: An anchor for your decisions.
+        - paragraph [ref=e66]: ReAnchor is not a journal. It's an iOS app that captures your decisions at the moment of clarity — what you chose, why, what you feared, and what you believed. Not to help you reflect. To give you a record to return to when doubt makes you forget who you were when you made the call.
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - generic [ref=e69]: Your decisions
+          - img "ReAnchor dashboard with decision bubbles" [ref=e70]:
+            - generic [ref=e72]:
+              - generic [ref=e73]:
+                - generic [ref=e74]: ReAnchor
+                - img [ref=e76]
+              - generic [ref=e79]:
+                - generic [ref=e80] [cursor=pointer]:
+                  - text: Leave
+                  - text: my job
+                - generic [ref=e81] [cursor=pointer]:
+                  - text: Start
+                  - text: company
+                - generic [ref=e82] [cursor=pointer]:
+                  - text: Move
+                  - text: to NYC
+                - generic [ref=e83] [cursor=pointer]:
+                  - text: End
+                  - text: lease
+                - generic [ref=e84]: +
+        - generic [ref=e86]:
+          - generic [ref=e87]: When doubt arrives
+          - img "ReAnchor Doubt Review flow" [ref=e88]:
+            - generic [ref=e90]:
+              - generic [ref=e91]:
+                - generic [ref=e92]:
+                  - img [ref=e93]
+                  - text: Back
+                - generic [ref=e95]: Doubt Review
+              - generic [ref=e96]:
+                - generic [ref=e97]:
+                  - generic [ref=e98]: Leave my job
+                  - generic [ref=e99]: ⏱ 9:41
+                - generic [ref=e100]: "\"I choose to leave my job and build this full-time.\""
+                - generic [ref=e101]:
+                  - generic [ref=e102]: Question 2 of 7
+                  - generic [ref=e103]: Is what changed a new fact — or just a feeling?
+                - generic [ref=e104]:
+                  - generic [ref=e105]: New fact — something real changed
+                  - generic [ref=e106]: I'm not sure
+                  - generic [ref=e107]: Just a feeling
+  - region "How it works" [ref=e111]:
+    - generic [ref=e112]:
+      - paragraph [ref=e113]: How it works
+      - heading "Three steps. One anchor." [level=2] [ref=e114]
+      - generic [ref=e115]:
+        - generic [ref=e116]:
+          - img [ref=e118]
+          - generic [ref=e121]: Step 01
+          - heading "Anchor the decision" [level=3] [ref=e122]
+          - paragraph [ref=e123]: Write what you decided, why you decided it, how you felt, and what you feared. Not a journal — a record you can return to.
+        - generic [ref=e124]:
+          - img [ref=e126]
+          - generic [ref=e129]: Step 02
+          - heading "Return when doubt arrives" [level=3] [ref=e130]
+          - paragraph [ref=e131]: At 2am, after a hard week, when someone asks "are you sure?" — open it. Find who you were when you made the call, and why.
+        - generic [ref=e132]:
+          - img [ref=e134]
+          - generic [ref=e137]: Step 03
+          - heading "Do the Doubt Review" [level=3] [ref=e138]
+          - paragraph [ref=e139]: 7 structured questions. 10 minutes. Separate new facts from old fears. You'll finish knowing whether to hold the line — or whether something actually changed.
+      - generic "Example Doubt Review question" [ref=e140]:
+        - generic [ref=e142]:
+          - generic [ref=e143]:
+            - generic [ref=e144]: Doubt Review — example question
+            - generic [ref=e145]: Question 3 of 7
+          - paragraph [ref=e146]: "\"Is what changed a new fact — or just a feeling?\""
+          - generic [ref=e147]:
+            - generic [ref=e148]: Something real changed — new information, new circumstances
+            - generic [ref=e149]: I'm not sure yet
+            - generic [ref=e150]: It's a feeling. Nothing actually changed.
+          - paragraph [ref=e151]:
+            - text: Seven questions. Ten minutes. You finish with a verdict —
+            - strong [ref=e152]: hold the line
+            - text: ", or flag that something real shifted. Not more journaling. A protocol."
+  - region "Why ReAnchor is different" [ref=e153]:
+    - generic [ref=e154]:
+      - paragraph [ref=e155]: Why ReAnchor
+      - heading "Every tool answers a question. None of them answer this one." [level=2] [ref=e156]
+      - paragraph [ref=e157]:
+        - text: "When doubt hits at 2am — or after a hard week, or when someone asks \"are you sure?\" — journal apps, AI, and habit trackers all fail at the same thing: giving"
+        - emphasis [ref=e158]: you
+        - text: back the clarity
+        - emphasis [ref=e159]: you
+        - text: had when you made the call.
+      - generic [ref=e160]:
+        - generic [ref=e161]:
+          - img [ref=e163]
+          - paragraph [ref=e166]: Journal apps
+          - heading "Day One, Notion, Apple Notes" [level=3] [ref=e167]
+          - paragraph [ref=e168]:
+            - strong [ref=e169]: "Great for:"
+            - text: Processing what you think and feel. Creative reflection. Capturing experiences after the fact.
+          - generic [ref=e170]:
+            - paragraph [ref=e171]: The gap
+            - paragraph [ref=e172]: Open-ended. No structure for capturing a decision. No protocol for returning to it when doubt hits.
+        - generic [ref=e173]:
+          - img [ref=e175]
+          - paragraph [ref=e178]: AI assistants
+          - heading "ChatGPT, Claude, Gemini" [level=3] [ref=e179]
+          - paragraph [ref=e180]:
+            - strong [ref=e181]: "Great for:"
+            - text: Exploring new angles, researching options, stress-testing ideas before you decide.
+          - generic [ref=e182]:
+            - paragraph [ref=e183]: The gap
+            - paragraph [ref=e184]:
+              - text: They give you more thinking. Doubt is already more thinking. And they don't know what
+              - emphasis [ref=e185]: you
+              - text: believed when you made the call.
+        - generic [ref=e186]:
+          - img [ref=e188]
+          - paragraph [ref=e193]: Habit trackers
+          - heading "Streaks, Habitica, Finch" [level=3] [ref=e194]
+          - paragraph [ref=e195]:
+            - strong [ref=e196]: "Great for:"
+            - text: Building recurring behaviors, staying consistent over time, tracking streaks.
+          - generic [ref=e197]:
+            - paragraph [ref=e198]: The gap
+            - paragraph [ref=e199]: Designed for repeated actions. Decisions are singular, high-stakes moments — not habits you track every day.
+      - generic [ref=e200]:
+        - generic [ref=e201]: ReAnchor
+        - paragraph [ref=e204]:
+          - text: Friends, therapists, and coaches can help — but they're unavailable at 2am, and they forget what you said last time. ReAnchor is
+          - strong [ref=e205]: you, structured, always there.
+          - text: No advice. Just your own clarity, preserved.
+  - region "Our vision and upcoming features" [ref=e206]:
+    - generic [ref=e207]:
+      - paragraph [ref=e208]: Vision
+      - heading "Decision-making is a skill. We're building the gym." [level=2] [ref=e209]
+      - paragraph [ref=e210]: Most people have tools for fitness, finances, and productivity — nothing for the quality of their choices. ReAnchor changes that.
+      - generic [ref=e211]:
+        - generic [ref=e212]:
+          - generic [ref=e213]: Today
+          - heading "Decision Journal & Doubt Review" [level=3] [ref=e215]
+          - generic [ref=e216]:
+            - generic [ref=e217]: Record any decision at the moment of clarity
+            - generic [ref=e218]: Run a structured Doubt Review when 2am hits
+            - generic [ref=e219]: Everything stays on your device. No account needed.
+        - generic [ref=e220]:
+          - generic [ref=e221]: Tomorrow
+          - heading "DecisionOS" [level=3] [ref=e223]
+          - generic [ref=e224]:
+            - generic [ref=e225]: Make better decisions before they're made
+            - generic [ref=e226]: Surface patterns across your decision history
+            - generic [ref=e227]: Stay committed — and accountable — long after you decide
+      - generic [ref=e228]:
+        - generic [ref=e229]:
+          - heading "Shape what comes next" [level=3] [ref=e230]
+          - paragraph [ref=e231]: Vote for the features you want built first
+        - generic [ref=e232]:
+          - generic [ref=e233]:
+            - strong [ref=e234]: "0"
+            - text: votes cast
+          - button "Previous" [ref=e235] [cursor=pointer]:
+            - img [ref=e236]
+          - button "Next" [ref=e238] [cursor=pointer]:
+            - img [ref=e239]
+      - generic [ref=e242]:
+        - generic [ref=e243]:
+          - generic [ref=e244]:
+            - img [ref=e246]
+            - generic [ref=e248]: Clarity
+          - generic [ref=e249]:
+            - heading "Pre-Decision Builder" [level=4] [ref=e250]
+            - paragraph [ref=e251]: Stress-test your thinking before you commit. What are you assuming? What would have to be true for this to be the wrong call?
+            - button "Vote for Pre-Decision Builder" [ref=e252] [cursor=pointer]:
+              - img [ref=e253]
+              - generic [ref=e255]: Vote
+              - generic [ref=e256]: "89"
+        - generic [ref=e257]:
+          - generic [ref=e258]:
+            - img [ref=e260]
+            - generic [ref=e262]: Pattern
+          - generic [ref=e263]:
+            - heading "Pattern Insights" [level=4] [ref=e264]
+            - paragraph [ref=e265]: "Surface what your decision history actually reveals: recurring fears, timing patterns, what outcomes felt right in retrospect."
+            - button "Vote for Pattern Insights" [ref=e266] [cursor=pointer]:
+              - img [ref=e267]
+              - generic [ref=e269]: Vote
+              - generic [ref=e270]: "74"
+        - generic [ref=e271]:
+          - generic [ref=e272]:
+            - img [ref=e274]
+            - generic [ref=e279]: Commitment
+          - generic [ref=e280]:
+            - heading "Accountability Partners" [level=4] [ref=e281]
+            - paragraph [ref=e282]: Invite one trusted person to follow your decisions. Read-only. No advice. Knowing someone knows changes everything.
+            - button "Vote for Accountability Partners" [ref=e283] [cursor=pointer]:
+              - img [ref=e284]
+              - generic [ref=e286]: Vote
+              - generic [ref=e287]: "61"
+        - generic [ref=e288]:
+          - generic [ref=e289]:
+            - img [ref=e291]
+            - generic [ref=e294]: Clarity
+          - generic [ref=e295]:
+            - heading "Values Axis" [level=4] [ref=e296]
+            - paragraph [ref=e297]: Define what matters most to you. See how each decision aligns with who you want to be — not just what you chose.
+            - button "Vote for Values Axis" [ref=e298] [cursor=pointer]:
+              - img [ref=e299]
+              - generic [ref=e301]: Vote
+              - generic [ref=e302]: "53"
+        - generic [ref=e303]:
+          - generic [ref=e304]:
+            - img [ref=e306]
+            - generic [ref=e310]: Pattern
+          - generic [ref=e311]:
+            - heading "Decision Forecast" [level=4] [ref=e312]
+            - paragraph [ref=e313]: How will you feel about this in 3 months? Based on your history, ReAnchor gives you a probabilistic read. Not prophecy — perspective.
+            - button "Vote for Decision Forecast" [ref=e314] [cursor=pointer]:
+              - img [ref=e315]
+              - generic [ref=e317]: Vote
+              - generic [ref=e318]: "47"
+        - generic [ref=e319]:
+          - generic [ref=e320]:
+            - img [ref=e322]
+            - generic [ref=e326]: Commitment
+          - generic [ref=e327]:
+            - heading "Scheduled Revisits" [level=4] [ref=e328]
+            - paragraph [ref=e329]: "At 30, 60, or 90 days, ReAnchor asks: is your original reasoning still sound? Reflect. Update. Flag a real problem if one exists."
+            - button "Vote for Scheduled Revisits" [ref=e330] [cursor=pointer]:
+              - img [ref=e331]
+              - generic [ref=e333]: Vote
+              - generic [ref=e334]: "38"
+        - generic [ref=e335]:
+          - generic [ref=e336]:
+            - img [ref=e338]
+            - generic [ref=e340]: Clarity
+          - generic [ref=e341]:
+            - heading "Pre-Decision Builder" [level=4] [ref=e342]
+            - paragraph [ref=e343]: Stress-test your thinking before you commit. What are you assuming? What would have to be true for this to be the wrong call?
+            - button "Vote for Pre-Decision Builder" [ref=e344] [cursor=pointer]:
+              - img [ref=e345]
+              - generic [ref=e347]: Vote
+              - generic [ref=e348]: "89"
+        - generic [ref=e349]:
+          - generic [ref=e350]:
+            - img [ref=e352]
+            - generic [ref=e354]: Pattern
+          - generic [ref=e355]:
+            - heading "Pattern Insights" [level=4] [ref=e356]
+            - paragraph [ref=e357]: "Surface what your decision history actually reveals: recurring fears, timing patterns, what outcomes felt right in retrospect."
+            - button "Vote for Pattern Insights" [ref=e358] [cursor=pointer]:
+              - img [ref=e359]
+              - generic [ref=e361]: Vote
+              - generic [ref=e362]: "74"
+        - generic [ref=e363]:
+          - generic [ref=e364]:
+            - img [ref=e366]
+            - generic [ref=e371]: Commitment
+          - generic [ref=e372]:
+            - heading "Accountability Partners" [level=4] [ref=e373]
+            - paragraph [ref=e374]: Invite one trusted person to follow your decisions. Read-only. No advice. Knowing someone knows changes everything.
+            - button "Vote for Accountability Partners" [ref=e375] [cursor=pointer]:
+              - img [ref=e376]
+              - generic [ref=e378]: Vote
+              - generic [ref=e379]: "61"
+        - generic [ref=e380]:
+          - generic [ref=e381]:
+            - img [ref=e383]
+            - generic [ref=e386]: Clarity
+          - generic [ref=e387]:
+            - heading "Values Axis" [level=4] [ref=e388]
+            - paragraph [ref=e389]: Define what matters most to you. See how each decision aligns with who you want to be — not just what you chose.
+            - button "Vote for Values Axis" [ref=e390] [cursor=pointer]:
+              - img [ref=e391]
+              - generic [ref=e393]: Vote
+              - generic [ref=e394]: "53"
+        - generic [ref=e395]:
+          - generic [ref=e396]:
+            - img [ref=e398]
+            - generic [ref=e402]: Pattern
+          - generic [ref=e403]:
+            - heading "Decision Forecast" [level=4] [ref=e404]
+            - paragraph [ref=e405]: How will you feel about this in 3 months? Based on your history, ReAnchor gives you a probabilistic read. Not prophecy — perspective.
+            - button "Vote for Decision Forecast" [ref=e406] [cursor=pointer]:
+              - img [ref=e407]
+              - generic [ref=e409]: Vote
+              - generic [ref=e410]: "47"
+        - generic [ref=e411]:
+          - generic [ref=e412]:
+            - img [ref=e414]
+            - generic [ref=e418]: Commitment
+          - generic [ref=e419]:
+            - heading "Scheduled Revisits" [level=4] [ref=e420]
+            - paragraph [ref=e421]: "At 30, 60, or 90 days, ReAnchor asks: is your original reasoning still sound? Reflect. Update. Flag a real problem if one exists."
+            - button "Vote for Scheduled Revisits" [ref=e422] [cursor=pointer]:
+              - img [ref=e423]
+              - generic [ref=e425]: Vote
+              - generic [ref=e426]: "38"
+        - generic [ref=e427]:
+          - generic [ref=e428]:
+            - img [ref=e430]
+            - generic [ref=e432]: Clarity
+          - generic [ref=e433]:
+            - heading "Pre-Decision Builder" [level=4] [ref=e434]
+            - paragraph [ref=e435]: Stress-test your thinking before you commit. What are you assuming? What would have to be true for this to be the wrong call?
+            - button "Vote for Pre-Decision Builder" [ref=e436] [cursor=pointer]:
+              - img [ref=e437]
+              - generic [ref=e439]: Vote
+              - generic [ref=e440]: "89"
+        - generic [ref=e441]:
+          - generic [ref=e442]:
+            - img [ref=e444]
+            - generic [ref=e446]: Pattern
+          - generic [ref=e447]:
+            - heading "Pattern Insights" [level=4] [ref=e448]
+            - paragraph [ref=e449]: "Surface what your decision history actually reveals: recurring fears, timing patterns, what outcomes felt right in retrospect."
+            - button "Vote for Pattern Insights" [ref=e450] [cursor=pointer]:
+              - img [ref=e451]
+              - generic [ref=e453]: Vote
+              - generic [ref=e454]: "74"
+        - generic [ref=e455]:
+          - generic [ref=e456]:
+            - img [ref=e458]
+            - generic [ref=e463]: Commitment
+          - generic [ref=e464]:
+            - heading "Accountability Partners" [level=4] [ref=e465]
+            - paragraph [ref=e466]: Invite one trusted person to follow your decisions. Read-only. No advice. Knowing someone knows changes everything.
+            - button "Vote for Accountability Partners" [ref=e467] [cursor=pointer]:
+              - img [ref=e468]
+              - generic [ref=e470]: Vote
+              - generic [ref=e471]: "61"
+        - generic [ref=e472]:
+          - generic [ref=e473]:
+            - img [ref=e475]
+            - generic [ref=e478]: Clarity
+          - generic [ref=e479]:
+            - heading "Values Axis" [level=4] [ref=e480]
+            - paragraph [ref=e481]: Define what matters most to you. See how each decision aligns with who you want to be — not just what you chose.
+            - button "Vote for Values Axis" [ref=e482] [cursor=pointer]:
+              - img [ref=e483]
+              - generic [ref=e485]: Vote
+              - generic [ref=e486]: "53"
+        - generic [ref=e487]:
+          - generic [ref=e488]:
+            - img [ref=e490]
+            - generic [ref=e494]: Pattern
+          - generic [ref=e495]:
+            - heading "Decision Forecast" [level=4] [ref=e496]
+            - paragraph [ref=e497]: How will you feel about this in 3 months? Based on your history, ReAnchor gives you a probabilistic read. Not prophecy — perspective.
+            - button "Vote for Decision Forecast" [ref=e498] [cursor=pointer]:
+              - img [ref=e499]
+              - generic [ref=e501]: Vote
+              - generic [ref=e502]: "47"
+        - generic [ref=e503]:
+          - generic [ref=e504]:
+            - img [ref=e506]
+            - generic [ref=e510]: Commitment
+          - generic [ref=e511]:
+            - heading "Scheduled Revisits" [level=4] [ref=e512]
+            - paragraph [ref=e513]: "At 30, 60, or 90 days, ReAnchor asks: is your original reasoning still sound? Reflect. Update. Flag a real problem if one exists."
+            - button "Vote for Scheduled Revisits" [ref=e514] [cursor=pointer]:
+              - img [ref=e515]
+              - generic [ref=e517]: Vote
+              - generic [ref=e518]: "38"
+      - generic [ref=e519]:
+        - button "Go to slide 1" [ref=e520] [cursor=pointer]
+        - button "Go to slide 2" [ref=e521] [cursor=pointer]
+        - button "Go to slide 3" [ref=e522] [cursor=pointer]
+        - button "Go to slide 4" [ref=e523] [cursor=pointer]
+        - button "Go to slide 5" [ref=e524] [cursor=pointer]
+        - button "Go to slide 6" [ref=e525] [cursor=pointer]
+  - region "Frequently asked questions" [ref=e526]:
+    - generic [ref=e527]:
+      - paragraph [ref=e528]: FAQ
+      - heading "Questions people ask before they join." [level=2] [ref=e529]:
+        - text: Questions people ask
+        - text: before they join.
+      - list [ref=e530]:
+        - generic [ref=e531]:
+          - button "How do I stop second-guessing myself after a big decision?" [ref=e532] [cursor=pointer]:
+            - text: How do I stop second-guessing myself after a big decision?
+            - img [ref=e533]
+          - region:
+            - paragraph [ref=e535]:
+              - text: The most effective approach is to return to the reasoning you had
+              - emphasis [ref=e536]: before
+              - text: "doubt arrived — not the version of your thinking that doubt has rewritten. That's the core idea behind ReAnchor: record your decision at the moment of clarity, so when doubt hits later, you have an anchor. You're not fighting from memory. You're reading what you actually believed, in your own words, when you made the call."
+        - generic [ref=e537]:
+          - button "What is ReAnchor?" [ref=e538] [cursor=pointer]:
+            - text: What is ReAnchor?
+            - img [ref=e539]
+          - region:
+            - paragraph [ref=e541]: "ReAnchor is an iOS decision journal app. It gives you a structured place to record hard decisions — what you chose, why, how you felt, and what you feared — and then revisit them when doubt or outside pressure arrives. It includes a Doubt Review: 7 structured questions that help you figure out whether something actually changed, or whether it's just fear. Launching Spring 2026."
+        - generic [ref=e542]:
+          - button "How is this different from a regular journal?" [ref=e543] [cursor=pointer]:
+            - text: How is this different from a regular journal?
+            - img [ref=e544]
+          - region:
+            - paragraph [ref=e546]: "A journal captures how you feel. ReAnchor captures why you decided. The structure matters: every entry answers the same questions — what changed, what you feared, what you believed, why you were willing to risk it. That structure is what makes it useful when doubt arrives. You're not searching through pages of stream-of-consciousness. You're reading a record built for exactly this moment."
+        - generic [ref=e547]:
+          - button "What is a Doubt Review?" [ref=e548] [cursor=pointer]:
+            - text: What is a Doubt Review?
+            - img [ref=e549]
+          - region:
+            - paragraph [ref=e551]: "The Doubt Review is a 10-minute guided process built into ReAnchor. When doubt hits, you open the app, open the relevant decision, and answer 7 structured questions: Is this a new fact or a feeling? Did the original reasoning change? Are you reacting to one bad week or a real pattern? By the end, you'll know whether you should hold the line — or whether something genuinely changed and a reconsideration is warranted."
+        - generic [ref=e552]:
+          - button "Is my data private? Who can see my decisions?" [ref=e553] [cursor=pointer]:
+            - text: Is my data private? Who can see my decisions?
+            - img [ref=e554]
+          - region:
+            - paragraph [ref=e556]: "Nobody. All data in ReAnchor stays on your device — no cloud sync, no server uploads, no account required. Your decisions are yours. This is a deliberate design choice: the things you record in ReAnchor are some of the most personal thoughts you'll ever write down. They should never leave your phone."
+        - generic [ref=e557]:
+          - button "When does ReAnchor launch, and is it free?" [ref=e558] [cursor=pointer]:
+            - text: When does ReAnchor launch, and is it free?
+            - img [ref=e559]
+          - region:
+            - paragraph [ref=e561]: ReAnchor launches on iOS in Spring 2026. Join the waitlist to get early access. Pricing will be announced at launch — waitlist members get first access and any early-adopter pricing.
+  - region "Philosophy" [ref=e562]:
+    - text: “
+    - generic [ref=e563]:
+      - paragraph [ref=e564]:
+        - text: When I finally made the hardest decision of my life — leaving a stable job to build something — I wrote down why. Not for anyone else. For the moment the doubt would come back.
+        - text: "It did. This is what I told myself:"
+      - blockquote [ref=e565]:
+        - text: "\"The goal was never to make"
+        - strong [ref=e566]: perfect
+        - text: decisions.
+        - text: It was to make
+        - strong [ref=e567]: honest
+        - text: ones — and then have the courage to stand by them."
+      - paragraph [ref=e568]: — Mason, founder of ReAnchor
+  - region "Self-test" [ref=e569]:
+    - generic [ref=e571]:
+      - generic [ref=e572]:
+        - paragraph [ref=e573]: Free Self-Assessment
+        - heading "Do you have decision anxiety? Find out in 3 minutes." [level=2] [ref=e574]:
+          - text: Do you have decision anxiety?
+          - emphasis [ref=e575]: Find out in 3 minutes.
+        - paragraph [ref=e576]: "16 science-informed questions. Four dimensions: paralysis, rumination, maximizing, avoidance. Instant results — no account, no data collected."
+        - link "Take the Self-Test →" [ref=e577] [cursor=pointer]:
+          - /url: /reanchor/self-test
+      - generic [ref=e579]:
+        - paragraph [ref=e580]: Dimension 2 of 4
+        - paragraph [ref=e581]: "\"After making a decision, I still replay it in my head wondering if I chose correctly.\""
+        - generic [ref=e582]:
+          - generic [ref=e583]: "1"
+          - generic [ref=e584]: "2"
+          - generic [ref=e585]: "3"
+          - generic [ref=e586]: "4"
+          - generic [ref=e587]: "5"
+        - paragraph [ref=e590]: Post-Decision Rumination · High
+  - region "Join waitlist" [ref=e591]:
+    - generic [ref=e592]:
+      - generic "Currently collecting early access" [ref=e593]:
+        - generic [ref=e595]: Early access — limited spots
+      - heading "Stop fighting doubt from memory." [level=2] [ref=e596]
+      - paragraph [ref=e597]: Next time doubt shows up at 2am, you'll have something to go back to.
+      - paragraph [ref=e598]: iOS · Launching Spring 2026 · All data stays on your device
+      - generic [ref=e599]:
+        - form "Waitlist signup" [ref=e600]:
+          - generic [ref=e601]: Email address
+          - textbox "Email address" [ref=e602]:
+            - /placeholder: your@email.com
+          - button "Join Waitlist" [ref=e603] [cursor=pointer]
+        - paragraph [ref=e604]: No spam. No account required. Just a heads-up when we launch.
+      - generic "People on waitlist" [ref=e605]:
+        - generic [ref=e606]:
+          - generic [ref=e607]: S
+          - generic [ref=e608]: M
+          - generic [ref=e609]: A
+        - paragraph [ref=e610]:
+          - strong [ref=e611]: "247"
+          - text: people already on the list
+  - contentinfo [ref=e612]:
+    - paragraph [ref=e613]: ReAnchor
+    - paragraph [ref=e614]: © 2026 ReAnchor. All data stays on your device.
