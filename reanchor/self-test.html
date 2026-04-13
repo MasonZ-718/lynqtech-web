@@ -1050,20 +1050,19 @@
         <div class="insight-card" id="insight-card">
           <p class="insight-card-label">What this means for you</p>
           <p class="insight-card-text" id="insight-text"></p>
+          <p class="insight-card-bridge">Your full analysis goes deeper on your highest dimension and what to focus on first.</p>
         </div>
 
         <!-- CTA -->
         <div class="results-cta">
-          <p class="results-cta-eyebrow">ReAnchor</p>
-          <h3 class="results-cta-headline">The app built for exactly this.</h3>
+          <p class="results-cta-eyebrow">Your results are ready</p>
+          <h3 class="results-cta-headline">Get your full analysis — free.</h3>
           <p class="results-cta-sub">
-            ReAnchor helps you record decisions at the moment of clarity, so when doubt shows up later — whether it's paralysis, rumination, or pressure from others — you have something to return to.
+            We'll send a personalized breakdown for your highest dimension, with what it means and where to start. You'll also be first in line when ReAnchor launches.
           </p>
 
           <div id="cta-form-wrap">
-            <form class="waitlist-form-inline" id="cta-form" name="waitlist-selftest" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-              <input type="hidden" name="form-name" value="waitlist-selftest" />
-              <p style="display:none"><input name="bot-field" /></p>
+            <form class="waitlist-form-inline" id="cta-form" novalidate>
               <label for="cta-email" class="sr-only">Email address</label>
               <input
                 type="email"
@@ -1075,13 +1074,28 @@
                 required
               />
               <button type="submit" class="waitlist-btn-inline" id="cta-submit">
-                Join Waitlist
+                Send my analysis →
               </button>
             </form>
-            <p style="font-size: 12px; color: var(--dim); margin-top: 12px; position: relative; z-index: 1;">iOS · Spring 2026 · No spam</p>
+            <p class="cta-secondary-wrap">
+              <a class="cta-secondary-link" id="cta-waitlist-link" role="button" tabindex="0">
+                or just join the waitlist
+              </a>
+            </p>
+            <p class="cta-error" id="cta-error">Something went wrong — try again.</p>
           </div>
 
-          <div class="inline-success" id="cta-success">
+          <div class="inline-success" id="cta-success-analysis">
+            <div class="inline-success-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M3.5 9l3.5 3.5 7-7" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <p class="inline-success-text">Your analysis is on its way.</p>
+            <p class="inline-success-sub">Check your inbox — we'll also let you know when ReAnchor launches.</p>
+          </div>
+
+          <div class="inline-success" id="cta-success-waitlist">
             <div class="inline-success-icon">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                 <path d="M3.5 9l3.5 3.5 7-7" stroke="#34d399" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
