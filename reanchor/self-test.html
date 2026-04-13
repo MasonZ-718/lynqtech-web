@@ -1473,43 +1473,6 @@
     }
 
     // ─────────────────────────────────────────────
-    // WAITLIST FORM (CTA on results page)
-    // ─────────────────────────────────────────────
-
-    document.getElementById('cta-form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const emailInput = document.getElementById('cta-email');
-      const btn = document.getElementById('cta-submit');
-      const email = emailInput.value.trim();
-
-      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        emailInput.style.borderColor = 'var(--danger)';
-        emailInput.focus();
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Joining...';
-
-      // Submit to Netlify
-      const formData = new FormData(this);
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(() => {
-        document.getElementById('cta-form-wrap').style.display = 'none';
-        document.getElementById('cta-success').classList.add('show');
-      })
-      .catch(() => {
-        // Show success anyway (graceful degradation)
-        document.getElementById('cta-form-wrap').style.display = 'none';
-        document.getElementById('cta-success').classList.add('show');
-      });
-    });
-
-    // ─────────────────────────────────────────────
     // KEYBOARD: allow Enter/Space on retake link
     // ─────────────────────────────────────────────
     document.querySelector('.retake-link a').addEventListener('keydown', function(e) {
