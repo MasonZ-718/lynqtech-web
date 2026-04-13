@@ -240,9 +240,10 @@
 
     .hook-headline {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(36px, 7vw, 80px);
+      font-size: clamp(46px, 8vw, 92px);
       font-weight: 400;
       line-height: 1.15;
+      letter-spacing: -1.5px;
       color: var(--muted);
       max-width: 900px;
       margin-bottom: 24px;
@@ -325,16 +326,15 @@
     }
 
     .pain-time {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(52px, 10vw, 96px);
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: -2px;
       color: var(--text);
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      text-transform: none;
+      margin-bottom: 40px;
+      line-height: 0.95;
+      position: relative;
     }
     .pain-time::before {
       content: '';
@@ -353,7 +353,7 @@
 
     .pain-body {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(22px, 3.5vw, 36px);
+      font-size: clamp(20px, 3vw, 32px);
       font-weight: 400;
       line-height: 1.5;
       color: var(--muted);
@@ -377,9 +377,10 @@
       gap: 16px;
     }
     .thought {
-      background: var(--surface);
+      background: var(--surface-2);
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-left: 2px solid rgba(251, 113, 133, 0.18);
+      border-radius: 0 14px 14px 0;
       padding: 18px 24px;
       font-family: 'Fraunces', Georgia, serif;
       font-size: 16px;
@@ -394,9 +395,9 @@
       transform: translateX(0);
       opacity: 1;
     }
-    .thought:nth-child(2) { transition-delay: 0.15s; }
-    .thought:nth-child(3) { transition-delay: 0.3s; }
-    .thought:nth-child(4) { transition-delay: 0.45s; }
+    .thought:nth-child(2) { transition-delay: 0.15s; margin-left: 16px; }
+    .thought:nth-child(3) { transition-delay: 0.3s; margin-left: 32px; }
+    .thought:nth-child(4) { transition-delay: 0.45s; margin-left: 48px; }
     .thought-accent {
       color: var(--danger);
       font-style: normal;
@@ -421,10 +422,11 @@
     }
     .stat-number {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 40px;
+      font-size: clamp(48px, 7vw, 72px);
       font-weight: 600;
       color: var(--text);
       line-height: 1;
+      letter-spacing: -2px;
       margin-bottom: 8px;
     }
     .stat-label {
@@ -443,9 +445,9 @@
     }
 
     .insight-label {
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 600;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 32px;
@@ -453,10 +455,10 @@
 
     .insight-headline {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(28px, 4.5vw, 52px);
+      font-size: clamp(30px, 5vw, 58px);
       font-weight: 400;
       line-height: 1.18;
-      letter-spacing: -0.4px;
+      letter-spacing: -0.5px;
       color: var(--text);
       max-width: 600px;
       margin: 0 auto 24px;
@@ -631,7 +633,7 @@
       margin-bottom: 8px;
     }
     .step-desc {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--muted);
       line-height: 1.7;
     }
@@ -651,21 +653,28 @@
     }
     .philosophy-quote {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(22px, 3.5vw, 40px);
+      font-size: clamp(22px, 3.2vw, 38px);
       font-weight: 400;
       font-style: italic;
       color: var(--muted);
       line-height: 1.5;
-      max-width: 600px;
-      margin: 0 auto 24px;
+      max-width: 580px;
+      margin: 0 0 20px;
+      position: relative;
+      z-index: 1;
+      border-left: 2px solid var(--accent-border);
+      padding-left: 28px;
+      text-align: left;
     }
     .philosophy-quote strong {
       color: var(--text);
       font-style: normal;
     }
     .philosophy-attr {
-      font-size: 13px;
-      color: var(--dim);
+      font-size: 14px;
+      color: var(--accent-text);
+      padding-left: 28px;
+      text-align: left;
     }
 
     /* ─────────────────────────────────────
@@ -703,10 +712,11 @@
 
     .waitlist-headline {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(32px, 5vw, 58px);
+      font-size: clamp(36px, 6vw, 66px);
       font-weight: 400;
       color: var(--text);
       line-height: 1.2;
+      letter-spacing: -1px;
       max-width: 560px;
       margin: 0 auto 16px;
     }
@@ -925,13 +935,6 @@
     }
 
     /* ─────────────────────────────────────
-       FONT SIZE GLOBAL FIXES
-    ───────────────────────────────────── */
-    .step-desc { font-size: 16px; }
-    .insight-sub { font-size: 18px; }
-    .pain-body { font-size: clamp(20px, 3vw, 32px); }
-
-    /* ─────────────────────────────────────
        GRAIN TEXTURE OVERLAY
     ───────────────────────────────────── */
     body::after {
@@ -964,26 +967,9 @@
       pointer-events: none;
     }
 
-    /* Larger, more dramatic hook headline */
-    .hook-headline {
-      font-size: clamp(46px, 8vw, 92px) !important;
-      letter-spacing: -1.5px;
-    }
-
     /* ─────────────────────────────────────
        DRAMATIC PAIN TIMESTAMP
     ───────────────────────────────────── */
-    .pain-time {
-      font-family: 'Fraunces', Georgia, serif !important;
-      font-size: clamp(52px, 10vw, 96px) !important;
-      font-weight: 600 !important;
-      letter-spacing: -2px !important;
-      text-transform: none !important;
-      color: var(--dim) !important;
-      margin-bottom: 40px !important;
-      line-height: 0.95 !important;
-      position: relative;
-    }
     .pain-time::before {
       width: 8px !important;
       height: 8px !important;
@@ -1023,23 +1009,6 @@
       color: rgba(52,211,153,0.045);
       pointer-events: none;
       user-select: none;
-    }
-    .philosophy-quote {
-      position: relative;
-      z-index: 1;
-      font-size: clamp(22px, 3.2vw, 38px) !important;
-      line-height: 1.5 !important;
-      border-left: 2px solid var(--accent-border);
-      padding-left: 28px;
-      text-align: left !important;
-      max-width: 580px !important;
-      margin: 0 0 20px !important;
-    }
-    .philosophy-attr {
-      padding-left: 28px;
-      text-align: left !important;
-      font-size: 14px !important;
-      color: var(--accent-text) !important;
     }
     #philosophy .container {
       display: flex;
@@ -1222,45 +1191,6 @@
       pointer-events: none;
     }
     #waitlist .container { position: relative; z-index: 1; }
-
-    /* Bolder waitlist headline */
-    .waitlist-headline {
-      font-size: clamp(36px, 6vw, 66px) !important;
-      letter-spacing: -1px;
-    }
-
-    /* ─────────────────────────────────────
-       STAT ROW — MORE IMPACT
-    ───────────────────────────────────── */
-    .stat-number {
-      font-size: clamp(48px, 7vw, 72px) !important;
-      letter-spacing: -2px;
-    }
-
-    /* ─────────────────────────────────────
-       THOUGHT BUBBLE REFINEMENT
-    ───────────────────────────────────── */
-    .thought {
-      border-left: 2px solid rgba(251, 113, 133, 0.18) !important;
-      border-radius: 0 14px 14px 0 !important;
-      background: var(--surface-2) !important;
-    }
-    .thought:nth-child(2) { margin-left: 16px; }
-    .thought:nth-child(3) { margin-left: 32px; }
-    .thought:nth-child(4) { margin-left: 48px; }
-
-    /* ─────────────────────────────────────
-       INSIGHT SECTION REFINEMENT
-    ───────────────────────────────────── */
-    .insight-headline {
-      font-size: clamp(30px, 5vw, 58px) !important;
-      letter-spacing: -0.5px !important;
-      line-height: 1.18 !important;
-    }
-    .insight-label {
-      font-size: 10px !important;
-      letter-spacing: 4px !important;
-    }
 
     /* ─────────────────────────────────────
        NAV REFINEMENT
@@ -3142,17 +3072,39 @@
       el.textContent = el.textContent; // already set in HTML
     });
 
-    // ── Waitlist counter: base offset + real Netlify submissions ──
-    const BASE_COUNT = 247;
+    // ── Display offsets (fake base counts, editable in Supabase) ──
+    let BASE_COUNT = 247;
+    const VOTE_BASES_DEFAULT = {
+      'pre-decision': 89, 'pattern-insights': 74, 'accountability': 61,
+      'values-axis': 53, 'decision-forecast': 47, 'revisit-prompt': 38
+    };
+    let VOTE_BASES = { ...VOTE_BASES_DEFAULT };
+
+    // ── Waitlist counter: base offset + real Supabase submissions ──
     let wlCount = BASE_COUNT;
     const wlEl = document.getElementById('waitlist-counter');
 
-    _supa.from('waitlist').select('*', { count: 'exact', head: true })
+    // Load offsets from Supabase, then initialize counters
+    _supa.from('display_offsets').select('key, value')
+      .then(({ data }) => {
+        if (data) {
+          data.forEach(({ key, value }) => {
+            if (key === 'waitlist_base') {
+              BASE_COUNT = value;
+            } else if (key.startsWith('votes_')) {
+              const feature = key.slice('votes_'.length);
+              VOTE_BASES[feature] = value;
+            }
+          });
+        }
+        // Now fetch real waitlist count on top of (possibly updated) base
+        return _supa.from('waitlist').select('*', { count: 'exact', head: true });
+      })
       .then(({ count }) => {
         wlCount = BASE_COUNT + (count || 0);
         if (wlEl) wlEl.textContent = wlCount;
       })
-      .catch(() => { /* keep base count on error */ });
+      .catch(() => { /* keep defaults on error */ });
 
     // Slow ambient tick to feel alive
     setInterval(() => {
@@ -3212,10 +3164,6 @@
     });
 
     // ── Feature voting ──
-    const VOTE_BASES = {
-      'pre-decision': 89, 'pattern-insights': 74, 'accountability': 61,
-      'values-axis': 53, 'decision-forecast': 47, 'revisit-prompt': 38
-    };
     const voteStore  = JSON.parse(localStorage.getItem('reanchor_votes') || '{}');
     const voteCounts = {}; // real counts from Supabase, added on top of bases
     const totalVotesEl = document.getElementById('total-votes');
