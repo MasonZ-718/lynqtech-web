@@ -1477,6 +1477,64 @@
       });
     }
 
+    // ─────────────────────────────────────────────
+    // CTA SUBMIT
+    // ─────────────────────────────────────────────
+
+    async function handleCtaSubmit(source) {
+      const emailInput = document.getElementById('cta-email');
+      const errorEl   = document.getElementById('cta-error');
+      const submitBtn = document.getElementById('cta-submit');
+      const waitlistLink = document.getElementById('cta-waitlist-link');
+      const email = emailInput.value.trim();
+
+      // Validate email
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailInput.style.borderColor = 'rgba(251,113,133,0.5)';
+        emailInput.focus();
+        return;
+      }
+      emailInput.style.borderColor = '';
+      errorEl.classList.remove('show');
+
+      // Disable UI while submitting
+      submitBtn.disabled = true;
+      waitlistLink.style.pointerEvents = 'none';
+      waitlistLink.style.opacity = '0.4';
+
+      // Build payload from current quiz state
+      const dimScores = [1, 2, 3, 4].map(d =>
+        [0, 1, 2, 3].reduce((sum, i) => sum + (answers['q_' + d + '_' + i] || 0), 0)
+      );
+      const total = dimScores.reduce((a, b) => a + b, 0);
+      const profile = PROFILES.find(p => total >= p.range[0] && total <= p.range[1]);
+
+      const { error } = await _supa.from('quiz_results').insert({
+        email,
+        total_score: total,
+        dim_1: dimScores[0],
+        dim_2: dimScores[1],
+        dim_3: dimScores[2],
+        dim_4: dimScores[3],
+        profile: profile ? profile.name : '',
+        answers: Object.assign({}, answers),
+        cta_source: source
+      });
+
+      if (error) {
+        errorEl.classList.add('show');
+        submitBtn.disabled = false;
+        waitlistLink.style.pointerEvents = '';
+        waitlistLink.style.opacity = '';
+        return;
+      }
+
+      // Show correct success state
+      document.getElementById('cta-form-wrap').style.display = 'none';
+      const successId = source === 'full_analysis' ? 'cta-success-analysis' : 'cta-success-waitlist';
+      document.getElementById(successId).classList.add('show');
+    }
+
     function retakeTest() {
       // Reset state
       answers = {};
@@ -1504,6 +1562,17 @@
       currentStep = 0;
       updateProgress();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Reset CTA
+      document.getElementById('cta-form-wrap').style.display = '';
+      document.getElementById('cta-success-analysis').classList.remove('show');
+      document.getElementById('cta-success-waitlist').classList.remove('show');
+      document.getElementById('cta-email').value = '';
+      document.getElementById('cta-email').style.borderColor = '';
+      document.getElementById('cta-submit').disabled = false;
+      document.getElementById('cta-waitlist-link').style.pointerEvents = '';
+      document.getElementById('cta-waitlist-link').style.opacity = '';
+      document.getElementById('cta-error').classList.remove('show');
     }
 
     // ─────────────────────────────────────────────
@@ -1511,6 +1580,23 @@
     // ─────────────────────────────────────────────
     document.querySelector('.retake-link a').addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); retakeTest(); }
+    });
+
+    // ─────────────────────────────────────────────
+    // CTA EVENT LISTENERS
+    // ─────────────────────────────────────────────
+
+    document.getElementById('cta-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      handleCtaSubmit('full_analysis');
+    });
+
+    document.getElementById('cta-waitlist-link').addEventListener('click', function () {
+      handleCtaSubmit('waitlist');
+    });
+
+    document.getElementById('cta-waitlist-link').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') handleCtaSubmit('waitlist');
     });
   </script>
 
