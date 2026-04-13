@@ -1482,9 +1482,10 @@
     // ─────────────────────────────────────────────
 
     async function handleCtaSubmit(source) {
+      const submitBtn = document.getElementById('cta-submit');
+      if (submitBtn.disabled) return;
       const emailInput = document.getElementById('cta-email');
       const errorEl   = document.getElementById('cta-error');
-      const submitBtn = document.getElementById('cta-submit');
       const waitlistLink = document.getElementById('cta-waitlist-link');
       const email = emailInput.value.trim();
 
@@ -1596,7 +1597,10 @@
     });
 
     document.getElementById('cta-waitlist-link').addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') handleCtaSubmit('waitlist');
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        handleCtaSubmit('waitlist');
+      }
     });
   </script>
 
