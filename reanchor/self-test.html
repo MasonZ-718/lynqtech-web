@@ -758,6 +758,40 @@
     }
     .retake-link a:hover { text-decoration: underline; }
 
+    .cta-secondary-wrap {
+      margin-top: 14px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-secondary-link {
+      font-size: 13px;
+      color: var(--dim);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(113,113,122,0.4);
+      transition: color 0.15s;
+    }
+    .cta-secondary-link:hover { color: var(--muted); }
+
+    .cta-error {
+      display: none;
+      font-size: 13px;
+      color: var(--danger);
+      margin-top: 10px;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-error.show { display: block; }
+
+    .insight-card-bridge {
+      font-size: 13px;
+      color: var(--dim);
+      margin-top: 14px;
+      line-height: 1.55;
+      font-style: italic;
+    }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
