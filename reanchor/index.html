@@ -3098,7 +3098,7 @@
           });
         }
         // Now fetch real waitlist count on top of (possibly updated) base
-        return _supa.from('waitlist').select('*', { count: 'exact', head: true });
+        return _supa.from('quiz_results').select('*', { count: 'exact', head: true });
       })
       .then(({ count }) => {
         wlCount = BASE_COUNT + (count || 0);
@@ -3150,7 +3150,10 @@
       submitBtn.textContent = 'Joining...';
 
       try {
-        await _supa.from('waitlist').insert({ email });
+        await _supa.from('quiz_results').upsert(
+          { email, cta_source: 'landing_page' },
+          { onConflict: 'email', ignoreDuplicates: true }
+        );
       } catch (_) {
         // best-effort — still show success to avoid blocking UX
       }
