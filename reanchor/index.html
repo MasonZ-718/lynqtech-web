@@ -240,17 +240,17 @@
 
     .hook-headline {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(40px, 7vw, 80px);
+      font-size: clamp(36px, 7vw, 80px);
       font-weight: 400;
       line-height: 1.15;
-      color: var(--text);
+      color: var(--muted);
       max-width: 900px;
       margin-bottom: 24px;
     }
 
     .hook-headline em {
       font-style: italic;
-      color: var(--muted);
+      color: #ffffff;
     }
 
     /* Morphing doubt text */
@@ -329,7 +329,7 @@
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 2px;
-      color: var(--dim);
+      color: var(--text);
       text-transform: uppercase;
       margin-bottom: 32px;
       display: flex;
@@ -2115,167 +2115,207 @@
       padding: 120px 0;
       border-top: 1px solid var(--border);
     }
-    .diff-eyebrow {
+    .diff-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--dim);
-      margin-bottom: 32px;
+      margin-bottom: 36px;
     }
-    .diff-headline {
+    .diff-intro {
       font-family: 'Fraunces', Georgia, serif;
       font-size: clamp(26px, 3.8vw, 48px);
       font-weight: 400;
       line-height: 1.18;
       color: var(--text);
-      max-width: 640px;
-      margin-bottom: 16px;
+      max-width: 680px;
+      margin-bottom: 72px;
       letter-spacing: -0.3px;
     }
-    .diff-sub {
-      font-size: 17px;
+    .diff-intro em {
       color: var(--muted);
-      max-width: 540px;
-      line-height: 1.7;
-      margin-bottom: 56px;
-    }
-    .diff-sub em { color: var(--text); font-style: italic; }
-
-    /* Three-card comparison grid */
-    .diff-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 20px 20px 0 0;
-      overflow: hidden;
-    }
-    .diff-card {
-      background: var(--surface);
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-    }
-    .diff-card-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      flex-shrink: 0;
-    }
-    .diff-card-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 6px;
-    }
-    .diff-card-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 19px;
-      font-weight: 400;
-      color: var(--text);
-      margin-bottom: 18px;
-      line-height: 1.3;
-    }
-    .diff-card-for {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 20px;
-      flex: 1;
-    }
-    .diff-card-for strong {
-      color: var(--dim);
-      font-weight: 600;
-    }
-    .diff-gap-box {
-      background: rgba(251, 113, 133, 0.05);
-      border: 1px solid rgba(251, 113, 133, 0.14);
-      border-radius: 12px;
-      padding: 14px 16px;
-    }
-    .diff-gap-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: rgba(251, 113, 133, 0.6);
-      margin-bottom: 6px;
-    }
-    .diff-gap-text {
-      font-size: 13px;
-      color: var(--danger);
-      line-height: 1.6;
-      opacity: 0.85;
-    }
-
-    /* ReAnchor answer strip */
-    .diff-anchor-strip {
-      border: 1px solid var(--border);
-      border-top: 1px solid rgba(52, 211, 153, 0.3);
-      border-radius: 0 0 20px 20px;
-      background: linear-gradient(to right, rgba(52,211,153,0.03) 0%, transparent 60%);
-      padding: 28px 32px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-    .diff-anchor-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .diff-anchor-tag-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 6px var(--accent);
-    }
-    .diff-anchor-sep {
-      width: 1px;
-      height: 28px;
-      background: var(--border);
-      flex-shrink: 0;
-    }
-    .diff-anchor-copy {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 16px;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-    .diff-anchor-copy strong {
-      color: var(--text);
-      font-weight: 400;
       font-style: italic;
     }
 
+    /* Editorial rows */
+    .diff-rows {
+      border-top: 1px solid var(--border);
+    }
+    .diff-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 56px;
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+      align-items: start;
+    }
+    .diff-row-meta {
+      padding-top: 2px;
+    }
+    .diff-row-num {
+      display: block;
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 80px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.04);
+      line-height: 0.85;
+      letter-spacing: -5px;
+      margin-bottom: 14px;
+      user-select: none;
+    }
+    .diff-row-cat {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 4px;
+    }
+    .diff-row-examples {
+      font-size: 12px;
+      color: rgba(113, 113, 122, 0.55);
+      line-height: 1.6;
+    }
+    .diff-row-quote {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(16px, 1.8vw, 21px);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      quotes: "\201C" "\201D";
+    }
+    .diff-row-quote::before { content: open-quote; }
+    .diff-row-quote::after  { content: close-quote; }
+    .diff-row-verdict {
+      font-size: 14px;
+      color: var(--dim);
+      line-height: 1.65;
+      padding-left: 16px;
+      border-left: 2px solid rgba(251, 113, 133, 0.3);
+    }
+    .diff-row-verdict strong {
+      color: rgba(251, 113, 133, 0.85);
+      font-weight: 500;
+    }
+
+    /* Declaration */
+    .diff-declaration {
+      padding-top: 72px;
+      max-width: 700px;
+    }
+    .diff-declaration-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+    }
+    .diff-declaration-eyebrow::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .diff-declaration-body {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(20px, 2.8vw, 34px);
+      font-weight: 400;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 24px;
+    }
+    .diff-declaration-body em {
+      color: var(--text);
+      font-style: italic;
+    }
+    .diff-declaration-coda {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(22px, 3vw, 38px);
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.5px;
+    }
+
     @media (max-width: 768px) {
-      .diff-grid { grid-template-columns: 1fr; border-radius: 20px 20px 0 0; }
-      .diff-anchor-sep { display: none; }
+      .diff-row { grid-template-columns: 1fr; gap: 20px; padding: 40px 0; }
+      .diff-row-num { font-size: 56px; margin-bottom: 8px; }
     }
     @media (max-width: 480px) {
       #different { padding: 80px 0; }
-      .diff-headline { font-size: 24px; }
-      .diff-card { padding: 24px 20px; }
-      .diff-anchor-strip { padding: 22px 20px; }
+      .diff-intro { font-size: 24px; margin-bottom: 48px; }
+      .diff-declaration { padding-top: 48px; }
+    }
+
+    /* ── Section progress indicator ── */
+    .section-nav {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+    .section-nav.visible { opacity: 1; pointer-events: auto; }
+
+    .section-nav-dot {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 8px;
+    }
+    .section-nav-dot::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--dim);
+      transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+      flex-shrink: 0;
+    }
+    .section-nav-dot.active::before {
+      background: var(--accent);
+      border-color: var(--accent);
+      transform: scale(1.55);
+    }
+
+    .section-nav-label {
+      position: absolute;
+      right: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+    .section-nav-dot:hover .section-nav-label {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (max-width: 900px) {
+      .section-nav { display: none; }
     }
   </style>
 </head>
@@ -2552,85 +2592,57 @@
   <section id="different" aria-label="Why ReAnchor is different">
     <div class="container">
 
-      <p class="diff-eyebrow reveal">Why ReAnchor</p>
-      <h2 class="diff-headline reveal reveal-delay-1">Every tool answers a question. None of them answer this one.</h2>
-      <p class="diff-sub reveal reveal-delay-2">When doubt hits at 2am — or after a hard week, or when someone asks "are you sure?" — journal apps, AI, and habit trackers all fail at the same thing: giving <em>you</em> back the clarity <em>you</em> had when you made the call.</p>
+      <p class="diff-label reveal">Why ReAnchor</p>
+      <h2 class="diff-intro reveal reveal-delay-1">You've tried the obvious tools.<br><em>None of them were built for this moment.</em></h2>
 
-      <div class="diff-grid reveal reveal-delay-3">
+      <div class="diff-rows">
 
-        <!-- Card 1: Journal apps -->
-        <div class="diff-card">
-          <div class="diff-card-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <rect x="3.5" y="2" width="9" height="14" rx="1.5" stroke="#52525b" stroke-width="1.3"/>
-              <path d="M6 6h4M6 9h4M6 12h2.5" stroke="#52525b" stroke-width="1.3" stroke-linecap="round"/>
-              <path d="M12.5 4v10" stroke="#52525b" stroke-width="1.3" stroke-linecap="round"/>
-            </svg>
+        <!-- Row 01: Journal apps -->
+        <div class="diff-row reveal">
+          <div class="diff-row-meta">
+            <span class="diff-row-num" aria-hidden="true">01</span>
+            <p class="diff-row-cat">Journal apps</p>
+            <p class="diff-row-examples">Day One · Notion · Apple Notes</p>
           </div>
-          <p class="diff-card-label">Journal apps</p>
-          <h3 class="diff-card-title">Day One, Notion, Apple Notes</h3>
-          <p class="diff-card-for">
-            <strong>Great for:</strong> Processing what you think and feel. Creative reflection. Capturing experiences after the fact.
-          </p>
-          <div class="diff-gap-box">
-            <p class="diff-gap-label">The gap</p>
-            <p class="diff-gap-text">Open-ended. No structure for capturing a decision. No protocol for returning to it when doubt hits.</p>
+          <div class="diff-row-content">
+            <p class="diff-row-quote">You open Notion and start writing. Twenty minutes later you've built a wall of text that gives the doubt even more material to spiral with. You still don't know what to do.</p>
+            <p class="diff-row-verdict">Writing processes thoughts. It can't <strong>return you to a decision.</strong> There's no structure. No protocol. No record built to be returned to at 2am.</p>
           </div>
         </div>
 
-        <!-- Card 2: AI assistants -->
-        <div class="diff-card">
-          <div class="diff-card-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M9 2v2.5M9 13.5V16M2 9h2.5M13.5 9H16M4.1 4.1l1.77 1.77M12.13 12.13l1.77 1.77M13.9 4.1l-1.77 1.77M5.87 12.13l-1.77 1.77" stroke="#52525b" stroke-width="1.3" stroke-linecap="round"/>
-              <circle cx="9" cy="9" r="2.5" stroke="#52525b" stroke-width="1.3"/>
-            </svg>
+        <!-- Row 02: AI chatbots -->
+        <div class="diff-row reveal reveal-delay-1">
+          <div class="diff-row-meta">
+            <span class="diff-row-num" aria-hidden="true">02</span>
+            <p class="diff-row-cat">AI chatbots</p>
+            <p class="diff-row-examples">ChatGPT · Claude · Gemini</p>
           </div>
-          <p class="diff-card-label">AI assistants</p>
-          <h3 class="diff-card-title">ChatGPT, Claude, Gemini</h3>
-          <p class="diff-card-for">
-            <strong>Great for:</strong> Exploring new angles, researching options, stress-testing ideas before you decide.
-          </p>
-          <div class="diff-gap-box">
-            <p class="diff-gap-label">The gap</p>
-            <p class="diff-gap-text">They give you more thinking. Doubt is already more thinking. And they don't know what <em>you</em> believed when you made the call.</p>
+          <div class="diff-row-content">
+            <p class="diff-row-quote">You ask the AI to help you think through it. It gives you seven bullet points, two devil's advocate arguments, and three more things to consider. Your doubt just got worse.</p>
+            <p class="diff-row-verdict">More thinking is the last thing you need. <strong>Doubt is already more thinking.</strong> And the AI doesn't know what you actually believed when you made the call.</p>
           </div>
         </div>
 
-        <!-- Card 3: Habit trackers -->
-        <div class="diff-card">
-          <div class="diff-card-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M5 9.5l2.5 2.5 5.5-5.5" stroke="#52525b" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="2" y="4" width="4" height="4" rx="1" stroke="#52525b" stroke-width="1.3"/>
-              <rect x="7" y="4" width="4" height="4" rx="1" stroke="#52525b" stroke-width="1.3"/>
-              <rect x="12" y="4" width="4" height="4" rx="1" stroke="#52525b" stroke-width="1.3"/>
-              <path d="M2 13h4M7 13h4M12 13h4" stroke="#52525b" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/>
-            </svg>
+        <!-- Row 03: Habit trackers -->
+        <div class="diff-row reveal reveal-delay-2">
+          <div class="diff-row-meta">
+            <span class="diff-row-num" aria-hidden="true">03</span>
+            <p class="diff-row-cat">Habit trackers</p>
+            <p class="diff-row-examples">Streaks · Finch · Habitica</p>
           </div>
-          <p class="diff-card-label">Habit trackers</p>
-          <h3 class="diff-card-title">Streaks, Habitica, Finch</h3>
-          <p class="diff-card-for">
-            <strong>Great for:</strong> Building recurring behaviors, staying consistent over time, tracking streaks.
-          </p>
-          <div class="diff-gap-box">
-            <p class="diff-gap-label">The gap</p>
-            <p class="diff-gap-text">Designed for repeated actions. Decisions are singular, high-stakes moments — not habits you track every day.</p>
+          <div class="diff-row-content">
+            <p class="diff-row-quote">There's no "reconsider quitting your job" widget. No streak for staying the course on a hard call. Nothing that treats a singular, irreversible moment as the distinct thing it is.</p>
+            <p class="diff-row-verdict">Habits repeat. <strong>Decisions don't.</strong> High-stakes choices are one-time moments — and they deserve their own tool, not a checkbox.</p>
           </div>
         </div>
 
       </div>
 
-      <!-- ReAnchor answer -->
-      <div class="diff-anchor-strip reveal reveal-delay-4">
-        <div class="diff-anchor-tag">
-          <div class="diff-anchor-tag-dot" aria-hidden="true"></div>
-          ReAnchor
-        </div>
-        <div class="diff-anchor-sep" aria-hidden="true"></div>
-        <p class="diff-anchor-copy">
-          Friends, therapists, and coaches can help — but they're unavailable at 2am, and they forget what you said last time. ReAnchor is <strong>you, structured, always there.</strong> No advice. Just your own clarity, preserved.
-        </p>
+      <!-- Declaration -->
+      <div class="diff-declaration reveal reveal-delay-3">
+        <p class="diff-declaration-eyebrow">What you actually needed</p>
+        <p class="diff-declaration-body">The record you built <em>before</em> the doubt started. Your own words. Your own reasons. A structured protocol that brings past-you into the room — not more opinions, not more lists, not AI hallucinating your intent.</p>
+        <p class="diff-declaration-coda">That's ReAnchor.</p>
       </div>
 
     </div>
@@ -3009,6 +3021,21 @@
     <p class="footer-copy">© 2026 ReAnchor. All data stays on your device.</p>
   </footer>
 
+  <!-- Section progress indicator -->
+  <div class="section-nav" id="section-nav" role="presentation" aria-hidden="true">
+    <div class="section-nav-dot" data-section="hook"><span class="section-nav-label">Intro</span></div>
+    <div class="section-nav-dot" data-section="pain"><span class="section-nav-label">The Pain</span></div>
+    <div class="section-nav-dot" data-section="insight"><span class="section-nav-label">The Insight</span></div>
+    <div class="section-nav-dot" data-section="reveal"><span class="section-nav-label">The Solution</span></div>
+    <div class="section-nav-dot" data-section="how"><span class="section-nav-label">How</span></div>
+    <div class="section-nav-dot" data-section="different"><span class="section-nav-label">Why</span></div>
+    <div class="section-nav-dot" data-section="vision"><span class="section-nav-label">Where Are We Heading</span></div>
+    <div class="section-nav-dot" data-section="faq"><span class="section-nav-label">FAQ</span></div>
+    <div class="section-nav-dot" data-section="philosophy"><span class="section-nav-label">Message</span></div>
+    <div class="section-nav-dot" data-section="self-test"><span class="section-nav-label">Test</span></div>
+    <div class="section-nav-dot" data-section="waitlist"><span class="section-nav-label">Waitlist</span></div>
+  </div>
+
   <!-- Screen reader only utility -->
   <style>.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }</style>
 
@@ -3369,6 +3396,43 @@
       applyWidths();
       goTo(N, false);
       window.addEventListener('resize', () => { applyWidths(); goTo(index, false); });
+    })();
+
+    // ── Section progress indicator ──
+    (function() {
+      const nav = document.getElementById('section-nav');
+      if (!nav) return;
+
+      const sectionIds = [
+        'hook', 'pain', 'insight', 'reveal', 'how',
+        'different', 'vision', 'faq', 'philosophy', 'self-test', 'waitlist'
+      ];
+
+      const dots = {};
+      nav.querySelectorAll('.section-nav-dot').forEach(dot => {
+        dots[dot.dataset.section] = dot;
+      });
+
+      // Show nav once hook scrolls out of view
+      const hookEl = document.getElementById('hook');
+      if (hookEl) {
+        new IntersectionObserver((entries) => {
+          nav.classList.toggle('visible', !entries[0].isIntersecting);
+        }, { threshold: 0.15 }).observe(hookEl);
+      }
+
+      // Highlight whichever section is most in view
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const dot = dots[entry.target.id];
+          if (dot) dot.classList.toggle('active', entry.isIntersecting);
+        });
+      }, { threshold: 0.25, rootMargin: '0px 0px -40% 0px' });
+
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) sectionObserver.observe(el);
+      });
     })();
 
   </script>
