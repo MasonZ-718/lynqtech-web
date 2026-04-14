@@ -1950,11 +1950,6 @@
       margin-bottom: 24px;
     }
 
-    .carousel-controls-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
     .vote-tally {
       font-size: 12px;
       color: var(--dim);
@@ -1965,80 +1960,7 @@
       white-space: nowrap;
     }
     .vote-tally strong { color: var(--accent); }
-    .carousel-arrow {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--muted);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: border-color 0.18s, color 0.18s, background 0.18s;
-      flex-shrink: 0;
-    }
-    .carousel-arrow:hover:not(:disabled) {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: rgba(52, 211, 153, 0.06);
-    }
-    .carousel-arrow:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 2px;
-    }
-    .carousel-arrow:disabled { opacity: 0.3; cursor: not-allowed; }
-
-    /* Carousel track */
-    .carousel-outer {
-      overflow: hidden;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      cursor: grab;
-      user-select: none;
-      -webkit-user-select: none;
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0%, black 9%, black 91%, transparent 100%);
-    }
-    .carousel-outer.is-dragging { cursor: grabbing; }
-    .carousel-track {
-      display: flex;
-      gap: 16px;
-      transition: transform 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      will-change: transform;
-    }
-    .carousel-track.no-transition { transition: none; }
-
     /* Feature cards */
-    .feat-card {
-      flex-shrink: 0;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 0 0 24px;
-      display: flex;
-      flex-direction: column;
-      transition: border-color 0.22s, box-shadow 0.22s;
-      position: relative;
-      overflow: hidden;
-    }
-    .feat-card:hover {
-      border-color: rgba(52, 211, 153, 0.28);
-      box-shadow: 0 8px 36px rgba(0,0,0,0.22);
-    }
-    .feat-card.voted {
-      border-color: rgba(52, 211, 153, 0.35);
-    }
-    .feat-card-top {
-      padding: 24px 24px 20px;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 20px;
-    }
     .feat-icon {
       width: 42px;
       height: 42px;
@@ -2066,26 +1988,6 @@
     .feat-tag.commit-tag  { background: rgba(52,211,153,0.10); color: var(--accent); border: 1px solid rgba(52,211,153,0.25); }
     .feat-tag.sync-tag   { background: rgba(34,211,238,0.10); color: #22d3ee; border: 1px solid rgba(34,211,238,0.25); }
     .feat-icon.sync-ic   { background: rgba(34,211,238,0.10); }
-    .feat-body {
-      padding: 0 24px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .feat-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1.25;
-    }
-    .feat-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.65;
-      flex: 1;
-    }
     .feat-vote-btn {
       align-self: flex-start;
       margin-top: 16px;
@@ -2125,35 +2027,8 @@
     }
     .feat-vote-btn.voted .vote-count { color: var(--accent); }
 
-    /* Dots */
-    .carousel-dots {
-      display: flex;
-      justify-content: center;
-      gap: 6px;
-      padding-top: 4px;
-    }
-    .carousel-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 3px;
-      background: var(--border);
-      transition: background 0.22s, width 0.22s;
-      cursor: pointer;
-      border: none;
-      padding: 0;
-    }
-    .carousel-dot.active {
-      background: var(--accent);
-      width: 20px;
-    }
-    .carousel-dot:focus-visible {
-      outline: 2px solid var(--accent);
-      outline-offset: 3px;
-    }
-
     @media (prefers-reduced-motion: reduce) {
-      .carousel-track { transition: none !important; }
-      .feat-card, .feat-vote-btn, .carousel-arrow { transition: none !important; }
+      .feat-chip, .feat-vote-btn { transition: none !important; }
     }
 
     @media (max-width: 768px) {
