@@ -3738,7 +3738,7 @@
     }
 
     function renderVotedState() {
-      document.querySelectorAll('.feat-card').forEach(renderCard);
+      document.querySelectorAll('.feat-chip').forEach(renderCard);
       updateTotalVotes();
     }
 
@@ -3747,7 +3747,7 @@
       voteStore[feature] = 1;
       localStorage.setItem('reanchor_votes', JSON.stringify(voteStore));
       // Update all cards (originals + clones) with this feature
-      document.querySelectorAll(`.feat-card[data-feature="${feature}"]`).forEach(renderCard);
+      document.querySelectorAll(`.feat-chip[data-feature="${feature}"]`).forEach(renderCard);
       updateTotalVotes();
       _supa.from('feature_votes').insert({ feature_id: feature }).catch(() => {});
     }
