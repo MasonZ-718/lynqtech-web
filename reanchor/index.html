@@ -3604,9 +3604,12 @@
       }
     };
 
+    var lastOpener = null;
+
     function openModal(key) {
       var content = CONTENT[key];
       if (!content) return;
+      lastOpener = document.activeElement;
       titleEl.textContent = content.title;
       bodyEl.innerHTML = content.html;
       backdrop.setAttribute('aria-hidden', 'false');
@@ -3644,6 +3647,7 @@
       backdrop.setAttribute('aria-hidden', 'true');
       backdrop.classList.remove('is-open');
       document.body.style.overflow = '';
+      if (lastOpener) lastOpener.focus();
     }
 
     document.querySelectorAll('[data-modal]').forEach(function (el) {
