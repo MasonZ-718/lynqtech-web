@@ -1879,6 +1879,77 @@
       justify-content: flex-end;
     }
 
+    /* Feature detail modal */
+    .feat-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 900;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .feat-modal-overlay.open {
+      display: flex;
+    }
+    .feat-modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 32px;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+    }
+    .feat-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--muted);
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.18s, border-color 0.18s;
+    }
+    .feat-modal-close:hover {
+      color: var(--text);
+      border-color: var(--muted);
+    }
+    .feat-modal-close:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .feat-modal-tag-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .feat-modal-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .feat-modal-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
     .carousel-controls-group {
       display: flex;
       align-items: center;
@@ -3853,5 +3924,24 @@
     });
   }());
   </script>
+
+  <!-- Feature detail modal -->
+  <div class="feat-modal-overlay" id="feat-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="feat-modal-title">
+    <div class="feat-modal" id="feat-modal">
+      <button class="feat-modal-close" id="feat-modal-close" aria-label="Close">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="feat-modal-tag-row">
+        <div class="feat-icon" id="feat-modal-icon"></div>
+        <span class="feat-tag" id="feat-modal-tag"></span>
+      </div>
+      <h3 class="feat-modal-title" id="feat-modal-title"></h3>
+      <p class="feat-modal-desc" id="feat-modal-desc"></p>
+      <button class="feat-vote-btn" id="feat-modal-vote-btn">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="vote-label">Vote</span><span class="vote-count">0</span>
+      </button>
+    </div>
+  </div>
 </body>
 </html>
