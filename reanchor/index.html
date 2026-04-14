@@ -2068,122 +2068,251 @@
       font-style: italic;
     }
 
-    /* Editorial rows */
-    .diff-rows {
-      border-top: 1px solid var(--border);
-    }
-    .diff-row {
+    /* ── Competitor cards ── */
+    .comp-grid {
       display: grid;
-      grid-template-columns: 200px 1fr;
-      gap: 56px;
-      padding: 56px 0;
-      border-bottom: 1px solid var(--border);
-      align-items: start;
-    }
-    .diff-row-meta {
-      padding-top: 2px;
-    }
-    .diff-row-num {
-      display: block;
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 80px;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.04);
-      line-height: 0.85;
-      letter-spacing: -5px;
-      margin-bottom: 14px;
-      user-select: none;
-    }
-    .diff-row-cat {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 4px;
-    }
-    .diff-row-examples {
-      font-size: 12px;
-      color: rgba(113, 113, 122, 0.55);
-      line-height: 1.6;
-    }
-    .diff-row-quote {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(16px, 1.8vw, 21px);
-      font-style: italic;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.65;
-      margin-bottom: 24px;
-      quotes: "\201C" "\201D";
-    }
-    .diff-row-quote::before { content: open-quote; }
-    .diff-row-quote::after  { content: close-quote; }
-    .diff-row-verdict {
-      font-size: 14px;
-      color: var(--dim);
-      line-height: 1.65;
-      padding-left: 16px;
-      border-left: 2px solid rgba(251, 113, 133, 0.3);
-    }
-    .diff-row-verdict strong {
-      color: rgba(251, 113, 133, 0.85);
-      font-weight: 500;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
     }
 
-    /* Declaration */
-    .diff-declaration {
-      padding-top: 72px;
-      max-width: 700px;
+    .comp-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+      text-align: left;
+      width: 100%;
     }
-    .diff-declaration-eyebrow {
+
+    .comp-card:hover {
+      border-color: var(--muted);
+    }
+
+    .comp-card--reanchor {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 12px;
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
       display: flex;
       align-items: center;
-      gap: 14px;
+      justify-content: space-between;
+      width: 100%;
+      text-align: left;
+    }
+
+    .comp-card--reanchor:hover {
+      border-color: var(--accent);
+    }
+
+    .comp-card-label {
       font-size: 10px;
       font-weight: 700;
       letter-spacing: 2.5px;
       text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 28px;
+      color: var(--dim);
+      margin-bottom: 10px;
     }
-    .diff-declaration-eyebrow::before {
-      content: '';
-      display: block;
-      width: 36px;
-      height: 1px;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-    .diff-declaration-body {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(20px, 2.8vw, 34px);
-      font-weight: 400;
+
+    .comp-card-line {
+      font-size: clamp(13px, 1.4vw, 15px);
+      font-weight: 500;
       color: var(--muted);
-      line-height: 1.45;
-      margin-bottom: 24px;
+      line-height: 1.55;
     }
-    .diff-declaration-body em {
-      color: var(--text);
-      font-style: italic;
-    }
-    .diff-declaration-coda {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(22px, 3vw, 38px);
+
+    .comp-card--reanchor .comp-card-line {
       font-weight: 600;
       color: var(--accent);
+    }
+
+    .comp-card-cta {
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.3px;
+      flex-shrink: 0;
+      margin-left: 24px;
+      white-space: nowrap;
+    }
+
+    /* ── Shared modal ── */
+    .comp-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(9, 9, 11, 0.88);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .comp-modal-backdrop.is-open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .comp-modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 40px;
+      max-width: 660px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      position: relative;
+      transform: translateY(16px);
+      transition: transform 0.25s ease;
+    }
+
+    .comp-modal-backdrop.is-open .comp-modal {
+      transform: translateY(0);
+    }
+
+    .comp-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: var(--dim);
+      font-size: 22px;
+      cursor: pointer;
       line-height: 1;
-      letter-spacing: -0.5px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .comp-modal-close:hover { color: var(--text); }
+
+    .comp-modal-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 28px;
+      padding-right: 40px;
+      line-height: 1.3;
+    }
+
+    /* Competitor modal: pros/cons columns */
+    .comp-modal-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .comp-modal-col-head {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 14px;
+    }
+
+    .comp-modal-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .comp-modal-list li {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 10px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .comp-modal-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--dim);
+    }
+
+    /* ReAnchor modal: comparison table */
+    .comp-table-wrap {
+      overflow-x: auto;
+      margin-bottom: 36px;
+    }
+
+    .comp-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .comp-table th {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+      text-align: center;
+      padding: 8px 12px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comp-table th:first-child { text-align: left; }
+    .comp-table th.col-reanchor { color: var(--accent); }
+
+    .comp-table td {
+      padding: 12px;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .comp-table td:first-child {
+      text-align: left;
+      color: var(--text);
+      padding-right: 20px;
+    }
+
+    .comp-table .tick { color: var(--accent); font-size: 15px; }
+    .comp-table .cross { color: var(--dim); font-size: 15px; }
+
+    /* ReAnchor modal CTA */
+    .comp-modal-cta-label {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .comp-modal-form {
+      display: flex;
+      gap: 12px;
+    }
+
+    .comp-modal-success {
+      display: none;
+      font-size: 14px;
+      color: var(--accent);
     }
 
     @media (max-width: 768px) {
-      .diff-row { grid-template-columns: 1fr; gap: 20px; padding: 40px 0; }
-      .diff-row-num { font-size: 56px; margin-bottom: 8px; }
-    }
-    @media (max-width: 480px) {
+      .comp-grid { grid-template-columns: 1fr; }
+      .comp-card--reanchor { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .comp-modal-cols { grid-template-columns: 1fr; gap: 20px; }
+      .comp-modal { padding: 28px 20px; }
+      .comp-modal-form { flex-direction: column; }
       #different { padding: 80px 0; }
       .diff-intro { font-size: 24px; margin-bottom: 48px; }
-      .diff-declaration { padding-top: 48px; }
     }
 
     /* ── Section progress indicator ── */
