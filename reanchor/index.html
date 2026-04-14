@@ -3072,13 +3072,9 @@
       el.textContent = el.textContent; // already set in HTML
     });
 
-    // ── Display offsets (fake base counts, editable in Supabase) ──
+    // ── Display offsets (editable in Supabase display_offsets table) ──
     let BASE_COUNT = 247;
-    const VOTE_BASES_DEFAULT = {
-      'pre-decision': 89, 'pattern-insights': 74, 'accountability': 61,
-      'values-axis': 53, 'decision-forecast': 47, 'revisit-prompt': 38
-    };
-    let VOTE_BASES = { ...VOTE_BASES_DEFAULT };
+    let VOTE_BASES = {};
 
     // ── Waitlist counter: base offset + real Supabase submissions ──
     let wlCount = BASE_COUNT;
@@ -3105,14 +3101,6 @@
         if (wlEl) wlEl.textContent = wlCount;
       })
       .catch(() => { /* keep defaults on error */ });
-
-    // Slow ambient tick to feel alive
-    setInterval(() => {
-      if (Math.random() < 0.2) {
-        wlCount++;
-        if (wlEl) wlEl.textContent = wlCount;
-      }
-    }, 12000);
 
     // ── FAQ accordion ──
     document.querySelectorAll('.faq-item').forEach(item => {
