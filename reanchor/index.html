@@ -3094,11 +3094,9 @@
   <div
     class="comp-modal-backdrop"
     id="comp-modal-backdrop"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="comp-modal-title"
+    aria-hidden="true"
   >
-    <div class="comp-modal" id="comp-modal">
+    <div class="comp-modal" id="comp-modal" role="dialog" aria-modal="true" aria-labelledby="comp-modal-title">
       <button class="comp-modal-close" id="comp-modal-close" aria-label="Close">&#x2715;</button>
       <h3 class="comp-modal-title" id="comp-modal-title"></h3>
       <div id="comp-modal-body"></div>
@@ -3510,6 +3508,172 @@
       });
     })();
 
+  </script>
+
+  <script>
+  // ── Why ReAnchor — modal ──
+  (function () {
+    var backdrop = document.getElementById('comp-modal-backdrop');
+    var closeBtn  = document.getElementById('comp-modal-close');
+    var titleEl   = document.getElementById('comp-modal-title');
+    var bodyEl    = document.getElementById('comp-modal-body');
+    var modal     = document.getElementById('comp-modal');
+
+    var CONTENT = {
+      yourself: {
+        title: 'Yourself',
+        html: '<div class="comp-modal-cols">'
+          + '<div>'
+          + '<p class="comp-modal-col-head">What helps</p>'
+          + '<ul class="comp-modal-list">'
+          + '<li>Forces you to articulate thoughts, which can bring some clarity</li>'
+          + '<li>No external pressure \u2014 you\u2019re honest with yourself</li>'
+          + '<li>Available any time, no social cost</li>'
+          + '</ul></div>'
+          + '<div>'
+          + '<p class="comp-modal-col-head">Where it falls short</p>'
+          + '<ul class="comp-modal-list">'
+          + '<li>Replaying in your head gives doubt more material to spiral with</li>'
+          + '<li>Written notes capture your mood at the time, not the reasoning behind the decision</li>'
+          + '<li>There\u2019s no protocol to return to \u2014 just more words, more noise</li>'
+          + '<li>Journaling processes thoughts; it can\u2019t return you to a decision</li>'
+          + '</ul></div>'
+          + '</div>'
+      },
+      friends: {
+        title: 'Friends & family',
+        html: '<div class="comp-modal-cols">'
+          + '<div>'
+          + '<p class="comp-modal-col-head">What helps</p>'
+          + '<ul class="comp-modal-list">'
+          + '<li>Articulating to others forces you to simplify, which can sharpen your thinking</li>'
+          + '<li>A trusted person can offer perspective you hadn\u2019t considered</li>'
+          + '<li>Emotional support matters \u2014 feeling heard reduces anxiety</li>'
+          + '</ul></div>'
+          + '<div>'
+          + '<p class="comp-modal-col-head">Where it falls short</p>'
+          + '<ul class="comp-modal-list">'
+          + '<li>You may unconsciously dramatise or selectively present the situation</li>'
+          + '<li>People close to you are socially incentivised to soften their view</li>'
+          + '<li>They lack the full context of your original reasoning at the moment you made the call</li>'
+          + '<li>Conflicting advice from multiple people often makes doubt worse, not better</li>'
+          + '</ul></div>'
+          + '</div>'
+      },
+      ai: {
+        title: 'AI chatbots',
+        html: '<div class="comp-modal-cols">'
+          + '<div>'
+          + '<p class="comp-modal-col-head">What helps</p>'
+          + '<ul class="comp-modal-list">'
+          + '<li>Available at any hour, no judgment</li>'
+          + '<li>Can surface angles you hadn\u2019t considered</li>'
+          + '<li>Useful for factual research around a decision</li>'
+          + '</ul></div>'
+          + '<div>'
+          + '<p class="comp-modal-col-head">Where it falls short</p>'
+          + '<ul class="comp-modal-list">'
+          + '<li>Trained to be agreeable \u2014 tells you what you want to hear, not what you need to hear</li>'
+          + '<li>Generates more to think about; more thinking is the last thing you need when doubt sets in</li>'
+          + '<li>Has no record of what you actually believed when you made the decision</li>'
+          + '<li>Encourages reflection loops, not resolution</li>'
+          + '</ul></div>'
+          + '</div>'
+      },
+      reanchor: {
+        title: 'Why ReAnchor is different',
+        html: '<div class="comp-table-wrap">'
+          + '<table class="comp-table"><thead><tr>'
+          + '<th></th><th>Yourself</th><th>Friends &amp; family</th><th>AI chatbots</th><th class="col-reanchor">ReAnchor</th>'
+          + '</tr></thead><tbody>'
+          + '<tr><td>Captures your reasoning <em>before</em> doubt starts</td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
+          + '<tr><td>Available at 2am when doubt peaks</td><td><span class="tick">\u2713</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td><td><span class="tick">\u2713</span></td></tr>'
+          + '<tr><td>Free from social pressure or incentivised advice</td><td><span class="tick">\u2713</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
+          + '<tr><td>Doesn\u2019t generate more to think about</td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
+          + '<tr><td>Returns you to <em>your</em> original clarity</td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
+          + '</tbody></table></div>'
+          + '<p class="comp-modal-cta-label">Join people anchoring their decisions before the doubt arrives.</p>'
+          + '<div id="modal-form-wrap">'
+          + '<form class="comp-modal-form" id="modal-waitlist-form" novalidate aria-label="Waitlist signup">'
+          + '<label for="modal-email" class="sr-only">Email address</label>'
+          + '<input type="email" id="modal-email" name="email" placeholder="your@email.com" class="waitlist-input" required aria-required="true" />'
+          + '<button type="submit" class="waitlist-btn" id="modal-submit-btn">Join Waitlist</button>'
+          + '</form>'
+          + '<p class="comp-modal-success" id="modal-success">You\u2019re on the list. We\u2019ll be in touch.</p>'
+          + '</div>'
+      }
+    };
+
+    function openModal(key) {
+      var content = CONTENT[key];
+      if (!content) return;
+      titleEl.textContent = content.title;
+      bodyEl.innerHTML = content.html;
+      backdrop.setAttribute('aria-hidden', 'false');
+      backdrop.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+
+      if (key === 'reanchor') {
+        var mForm    = document.getElementById('modal-waitlist-form');
+        var mSubmit  = document.getElementById('modal-submit-btn');
+        var mSuccess = document.getElementById('modal-success');
+        mForm.addEventListener('submit', async function (e) {
+          e.preventDefault();
+          var email = document.getElementById('modal-email').value.trim();
+          if (!email || !email.includes('@')) {
+            document.getElementById('modal-email').focus();
+            return;
+          }
+          mSubmit.disabled = true;
+          mSubmit.textContent = 'Joining\u2026';
+          try {
+            await _supa.from('quiz_results').upsert(
+              { email: email, cta_source: 'why_reanchor_modal' },
+              { onConflict: 'email', ignoreDuplicates: true }
+            );
+          } catch (_) { /* best-effort */ }
+          mForm.style.display = 'none';
+          mSuccess.style.display = 'block';
+        });
+      }
+
+      closeBtn.focus();
+    }
+
+    function closeModal() {
+      backdrop.setAttribute('aria-hidden', 'true');
+      backdrop.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('[data-modal]').forEach(function (el) {
+      el.addEventListener('click', function () { openModal(el.dataset.modal); });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    backdrop.addEventListener('click', function (e) {
+      if (e.target === backdrop) closeModal();
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && backdrop.classList.contains('is-open')) closeModal();
+    });
+
+    // Focus trap
+    modal.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var focusable = Array.from(modal.querySelectorAll('button, input, a[href], [tabindex]:not([tabindex="-1"])'));
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last  = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    });
+  }());
   </script>
 </body>
 </html>
