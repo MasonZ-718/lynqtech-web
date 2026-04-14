@@ -8,9 +8,11 @@ The current "Why ReAnchor" section on `/reanchor/index.html` is too wordy. Conte
 
 ## Design Direction
 
-**Approach 2 — The Contrast Card**
+**Approach — The Contrast Grid**
 
-Three stacked "competitor" cards, followed by a visually distinct ReAnchor card. Each card is two lines maximum — category name + one gut-punch observation. No quotes, no paragraphs, no example lists. Whitespace and typography carry the weight.
+Three competitor cards in a row, followed by a full-width ReAnchor card. Each card is two lines maximum — category name + one gut-punch observation. No quotes, no paragraphs, no example lists. Whitespace and typography carry the weight.
+
+The narrative arc: you try journaling yourself → you lean on friends & family → you ask an AI → then past-you appears as the real answer. Three wrong answers, one right one.
 
 ---
 
@@ -19,27 +21,33 @@ Three stacked "competitor" cards, followed by a visually distinct ReAnchor card.
 **Section structure:**
 - Eyebrow: `Why ReAnchor`
 - Subhead: `You've tried the obvious tools. None of them were built for this moment.`
-- Three competitor cards (stacked, vertical)
-- ReAnchor card (visually distinct)
+- Three competitor cards in a 3-column grid
+- ReAnchor card below, spanning full width
 - Declaration block removed — ReAnchor card replaces it
 
 **Card anatomy (both competitor and ReAnchor):**
-- Category label (small, muted)
-- Single gut-punch line (medium-bold)
+- Category label (small, `--dim`)
+- Single gut-punch line (`--muted` for competitors, `--accent` for ReAnchor)
 
 **Competitor card visual treatment:**
-- Text in `--dim` / muted color
-- Minimal visual weight — these are wrong answers
+- Category label: `--dim`
+- Gut-punch line: `--muted`, font-weight 500
+- Minimal visual weight — these are the wrong answers
 - No icons, no border highlights
 
 **ReAnchor card visual treatment:**
-- `--accent` green text for the gut-punch line
-- Subtle left border or background tint to separate from competitors
+- Gut-punch line: `--accent`, font-weight 600
+- Subtle left border in `--accent` color to separate from competitors
 - Feels like the answer, not another option
 
 **Responsive:**
-- Mobile: same stacked layout, cards go full-width
+- Desktop (≥768px): 3-column grid for competitor cards, ReAnchor card full-width below
+- Mobile (<768px): all four cards stacked full-width, same vertical order
 - Cards maintain vertical rhythm on all sizes
+
+**Scroll reveal:**
+- Competitor cards stagger in (reveal, reveal-delay-1, reveal-delay-2)
+- ReAnchor card follows with reveal-delay-3
 
 ---
 
@@ -63,18 +71,20 @@ Three stacked "competitor" cards, followed by a visually distinct ReAnchor card.
 ## Implementation Notes
 
 - Section ID: `#different` (existing)
-- Replace `.diff-rows` (current three-row layout) with new card markup
-- Replace `.diff-declaration` with ReAnchor card
-- Keep `.diff-label` (eyebrow) and `.diff-intro` (subhead) — these are fine
-- New CSS class prefix: `.comp-card` and `.comp-card--reanchor`
-- Scroll reveal behavior maintained (`.reveal` class on section container)
+- Replace `.diff-rows` and all `.diff-row*` markup with new card grid markup
+- Replace `.diff-declaration` markup with ReAnchor card markup
+- Keep `.diff-label` (eyebrow) and `.diff-intro` (subhead) — copy and classes unchanged
+- Remove all old `.diff-row*` and `.diff-declaration*` CSS — no longer needed
+- New CSS class prefix: `.comp-grid` (grid container), `.comp-card`, `.comp-card--reanchor`
+- Scroll reveal behavior maintained (`.reveal` / `.reveal-delay-*` on each card)
 - No changes to surrounding sections
 
 ---
 
 ## What to Verify After Implementation
 
-1. Cards are visually distinct from surrounding content — competitor vs. ReAnchor clear at a glance
-2. Copy fits on mobile without truncation
-3. ReAnchor card clearly reads as the answer, not another competitor
-4. Section flows naturally from the doubt/self-test section before it into the vision section after it
+1. On desktop: competitor cards sit side by side in a 3-column row, ReAnchor card spans full width below
+2. On mobile: all four cards stack cleanly, no truncation
+3. ReAnchor card clearly reads as the answer — accent color and left border distinguish it from the competitors
+4. Section vertical footprint is noticeably tighter than the previous editorial-row layout
+5. Section flows naturally from the doubt/self-test section before it into the vision section after it
