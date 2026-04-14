@@ -3572,6 +3572,139 @@
       if (wlEl) wlEl.textContent = wlCount;
     });
 
+    // ── Feature data (for detail modal) ──
+    const FEATURE_DATA = {
+      'ai-decision-coach': {
+        title: 'AI Decision Coach',
+        tagClass: 'clarity-tag',
+        tagLabel: 'Clarity',
+        iconClass: 'clarity-ic',
+        icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v4M10 14v4M2 10h4M14 10h4M4.343 4.343l2.828 2.828M12.829 12.829l2.828 2.828M15.657 4.343l-2.828 2.828M7.171 12.829l-2.828 2.828" stroke="#60a5fa" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+        desc: 'Stress-test your thinking before you commit. What are you assuming? What would have to be true for this to be the wrong call? Your personal coach for the moment before you decide.'
+      },
+      'pattern-insights': {
+        title: 'Pattern Insights',
+        tagClass: 'pattern-tag',
+        tagLabel: 'Pattern',
+        iconClass: 'pattern-ic',
+        icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 15l4.5-5.5 4 3.5 4.5-6L18 10" stroke="#a78bfa" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        desc: 'Surface what your decision history actually reveals: recurring fears, timing patterns, what outcomes felt right in retrospect.'
+      },
+      'accountability': {
+        title: 'Accountability Partners',
+        tagClass: 'commit-tag',
+        tagLabel: 'Commitment',
+        iconClass: 'commit-ic',
+        icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="6" r="2.5" stroke="#34d399" stroke-width="1.4"/><path d="M3 17c0-2.761 2.239-5 5-5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/><circle cx="15" cy="11" r="2" stroke="#34d399" stroke-width="1.4"/><path d="M12.5 17c0-1.933 1.119-3.5 2.5-3.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+        desc: 'Invite one trusted person to follow your decisions. Read-only. No advice. Knowing someone knows changes everything.'
+      },
+      'values-axis': {
+        title: 'Values Axis',
+        tagClass: 'clarity-tag',
+        tagLabel: 'Clarity',
+        iconClass: 'clarity-ic',
+        icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v16M2 10h16" stroke="#60a5fa" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="10" r="2.5" stroke="#60a5fa" stroke-width="1.4"/></svg>`,
+        desc: 'Define what matters most to you. See how each decision aligns with who you want to be — not just what you chose.'
+      },
+      'decision-forecast': {
+        title: 'Decision Forecast',
+        tagClass: 'pattern-tag',
+        tagLabel: 'Pattern',
+        iconClass: 'pattern-ic',
+        icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 17c2-4 4-8 8-9" stroke="#a78bfa" stroke-width="1.4" stroke-linecap="round"/><circle cx="14" cy="6" r="2.5" stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="2 1.5"/><path d="M11.5 8.5L17 4" stroke="#a78bfa" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+        desc: 'How will you feel about this in 3 months? Based on your history, ReAnchor gives you a probabilistic read. Not prophecy — perspective.'
+      },
+      'cloud-sync': {
+        title: 'Cloud Sync',
+        tagClass: 'sync-tag',
+        tagLabel: 'Sync',
+        iconClass: 'sync-ic',
+        icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5.5 13.5A4 4 0 016 6h1a5 5 0 019.9 1H17a3 3 0 010 6H6" stroke="#22d3ee" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        desc: 'Access your decision journal from any device. Your entries stay private and encrypted — but now your history travels with you, and AI analysis can surface patterns across your full timeline.'
+      },
+      'habit-decisions': {
+        title: 'Habit Decisions',
+        tagClass: 'commit-tag',
+        tagLabel: 'Commitment',
+        iconClass: 'commit-ic',
+        icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4a6 6 0 100 12A6 6 0 0010 4z" stroke="#34d399" stroke-width="1.4"/><path d="M10 7v3l2 2" stroke="#34d399" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+        desc: 'Not every decision is a career pivot. ReAnchor helps you stay anchored to smaller daily commitments too — the habits, routines, and lifestyle choices that quietly define who you become.'
+      },
+      'ai-doubt-review': {
+        title: 'AI Assisted Doubt Review',
+        tagClass: 'clarity-tag',
+        tagLabel: 'Clarity',
+        iconClass: 'clarity-ic',
+        icon: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#60a5fa" stroke-width="1.4"/><path d="M10 7v.01M10 10v3" stroke="#60a5fa" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+        desc: 'When doubt arrives at 2am, you shouldn\'t face it alone. AI walks you through the Doubt Review questions, helps you separate real new information from noise, and tells you whether something actually changed.'
+      }
+    };
+
+    // ── Feature modal ──
+    (function() {
+      const overlay  = document.getElementById('feat-modal-overlay');
+      const closeBtn = document.getElementById('feat-modal-close');
+      if (!overlay || !closeBtn) return;
+      let lastOpener = null;
+
+      function renderModalVote(featureKey) {
+        const btn = document.getElementById('feat-modal-vote-btn');
+        if (!btn) return;
+        const count = getCount(featureKey);
+        if (voteStore[featureKey]) {
+          btn.classList.add('voted');
+          btn.disabled = true;
+          btn.innerHTML = CHECK_SVG + '<span class="vote-label">Voted</span><span class="vote-count">' + count + '</span>';
+        } else {
+          btn.classList.remove('voted');
+          btn.disabled = false;
+          btn.innerHTML = PLUS_SVG + '<span class="vote-label">Vote</span><span class="vote-count">' + count + '</span>';
+        }
+      }
+
+      window.openFeatureModal = function(featureKey, openerEl) {
+        const data = FEATURE_DATA[featureKey];
+        if (!data) return;
+        lastOpener = openerEl || null;
+
+        const iconEl = document.getElementById('feat-modal-icon');
+        iconEl.className = 'feat-icon ' + data.iconClass;
+        iconEl.innerHTML = data.icon;
+
+        const tagEl = document.getElementById('feat-modal-tag');
+        tagEl.className = 'feat-tag ' + data.tagClass;
+        tagEl.textContent = data.tagLabel;
+
+        document.getElementById('feat-modal-title').textContent = data.title;
+        document.getElementById('feat-modal-desc').textContent  = data.desc;
+
+        const voteBtn = document.getElementById('feat-modal-vote-btn');
+        voteBtn.setAttribute('aria-label', 'Vote for ' + data.title);
+        voteBtn.onclick = function(e) {
+          e.stopPropagation();
+          castVote(voteBtn, featureKey);
+          renderModalVote(featureKey);
+        };
+        renderModalVote(featureKey);
+
+        overlay.classList.add('open');
+        closeBtn.focus();
+      };
+
+      function closeModal() {
+        overlay.classList.remove('open');
+        if (lastOpener) { lastOpener.focus(); lastOpener = null; }
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) closeModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closeModal();
+      });
+    })();
+
     // ── Feature voting ──
     const voteStore  = JSON.parse(localStorage.getItem('reanchor_votes') || '{}');
     const voteCounts = {}; // real counts from Supabase, added on top of bases
