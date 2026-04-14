@@ -3088,6 +3088,23 @@
   <!-- Screen reader only utility -->
   <style>.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }</style>
 
+  <!-- ═══════════════════════════════════
+       COMPETITOR / REANCHOR MODALS
+  ═══════════════════════════════════ -->
+  <div
+    class="comp-modal-backdrop"
+    id="comp-modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="comp-modal-title"
+  >
+    <div class="comp-modal" id="comp-modal">
+      <button class="comp-modal-close" id="comp-modal-close" aria-label="Close">&#x2715;</button>
+      <h3 class="comp-modal-title" id="comp-modal-title"></h3>
+      <div id="comp-modal-body"></div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script>
     // ── Supabase client ──
