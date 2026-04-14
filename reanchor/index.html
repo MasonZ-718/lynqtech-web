@@ -2663,57 +2663,36 @@
     <div class="container">
 
       <p class="diff-label reveal">Why ReAnchor</p>
-      <h2 class="diff-intro reveal reveal-delay-1">You've tried the obvious tools.<br><em>None of them were built for this moment.</em></h2>
+      <h2 class="diff-intro reveal reveal-delay-1">You've tried the obvious.<br><em>None of them solves for this moment like ReAnchor does.</em></h2>
 
-      <div class="diff-rows">
+      <!-- Competitor grid -->
+      <div class="comp-grid">
 
-        <!-- Row 01: Journal apps -->
-        <div class="diff-row reveal">
-          <div class="diff-row-meta">
-            <span class="diff-row-num" aria-hidden="true">01</span>
-            <p class="diff-row-cat">Journal apps</p>
-            <p class="diff-row-examples">Day One · Notion · Apple Notes</p>
-          </div>
-          <div class="diff-row-content">
-            <p class="diff-row-quote">You open Notion and start writing. Twenty minutes later you've built a wall of text that gives the doubt even more material to spiral with. You still don't know what to do.</p>
-            <p class="diff-row-verdict">Writing processes thoughts. It can't <strong>return you to a decision.</strong> There's no structure. No protocol. No record built to be returned to at 2am.</p>
-          </div>
-        </div>
+        <button class="comp-card reveal" data-modal="yourself" aria-haspopup="dialog">
+          <p class="comp-card-label">Yourself</p>
+          <p class="comp-card-line">"You replay everything in your head, or read what you wrote on journal, but it keeps getting messier"</p>
+        </button>
 
-        <!-- Row 02: AI chatbots -->
-        <div class="diff-row reveal reveal-delay-1">
-          <div class="diff-row-meta">
-            <span class="diff-row-num" aria-hidden="true">02</span>
-            <p class="diff-row-cat">AI chatbots</p>
-            <p class="diff-row-examples">ChatGPT · Claude · Gemini</p>
-          </div>
-          <div class="diff-row-content">
-            <p class="diff-row-quote">You ask the AI to help you think through it. It gives you seven bullet points, two devil's advocate arguments, and three more things to consider. Your doubt just got worse.</p>
-            <p class="diff-row-verdict">More thinking is the last thing you need. <strong>Doubt is already more thinking.</strong> And the AI doesn't know what you actually believed when you made the call.</p>
-          </div>
-        </div>
+        <button class="comp-card reveal reveal-delay-1" data-modal="friends" aria-haspopup="dialog">
+          <p class="comp-card-label">Friends &amp; family</p>
+          <p class="comp-card-line">"They listen. They validate. They can't return you to the call you made."</p>
+        </button>
 
-        <!-- Row 03: Habit trackers -->
-        <div class="diff-row reveal reveal-delay-2">
-          <div class="diff-row-meta">
-            <span class="diff-row-num" aria-hidden="true">03</span>
-            <p class="diff-row-cat">Habit trackers</p>
-            <p class="diff-row-examples">Streaks · Finch · Habitica</p>
-          </div>
-          <div class="diff-row-content">
-            <p class="diff-row-quote">There's no "reconsider quitting your job" widget. No streak for staying the course on a hard call. Nothing that treats a singular, irreversible moment as the distinct thing it is.</p>
-            <p class="diff-row-verdict">Habits repeat. <strong>Decisions don't.</strong> High-stakes choices are one-time moments — and they deserve their own tool, not a checkbox.</p>
-          </div>
-        </div>
+        <button class="comp-card reveal reveal-delay-2" data-modal="ai" aria-haspopup="dialog">
+          <p class="comp-card-label">AI chatbots</p>
+          <p class="comp-card-line">"It tells you what you want to hear. And gives you more to think about."</p>
+        </button>
 
       </div>
 
-      <!-- Declaration -->
-      <div class="diff-declaration reveal reveal-delay-3">
-        <p class="diff-declaration-eyebrow">What you actually needed</p>
-        <p class="diff-declaration-body">The record you built <em>before</em> the doubt started. Your own words. Your own reasons. A structured protocol that brings past-you into the room — not more opinions, not more lists, not AI hallucinating your intent.</p>
-        <p class="diff-declaration-coda">That's ReAnchor.</p>
-      </div>
+      <!-- ReAnchor card -->
+      <button class="comp-card--reanchor reveal reveal-delay-3" data-modal="reanchor" aria-haspopup="dialog">
+        <div>
+          <p class="comp-card-label">ReAnchor</p>
+          <p class="comp-card-line">"The decision you made. Before the doubt started."</p>
+        </div>
+        <span class="comp-card-cta" aria-hidden="true">See how it compares →</span>
+      </button>
 
     </div>
   </section>
