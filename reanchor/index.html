@@ -2979,139 +2979,178 @@
         </div>
       </div>
 
-      <!-- Feature carousel -->
+      <!-- Feature grid -->
       <div class="carousel-header reveal">
         <div>
           <h3 class="carousel-title">Shape what comes next</h3>
-          <p class="carousel-sub">Vote for the features you want built first</p>
+          <p class="carousel-sub">Vote for the features you want built first — click any card for details</p>
         </div>
-        <div class="carousel-controls-group">
-          <div class="vote-tally"><strong id="total-votes">0</strong> votes cast</div>
-          <button class="carousel-arrow" id="prev-btn" aria-label="Previous" disabled>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <button class="carousel-arrow" id="next-btn" aria-label="Next">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-        </div>
+        <div class="vote-tally"><strong id="total-votes">0</strong> votes cast</div>
       </div>
 
-      <div class="carousel-outer" id="carousel-outer">
-        <div class="carousel-track" id="carousel-track">
+      <div class="feat-grid" id="feat-grid">
 
-          <!-- Card 1: Pre-Decision Builder -->
-          <div class="feat-card" data-feature="pre-decision">
-            <div class="feat-card-top">
-              <div class="feat-icon clarity-ic">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v4M10 14v4M2 10h4M14 10h4M4.343 4.343l2.828 2.828M12.829 12.829l2.828 2.828M15.657 4.343l-2.828 2.828M7.171 12.829l-2.828 2.828" stroke="#60a5fa" stroke-width="1.4" stroke-linecap="round"/></svg>
-              </div>
-              <span class="feat-tag clarity-tag">Clarity</span>
+        <!-- Chip 1: AI Decision Coach -->
+        <div class="feat-chip" data-feature="ai-decision-coach" role="button" tabindex="0"
+             onclick="openFeatureModal('ai-decision-coach', this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFeatureModal('ai-decision-coach',this);}"
+             aria-label="AI Decision Coach — click for details">
+          <div class="feat-chip-top">
+            <div class="feat-icon clarity-ic">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v4M10 14v4M2 10h4M14 10h4M4.343 4.343l2.828 2.828M12.829 12.829l2.828 2.828M15.657 4.343l-2.828 2.828M7.171 12.829l-2.828 2.828" stroke="#60a5fa" stroke-width="1.4" stroke-linecap="round"/></svg>
             </div>
-            <div class="feat-body">
-              <h4 class="feat-title">Pre-Decision Builder</h4>
-              <p class="feat-desc">Stress-test your thinking before you commit. What are you assuming? What would have to be true for this to be the wrong call?</p>
-              <button class="feat-vote-btn" onclick="castVote(this, 'pre-decision')" aria-label="Vote for Pre-Decision Builder">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                <span class="vote-label">Vote</span><span class="vote-count">89</span>
-              </button>
-            </div>
+            <span class="feat-tag clarity-tag">Clarity</span>
           </div>
-
-          <!-- Card 2: Pattern Insights -->
-          <div class="feat-card" data-feature="pattern-insights">
-            <div class="feat-card-top">
-              <div class="feat-icon pattern-ic">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 15l4.5-5.5 4 3.5 4.5-6L18 10" stroke="#a78bfa" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </div>
-              <span class="feat-tag pattern-tag">Pattern</span>
-            </div>
-            <div class="feat-body">
-              <h4 class="feat-title">Pattern Insights</h4>
-              <p class="feat-desc">Surface what your decision history actually reveals: recurring fears, timing patterns, what outcomes felt right in retrospect.</p>
-              <button class="feat-vote-btn" onclick="castVote(this, 'pattern-insights')" aria-label="Vote for Pattern Insights">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                <span class="vote-label">Vote</span><span class="vote-count">74</span>
-              </button>
-            </div>
+          <h4 class="feat-chip-name">AI Decision Coach</h4>
+          <div class="feat-chip-footer">
+            <button class="feat-vote-btn" onclick="event.stopPropagation(); castVote(this, 'ai-decision-coach')" aria-label="Vote for AI Decision Coach">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="vote-label">Vote</span><span class="vote-count">89</span>
+            </button>
           </div>
-
-          <!-- Card 3: Accountability Partners -->
-          <div class="feat-card" data-feature="accountability">
-            <div class="feat-card-top">
-              <div class="feat-icon commit-ic">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="6" r="2.5" stroke="#34d399" stroke-width="1.4"/><path d="M3 17c0-2.761 2.239-5 5-5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/><circle cx="15" cy="11" r="2" stroke="#34d399" stroke-width="1.4"/><path d="M12.5 17c0-1.933 1.119-3.5 2.5-3.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/></svg>
-              </div>
-              <span class="feat-tag commit-tag">Commitment</span>
-            </div>
-            <div class="feat-body">
-              <h4 class="feat-title">Accountability Partners</h4>
-              <p class="feat-desc">Invite one trusted person to follow your decisions. Read-only. No advice. Knowing someone knows changes everything.</p>
-              <button class="feat-vote-btn" onclick="castVote(this, 'accountability')" aria-label="Vote for Accountability Partners">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                <span class="vote-label">Vote</span><span class="vote-count">61</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Card 4: Values Axis -->
-          <div class="feat-card" data-feature="values-axis">
-            <div class="feat-card-top">
-              <div class="feat-icon clarity-ic">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v16M2 10h16" stroke="#60a5fa" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="10" r="2.5" stroke="#60a5fa" stroke-width="1.4"/></svg>
-              </div>
-              <span class="feat-tag clarity-tag">Clarity</span>
-            </div>
-            <div class="feat-body">
-              <h4 class="feat-title">Values Axis</h4>
-              <p class="feat-desc">Define what matters most to you. See how each decision aligns with who you want to be — not just what you chose.</p>
-              <button class="feat-vote-btn" onclick="castVote(this, 'values-axis')" aria-label="Vote for Values Axis">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                <span class="vote-label">Vote</span><span class="vote-count">53</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Card 5: Decision Forecast -->
-          <div class="feat-card" data-feature="decision-forecast">
-            <div class="feat-card-top">
-              <div class="feat-icon pattern-ic">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 17c2-4 4-8 8-9" stroke="#a78bfa" stroke-width="1.4" stroke-linecap="round"/><circle cx="14" cy="6" r="2.5" stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="2 1.5"/><path d="M11.5 8.5L17 4" stroke="#a78bfa" stroke-width="1.4" stroke-linecap="round"/></svg>
-              </div>
-              <span class="feat-tag pattern-tag">Pattern</span>
-            </div>
-            <div class="feat-body">
-              <h4 class="feat-title">Decision Forecast</h4>
-              <p class="feat-desc">How will you feel about this in 3 months? Based on your history, ReAnchor gives you a probabilistic read. Not prophecy — perspective.</p>
-              <button class="feat-vote-btn" onclick="castVote(this, 'decision-forecast')" aria-label="Vote for Decision Forecast">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                <span class="vote-label">Vote</span><span class="vote-count">47</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Card 6: Scheduled Revisits -->
-          <div class="feat-card" data-feature="revisit-prompt">
-            <div class="feat-card-top">
-              <div class="feat-icon commit-ic">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#34d399" stroke-width="1.4"/><path d="M10 6.5v3.5l2.5 1.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 3.5l1.5 1.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/></svg>
-              </div>
-              <span class="feat-tag commit-tag">Commitment</span>
-            </div>
-            <div class="feat-body">
-              <h4 class="feat-title">Scheduled Revisits</h4>
-              <p class="feat-desc">At 30, 60, or 90 days, ReAnchor asks: is your original reasoning still sound? Reflect. Update. Flag a real problem if one exists.</p>
-              <button class="feat-vote-btn" onclick="castVote(this, 'revisit-prompt')" aria-label="Vote for Scheduled Revisits">
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                <span class="vote-label">Vote</span><span class="vote-count">38</span>
-              </button>
-            </div>
-          </div>
-
         </div>
-      </div>
 
-      <!-- Dots -->
-      <div class="carousel-dots" id="carousel-dots"></div>
+        <!-- Chip 2: Pattern Insights -->
+        <div class="feat-chip" data-feature="pattern-insights" role="button" tabindex="0"
+             onclick="openFeatureModal('pattern-insights', this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFeatureModal('pattern-insights',this);}"
+             aria-label="Pattern Insights — click for details">
+          <div class="feat-chip-top">
+            <div class="feat-icon pattern-ic">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 15l4.5-5.5 4 3.5 4.5-6L18 10" stroke="#a78bfa" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="feat-tag pattern-tag">Pattern</span>
+          </div>
+          <h4 class="feat-chip-name">Pattern Insights</h4>
+          <div class="feat-chip-footer">
+            <button class="feat-vote-btn" onclick="event.stopPropagation(); castVote(this, 'pattern-insights')" aria-label="Vote for Pattern Insights">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="vote-label">Vote</span><span class="vote-count">74</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chip 3: Accountability Partners -->
+        <div class="feat-chip" data-feature="accountability" role="button" tabindex="0"
+             onclick="openFeatureModal('accountability', this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFeatureModal('accountability',this);}"
+             aria-label="Accountability Partners — click for details">
+          <div class="feat-chip-top">
+            <div class="feat-icon commit-ic">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="8" cy="6" r="2.5" stroke="#34d399" stroke-width="1.4"/><path d="M3 17c0-2.761 2.239-5 5-5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/><circle cx="15" cy="11" r="2" stroke="#34d399" stroke-width="1.4"/><path d="M12.5 17c0-1.933 1.119-3.5 2.5-3.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </div>
+            <span class="feat-tag commit-tag">Commitment</span>
+          </div>
+          <h4 class="feat-chip-name">Accountability Partners</h4>
+          <div class="feat-chip-footer">
+            <button class="feat-vote-btn" onclick="event.stopPropagation(); castVote(this, 'accountability')" aria-label="Vote for Accountability Partners">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="vote-label">Vote</span><span class="vote-count">61</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chip 4: Values Axis -->
+        <div class="feat-chip" data-feature="values-axis" role="button" tabindex="0"
+             onclick="openFeatureModal('values-axis', this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFeatureModal('values-axis',this);}"
+             aria-label="Values Axis — click for details">
+          <div class="feat-chip-top">
+            <div class="feat-icon clarity-ic">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2v16M2 10h16" stroke="#60a5fa" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="10" r="2.5" stroke="#60a5fa" stroke-width="1.4"/></svg>
+            </div>
+            <span class="feat-tag clarity-tag">Clarity</span>
+          </div>
+          <h4 class="feat-chip-name">Values Axis</h4>
+          <div class="feat-chip-footer">
+            <button class="feat-vote-btn" onclick="event.stopPropagation(); castVote(this, 'values-axis')" aria-label="Vote for Values Axis">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="vote-label">Vote</span><span class="vote-count">53</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chip 5: Decision Forecast -->
+        <div class="feat-chip" data-feature="decision-forecast" role="button" tabindex="0"
+             onclick="openFeatureModal('decision-forecast', this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFeatureModal('decision-forecast',this);}"
+             aria-label="Decision Forecast — click for details">
+          <div class="feat-chip-top">
+            <div class="feat-icon pattern-ic">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 17c2-4 4-8 8-9" stroke="#a78bfa" stroke-width="1.4" stroke-linecap="round"/><circle cx="14" cy="6" r="2.5" stroke="#a78bfa" stroke-width="1.4" stroke-dasharray="2 1.5"/><path d="M11.5 8.5L17 4" stroke="#a78bfa" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </div>
+            <span class="feat-tag pattern-tag">Pattern</span>
+          </div>
+          <h4 class="feat-chip-name">Decision Forecast</h4>
+          <div class="feat-chip-footer">
+            <button class="feat-vote-btn" onclick="event.stopPropagation(); castVote(this, 'decision-forecast')" aria-label="Vote for Decision Forecast">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="vote-label">Vote</span><span class="vote-count">47</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chip 6: Cloud Sync -->
+        <div class="feat-chip" data-feature="cloud-sync" role="button" tabindex="0"
+             onclick="openFeatureModal('cloud-sync', this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFeatureModal('cloud-sync',this);}"
+             aria-label="Cloud Sync — click for details">
+          <div class="feat-chip-top">
+            <div class="feat-icon sync-ic">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5.5 13.5A4 4 0 016 6h1a5 5 0 019.9 1H17a3 3 0 010 6H6" stroke="#22d3ee" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="feat-tag sync-tag">Sync</span>
+          </div>
+          <h4 class="feat-chip-name">Cloud Sync</h4>
+          <div class="feat-chip-footer">
+            <button class="feat-vote-btn" onclick="event.stopPropagation(); castVote(this, 'cloud-sync')" aria-label="Vote for Cloud Sync">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="vote-label">Vote</span><span class="vote-count">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chip 7: Habit Decisions -->
+        <div class="feat-chip" data-feature="habit-decisions" role="button" tabindex="0"
+             onclick="openFeatureModal('habit-decisions', this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFeatureModal('habit-decisions',this);}"
+             aria-label="Habit Decisions — click for details">
+          <div class="feat-chip-top">
+            <div class="feat-icon commit-ic">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4a6 6 0 100 12A6 6 0 0010 4z" stroke="#34d399" stroke-width="1.4"/><path d="M10 7v3l2 2" stroke="#34d399" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <span class="feat-tag commit-tag">Commitment</span>
+          </div>
+          <h4 class="feat-chip-name">Habit Decisions</h4>
+          <div class="feat-chip-footer">
+            <button class="feat-vote-btn" onclick="event.stopPropagation(); castVote(this, 'habit-decisions')" aria-label="Vote for Habit Decisions">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="vote-label">Vote</span><span class="vote-count">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chip 8: AI Assisted Doubt Review -->
+        <div class="feat-chip" data-feature="ai-doubt-review" role="button" tabindex="0"
+             onclick="openFeatureModal('ai-doubt-review', this)"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openFeatureModal('ai-doubt-review',this);}"
+             aria-label="AI Assisted Doubt Review — click for details">
+          <div class="feat-chip-top">
+            <div class="feat-icon clarity-ic">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" stroke="#60a5fa" stroke-width="1.4"/><path d="M10 7v.01M10 10v3" stroke="#60a5fa" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </div>
+            <span class="feat-tag clarity-tag">Clarity</span>
+          </div>
+          <h4 class="feat-chip-name">AI Assisted Doubt Review</h4>
+          <div class="feat-chip-footer">
+            <button class="feat-vote-btn" onclick="event.stopPropagation(); castVote(this, 'ai-doubt-review')" aria-label="Vote for AI Assisted Doubt Review">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="vote-label">Vote</span><span class="vote-count">0</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
 
     </div>
   </section>
