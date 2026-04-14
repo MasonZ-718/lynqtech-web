@@ -3262,6 +3262,25 @@
     </div>
   </div>
 
+  <!-- Feature detail modal -->
+  <div class="feat-modal-overlay" id="feat-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="feat-modal-title">
+    <div class="feat-modal" id="feat-modal">
+      <button class="feat-modal-close" id="feat-modal-close" aria-label="Close">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="feat-modal-tag-row">
+        <div class="feat-icon" id="feat-modal-icon"></div>
+        <span class="feat-tag" id="feat-modal-tag"></span>
+      </div>
+      <h3 class="feat-modal-title" id="feat-modal-title"></h3>
+      <p class="feat-modal-desc" id="feat-modal-desc"></p>
+      <button class="feat-vote-btn" id="feat-modal-vote-btn">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="vote-label">Vote</span><span class="vote-count">0</span>
+      </button>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
   <script>
     // ── Supabase client ──
@@ -3848,23 +3867,5 @@
   }());
   </script>
 
-  <!-- Feature detail modal -->
-  <div class="feat-modal-overlay" id="feat-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="feat-modal-title">
-    <div class="feat-modal" id="feat-modal">
-      <button class="feat-modal-close" id="feat-modal-close" aria-label="Close">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 2l8 8M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-      </button>
-      <div class="feat-modal-tag-row">
-        <div class="feat-icon" id="feat-modal-icon"></div>
-        <span class="feat-tag" id="feat-modal-tag"></span>
-      </div>
-      <h3 class="feat-modal-title" id="feat-modal-title"></h3>
-      <p class="feat-modal-desc" id="feat-modal-desc"></p>
-      <button class="feat-vote-btn" id="feat-modal-vote-btn">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <span class="vote-label">Vote</span><span class="vote-count">0</span>
-      </button>
-    </div>
-  </div>
 </body>
 </html>
