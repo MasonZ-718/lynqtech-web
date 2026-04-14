@@ -1703,15 +1703,39 @@
       margin-bottom: 72px;
     }
     .vision-split-col {
-      flex: 1;
       padding: 30px 32px;
     }
     .vision-split-col.v-now {
+      flex: 2;
       background: rgba(52, 211, 153, 0.04);
-      border-right: 1px solid var(--border);
     }
     .vision-split-col.v-future {
-      background: rgba(167, 139, 250, 0.04);
+      flex: 3;
+      background: rgba(167, 139, 250, 0.06);
+      background-image: radial-gradient(ellipse at 80% 20%, rgba(167, 139, 250, 0.14) 0%, transparent 65%);
+    }
+    .vision-split-sep {
+      width: 1px;
+      background: var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .vision-split-arrow {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      color: var(--dim);
+      flex-shrink: 0;
     }
     .split-pill {
       display: inline-flex;
@@ -1771,6 +1795,19 @@
       background: var(--dim);
       flex-shrink: 0;
       margin-top: 6px;
+    }
+    .vision-split-col.v-future .split-col-title {
+      font-size: 28px;
+      letter-spacing: -0.5px;
+    }
+    .split-col-tagline {
+      font-size: 13px;
+      color: #a78bfa;
+      font-style: italic;
+      margin-top: -8px;
+      margin-bottom: 18px;
+      opacity: 0.85;
+      line-height: 1.4;
     }
 
     /* Carousel header */
@@ -2000,7 +2037,10 @@
     @media (max-width: 768px) {
       #vision { padding: 80px 0 60px; }
       .vision-split { flex-direction: column; }
-      .vision-split-col.v-now { border-right: none; border-bottom: 1px solid var(--border); }
+      .vision-split-col.v-now { border-bottom: 1px solid var(--border); }
+      .vision-split-sep { width: 100%; height: 1px; }
+      .vision-split-arrow { transform: rotate(90deg); }
+      .vision-split-col.v-future .split-col-title { font-size: 22px; }
     }
     @media (max-width: 480px) {
       .vision-headline { font-size: 24px; }
