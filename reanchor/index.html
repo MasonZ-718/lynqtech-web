@@ -481,6 +481,51 @@
     }
 
     /* ─────────────────────────────────────
+       SECTION 3.5: PIVOT QUESTION
+    ───────────────────────────────────── */
+    #pivot {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      text-align: center;
+    }
+
+    .pivot-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 24px;
+    }
+
+    .pivot-question {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(28px, 5.5vw, 60px);
+      font-weight: 300;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .pivot-question strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .pivot-line-bottom {
+      width: 1px;
+      height: 100px;
+      background: linear-gradient(to bottom, var(--border), transparent);
+      margin: 0 auto 0;
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────────────
        SECTION 4: PRODUCT REVEAL
     ───────────────────────────────────── */
     #reveal {
@@ -2511,11 +2556,19 @@
       </p>
 
       <div class="divider-line reveal reveal-delay-3"></div>
+    </div>
+  </section>
 
-      <p class="insight-headline reveal" style="font-size: clamp(22px, 3.5vw, 40px); color: var(--muted);">
-        What if you had a record of <strong style="color: var(--text);">who you were</strong> when you made that call?
+  <!-- ═══════════════════════════════════
+       SECTION 3.5: PIVOT QUESTION
+  ═══════════════════════════════════ -->
+  <section id="pivot" aria-label="The pivot question">
+    <div class="pivot-body">
+      <p class="pivot-question reveal">
+        What if you had a record of <strong>who you were</strong> when you made that call?
       </p>
     </div>
+    <div class="pivot-line-bottom"></div>
   </section>
 
   <!-- ═══════════════════════════════════
@@ -2724,7 +2777,7 @@
       <!-- Vision header -->
       <p class="vision-eyebrow reveal">Vision</p>
       <h2 class="vision-headline reveal reveal-delay-1">Decision-making is a skill. We're building the gym.</h2>
-      <p class="vision-sub reveal reveal-delay-2">Most people have tools for fitness, finances, and productivity — nothing for the quality of their choices. ReAnchor changes that.</p>
+      <p class="vision-sub reveal reveal-delay-2">The world has tools for fitness, finances, and focus. Nothing exists yet for the quality of your choices — the decisions that define your career, your relationships, your life. ReAnchor is building that category from scratch.</p>
 
       <!-- Today ↔ DecisionOS strip -->
       <div class="vision-split reveal reveal-delay-3">
@@ -2901,6 +2954,16 @@
 
       <div class="faq-list" role="list">
 
+        <div class="faq-item reveal reveal-delay-1">
+          <button class="faq-question" aria-expanded="false">
+            What is ReAnchor?
+            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-answer" role="region">
+            <p class="faq-answer-inner">ReAnchor is an iOS decision journal app. It gives you a structured place to record hard decisions — what you chose, why, how you felt, and what you feared — and then revisit them when doubt or outside pressure arrives. It includes a Doubt Review: 7 structured questions that help you figure out whether something actually changed, or whether it's just fear. Launching Spring 2026.</p>
+          </div>
+        </div>
+
         <div class="faq-item reveal">
           <button class="faq-question" aria-expanded="false">
             How do I stop second-guessing myself after a big decision?
@@ -2911,15 +2974,6 @@
           </div>
         </div>
 
-        <div class="faq-item reveal reveal-delay-1">
-          <button class="faq-question" aria-expanded="false">
-            What is ReAnchor?
-            <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="faq-answer" role="region">
-            <p class="faq-answer-inner">ReAnchor is an iOS decision journal app. It gives you a structured place to record hard decisions — what you chose, why, how you felt, and what you feared — and then revisit them when doubt or outside pressure arrives. It includes a Doubt Review: 7 structured questions that help you figure out whether something actually changed, or whether it's just fear. Launching Spring 2026.</p>
-          </div>
-        </div>
 
         <div class="faq-item reveal reveal-delay-2">
           <button class="faq-question" aria-expanded="false">
@@ -3093,6 +3147,7 @@
     <div class="section-nav-dot" data-section="hook"><span class="section-nav-label">Intro</span></div>
     <div class="section-nav-dot" data-section="pain"><span class="section-nav-label">The Pain</span></div>
     <div class="section-nav-dot" data-section="insight"><span class="section-nav-label">The Insight</span></div>
+    <div class="section-nav-dot" data-section="pivot"><span class="section-nav-label">The Question</span></div>
     <div class="section-nav-dot" data-section="reveal"><span class="section-nav-label">The Solution</span></div>
     <div class="section-nav-dot" data-section="how"><span class="section-nav-label">How</span></div>
     <div class="section-nav-dot" data-section="different"><span class="section-nav-label">Why</span></div>
@@ -3495,7 +3550,7 @@
       if (!nav) return;
 
       const sectionIds = [
-        'hook', 'pain', 'insight', 'reveal', 'how',
+        'hook', 'pain', 'insight', 'pivot', 'reveal', 'how',
         'different', 'vision', 'faq', 'philosophy', 'self-test', 'waitlist'
       ];
 
