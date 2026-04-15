@@ -124,7 +124,6 @@ When doubt arrives at 2am, you shouldn't face it alone. AI walks you through the
 ## Out of Scope
 
 - No changes to Section 7 (FAQ) or any other section
-- No backend/database for vote persistence (votes remain localStorage as today)
 - No changes to the existing Doubt Review feature in the current app version
 
 ---
