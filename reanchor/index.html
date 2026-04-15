@@ -3650,7 +3650,12 @@
     }
 
     function updateTotalVotes() {
-      const total = Object.values(voteStore).reduce((s, n) => s + n, 0);
+      const seen = new Set();
+      let total = 0;
+      document.querySelectorAll('.feat-chip[data-feature]').forEach(card => {
+        const f = card.dataset.feature;
+        if (!seen.has(f)) { seen.add(f); total += getCount(f); }
+      });
       if (totalVotesEl) totalVotesEl.textContent = total;
     }
 
@@ -3678,6 +3683,8 @@
       if (voteStore[feature]) return;
       voteStore[feature] = 1;
       localStorage.setItem('reanchor_votes', JSON.stringify(voteStore));
+      // Optimistically update local count so the card reflects the new vote immediately
+      voteCounts[feature] = (voteCounts[feature] || 0) + 1;
       // Update all cards (originals + clones) with this feature
       document.querySelectorAll(`.feat-chip[data-feature="${feature}"]`).forEach(renderCard);
       updateTotalVotes();
