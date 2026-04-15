@@ -3688,7 +3688,11 @@
       // Update all cards (originals + clones) with this feature
       document.querySelectorAll(`.feat-chip[data-feature="${feature}"]`).forEach(renderCard);
       updateTotalVotes();
-      _supa.from('feature_votes').insert({ feature_id: feature }).catch(() => {});
+      _supa.from('feature_votes').insert({ feature_id: feature })
+        .then(
+          ({ error }) => { if (error) console.error('[ReAnchor] vote insert error:', error); },
+          err => console.error('[ReAnchor] vote insert network error:', err)
+        );
     }
 
     // Load real vote counts from Supabase, add to bases

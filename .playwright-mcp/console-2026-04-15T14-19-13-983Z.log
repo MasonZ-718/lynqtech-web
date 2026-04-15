@@ -1,0 +1,3 @@
+[   15098ms] TypeError: _supa.from(...).insert(...).catch is not a function
+    at castVote (http://localhost:8080/reanchor/index.html:3691:72)
+    at window.castVote (eval at evaluate (:302:30), <anonymous>:16:5)
