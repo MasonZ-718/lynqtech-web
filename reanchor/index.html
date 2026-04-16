@@ -153,20 +153,18 @@
     /* ── Nav ── */
     nav {
       position: fixed;
-      top: 16px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
       z-index: 100;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: calc(100% - 48px);
-      max-width: 1100px;
       background: rgba(9,9,11,0.85);
       backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+      padding: 14px clamp(20px, 4vw, 48px);
     }
     .nav-brand {
       font-size: 13px;
@@ -370,34 +368,61 @@
       flex-direction: column;
     }
 
-    .thought-list {
-      margin: 48px 0;
+    /* Thought ticker (rolling stream) */
+    .thought-ticker {
+      position: relative;
+      overflow: hidden;
+      height: 260px;
+      margin: 40px 0;
+    }
+    .thought-ticker::before,
+    .thought-ticker::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 72px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .thought-ticker::before {
+      top: 0;
+      background: linear-gradient(to bottom, var(--bg), transparent);
+    }
+    .thought-ticker::after {
+      bottom: 0;
+      background: linear-gradient(to top, var(--bg), transparent);
+    }
+    .thought-track {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
+      padding: 4px 0;
+      animation: thoughtScroll 28s linear infinite;
+    }
+    .thought-ticker:hover .thought-track {
+      animation-play-state: paused;
+    }
+    @keyframes thoughtScroll {
+      0%   { transform: translateY(0); }
+      100% { transform: translateY(-50%); }
     }
     .thought {
       background: var(--surface-2);
       border: 1px solid var(--border);
-      border-left: 2px solid rgba(251, 113, 133, 0.18);
+      border-left: 2px solid rgba(251, 113, 133, 0.20);
       border-radius: 0 14px 14px 0;
-      padding: 18px 24px;
+      padding: 16px 22px;
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 16px;
+      font-size: 15px;
       font-style: italic;
       color: var(--muted);
-      position: relative;
-      transform: translateX(-40px);
-      opacity: 0;
-      transition: transform 0.6s ease, opacity 0.6s ease;
+      flex-shrink: 0;
     }
-    .thought.visible {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    .thought:nth-child(2) { transition-delay: 0.15s; margin-left: 16px; }
-    .thought:nth-child(3) { transition-delay: 0.3s; margin-left: 32px; }
-    .thought:nth-child(4) { transition-delay: 0.45s; margin-left: 48px; }
     .thought-accent {
       color: var(--danger);
       font-style: normal;
@@ -439,9 +464,27 @@
        SECTION 3: INSIGHT / PIVOT
     ───────────────────────────────────── */
     #insight {
-      padding: 120px 0;
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
       border-top: 1px solid var(--border);
       text-align: center;
+      padding: 52px 0;
+    }
+
+    #insight .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .insight-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0 0;
     }
 
     .insight-label {
@@ -450,12 +493,12 @@
       letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 32px;
+      margin-bottom: 48px;
     }
 
     .insight-headline {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(30px, 5vw, 58px);
+      font-size: clamp(34px, 5.5vw, 64px);
       font-weight: 400;
       line-height: 1.18;
       letter-spacing: -0.5px;
@@ -464,8 +507,12 @@
       margin: 0 auto 24px;
     }
 
+    .insight-headline em {
+      white-space: nowrap;
+    }
+
     .insight-sub {
-      font-size: 18px;
+      font-size: clamp(17px, 2vw, 21px);
       color: var(--muted);
       max-width: 480px;
       margin: 0 auto;
@@ -485,16 +532,16 @@
     ───────────────────────────────────── */
     #pivot {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
       text-align: center;
     }
 
+    #pivot .divider-line {
+      margin: 0 auto;
+    }
+
     .pivot-body {
-      flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -521,8 +568,7 @@
       width: 1px;
       height: 100px;
       background: linear-gradient(to bottom, var(--border), transparent);
-      margin: 0 auto 0;
-      flex-shrink: 0;
+      margin: 0 auto;
     }
 
     /* ─────────────────────────────────────
@@ -643,16 +689,98 @@
       font-weight: 400;
       color: var(--text);
       text-align: center;
-      margin-bottom: 72px;
+      margin-bottom: 24px;
       line-height: 1.18;
       letter-spacing: -0.4px;
     }
-
-    .steps {
+    .how-method-body {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 560px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+      text-align: center;
+    }
+    .how-stat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 72px;
+    }
+    .how-stat-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent-glow);
+      border: 1px solid var(--accent-border);
+      border-radius: 6px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+    }
+    .scenario-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .scenario-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 10px;
     }
+    .scenario-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin: 0;
+    }
+    .scenario-hook {
+      font-family: 'Fraunces', Georgia, serif;
+      font-style: italic;
+      font-size: 18px;
+      color: var(--text);
+      line-height: 1.35;
+      margin: 0;
+    }
+    .scenario-desc {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .scenario-toggle {
+      align-self: flex-start;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--accent);
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    .scenario-toggle:hover { opacity: 0.8; }
+    .scenario-steps {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .scenario-steps--open { display: flex; }
+    @media (max-width: 768px) {
+      .scenario-cards { grid-template-columns: 1fr; }
+    }
+
     .step {
       display: grid;
       grid-template-columns: 64px 1fr;
@@ -905,17 +1033,13 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 64px;
-        align-items: start;
+        align-items: stretch;
       }
-      #pain .pain-time     { grid-column: 1 / -1; }
-      #pain .pain-body-col { grid-column: 1; }
-      #pain .thought-list  { grid-column: 2; margin: 0; }
-      #pain .stats-row     { grid-column: 1 / -1; }
-      #pain .container > p { grid-column: 1 / -1; }
-      /* Remove stagger in grid — right column is narrow enough already */
-      #pain .thought:nth-child(2),
-      #pain .thought:nth-child(3),
-      #pain .thought:nth-child(4) { margin-left: 0; }
+      #pain .pain-time      { grid-column: 1 / -1; }
+      #pain .pain-body-col  { grid-column: 1; }
+      #pain .thought-ticker { grid-column: 2; height: auto; margin: 0; }
+      #pain .stats-row      { grid-column: 1 / -1; }
+      #pain .container > p  { grid-column: 1 / -1; }
 
       /* Reduce pain body font in grid — 32px is too large for a 50%-wide column */
       #pain .pain-body { font-size: clamp(16px, 1.3vw, 20px) !important; line-height: 1.7; }
@@ -927,8 +1051,9 @@
         column-gap: 64px;
         align-items: center;
       }
-      #reveal .reveal-text-col { grid-column: 1; }
-      #reveal .phones-wrap     { grid-column: 2; margin-top: 0; }
+      #reveal .reveal-text-col  { grid-column: 1; }
+      #reveal .phones-wrap      { grid-column: 2; margin-top: 0; }
+      #reveal .research-trust   { grid-column: 1 / -1; }
 
       /* Insight section: wider text */
       .insight-headline { max-width: 800px; }
@@ -951,14 +1076,12 @@
       .waitlist-form { flex-direction: column; }
       .waitlist-btn { width: 100%; }
       .step { grid-template-columns: 48px 1fr; gap: 16px; }
-      nav { width: calc(100% - 32px); }
+      nav { padding: 12px 20px; }
       #hook { padding: 100px 20px 60px; }
-      #pain, #insight, #reveal, #how, #waitlist, #faq, #philosophy { padding: 80px 0; }
+      #pain, #reveal, #how, #waitlist, #faq, #philosophy { padding: 80px 0; }
+      #insight { min-height: 0; padding: 52px 0; }
+      #pivot { min-height: 0; }
       .container { padding: 0 20px !important; }
-      /* Remove stagger on small screens to prevent overflow */
-      .thought:nth-child(2),
-      .thought:nth-child(3),
-      .thought:nth-child(4) { margin-left: 0; }
       .pain-time::before { left: 0; position: static; display: inline-block; margin-right: 8px; }
       .pain-time { padding-left: 0; }
     }
@@ -975,8 +1098,9 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .reveal, .thought { transition: none; }
+      .reveal { transition: none; }
       .scroll-arrow, .pain-time::before, .waitlist-badge-dot { animation: none; }
+      .thought-track { animation: none; }
     }
 
     /* ─────────────────────────────────────
@@ -1237,13 +1361,6 @@
     }
     #waitlist .container { position: relative; z-index: 1; }
 
-    /* ─────────────────────────────────────
-       NAV REFINEMENT
-    ───────────────────────────────────── */
-    nav {
-      background: rgba(9, 9, 11, 0.82);
-      border-color: var(--border);
-    }
 
     /* ─────────────────────────────────────
        iPHONE MOCKUP
@@ -1506,66 +1623,7 @@
       border-radius: 2px;
     }
 
-    /* ─────────────────────────────────────
-       FEATURE CARDS (How it works)
-    ───────────────────────────────────── */
-    .feature-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 56px;
-    }
-    .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      transition: border-color 0.2s;
-    }
-    .feature-card:hover {
-      border-color: var(--accent-border);
-      background: var(--surface-2);
-      box-shadow: 0 4px 24px rgba(52, 211, 153, 0.06);
-    }
-    .feature-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: var(--accent-glow);
-      border: 1px solid var(--accent-border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .feature-step-num {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--dim);
-      letter-spacing: 1px;
-    }
-    .feature-title {
-      font-size: 17px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.3;
-    }
-    .feature-desc {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.7;
-      flex: 1;
-    }
-    .feature-accent {
-      font-family: 'Fraunces', Georgia, serif;
-      font-style: italic;
-      color: var(--accent);
-    }
     @media (max-width: 640px) {
-      .feature-cards { grid-template-columns: 1fr; }
       .phones-wrap { flex-direction: column; align-items: center; gap: 48px; }
       .phone-col { width: 100%; }
       .iphone { width: 200px; height: 408px; }
@@ -1582,6 +1640,61 @@
       max-width: 520px;
       margin: 0 auto 48px;
       line-height: 1.8;
+    }
+
+    /* ─────────────────────────────────────
+       RESEARCH TRUST MARQUEE
+    ───────────────────────────────────── */
+    .research-trust {
+      margin-top: 72px;
+      text-align: center;
+    }
+    .research-trust-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 20px;
+    }
+    .research-marquee-wrap {
+      position: relative;
+      overflow: hidden;
+      padding: 6px 0;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+    }
+    .research-marquee-track {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      animation: researchScroll 70s linear infinite;
+    }
+    .research-marquee-wrap:hover .research-marquee-track {
+      animation-play-state: paused;
+    }
+    @keyframes researchScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .rlogo {
+      display: flex;
+      align-items: center;
+      padding: 0 44px;
+      border-right: 1px solid var(--border-subtle);
+      opacity: 0.28;
+      transition: opacity 0.3s;
+      flex-shrink: 0;
+    }
+    .rlogo:hover { opacity: 0.55; }
+    .rlogo img {
+      height: 22px;
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .research-marquee-track { animation: none; }
     }
 
     /* ─────────────────────────────────────
@@ -2057,81 +2170,6 @@
       .vision-split-col { padding: 24px 20px; }
     }
 
-    /* ─────────────────────────────────────
-       DOUBT REVIEW PREVIEW (below How It Works)
-    ───────────────────────────────────── */
-    .doubt-preview {
-      margin-top: 40px;
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    .doubt-preview-bar {
-      height: 3px;
-      background: var(--accent);
-    }
-    .doubt-preview-inner {
-      padding: 28px 32px 24px;
-    }
-    .doubt-preview-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 18px;
-    }
-    .doubt-preview-label {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .doubt-preview-progress {
-      font-size: 11px;
-      color: var(--dim);
-    }
-    .doubt-preview-q {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(16px, 1.8vw, 21px);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.5;
-      margin-bottom: 18px;
-    }
-    .doubt-preview-opts {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-    .doubt-preview-opt {
-      padding: 10px 16px;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 13px;
-      color: var(--muted);
-      background: var(--surface);
-      line-height: 1.45;
-    }
-    .doubt-preview-opt.dp-highlight {
-      border-color: rgba(52, 211, 153, 0.28);
-      background: rgba(52, 211, 153, 0.05);
-      color: var(--text);
-    }
-    .doubt-preview-footer {
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: var(--dim);
-      line-height: 1.6;
-    }
-    .doubt-preview-footer strong { color: var(--muted); font-weight: 500; }
-    @media (max-width: 640px) {
-      .doubt-preview-inner { padding: 20px; }
-      .doubt-preview-meta { flex-direction: column; align-items: flex-start; gap: 4px; }
-    }
 
     /* ─────────────────────────────────────
        SECTION 5.5: WHY DIFFERENT
@@ -2561,11 +2599,26 @@
         </p>
       </div>
 
-      <div class="thought-list" role="list">
-        <div class="thought" role="listitem">"What if everyone who doubted me was right?"</div>
-        <div class="thought" role="listitem">"What if I <span class="thought-accent">ruined</span> something I can't get back?"</div>
-        <div class="thought" role="listitem">"I can't even remember <em>why</em> I decided this anymore."</div>
-        <div class="thought" role="listitem">"I turned down that deal. Now I'm watching them <span class="thought-accent">grow without me</span>."</div>
+      <div class="thought-ticker" aria-hidden="true">
+        <div class="thought-track">
+          <div class="thought">"What if <span class="thought-accent">doubted</span> me was right?"</div>
+          <div class="thought">"What if I <span class="thought-accent">ruined</span> something I can't get back?"</div>
+          <div class="thought">"I can't even remember <span class="thought-accent">why</span> I decided this anymore."</div>
+          <div class="thought">"I turned down that deal. Now I'm watching them <span class="thought-accent">grow without me</span>."</div>
+          <div class="thought">"Maybe I <span class="thought-accent">just got lucky</span> the first time."</div>
+          <div class="thought">"What if I quit and <span class="thought-accent">can’t find</span> a job like this again?"</div>
+          <div class="thought">"What if I break up and realize I <span class="thought-accent">can’t live without</span> him?"</div>
+          <div class="thought">"What if I invest now and the <span class="thought-accent">market crashes</span> right after?</div>
+          <!-- duplicate set for seamless loop -->
+          <div class="thought">"What if <span class="thought-accent">doubted</span> me was right?"</div>
+          <div class="thought">"What if I <span class="thought-accent">ruined</span> something I can't get back?"</div>
+          <div class="thought">"I can't even remember <span class="thought-accent">why</span> I decided this anymore."</div>
+          <div class="thought">"I turned down that deal. Now I'm watching them <span class="thought-accent">grow without me</span>."</div>
+          <div class="thought">"Maybe I <span class="thought-accent">just got lucky</span> the first time."</div>
+          <div class="thought">"What if I quit and <span class="thought-accent">can’t find</span> a job like this again?"</div>
+          <div class="thought">"What if I break up and realize I <span class="thought-accent">can’t live without</span> him?"</div>
+          <div class="thought">"What if I invest now and the <span class="thought-accent">market crashes</span> right after?</div>
+        </div>
       </div>
 
       <div class="stats-row reveal">
@@ -2593,19 +2646,16 @@
     <div class="container">
       <p class="insight-label reveal">The real problem</p>
 
-      <h2 class="insight-headline reveal reveal-delay-1">
-        The decision wasn't wrong.<br />
-        You just have <em>nothing to go back to.</em>
-      </h2>
+      <div class="insight-main">
+        <h2 class="insight-headline reveal reveal-delay-1">
+          The decision wasn't wrong.<br />
+          You just have <em>nothing to go back to.</em>
+        </h2>
 
-      <p class="insight-sub reveal reveal-delay-2">
-        When doubt hits, you're fighting from memory. You can't remember the clarity you had. The reasoning. What you believed, and why you were willing to risk it.
-      </p>
-      <p class="insight-sub reveal reveal-delay-3" style="margin-top: 20px; font-size: 15px; color: var(--dim);">
-        ReAnchor gives you a place to record your decisions — and a structured way to revisit them when doubt comes back.
-      </p>
-
-      <div class="divider-line reveal reveal-delay-3"></div>
+        <p class="insight-sub reveal reveal-delay-2">
+          When doubt hits, you're fighting from memory. You can't remember the clarity you had. The reasoning. What you believed, and why you were willing to risk it.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -2613,6 +2663,7 @@
        SECTION 3.5: PIVOT QUESTION
   ═══════════════════════════════════ -->
   <section id="pivot" aria-label="The pivot question">
+    <div class="divider-line"></div>
     <div class="pivot-body">
       <p class="pivot-question reveal">
         What if you had a record of <strong>who you were</strong> when you made that call?
@@ -2701,6 +2752,44 @@
         </div>
 
       </div>
+
+      <!-- Research trust marquee -->
+      <div class="research-trust reveal">
+        <p class="research-trust-label">Informed by research at</p>
+        <div class="research-marquee-wrap">
+          <div class="research-marquee-track">
+            <!-- set 1 -->
+            <div class="rlogo"><img src="logos/harvard.svg"       alt="Harvard University" /></div>
+            <div class="rlogo"><img src="logos/mit-sloan.svg"     alt="MIT Sloan" /></div>
+            <div class="rlogo"><img src="logos/stanford.svg"      alt="Stanford University" /></div>
+            <div class="rlogo"><img src="logos/oxford.svg"        alt="University of Oxford" /></div>
+            <div class="rlogo"><img src="logos/princeton.svg"     alt="Princeton University" /></div>
+            <div class="rlogo"><img src="logos/insead.svg"        alt="INSEAD" /></div>
+            <div class="rlogo"><img src="logos/iese.png"          alt="IESE Business School" /></div>
+            <div class="rlogo"><img src="logos/bcg.svg"           alt="BCG" /></div>
+            <div class="rlogo"><img src="logos/max-planck.svg"    alt="Max Planck Society" /></div>
+            <div class="rlogo"><img src="logos/elsevier.svg"      alt="Elsevier" /></div>
+            <div class="rlogo"><img src="logos/apa.svg"           alt="American Psychological Association" /></div>
+            <div class="rlogo"><img src="logos/chicago-booth.svg" alt="Chicago Booth" /></div>
+            <div class="rlogo"><img src="logos/wharton.svg"       alt="Wharton" /></div>
+            <!-- set 2 — duplicate for seamless loop -->
+            <div class="rlogo"><img src="logos/harvard.svg"       alt="Harvard University" /></div>
+            <div class="rlogo"><img src="logos/mit-sloan.svg"     alt="MIT Sloan" /></div>
+            <div class="rlogo"><img src="logos/stanford.svg"      alt="Stanford University" /></div>
+            <div class="rlogo"><img src="logos/oxford.svg"        alt="University of Oxford" /></div>
+            <div class="rlogo"><img src="logos/princeton.svg"     alt="Princeton University" /></div>
+            <div class="rlogo"><img src="logos/insead.svg"        alt="INSEAD" /></div>
+            <div class="rlogo"><img src="logos/iese.png"          alt="IESE Business School" /></div>
+            <div class="rlogo"><img src="logos/bcg.svg"           alt="BCG" /></div>
+            <div class="rlogo"><img src="logos/max-planck.svg"    alt="Max Planck Society" /></div>
+            <div class="rlogo"><img src="logos/elsevier.svg"      alt="Elsevier" /></div>
+            <div class="rlogo"><img src="logos/apa.svg"           alt="American Psychological Association" /></div>
+            <div class="rlogo"><img src="logos/chicago-booth.svg" alt="Chicago Booth" /></div>
+            <div class="rlogo"><img src="logos/wharton.svg"       alt="Wharton" /></div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -2711,69 +2800,78 @@
     <div class="container">
       <p class="how-label reveal">How it works</p>
       <h2 class="how-headline reveal reveal-delay-1">
-        Three steps. One anchor.
+        A protocol for doubt. Not a chatbot.
       </h2>
+      <p class="how-method-body reveal reveal-delay-2">Most tools hand you an AI and hope it says the right thing. ReAnchor runs on a structured decision protocol — the same evidence-informed questions, every time, regardless of your mood or your story. You get a repeatable process, not a response.</p>
+      <div class="how-stat-pills reveal reveal-delay-3" aria-label="Key facts about ReAnchor">
+        <span class="how-stat-pill">7 structured questions</span>
+        <span class="how-stat-pill">2 proven paths</span>
+        <span class="how-stat-pill">0 AI guesswork</span>
+      </div>
 
-      <div class="feature-cards">
+      <div class="scenario-cards">
 
-        <div class="feature-card reveal">
-          <div class="feature-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M3 14V11l8-8 3 3-8 8H3z" stroke="#34d399" stroke-width="1.4" stroke-linejoin="round"/>
-              <path d="M11 3l3 3" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
+        <div class="scenario-card reveal">
+          <p class="scenario-label">If you planned ahead</p>
+          <p class="scenario-hook">Anchor it now. Return when doubt hits.</p>
+          <p class="scenario-desc">Record your decision at the moment of clarity. When doubt arrives weeks later, your past self is already waiting with the answer.</p>
+          <button class="scenario-toggle" aria-expanded="false" aria-controls="steps-planned">Show steps ↓</button>
+          <div class="scenario-steps" id="steps-planned" aria-hidden="true">
+            <div class="step">
+              <div class="step-number">01</div>
+              <div class="step-content">
+                <p class="step-title">Anchor the decision</p>
+                <p class="step-desc">Write what you decided, why you decided it, how you felt, and what you feared. Not a journal — <span class="step-accent">a record</span> you can return to.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">02</div>
+              <div class="step-content">
+                <p class="step-title">Return when doubt arrives</p>
+                <p class="step-desc">At 2am, after a hard week, when someone asks "are you sure?" — open it. Find <span class="step-accent">who you were</span> when you made the call, and why.</p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">03</div>
+              <div class="step-content">
+                <p class="step-title">Do the Doubt Review</p>
+                <p class="step-desc">7 structured questions. 10 minutes. Separate <span class="step-accent">new facts</span> from old fears. Hold the line — or flag that something real shifted.</p>
+              </div>
+            </div>
           </div>
-          <div class="feature-step-num">Step 01</div>
-          <h3 class="feature-title">Anchor the decision</h3>
-          <p class="feature-desc">Write what you decided, why you decided it, how you felt, and what you feared. Not a journal — <span class="feature-accent">a record</span> you can return to.</p>
         </div>
 
-        <div class="feature-card reveal reveal-delay-1">
-          <div class="feature-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M9 2a7 7 0 100 14A7 7 0 009 2z" stroke="#34d399" stroke-width="1.4"/>
-              <path d="M9 6v3.5l2.5 1.5" stroke="#34d399" stroke-width="1.4" stroke-linecap="round"/>
-            </svg>
+        <div class="scenario-card reveal reveal-delay-1">
+          <p class="scenario-label">If you're already doubting</p>
+          <p class="scenario-hook">Come in mid-doubt. We'll anchor it with you.</p>
+          <p class="scenario-desc">Made a decision you never logged? Start here. We'll reconstruct your reasoning, capture what changed, and help you resolve the doubt in the same session.</p>
+          <button class="scenario-toggle" aria-expanded="false" aria-controls="steps-retro">Show steps ↓</button>
+          <div class="scenario-steps" id="steps-retro" aria-hidden="true">
+            <div class="step">
+              <div class="step-number">01</div>
+              <div class="step-content">
+                <p class="step-title">Reconstruct your reasoning</p>
+                <p class="step-desc">Walk through what you decided, when, and why — even if it's a rough memory. <span class="step-accent">Approximate is enough.</span></p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">02</div>
+              <div class="step-content">
+                <p class="step-title">Name what's changed</p>
+                <p class="step-desc">Is it a feeling, or did something real shift? The protocol separates <span class="step-accent">the two.</span></p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="step-number">03</div>
+              <div class="step-content">
+                <p class="step-title">Re-anchor or change course</p>
+                <p class="step-desc">Recommit with clear eyes — or capture a <span class="step-accent">new direction</span> in the same session. Either way, you leave with an anchor.</p>
+              </div>
+            </div>
           </div>
-          <div class="feature-step-num">Step 02</div>
-          <h3 class="feature-title">Return when doubt arrives</h3>
-          <p class="feature-desc">At 2am, after a hard week, when someone asks "are you sure?" — open it. Find <span class="feature-accent">who you were</span> when you made the call, and why.</p>
-        </div>
-
-        <div class="feature-card reveal reveal-delay-2">
-          <div class="feature-icon" aria-hidden="true">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <circle cx="9" cy="9" r="7" stroke="#34d399" stroke-width="1.4"/>
-              <path d="M6 9l2 2 4-4" stroke="#34d399" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="feature-step-num">Step 03</div>
-          <h3 class="feature-title">Do the Doubt Review</h3>
-          <p class="feature-desc">7 structured questions. 10 minutes. Separate <span class="feature-accent">new facts</span> from old fears. You'll finish knowing whether to hold the line — or whether something actually changed.</p>
         </div>
 
       </div>
-
-      <!-- Doubt Review: live question preview -->
-      <div class="doubt-preview reveal reveal-delay-3" aria-label="Example Doubt Review question">
-        <div class="doubt-preview-bar"></div>
-        <div class="doubt-preview-inner">
-          <div class="doubt-preview-meta">
-            <span class="doubt-preview-label">Doubt Review — example question</span>
-            <span class="doubt-preview-progress">Question 3 of 7</span>
-          </div>
-          <p class="doubt-preview-q">"Is what changed a new fact — or just a feeling?"</p>
-          <div class="doubt-preview-opts" aria-hidden="true">
-            <div class="doubt-preview-opt">Something real changed — new information, new circumstances</div>
-            <div class="doubt-preview-opt">I'm not sure yet</div>
-            <div class="doubt-preview-opt dp-highlight">It's a feeling. Nothing actually changed.</div>
-          </div>
-          <p class="doubt-preview-footer">
-            Seven questions. Ten minutes. You finish with a verdict — <strong>hold the line</strong>, or flag that something real shifted. Not more journaling. A protocol.
-          </p>
-        </div>
-      </div>
-
     </div>
   </section>
 
@@ -3315,17 +3413,6 @@
       setTimeout(() => el.classList.add('visible'), i * 180);
     });
 
-    // ── Thought bubbles observer ──
-    const thoughts = document.querySelectorAll('.thought');
-    const thoughtObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          thoughts.forEach(t => t.classList.add('visible'));
-        }
-      });
-    }, { threshold: 0.2 });
-    if (thoughts.length) thoughtObserver.observe(thoughts[0].parentElement);
-
     // ── Morphing doubt text ──
     const doubts = [
       '"I can\'t even remember why I decided this."',
@@ -3439,6 +3526,17 @@
           answer.style.maxHeight = answer.scrollHeight + 'px';
           btn.setAttribute('aria-expanded', 'true');
         }
+      });
+    });
+
+    // ── Scenario steps expand/collapse ──
+    document.querySelectorAll('.scenario-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const steps = document.getElementById(btn.getAttribute('aria-controls'));
+        const open = steps.classList.toggle('scenario-steps--open');
+        btn.textContent = open ? 'Hide steps ↑' : 'Show steps ↓';
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        steps.setAttribute('aria-hidden', open ? 'false' : 'true');
       });
     });
 
