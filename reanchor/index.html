@@ -94,7 +94,7 @@
         "name": "Is my data private?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. All data in ReAnchor stays on your device. Nothing is uploaded to external servers."
+          "text": "Yes. ReAnchor is designed with privacy in mind. In the current version, your data is stored locally on your device and is not uploaded to any server."
         }
       }
     ]
@@ -1008,7 +1008,7 @@
     .avatar-b { background: #1a2e1a; color: #34d399; }
     .avatar-c { background: #2d1a2e; color: #a78bfa; }
     .waitlist-count-text { font-size: 13px; color: var(--dim); }
-    .waitlist-count-text strong { color: var(--muted); }
+    .waitlist-count-text strong { color: var(--accent); font-size: 15px; }
 
     /* ── Footer ── */
     footer {
@@ -2003,6 +2003,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
+      margin-top: auto;
     }
 
     /* Feature detail modal */
@@ -2442,10 +2443,26 @@
 
     /* ReAnchor modal CTA */
     .comp-modal-cta-label {
-      font-size: 14px;
-      color: var(--muted);
+      font-size: 15px;
+      color: var(--text);
       margin-bottom: 16px;
-      line-height: 1.5;
+      line-height: 1.6;
+      background: rgba(52, 211, 153, 0.06);
+      border: 1px solid rgba(52, 211, 153, 0.18);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .comp-modal-cta-label .cta-count {
+      color: var(--accent);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .comp-modal-cta-label .cta-urgency {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
     }
 
     .comp-modal-form {
@@ -3194,7 +3211,7 @@
             <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="faq-answer" role="region">
-            <p class="faq-answer-inner">Nobody. All data in ReAnchor stays on your device — no cloud sync, no server uploads, no account required. Your decisions are yours. This is a deliberate design choice: the things you record in ReAnchor are some of the most personal thoughts you'll ever write down. They should never leave your phone.</p>
+            <p class="faq-answer-inner">Nobody. ReAnchor is designed with your privacy in mind — Right now, your data is stored locally on your device with no account needed. If you wish to bring your decision to any other devices, you can register an account and sync to cloud, but your data is stored securly encripted. The things you record here are some of the most personal thoughts you'll ever write down, and we take that seriously.</p>
           </div>
         </div>
 
@@ -3218,12 +3235,11 @@
   <section id="philosophy" aria-label="Philosophy">
     <div class="container">
       <p class="insight-sub reveal" style="max-width: 520px; margin: 0 0 40px; font-style: italic;">
-        When I finally made the hardest decision of my life — leaving a stable job to build something — I wrote down why. Not for anyone else. For the moment the doubt would come back.<br /><br />
-        It did. This is what I told myself:
+        I thought the hardest part of leaving my consulting job was deciding to leave.<br /><br />
+        I was wrong. The hard part was the weeks after — when I'd already decided, but my mind kept relitigating it. That loop is why ReAnchor exists.
       </p>
       <blockquote class="philosophy-quote reveal reveal-delay-1">
-        "The goal was never to make <strong>perfect</strong> decisions.<br />
-        It was to make <strong>honest</strong> ones — and then have the courage to stand by them."
+        "I stopped doubting my decision. Not because the doubt went away — but because I stopped letting <strong>temporary emotions</strong> overwrite <strong>permanent</strong> decisions."
       </blockquote>
       <p class="philosophy-attr reveal reveal-delay-2">— Mason, founder of ReAnchor</p>
     </div>
@@ -3273,14 +3289,14 @@
       </div>
 
       <h2 class="waitlist-headline reveal reveal-delay-1">
-        Stop fighting doubt from memory.
+        Don't let the next decision haunt you.
       </h2>
 
       <p class="waitlist-sub reveal reveal-delay-2">
-        Next time doubt shows up at 2am, you'll have something to go back to.
+        Another decision is coming — and so is the doubt. Secure your spot now, before it shows up at 2am and there's nothing to go back to.
       </p>
       <p class="reveal reveal-delay-2" style="font-size: 13px; color: var(--dim); margin-bottom: 32px; margin-top: -16px;">
-        iOS · Launching Spring 2026 · <span style="color: var(--accent);">All data stays on your device</span>
+        iOS · Launching Spring 2026 · <span style="color: var(--accent);">Early access spots are limited</span>
       </p>
 
       <!-- Form -->
@@ -3298,10 +3314,10 @@
             aria-required="true"
           />
           <button type="submit" class="waitlist-btn" id="submit-btn">
-            Join Waitlist
+            Secure My Spot →
           </button>
         </form>
-        <p class="waitlist-privacy reveal-delay-4">No spam. No account required. Just a heads-up when we launch.</p>
+        <p class="waitlist-privacy reveal-delay-4">No spam. No account required. First to know when we launch.</p>
       </div>
 
       <!-- Success state -->
@@ -3323,7 +3339,7 @@
           <div class="avatar avatar-c">A</div>
         </div>
         <p class="waitlist-count-text">
-          <strong id="waitlist-counter">247</strong> people already on the list
+          <strong id="waitlist-counter">247</strong> people aren't waiting for doubt to win
         </p>
       </div>
     </div>
@@ -3332,7 +3348,7 @@
   <!-- Footer -->
   <footer>
     <p class="footer-brand">ReAnchor</p>
-    <p class="footer-copy">© 2026 ReAnchor. All data stays on your device.</p>
+    <p class="footer-copy">© 2026 ReAnchor. Make better decisions, one at a time.</p>
   </footer>
 
   <!-- Section progress indicator -->
@@ -3916,25 +3932,29 @@
       },
       reanchor: {
         title: 'Why ReAnchor is different',
-        html: '<div class="comp-table-wrap">'
-          + '<table class="comp-table"><thead><tr>'
-          + '<th></th><th>Yourself</th><th>Friends &amp; family</th><th>AI chatbots</th><th class="col-reanchor">ReAnchor</th>'
-          + '</tr></thead><tbody>'
-          + '<tr><td>Captures your reasoning <em>before</em> doubt starts</td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
-          + '<tr><td>Available at 2am when doubt peaks</td><td><span class="tick">\u2713</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td><td><span class="tick">\u2713</span></td></tr>'
-          + '<tr><td>Free from social pressure or incentivised advice</td><td><span class="tick">\u2713</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
-          + '<tr><td>Doesn\u2019t generate more to think about</td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
-          + '<tr><td>Returns you to <em>your</em> original clarity</td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
-          + '</tbody></table></div>'
-          + '<p class="comp-modal-cta-label">Join people anchoring their decisions before the doubt arrives.</p>'
-          + '<div id="modal-form-wrap">'
-          + '<form class="comp-modal-form" id="modal-waitlist-form" novalidate aria-label="Waitlist signup">'
-          + '<label for="modal-email" class="sr-only">Email address</label>'
-          + '<input type="email" id="modal-email" name="email" placeholder="your@email.com" class="waitlist-input" required aria-required="true" />'
-          + '<button type="submit" class="waitlist-btn" id="modal-submit-btn">Join Waitlist</button>'
-          + '</form>'
-          + '<p class="comp-modal-success" id="modal-success">You\u2019re on the list. We\u2019ll be in touch.</p>'
-          + '</div>'
+        html: function () {
+          var wlEl = document.getElementById('waitlist-counter');
+          var n = wlEl ? wlEl.textContent : '247';
+          return '<div class="comp-table-wrap">'
+            + '<table class="comp-table"><thead><tr>'
+            + '<th></th><th>Yourself</th><th>Friends &amp; family</th><th>AI chatbots</th><th class="col-reanchor">ReAnchor</th>'
+            + '</tr></thead><tbody>'
+            + '<tr><td>Captures your reasoning <em>before</em> doubt starts</td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
+            + '<tr><td>Available at 2am when doubt peaks</td><td><span class="tick">\u2713</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td><td><span class="tick">\u2713</span></td></tr>'
+            + '<tr><td>Free from social pressure or incentivised advice</td><td><span class="tick">\u2713</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
+            + '<tr><td>Doesn\u2019t generate more to think about</td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
+            + '<tr><td>Returns you to <em>your</em> original clarity</td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="cross">\u2717</span></td><td><span class="tick">\u2713</span></td></tr>'
+            + '</tbody></table></div>'
+            + '<p class="comp-modal-cta-label"><span class="cta-count">' + n + '</span> people have already secured their spot </br>Anchor your next decision before doubt gets there first.<span class="cta-urgency">\u26a1 Spots are limited to early adopters. Don\u2019t wait until the doubt does.</span></p>'
+            + '<div id="modal-form-wrap">'
+            + '<form class="comp-modal-form" id="modal-waitlist-form" novalidate aria-label="Waitlist signup">'
+            + '<label for="modal-email" class="sr-only">Email address</label>'
+            + '<input type="email" id="modal-email" name="email" placeholder="your@email.com" class="waitlist-input" required aria-required="true" />'
+            + '<button type="submit" class="waitlist-btn" id="modal-submit-btn">Join Waitlist</button>'
+            + '</form>'
+            + '<p class="comp-modal-success" id="modal-success">You\u2019re on the list. We\u2019ll be in touch.</p>'
+            + '</div>';
+        }
       }
     };
 
@@ -3945,7 +3965,7 @@
       if (!content) return;
       lastOpener = document.activeElement;
       titleEl.textContent = content.title;
-      bodyEl.innerHTML = content.html;
+      bodyEl.innerHTML = typeof content.html === 'function' ? content.html() : content.html;
       backdrop.setAttribute('aria-hidden', 'false');
       backdrop.classList.add('is-open');
       document.body.style.overflow = 'hidden';
