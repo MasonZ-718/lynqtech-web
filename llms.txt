@@ -6,12 +6,20 @@ Lynq Tech is an indie software company building small, focused mobile apps for t
 
 ## Products
 
-- [MyDecision](https://lynqtech.io/mydecision): An iOS app for recording and revisiting important decisions. Designed for people who make hard calls and later struggle with doubt. Includes a structured "Doubt Review" flow — 7 questions in 10 minutes — to help users separate new facts from old fears. Launching Spring 2026.
+- [ReAnchor](https://lynqtech.io/reanchor): An iOS app for recording and revisiting hard decisions. Designed for people who make a call and later struggle with doubt. You record your decision at the moment of clarity — what you decided, why, how you felt, and what you feared. When doubt arrives, you return to that record instead of fighting from memory. Includes a structured "Doubt Review" — 7 evidence-informed questions in 10 minutes — to help separate new facts from old fears. Launching Spring 2026, free to download.
+
+- [Decision Anxiety Self-Test](https://lynqtech.io/reanchor/self-test): A free, science-informed self-assessment measuring decision anxiety across four dimensions — indecisiveness, rumination, maximizing, and avoidance. 16 questions, 3 minutes. Based on validated instruments including the Frost & Shows Indecisiveness Scale and the Schwartz Maximization Scale.
+
+## Key Concepts
+
+- **Decision anchoring**: Recording a decision at the moment of clarity so the original reasoning is available when doubt arrives later.
+- **Doubt Review**: A 7-question structured protocol for distinguishing new information from emotional reactions when revisiting a past decision.
+- **Decision anxiety**: The tendency to experience excessive worry, paralysis, or regret when making or having made choices. Measured across indecisiveness, post-decision rumination, maximizing tendency, and avoidance.
 
 ## About
 
-Founded by Mason Zarif. Currently in pre-launch. All user data stays on-device.
+Founded by Mason Zarif in 2025. Currently in pre-launch. All user data stays on-device by default; optional encrypted cloud sync available on account creation.
 
 ## Contact
 
-Available via waitlist at https://lynqtech.io/mydecision
+Waitlist and contact at https://lynqtech.io/reanchor

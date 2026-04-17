@@ -29,22 +29,42 @@
     "@context": "https://schema.org",
     "@type": "MobileApplication",
     "name": "ReAnchor",
+    "alternateName": "ReAnchor — Decision Journal",
     "url": "https://lynqtech.io/reanchor",
-    "description": "ReAnchor is an iOS app that helps you record your decisions at the moment of clarity, so you can return to them when doubt sets in. It includes a structured Doubt Review flow — 7 questions in 10 minutes — to help you separate new facts from old fears.",
+    "description": "ReAnchor is an iOS decision journal app that helps you record decisions at the moment of clarity, so you can return to them when doubt sets in. It includes a structured Doubt Review — 7 evidence-informed questions in 10 minutes — to separate new facts from old fears.",
     "operatingSystem": "iOS",
     "applicationCategory": "LifestyleApplication",
+    "applicationSubCategory": "Productivity",
+    "softwareVersion": "1.0",
+    "releaseNotes": "Launching Spring 2026",
+    "inLanguage": "en-US",
+    "featureList": [
+      "Decision journaling with structured capture format",
+      "Doubt Review: 7 structured questions in 10 minutes",
+      "Separate new facts from emotional reactions",
+      "Local on-device storage with no account required",
+      "Optional encrypted cloud sync",
+      "Decision history and pattern tracking"
+    ],
     "offers": {
       "@type": "Offer",
       "price": "0",
-      "priceCurrency": "USD"
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/PreOrder"
     },
     "author": {
       "@type": "Person",
       "name": "Mason Zarif",
+      "jobTitle": "Founder & Developer",
       "url": "https://lynqtech.io"
     },
     "publisher": {
       "@type": "Organization",
+      "name": "Lynq Tech",
+      "url": "https://lynqtech.io"
+    },
+    "isPartOf": {
+      "@type": "WebSite",
       "name": "Lynq Tech",
       "url": "https://lynqtech.io"
     }
@@ -62,7 +82,7 @@
         "name": "What is ReAnchor?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ReAnchor is an iOS app that helps you record your decisions at the moment of clarity — what you decided, why, how you felt, and what you feared. When doubt sets in later, you return to that record instead of fighting from memory."
+          "text": "ReAnchor is an iOS decision journal app. It gives you a structured place to record hard decisions — what you chose, why, how you felt, and what you feared — and then revisit them when doubt or outside pressure arrives. It includes a Doubt Review: 7 structured questions that help you figure out whether something actually changed, or whether it's just fear. Launching Spring 2026."
         }
       },
       {
@@ -83,10 +103,10 @@
       },
       {
         "@type": "Question",
-        "name": "When does ReAnchor launch?",
+        "name": "How is ReAnchor different from a regular journal?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ReAnchor is launching on iOS in Spring 2026. You can join the waitlist at lynqtech.io/reanchor to be among the first to access it."
+          "text": "A journal captures how you feel. ReAnchor captures why you decided. The structure matters: every entry answers the same questions — what changed, what you feared, what you believed, why you were willing to risk it. That structure is what makes it useful when doubt arrives. You're not searching through pages of stream-of-consciousness. You're reading a record built for exactly this moment."
         }
       },
       {
@@ -94,8 +114,80 @@
         "name": "Is my data private?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. ReAnchor is designed with privacy in mind. In the current version, your data is stored locally on your device and is not uploaded to any server."
+          "text": "Nobody can see your data. ReAnchor is designed with privacy in mind. Your data is stored locally on your device with no account required. If you want to access your decisions across devices, you can register an account and sync to cloud with encrypted storage. The things you record here are some of the most personal thoughts you'll ever write down, and we take that seriously."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "When does ReAnchor launch, and is it free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ReAnchor launches on iOS in Spring 2026 and will be free to download. Join the waitlist to get early access — waitlist members get first access and any early-adopter pricing."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: HowTo (Doubt Review process) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to Stop Second-Guessing a Decision Using the Doubt Review",
+    "description": "A structured 10-minute protocol for resolving doubt about a past decision — 7 evidence-informed questions that help you separate new facts from emotional reactions.",
+    "totalTime": "PT10M",
+    "tool": [{ "@type": "HowToTool", "name": "ReAnchor iOS app" }],
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Anchor the decision",
+        "text": "Write down what you decided, why you decided it, how you felt, and what you feared — at the moment of clarity, before doubt arrives.",
+        "url": "https://lynqtech.io/reanchor#how"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Return when doubt arrives",
+        "text": "When doubt hits — at 2am, after a hard week, or when someone asks 'are you sure?' — open the app and find the decision record.",
+        "url": "https://lynqtech.io/reanchor#how"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Run the Doubt Review",
+        "text": "Answer 7 structured questions in 10 minutes: Is this a new fact or a feeling? Did the original reasoning change? Are you reacting to one bad week or a real pattern?",
+        "url": "https://lynqtech.io/reanchor#how"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Hold the line or change course",
+        "text": "By the end of the Doubt Review you will know whether to recommit with clear eyes — or whether something genuinely changed and a course correction is warranted.",
+        "url": "https://lynqtech.io/reanchor#how"
+      }
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Lynq Tech",
+        "item": "https://lynqtech.io"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "ReAnchor",
+        "item": "https://lynqtech.io/reanchor"
       }
     ]
   }
@@ -3211,7 +3303,7 @@
             <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="faq-answer" role="region">
-            <p class="faq-answer-inner">Nobody. ReAnchor is designed with your privacy in mind — Right now, your data is stored locally on your device with no account needed. If you wish to bring your decision to any other devices, you can register an account and sync to cloud, but your data is stored securly encripted. The things you record here are some of the most personal thoughts you'll ever write down, and we take that seriously.</p>
+            <p class="faq-answer-inner">Nobody. ReAnchor is designed with your privacy in mind — Right now, your data is stored locally on your device with no account needed. If you wish to bring your decision to any other devices, you can register an account and sync to cloud, but your data is stored securely encrypted. The things you record here are some of the most personal thoughts you'll ever write down, and we take that seriously.</p>
           </div>
         </div>
 
@@ -3221,7 +3313,7 @@
             <svg class="faq-chevron" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M5 7.5l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="faq-answer" role="region">
-            <p class="faq-answer-inner">ReAnchor launches on iOS in Spring 2026. Join the waitlist to get early access. Pricing will be announced at launch — waitlist members get first access and any early-adopter pricing.</p>
+            <p class="faq-answer-inner">ReAnchor launches on iOS in Spring 2026 and will be free to download. Join the waitlist to get early access — waitlist members get first access and any early-adopter pricing.</p>
           </div>
         </div>
 
