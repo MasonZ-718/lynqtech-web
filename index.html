@@ -246,6 +246,113 @@
       flex-shrink: 0;
     }
 
+    /* Vision block */
+    .vision {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .vision-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--dim);
+    }
+
+    .vision-quote {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(16px, 3.5vw, 20px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.55;
+      border-left: 2px solid var(--accent-border);
+      padding-left: 18px;
+    }
+
+    .vision-body {
+      font-size: 14px;
+      color: var(--dim);
+      line-height: 1.75;
+    }
+
+    /* Pillars */
+    .pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .pillar {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .pillar:last-child { border-bottom: none; }
+
+    .pillar-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 6px;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+
+    .pillar-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .pillar-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* Builder */
+    .builder-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .builder-link:hover {
+      border-color: var(--accent-border);
+      background: var(--surface-2);
+    }
+
+    .builder-info { display: flex; flex-direction: column; gap: 2px; }
+
+    .builder-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .builder-role {
+      font-size: 12px;
+      color: var(--dim);
+    }
+
+    .builder-arrow {
+      font-size: 13px;
+      color: var(--dim);
+    }
+
     /* Footer */
     .footer {
       font-size: 12px;
@@ -258,7 +365,29 @@
     <div class="header">
       <span class="brand">Lynq Tech</span>
       <h1>Building tools for<br /><em>clearer thinking.</em></h1>
-      <p class="sub">Small, focused products for the decisions and moments that matter.</p>
+      <p class="sub">The world has tools for fitness, finances, and focus. Nothing exists yet for the quality of your choices. That's what we're building.</p>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="vision">
+      <p class="vision-label">Our Vision</p>
+      <p class="vision-quote">The future isn't just smarter technology. It's technology that helps us reconnect — with others, with tools, and with ourselves.</p>
+      <p class="vision-body">We're more connected than ever. But people feel more lost, more overwhelmed, and more alone — especially when it matters most. The problem isn't a lack of information. It's too much noise, not enough clarity.</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-dot"></div>
+          <p class="pillar-text"><strong>Link people with the right people</strong> — technology that reduces isolation, not deepens it.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-dot"></div>
+          <p class="pillar-text"><strong>Link people with tools that actually support them</strong> — built around how humans think and feel, not just how machines process.</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-dot"></div>
+          <p class="pillar-text"><strong>Link people back to themselves</strong> — their own clarity, their own values, their own decisions.</p>
+        </div>
+      </div>
     </div>
 
     <div class="rule"></div>
@@ -271,6 +400,19 @@
           <span class="product-desc">Stop second-guessing yourself</span>
         </div>
         <span class="product-badge">Waitlist</span>
+      </a>
+    </div>
+
+    <div class="rule"></div>
+
+    <div>
+      <p class="products-label">Builder</p>
+      <a href="/about" class="builder-link">
+        <div class="builder-info">
+          <span class="builder-name">Mason Zhou</span>
+          <span class="builder-role">Founder · Former BCG · IESE MBA · Building in public</span>
+        </div>
+        <span class="builder-arrow">→</span>
       </a>
     </div>
 
