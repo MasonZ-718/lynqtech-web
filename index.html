@@ -75,18 +75,18 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:             #09090b;
-      --surface:        #18181b;
-      --surface-2:      #1c1c1f;
-      --border:         #27272a;
-      --border-subtle:  #1f1f22;
-      --text:           #f4f4f5;
-      --muted:          #a1a1aa;
-      --dim:            #71717a;
-      --accent:         #34d399;
-      --accent-text:    rgba(52, 211, 153, 0.82);
-      --accent-glow:    rgba(52, 211, 153, 0.10);
-      --accent-border:  rgba(52, 211, 153, 0.22);
+      --bg:           #09090b;
+      --surface:      #18181b;
+      --surface-2:    #1c1c1f;
+      --border:       #27272a;
+      --border-sub:   #1f1f22;
+      --text:         #f4f4f5;
+      --muted:        #a1a1aa;
+      --dim:          #71717a;
+      --accent:       #34d399;
+      --accent-text:  rgba(52,211,153,0.82);
+      --accent-glow:  rgba(52,211,153,0.10);
+      --accent-bord:  rgba(52,211,153,0.22);
     }
 
     html { height: 100%; }
@@ -100,12 +100,12 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 48px 24px;
+      padding: 56px 24px;
       position: relative;
       overflow: hidden;
     }
 
-    /* Grain texture */
+    /* Grain */
     body::after {
       content: '';
       position: fixed;
@@ -130,23 +130,34 @@
       pointer-events: none;
     }
 
+    /* Stagger animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .u { animation: fadeUp 0.55s cubic-bezier(0.22,1,0.36,1) both; }
+    .u1  { animation-delay: 0ms; }
+    .u2  { animation-delay: 80ms; }
+    .u3  { animation-delay: 160ms; }
+    .u4  { animation-delay: 240ms; }
+    .u5  { animation-delay: 320ms; }
+    .u6  { animation-delay: 400ms; }
+    .u7  { animation-delay: 480ms; }
+    .u8  { animation-delay: 540ms; }
+
+    /* Layout */
     .inner {
       max-width: 480px;
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 36px;
       position: relative;
       z-index: 1;
     }
 
-    /* Header block */
-    .header {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
+    /* Brand */
     .brand {
       font-size: 10px;
       font-weight: 600;
@@ -155,268 +166,191 @@
       color: var(--accent-text);
     }
 
+    /* Hero */
     h1 {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(32px, 6vw, 54px);
+      font-size: clamp(34px, 6vw, 54px);
       font-weight: 300;
       color: var(--text);
-      line-height: 1.12;
+      line-height: 1.1;
       letter-spacing: -0.6px;
     }
 
-    h1 em {
-      font-style: italic;
-      color: var(--muted);
-    }
+    h1 em { font-style: italic; color: var(--muted); }
 
     .sub {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--dim);
       line-height: 1.7;
-      max-width: 340px;
+      max-width: 320px;
+      margin-top: 4px;
     }
 
-    /* Divider */
-    .rule {
-      width: 40px;
-      height: 1px;
-      background: var(--border);
+    /* Rule */
+    .rule { width: 32px; height: 1px; background: var(--border); }
+
+    /* Vision quote */
+    .vision-quote {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(14px, 3vw, 17px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.6;
+      border-left: 2px solid var(--accent-bord);
+      padding-left: 16px;
     }
 
-    /* Products */
-    .products {
+    /* Pillar chips */
+    .chips {
       display: flex;
-      flex-direction: column;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 7px;
     }
 
-    .products-label {
+    .chip {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--dim);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      letter-spacing: 0.2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .chip:hover { color: var(--muted); border-color: var(--accent-bord); }
+
+    /* Section label */
+    .label {
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--dim);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
 
-    .product-link {
+    /* Cards */
+    .card {
       display: flex;
       align-items: center;
       justify-content: space-between;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 20px 24px;
+      padding: 18px 22px;
       text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-      gap: 16px;
+      gap: 14px;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
     }
 
-    .product-link:hover {
-      border-color: var(--accent-border);
+    .card:hover {
+      border-color: var(--accent-bord);
       background: var(--surface-2);
-      box-shadow: 0 4px 24px rgba(52, 211, 153, 0.06);
+      box-shadow: 0 4px 28px rgba(52,211,153,0.07);
     }
 
-    .product-info { display: flex; flex-direction: column; gap: 4px; }
+    .card-info { display: flex; flex-direction: column; gap: 3px; }
 
-    .product-name {
+    .card-name {
       font-size: 15px;
       font-weight: 600;
       color: var(--text);
     }
 
-    .product-desc {
+    .card-desc {
       font-family: 'Fraunces', Georgia, serif;
       font-size: 13px;
       font-style: italic;
       color: var(--dim);
     }
 
-    .product-badge {
+    /* Badge */
+    .badge {
       font-size: 10px;
       font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
       color: var(--accent);
       background: var(--accent-glow);
-      border: 1px solid var(--accent-border);
+      border: 1px solid var(--accent-bord);
       border-radius: 6px;
       padding: 3px 8px;
       flex-shrink: 0;
+      white-space: nowrap;
     }
 
-    /* Vision block */
-    .vision {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .vision-label {
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .badge-dim {
       color: var(--dim);
+      background: transparent;
+      border-color: var(--border);
     }
 
-    .vision-quote {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(16px, 3.5vw, 20px);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--text);
-      line-height: 1.55;
-      border-left: 2px solid var(--accent-border);
-      padding-left: 18px;
-    }
-
-    .vision-body {
-      font-size: 14px;
+    /* Arrow */
+    .arrow {
+      font-size: 16px;
       color: var(--dim);
-      line-height: 1.75;
-    }
-
-    /* Pillars */
-    .pillars {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .pillar {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      padding: 14px 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .pillar:last-child { border-bottom: none; }
-
-    .pillar-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      margin-top: 6px;
       flex-shrink: 0;
-      opacity: 0.6;
+      transition: transform 0.2s, color 0.2s;
     }
 
-    .pillar-text {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .pillar-text strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* Builder */
-    .builder-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 16px 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-
-    .builder-link:hover {
-      border-color: var(--accent-border);
-      background: var(--surface-2);
-    }
-
-    .builder-info { display: flex; flex-direction: column; gap: 2px; }
-
-    .builder-name {
-      font-size: 13px;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    .builder-role {
-      font-size: 12px;
-      color: var(--dim);
-    }
-
-    .builder-arrow {
-      font-size: 13px;
-      color: var(--dim);
-    }
+    .card:hover .arrow { transform: translateX(3px); color: var(--muted); }
 
     /* Footer */
-    .footer {
-      font-size: 12px;
-      color: #3f3f46;
-    }
+    .footer { font-size: 12px; color: #3f3f46; }
   </style>
 </head>
 <body>
   <div class="inner">
-    <div class="header">
-      <span class="brand">Lynq Tech</span>
-      <h1>Building tools for<br /><em>clearer thinking.</em></h1>
-      <p class="sub">The world has tools for fitness, finances, and focus. Nothing exists yet for the quality of your choices. That's what we're building.</p>
+
+    <!-- Hero -->
+    <div>
+      <span class="brand u u1">Lynq Tech</span>
+      <h1 class="u u2" style="margin-top:16px;">Building tools for<br /><em>clearer thinking.</em></h1>
+      <p class="sub u u3">Small, focused products for the decisions and moments that matter.</p>
     </div>
 
-    <div class="rule"></div>
+    <div class="rule u u3"></div>
 
-    <div class="vision">
-      <p class="vision-label">Our Vision</p>
+    <!-- Vision -->
+    <div class="u u4">
       <p class="vision-quote">The future isn't just smarter technology. It's technology that helps us reconnect — with others, with tools, and with ourselves.</p>
-      <p class="vision-body">We're more connected than ever. But people feel more lost, more overwhelmed, and more alone — especially when it matters most. The problem isn't a lack of information. It's too much noise, not enough clarity.</p>
-      <div class="pillars">
-        <div class="pillar">
-          <div class="pillar-dot"></div>
-          <p class="pillar-text"><strong>Link people with the right people</strong> — technology that reduces isolation, not deepens it.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-dot"></div>
-          <p class="pillar-text"><strong>Link people with tools that actually support them</strong> — built around how humans think and feel, not just how machines process.</p>
-        </div>
-        <div class="pillar">
-          <div class="pillar-dot"></div>
-          <p class="pillar-text"><strong>Link people back to themselves</strong> — their own clarity, their own values, their own decisions.</p>
-        </div>
+      <div class="chips" style="margin-top:14px;">
+        <span class="chip">People ↔ People</span>
+        <span class="chip">People ↔ Tools</span>
+        <span class="chip">People ↔ Themselves</span>
       </div>
     </div>
 
-    <div class="rule"></div>
+    <div class="rule u u4"></div>
 
-    <div class="products">
-      <p class="products-label">Products</p>
-      <a href="/reanchor" class="product-link">
-        <div class="product-info">
-          <span class="product-name">ReAnchor</span>
-          <span class="product-desc">Stop second-guessing yourself</span>
+    <!-- Products -->
+    <div class="u u5">
+      <p class="label">Products</p>
+      <a href="/reanchor" class="card">
+        <div class="card-info">
+          <span class="card-name">ReAnchor</span>
+          <span class="card-desc">Stop second-guessing yourself</span>
         </div>
-        <span class="product-badge">Waitlist</span>
+        <span class="badge">Waitlist</span>
       </a>
     </div>
 
-    <div class="rule"></div>
-
-    <div>
-      <p class="products-label">Builder</p>
-      <a href="/about" class="builder-link">
-        <div class="builder-info">
-          <span class="builder-name">Mason Zhou</span>
-          <span class="builder-role">Founder · Former BCG · IESE MBA · Building in public</span>
+    <!-- Builder -->
+    <div class="u u6">
+      <p class="label">Builder</p>
+      <a href="/about" class="card">
+        <div class="card-info">
+          <span class="card-name">Mason Zhou</span>
+          <span class="card-desc">Founder · BCG · IESE MBA · Building in public</span>
         </div>
-        <span class="builder-arrow">→</span>
+        <span class="arrow">→</span>
       </a>
     </div>
 
-    <p class="footer">© 2026 Lynq Tech · <a href="/about" style="color: inherit; text-decoration: none; opacity: 0.7;">About</a></p>
+    <p class="footer u u7">© 2026 Lynq Tech</p>
+
   </div>
 </body>
 </html>
