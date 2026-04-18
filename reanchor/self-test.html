@@ -177,7 +177,7 @@
     main {
       max-width: 720px;
       margin: 0 auto;
-      padding: 100px clamp(20px, 4vw, 40px) 80px;
+      padding: 112px clamp(20px, 4vw, 40px) 96px;
     }
 
     /* ── Progress bar ── */
@@ -247,12 +247,12 @@
     }
     .intro-headline {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(32px, 5vw, 54px);
+      font-size: clamp(34px, 6vw, 58px);
       font-weight: 400;
-      line-height: 1.2;
+      line-height: 1.15;
       color: var(--text);
-      margin-bottom: 20px;
-      letter-spacing: -0.5px;
+      margin-bottom: 24px;
+      letter-spacing: -0.8px;
     }
     .intro-headline em {
       font-style: italic;
@@ -261,15 +261,15 @@
     .intro-body {
       font-size: 17px;
       color: var(--muted);
-      line-height: 1.75;
-      margin-bottom: 32px;
+      line-height: 1.8;
+      margin-bottom: 40px;
       max-width: 560px;
     }
     .intro-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 40px;
+      margin-bottom: 48px;
     }
     .meta-pill {
       display: inline-flex;
@@ -295,15 +295,17 @@
     .dimension-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-bottom: 40px;
+      gap: 14px;
+      margin-bottom: 48px;
     }
     .dim-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 18px 20px;
+      padding: 22px 22px;
+      transition: border-color 0.2s;
     }
+    .dim-card:hover { border-color: rgba(52,211,153,0.15); }
     .dim-card-icon {
       font-size: 20px;
       margin-bottom: 10px;
@@ -351,7 +353,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      margin-bottom: 28px;
+      margin-bottom: 36px;
     }
     .step-dim-badge {
       font-size: 11px;
@@ -380,7 +382,7 @@
     .step-subhead {
       font-size: 14px;
       color: var(--dim);
-      margin-bottom: 32px;
+      margin-bottom: 40px;
     }
 
     /* ── Question card ── */
@@ -388,7 +390,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 24px 24px 20px;
+      padding: 28px 28px 24px;
       margin-bottom: 16px;
       transition: border-color 0.2s ease;
     }
@@ -408,8 +410,8 @@
       font-size: clamp(15px, 2vw, 18px);
       font-weight: 400;
       color: var(--text);
-      line-height: 1.5;
-      margin-bottom: 20px;
+      line-height: 1.55;
+      margin-bottom: 24px;
     }
 
     /* Likert scale */
@@ -490,7 +492,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: 32px;
+      margin-top: 40px;
       gap: 12px;
     }
     .btn-back {
@@ -539,7 +541,7 @@
     /* ── Results step ── */
     .results-header {
       text-align: center;
-      margin-bottom: 48px;
+      margin-bottom: 60px;
     }
     .results-eyebrow {
       font-size: 11px;
@@ -612,7 +614,7 @@
 
     /* Dimension breakdown */
     .dimensions-section {
-      margin-bottom: 40px;
+      margin-bottom: 52px;
     }
     .dimensions-title {
       font-size: 11px;
@@ -623,7 +625,7 @@
       margin-bottom: 20px;
     }
     .dim-row {
-      margin-bottom: 18px;
+      margin-bottom: 24px;
     }
     .dim-row-header {
       display: flex;

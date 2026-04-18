@@ -4,13 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO -->
   <title>Mason Zhou — Founder of Lynq Tech</title>
   <meta name="description" content="Mason Zhou is the founder of Lynq Tech, builder of ReAnchor, and creator of 1001Lives. Former BCG consultant and IESE MBA. Building tools for clearer thinking." />
   <meta name="author" content="Mason Zhou" />
   <link rel="canonical" href="https://lynqtech.io/about" />
 
-  <!-- Open Graph -->
   <meta property="og:title" content="Mason Zhou — Founder of Lynq Tech" />
   <meta property="og:description" content="Former BCG consultant. IESE MBA. Building tools for clearer thinking and a world with less noise in people's heads." />
   <meta property="og:type" content="profile" />
@@ -18,16 +16,9 @@
   <meta property="og:site_name" content="Lynq Tech" />
   <meta property="og:image" content="https://lynqtech.io/about/photos/mason.jpg" />
   <meta property="og:image:alt" content="Mason Zhou, Founder of Lynq Tech" />
-  <meta property="og:profile:first_name" content="Mason" />
-  <meta property="og:profile:last_name" content="Zhou" />
-  <meta property="og:profile:username" content="lessinmyhead" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mason Zhou — Founder of Lynq Tech" />
-  <meta name="twitter:description" content="Former BCG consultant. IESE MBA. Building tools for clearer thinking." />
-  <meta name="twitter:image" content="https://lynqtech.io/about/photos/mason.jpg" />
   <meta name="twitter:creator" content="@lessinmyhead" />
 
-  <!-- JSON-LD: Person -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -36,20 +27,10 @@
     "jobTitle": "Founder",
     "url": "https://lynqtech.io/about",
     "image": "https://lynqtech.io/about/photos/mason.jpg",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Lynq Tech",
-      "url": "https://lynqtech.io"
-    },
+    "worksFor": { "@type": "Organization", "name": "Lynq Tech", "url": "https://lynqtech.io" },
     "alumniOf": [
-      {
-        "@type": "EducationalOrganization",
-        "name": "IESE Business School"
-      },
-      {
-        "@type": "Organization",
-        "name": "Boston Consulting Group"
-      }
+      { "@type": "EducationalOrganization", "name": "IESE Business School" },
+      { "@type": "Organization", "name": "Boston Consulting Group" }
     ],
     "knowsAbout": ["decision making", "decision anxiety", "behavioral psychology", "product development", "iOS apps"],
     "sameAs": [
@@ -61,8 +42,6 @@
     ]
   }
   </script>
-
-  <!-- JSON-LD: BreadcrumbList -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -77,232 +56,950 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #09090b; --surface: #18181b; --surface-2: #1c1c1f;
-      --border: #27272a; --border-subtle: #1f1f22;
-      --text: #f4f4f5; --muted: #a1a1aa; --dim: #71717a;
-      --accent: #34d399; --accent-text: rgba(52,211,153,0.82);
-      --accent-glow: rgba(52,211,153,0.10); --accent-border: rgba(52,211,153,0.22);
+      --bg:           #09090b;
+      --surface:      #18181b;
+      --surface-2:    #1c1c1f;
+      --border:       #27272a;
+      --border-sub:   #1f1f22;
+      --text:         #f4f4f5;
+      --muted:        #a1a1aa;
+      --dim:          #71717a;
+      --accent:       #34d399;
+      --accent-t:     rgba(52,211,153,0.82);
+      --accent-g:     rgba(52,211,153,0.10);
+      --accent-b:     rgba(52,211,153,0.22);
+      --nav-h:        60px;
     }
-    html { height: 100%; }
-    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', -apple-system, sans-serif; min-height: 100%; padding: 0; position: relative; overflow-x: hidden; }
-    body::after { content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.04; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 220px 220px; }
-    .page { max-width: 680px; margin: 0 auto; padding: 64px 24px 80px; position: relative; z-index: 1; }
-    section { margin-bottom: 72px; }
-    .eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-text); margin-bottom: 20px; display: block; }
-    .hero-photo-wrap { width: 100%; height: 380px; border-radius: 20px; overflow: hidden; margin-bottom: 36px; position: relative; }
-    .hero-photo-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.75) saturate(0.85); }
-    .hero-photo-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 40%, rgba(9,9,11,0.7) 100%); }
-    h1 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(28px, 5vw, 44px); font-weight: 300; color: var(--text); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 14px; }
-    h1 em { font-style: italic; color: var(--muted); }
-    .hero-sub { font-size: 15px; color: var(--dim); line-height: 1.6; }
-    .cred-list { display: flex; flex-direction: column; gap: 2px; }
-    .cred-item { display: flex; align-items: center; gap: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
-    .cred-logo { width: 32px; height: 32px; object-fit: contain; flex-shrink: 0; filter: brightness(0) invert(1) opacity(0.7); }
-    .cred-badge { width: 32px; height: 32px; border-radius: 8px; background: var(--surface-2); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--dim); flex-shrink: 0; }
-    .cred-info { display: flex; flex-direction: column; gap: 2px; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', -apple-system, sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(24px, 4vw, 64px);
+      background: rgba(9,9,11,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(39,39,42,0.5);
+    }
+    .nav-brand {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-brand:hover { color: var(--accent-t); }
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--dim);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-back:hover { color: var(--muted); background: rgba(255,255,255,0.05); }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.22,1,0.36,1), transform 0.75s cubic-bezier(0.22,1,0.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .rd1 { transition-delay: 0.08s; }
+    .rd2 { transition-delay: 0.16s; }
+    .rd3 { transition-delay: 0.24s; }
+    .rd4 { transition-delay: 0.32s; }
+
+    /* ── Hero stagger ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .u  { animation: fadeUp 0.75s cubic-bezier(0.22,1,0.36,1) both; }
+    .u1 { animation-delay: 80ms; }
+    .u2 { animation-delay: 180ms; }
+    .u3 { animation-delay: 280ms; }
+    .u4 { animation-delay: 380ms; }
+
+    /* ── Section shell ── */
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 clamp(24px, 5vw, 80px);
+    }
+
+    .eyebrow {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 28px;
+    }
+
+    /* ════════════════════════════════
+       HERO — full-viewport, split
+    ════════════════════════════════ */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Ambient glow behind photo side */
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: 10%;
+      right: 0;
+      width: 60%;
+      height: 80%;
+      background: radial-gradient(ellipse at right center, rgba(52,211,153,0.07) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: calc(var(--nav-h) + 80px) clamp(24px, 5vw, 72px) 100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--accent-t);
+      margin-bottom: 32px;
+    }
+    .hero-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: dotPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    .hero-name {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(48px, 6vw, 88px);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -2px;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+
+    .hero-tagline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(16px, 1.8vw, 22px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 420px;
+      margin-bottom: 48px;
+    }
+
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hero-pill {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--dim);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
+    }
+
+    /* Photo side */
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: brightness(0.65) saturate(0.8);
+    }
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 30%),
+                  linear-gradient(to top, rgba(9,9,11,0.5) 0%, transparent 40%);
+    }
+
+    /* vertical separator line */
+    .hero-sep {
+      position: absolute;
+      left: 50%;
+      top: calc(var(--nav-h) + 40px);
+      bottom: 40px;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--border) 20%, var(--border) 80%, transparent);
+      z-index: 2;
+    }
+
+    /* ════════════════════════════════
+       BACKGROUND section
+    ════════════════════════════════ */
+    #background {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .bg-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 80px;
+      align-items: start;
+    }
+
+    .bg-intro {
+      grid-column: 1 / -1;
+      max-width: 640px;
+    }
+
+    .section-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .section-headline em { font-style: italic; color: var(--muted); }
+
+    .cred-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .cred-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 24px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .cred-item:hover { border-color: var(--accent-b); transform: translateX(3px); }
+
+    .cred-logo {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: brightness(0) invert(1) opacity(0.65);
+    }
+    .cred-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--dim);
+      flex-shrink: 0;
+    }
+    .cred-info { display: flex; flex-direction: column; gap: 3px; }
     .cred-title { font-size: 14px; font-weight: 500; color: var(--text); }
     .cred-org { font-size: 12px; color: var(--dim); }
-    .body-text { font-size: 15px; color: var(--muted); line-height: 1.75; margin-bottom: 16px; }
+
+    /* Story text column */
+    .bg-story { display: flex; flex-direction: column; gap: 0; }
+
+    .body-text {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 22px;
+    }
     .body-text em { color: var(--text); font-style: italic; }
-    .pull-quote { font-family: 'Fraunces', Georgia, serif; font-size: clamp(17px, 3vw, 22px); font-weight: 300; font-style: italic; color: var(--text); line-height: 1.5; border-left: 2px solid var(--accent-border); padding-left: 20px; margin: 28px 0; }
-    .belief-grid { display: flex; flex-direction: column; gap: 10px; }
-    .belief-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; }
-    .belief-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
-    .belief-body { font-size: 14px; color: var(--dim); line-height: 1.65; }
-    .building-list { display: flex; flex-direction: column; gap: 10px; }
-    .building-card { display: flex; align-items: flex-start; justify-content: space-between; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 24px; text-decoration: none; transition: border-color 0.2s, background 0.2s; gap: 16px; }
-    a.building-card:hover { border-color: var(--accent-border); background: var(--surface-2); box-shadow: 0 4px 24px rgba(52,211,153,0.06); }
-    .building-card-static { opacity: 0.6; }
-    .building-info { display: flex; flex-direction: column; gap: 6px; flex: 1; }
-    .building-name { font-size: 15px; font-weight: 600; color: var(--text); }
-    .building-desc { font-family: 'Fraunces', Georgia, serif; font-size: 13px; font-style: italic; color: var(--dim); line-height: 1.55; }
-    .building-badge { font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); background: var(--accent-glow); border: 1px solid var(--accent-border); border-radius: 6px; padding: 3px 8px; flex-shrink: 0; white-space: nowrap; }
-    .building-badge-neutral { color: var(--dim); background: transparent; border-color: var(--border); }
-    .photo-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 24px 0; }
-    .photo-strip img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; filter: brightness(0.8) saturate(0.9); }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-    .tag { font-size: 13px; color: var(--muted); border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; }
-    .connect-headline { font-family: 'Fraunces', Georgia, serif; font-size: clamp(20px, 4vw, 28px); font-weight: 300; font-style: italic; color: var(--text); margin-bottom: 10px; }
-    .connect-body { font-size: 14px; color: var(--dim); line-height: 1.65; margin-bottom: 28px; }
-    .social-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-    .social-link { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 10px 16px; text-decoration: none; font-size: 13px; color: var(--muted); transition: border-color 0.2s, color 0.2s; }
-    .social-link:hover { border-color: var(--accent-border); color: var(--text); }
-    .social-icon { font-size: 14px; }
-    .nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
-    .nav-brand { font-size: 10px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-text); text-decoration: none; }
-    .nav-back { font-size: 13px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
-    .nav-back:hover { color: var(--text); }
-    .footer { font-size: 12px; color: #3f3f46; margin-top: 80px; padding-top: 24px; border-top: 1px solid var(--border-subtle); }
-    .rule { width: 40px; height: 1px; background: var(--border); margin-bottom: 72px; }
-    @media (max-width: 480px) { .photo-strip { grid-template-columns: repeat(2, 1fr); } .photo-strip img:last-child { display: none; } }
+
+    /* ════════════════════════════════
+       PULL QUOTE
+    ════════════════════════════════ */
+    .pull-quote-section {
+      padding: 100px 0;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .pull-quote-section::before {
+      content: '\201C';
+      position: absolute;
+      top: 20px;
+      left: clamp(24px, 5vw, 80px);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(120px, 16vw, 240px);
+      line-height: 1;
+      color: rgba(52,211,153,0.04);
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .pull-quote {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(22px, 3vw, 38px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.5;
+      max-width: 820px;
+      border-left: 2px solid var(--accent-b);
+      padding-left: 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .pull-quote strong { color: var(--text); font-weight: 300; font-style: normal; }
+
+    /* ════════════════════════════════
+       BELIEFS
+    ════════════════════════════════ */
+    #beliefs {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .beliefs-head {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 64px;
+      margin-bottom: 64px;
+      align-items: end;
+    }
+
+    .beliefs-intro {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .belief-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .belief-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .belief-card:hover { border-color: var(--accent-b); transform: translateY(-3px); }
+
+    .belief-num {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: rgba(52,211,153,0.2);
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+
+    .belief-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .belief-body {
+      font-size: 14px;
+      color: var(--dim);
+      line-height: 1.75;
+    }
+
+    /* ════════════════════════════════
+       BUILDING
+    ════════════════════════════════ */
+    #building {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .building-list { display: flex; flex-direction: column; gap: 12px; margin-top: 0; }
+
+    .building-card {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px 32px;
+      text-decoration: none;
+      gap: 20px;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+    a.building-card:hover {
+      border-color: var(--accent-b);
+      background: var(--surface-2);
+      box-shadow: 0 8px 32px rgba(52,211,153,0.07);
+    }
+    .building-card-static { opacity: 0.5; pointer-events: none; }
+
+    .building-info { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .building-name { font-size: 16px; font-weight: 600; color: var(--text); }
+    .building-desc {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--dim);
+      line-height: 1.65;
+    }
+
+    .building-badge {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-g);
+      border: 1px solid var(--accent-b);
+      border-radius: 6px;
+      padding: 4px 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+    .building-badge-neutral {
+      color: var(--dim);
+      background: transparent;
+      border-color: var(--border);
+    }
+
+    /* ════════════════════════════════
+       BEYOND
+    ════════════════════════════════ */
+    #beyond {
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .beyond-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .beyond-text { display: flex; flex-direction: column; gap: 0; }
+
+    .beyond-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+
+    .beyond-body {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 13px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 16px;
+    }
+
+    .photo-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+      height: 480px;
+    }
+    .photo-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      filter: brightness(0.75) saturate(0.85);
+      transition: filter 0.3s;
+    }
+    .photo-strip img:hover { filter: brightness(0.9) saturate(1); }
+    .photo-strip img:first-child {
+      grid-row: 1 / 3;
+    }
+
+    /* ════════════════════════════════
+       CONNECT
+    ════════════════════════════════ */
+    #connect {
+      padding: 120px 0 160px;
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    #connect::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 400px;
+      background: radial-gradient(ellipse at center bottom, rgba(52,211,153,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .connect-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .connect-headline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .connect-headline em { font-style: italic; color: var(--muted); }
+
+    .connect-body {
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .social-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .social-link:hover {
+      border-color: var(--accent-b);
+      color: var(--text);
+      background: var(--surface-2);
+    }
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--dim);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .social-link:hover .social-icon {
+      color: var(--accent-t);
+      border-color: var(--accent-b);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border-sub);
+      padding: 32px clamp(24px, 5vw, 80px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-brand { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #3f3f46; }
+    .footer-copy { font-size: 12px; color: #3f3f46; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1000px) {
+      .beyond-grid { grid-template-columns: 1fr; gap: 48px; }
+      .photo-strip { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; height: auto; }
+      .photo-strip img { aspect-ratio: 4/3; }
+      .photo-strip img:first-child { grid-row: auto; }
+      .connect-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    @media (max-width: 860px) {
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 50vw; min-height: 300px; }
+      .hero-sep { display: none; }
+      .hero-left { padding-top: calc(var(--nav-h) + 48px); padding-bottom: 64px; justify-content: flex-start; }
+      .bg-grid { grid-template-columns: 1fr; }
+      .beliefs-head { grid-template-columns: 1fr; gap: 24px; }
+      .belief-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .photo-strip { grid-template-columns: 1fr 1fr; }
+      .photo-strip img:last-child { display: none; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .u { animation: none; transition: none; opacity: 1; transform: none; }
+      .hero-dot { animation: none; }
+    }
   </style>
 </head>
 <body>
-  <div class="page">
-    <nav class="nav" aria-label="Site navigation">
-      <a href="/" class="nav-brand">Lynq Tech</a>
-      <a href="/" class="nav-back">← Home</a>
-    </nav>
 
-    <!-- HERO -->
-    <section aria-labelledby="section-hero">
-      <div class="hero-photo-wrap">
-        <img src="photos/mason.jpg" alt="Mason Zhou in the mountains" />
+  <!-- ════════════════════════════
+       NAV
+  ════════════════════════════ -->
+  <nav aria-label="Site navigation">
+    <a href="/" class="nav-brand">Lynq Tech</a>
+    <a href="/" class="nav-back" aria-label="Back to home">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M9 11L5 7l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Home
+    </a>
+  </nav>
+
+  <!-- ════════════════════════════
+       HERO — split viewport
+  ════════════════════════════ -->
+  <section id="hero" aria-label="Founder introduction">
+    <div class="hero-sep" aria-hidden="true"></div>
+
+    <div class="hero-left">
+      <span class="hero-eyebrow u u1">
+        <span class="hero-dot" aria-hidden="true"></span>
+        Founder &nbsp;·&nbsp; Lynq Tech
+      </span>
+      <h1 class="hero-name u u2">Mason<br />Zhou.</h1>
+      <p class="hero-tagline u u3">Building tools for clearer thinking — and a world with less noise in people's heads.</p>
+      <div class="hero-pills u u4">
+        <span class="hero-pill">Former BCG</span>
+        <span class="hero-pill">IESE MBA</span>
+        <span class="hero-pill">Building in public</span>
       </div>
-      <span class="eyebrow" id="section-hero">Mason Zhou — Founder</span>
-      <h1>Building tools for clearer thinking —<br /><em>and a world with less noise in people's heads.</em></h1>
-      <p class="hero-sub">Founder of Lynq Tech. Creator of 1001Lives. Former BCG consultant.</p>
-    </section>
+    </div>
 
-    <div class="rule"></div>
+    <div class="hero-right">
+      <img src="photos/mason.jpg" alt="Mason Zhou in the mountains" />
+    </div>
+  </section>
 
-    <!-- BACKGROUND -->
-    <section aria-labelledby="section-background">
-      <span class="eyebrow" id="section-background">Background</span>
-      <div class="cred-list">
-        <div class="cred-item">
-          <img class="cred-logo" src="../reanchor/logos/BCG.png" alt="Boston Consulting Group" />
-          <div class="cred-info">
-            <span class="cred-title">Consultant</span>
-            <span class="cred-org">Boston Consulting Group</span>
+  <!-- ════════════════════════════
+       BACKGROUND
+  ════════════════════════════ -->
+  <section id="background" aria-labelledby="bg-heading">
+    <div class="wrap">
+      <div class="bg-grid">
+
+        <div class="bg-intro reveal">
+          <span class="eyebrow" id="bg-heading">Background</span>
+          <h2 class="section-headline">From strategy rooms<br />to <em>building the tools</em><br />that should've existed.</h2>
+        </div>
+
+        <div class="cred-list reveal rd1">
+          <div class="cred-item">
+            <img class="cred-logo" src="../reanchor/logos/BCG.png" alt="Boston Consulting Group" />
+            <div class="cred-info">
+              <span class="cred-title">Consultant</span>
+              <span class="cred-org">Boston Consulting Group</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <img class="cred-logo" src="../reanchor/logos/iese.png" alt="IESE Business School" />
+            <div class="cred-info">
+              <span class="cred-title">MBA</span>
+              <span class="cred-org">IESE Business School</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-badge">GE</div>
+            <div class="cred-info">
+              <span class="cred-title">Commercial Leadership Program</span>
+              <span class="cred-org">General Electric</span>
+            </div>
+          </div>
+          <div class="cred-item">
+            <div class="cred-badge">BSc</div>
+            <div class="cred-info">
+              <span class="cred-title">Double Degree — Automation &amp; Economics</span>
+              <span class="cred-org">Undergraduate</span>
+            </div>
           </div>
         </div>
-        <div class="cred-item">
-          <img class="cred-logo" src="../reanchor/logos/iese.png" alt="IESE Business School" />
-          <div class="cred-info">
-            <span class="cred-title">MBA</span>
-            <span class="cred-org">IESE Business School</span>
-          </div>
+
+        <div class="bg-story reveal rd2">
+          <p class="body-text">At BCG, I sat in rooms where the world's most complex decisions were made — with data, frameworks, and billions on the line.</p>
+          <p class="body-text">But what struck me wasn't how well people decided. It was how much they struggled <em>after</em> — relitigating calls that were already made, letting doubt quietly undo clarity. Not because they lacked intelligence. Because decisions are not purely logical. And nobody had built anything to help with that.</p>
+          <p class="body-text">So I left. Not to escape the problem — to build the thing that should've existed.</p>
         </div>
-        <div class="cred-item">
-          <div class="cred-badge">GE</div>
-          <div class="cred-info">
-            <span class="cred-title">Commercial Leadership Program</span>
-            <span class="cred-org">General Electric</span>
-          </div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-badge">BSc</div>
-          <div class="cred-info">
-            <span class="cred-title">Double Degree — Automation &amp; Economics</span>
-            <span class="cred-org">Undergraduate</span>
-          </div>
-        </div>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- WHY -->
-    <section aria-labelledby="section-why">
-      <span class="eyebrow" id="section-why">Why I Walked Away</span>
-      <p class="body-text">At BCG, I sat in rooms where the world's most complex decisions were made — with data, frameworks, and billions on the line.</p>
-      <p class="body-text">But what struck me wasn't how well people decided. It was how much they struggled <em>after</em> — relitigating calls that were already made, letting doubt quietly undo clarity. Not because they lacked intelligence. Because decisions are not purely logical. And nobody had built anything to help with that.</p>
-      <figure class="pull-quote">
-        <figcaption>"The hard part wasn't deciding to leave. It was the weeks after — when I'd already decided, but my mind kept relitigating it. That loop is why ReAnchor exists."</figcaption>
-      </figure>
-    </section>
+  <!-- ════════════════════════════
+       PULL QUOTE
+  ════════════════════════════ -->
+  <div class="pull-quote-section" aria-hidden="false">
+    <div class="wrap">
+      <blockquote class="pull-quote reveal">
+        "The hard part wasn't deciding to leave. It was the weeks <strong>after</strong> — when I'd already decided, but my mind kept relitigating it. That loop is why ReAnchor exists."
+      </blockquote>
+    </div>
+  </div>
 
-    <!-- BELIEFS -->
-    <section aria-labelledby="section-beliefs">
-      <span class="eyebrow" id="section-beliefs">What I Believe</span>
-      <p class="body-text">Better decisions don't come from more information. They come from clarity.</p>
+  <!-- ════════════════════════════
+       BELIEFS
+  ════════════════════════════ -->
+  <section id="beliefs" aria-labelledby="beliefs-heading">
+    <div class="wrap">
+      <div class="beliefs-head reveal">
+        <div>
+          <span class="eyebrow" id="beliefs-heading">What I Believe</span>
+          <h2 class="section-headline">The principles<br />behind every<br />product I build.</h2>
+        </div>
+        <p class="beliefs-intro">Better decisions don't come from more information. They come from clarity. These beliefs shape everything I build.</p>
+      </div>
+
       <div class="belief-grid">
-        <div class="belief-card">
-          <div class="belief-title">Clarity over analysis</div>
-          <div class="belief-body">Most people already know what they want. They need structure to hear themselves — not more data.</div>
+        <div class="belief-card reveal rd1">
+          <span class="belief-num">01</span>
+          <span class="belief-title">Clarity over analysis</span>
+          <p class="belief-body">Most people already know what they want. They need structure to hear themselves — not more data.</p>
         </div>
-        <div class="belief-card">
-          <div class="belief-title">Emotion is signal, not noise</div>
-          <div class="belief-body">Feelings are information. The goal isn't to eliminate them — it's to stop letting temporary ones overwrite permanent decisions.</div>
+        <div class="belief-card reveal rd2">
+          <span class="belief-num">02</span>
+          <span class="belief-title">Emotion is signal, not noise</span>
+          <p class="belief-body">Feelings are information. The goal isn't to eliminate them — it's to stop letting temporary ones overwrite permanent decisions.</p>
         </div>
-        <div class="belief-card">
-          <div class="belief-title">Technology should support humans, not replace them</div>
-          <div class="belief-body">The best tools give you back your own thinking. They don't think for you.</div>
+        <div class="belief-card reveal rd3">
+          <span class="belief-num">03</span>
+          <span class="belief-title">Technology that gives back your thinking</span>
+          <p class="belief-body">The best tools amplify your own reasoning. They don't replace it with AI-generated certainty.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- BUILDING -->
-    <section aria-labelledby="section-building">
-      <span class="eyebrow" id="section-building">What I'm Building</span>
+  <!-- ════════════════════════════
+       BUILDING
+  ════════════════════════════ -->
+  <section id="building" aria-labelledby="building-heading">
+    <div class="wrap">
+      <span class="eyebrow reveal" id="building-heading">What I'm Building</span>
       <div class="building-list">
-        <a href="/reanchor" class="building-card">
+        <a href="/reanchor" class="building-card reveal rd1">
           <div class="building-info">
             <span class="building-name">ReAnchor</span>
-            <span class="building-desc">An iOS app that captures your decisions at the moment of clarity — so you can return to them when doubt shows up at 2am. Built for the calls that keep you up at night.</span>
+            <span class="building-desc">An iOS app for the calls that keep you up at night. Anchor your thinking when you're clear. Run a 10-minute Doubt Review when you're not. Stop second-guessing yourself.</span>
           </div>
           <span class="building-badge">Launching Spring 2026</span>
         </a>
-        <a href="https://www.youtube.com/@OneThousandandOneLives" target="_blank" rel="noopener noreferrer" class="building-card">
+        <a href="https://www.youtube.com/@OneThousandandOneLives" target="_blank" rel="noopener noreferrer" class="building-card reveal rd2">
           <div class="building-info">
             <span class="building-name">1001Lives</span>
             <span class="building-desc">A project collecting stories from people across all walks of life — how they navigate decisions, struggles, and turning points. Because sometimes the best clarity comes from perspective, not tools.</span>
           </div>
           <span class="building-badge">Storytelling Project</span>
         </a>
-        <div class="building-card building-card-static">
+        <div class="building-card building-card-static reveal rd3">
           <div class="building-info">
             <span class="building-name">What's Next</span>
-            <span class="building-desc">ReAnchor is the first of many. We're exploring tools for navigating uncertainty, life transitions, and meaningful connection — products that combine logic and emotion, not just one or the other.</span>
+            <span class="building-desc">ReAnchor is the first of many. Exploring tools for navigating uncertainty, life transitions, and meaningful connection — products that combine logic and emotion, not just one or the other.</span>
           </div>
           <span class="building-badge building-badge-neutral">In Exploration</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- BEYOND -->
-    <section aria-labelledby="section-beyond">
-      <span class="eyebrow" id="section-beyond">Beyond the Build</span>
-      <p class="body-text">When I'm not building, I'm usually somewhere with no signal.</p>
-      <div class="photo-strip">
-        <img src="photos/mountain-1.jpg" alt="Mountain ridge view" />
-        <img src="photos/mountain-2.jpg" alt="Alpine landscape" />
-        <img src="photos/mountain-3.jpg" alt="Snow-capped peaks" />
+  <!-- ════════════════════════════
+       BEYOND
+  ════════════════════════════ -->
+  <section id="beyond" aria-labelledby="beyond-heading">
+    <div class="wrap">
+      <div class="beyond-grid">
+
+        <div class="beyond-text reveal">
+          <span class="eyebrow" id="beyond-heading">Beyond the Build</span>
+          <h2 class="beyond-headline">When I'm not building,<br />I'm usually somewhere<br />with no signal.</h2>
+          <p class="beyond-body">Mountains reset something in me. The altitude, the silence, the fact that the only decision that matters is the next step.</p>
+          <div class="tag-row">
+            <span class="tag">Mountains &amp; hiking</span>
+            <span class="tag">Photography</span>
+            <span class="tag">Exploring new places</span>
+          </div>
+        </div>
+
+        <div class="photo-strip reveal rd1">
+          <img src="photos/mountain-1.jpg" alt="Mountain ridge view" />
+          <img src="photos/mountain-2.jpg" alt="Alpine landscape" />
+          <img src="photos/mountain-3.jpg" alt="Snow-capped peaks" />
+        </div>
+
       </div>
-      <div class="tag-row">
-        <span class="tag">🏔 Mountains &amp; hiking</span>
-        <span class="tag">📷 Photography</span>
-        <span class="tag">🌍 Exploring new places</span>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════
+       CONNECT
+  ════════════════════════════ -->
+  <section id="connect" aria-labelledby="connect-heading">
+    <div class="wrap">
+      <div class="connect-inner">
+
+        <div class="reveal">
+          <span class="eyebrow" id="connect-heading">Let's Connect</span>
+          <h2 class="connect-headline">Building in public.<br /><em>Always open to a conversation.</em></h2>
+          <p class="connect-body">Whether you're navigating a big decision, building something similar, or just curious — reach out. I respond to everything.</p>
+        </div>
+
+        <div class="social-grid reveal rd1">
+          <a href="mailto:mason.zhou@lynqtech.io" class="social-link">
+            <span class="social-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </span>
+            mason.zhou@lynqtech.io
+          </a>
+          <a href="https://x.com/lessinmyhead" target="_blank" rel="noopener noreferrer" class="social-link">
+            <span class="social-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </span>
+            @lessinmyhead
+          </a>
+          <a href="https://www.instagram.com/lessinmyhead2026" target="_blank" rel="noopener noreferrer" class="social-link">
+            <span class="social-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+            </span>
+            @lessinmyhead2026
+          </a>
+          <a href="https://www.linkedin.com/in/deng-zhou/" target="_blank" rel="noopener noreferrer" class="social-link">
+            <span class="social-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+            </span>
+            LinkedIn
+          </a>
+          <a href="https://www.youtube.com/@OneThousandandOneLives" target="_blank" rel="noopener noreferrer" class="social-link">
+            <span class="social-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
+            </span>
+            YouTube — 1001Lives
+          </a>
+          <a href="https://www.tiktok.com/@less.in.my.head" target="_blank" rel="noopener noreferrer" class="social-link">
+            <span class="social-icon">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/></svg>
+            </span>
+            @less.in.my.head
+          </a>
+        </div>
+
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CONNECT -->
-    <section aria-labelledby="section-connect">
-      <span class="eyebrow" id="section-connect">Let's Connect</span>
-      <p class="connect-headline">Building in public. Always open to a conversation.</p>
-      <p class="connect-body">Whether you're navigating a big decision, building something similar, or just curious — reach out.</p>
-      <div class="social-grid">
-        <a href="mailto:mason.zhou@lynqtech.io" class="social-link">
-          <span class="social-icon">✉</span>
-          <span>mason.zhou@lynqtech.io</span>
-        </a>
-        <a href="https://x.com/lessinmyhead" target="_blank" rel="noopener noreferrer" class="social-link">
-          <span class="social-icon">𝕏</span>
-          <span>@lessinmyhead</span>
-        </a>
-        <a href="https://www.instagram.com/lessinmyhead2026" target="_blank" rel="noopener noreferrer" class="social-link">
-          <span class="social-icon">📷</span>
-          <span>@lessinmyhead2026</span>
-        </a>
-        <a href="https://www.linkedin.com/in/deng-zhou/" target="_blank" rel="noopener noreferrer" class="social-link">
-          <span class="social-icon">in</span>
-          <span>LinkedIn</span>
-        </a>
-        <a href="https://www.youtube.com/@OneThousandandOneLives" target="_blank" rel="noopener noreferrer" class="social-link">
-          <span class="social-icon">▶</span>
-          <span>YouTube</span>
-        </a>
-        <a href="https://www.tiktok.com/@less.in.my.head" target="_blank" rel="noopener noreferrer" class="social-link">
-          <span class="social-icon">♪</span>
-          <span>TikTok</span>
-        </a>
-      </div>
-    </section>
+  <!-- ════════════════════════════
+       FOOTER
+  ════════════════════════════ -->
+  <footer>
+    <span class="footer-brand">Lynq Tech</span>
+    <span class="footer-copy">© 2026 Lynq Tech</span>
+  </footer>
 
-    <footer class="footer">© 2026 Lynq Tech</footer>
-
-  </div>
+  <script>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
 </body>
 </html>
