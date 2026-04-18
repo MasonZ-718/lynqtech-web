@@ -1,0 +1,61 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - link "ReAnchor" [ref=e3] [cursor=pointer]:
+      - /url: /reanchor
+    - link "Back to ReAnchor landing page" [ref=e4] [cursor=pointer]:
+      - /url: /reanchor
+      - img [ref=e5]
+      - text: Back
+  - main [ref=e7]:
+    - region "Introduction" [ref=e9]:
+      - paragraph [ref=e10]: Decision Anxiety Self-Test
+      - heading "How much is doubt actually costing you?" [level=1] [ref=e11]:
+        - text: How much is doubt
+        - emphasis [ref=e12]: actually
+        - text: costing you?
+      - paragraph [ref=e13]: Decision anxiety isn't one thing. It can show up as freezing before you choose, spiraling after you commit, chasing the "perfect" option indefinitely, or avoiding the choice entirely. This test maps which patterns are loudest for you — and how intense they are.
+      - generic [ref=e14]:
+        - generic [ref=e15]: 16 questions
+        - generic [ref=e17]: ~3 minutes
+        - generic [ref=e19]: No account needed
+        - generic [ref=e21]: Results stay in browser
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - img [ref=e26]
+          - paragraph [ref=e29]: Analysis Paralysis
+          - paragraph [ref=e30]: Difficulty committing; feeling frozen before the choice is made
+        - generic [ref=e31]:
+          - img [ref=e33]
+          - paragraph [ref=e36]: Post-Decision Rumination
+          - paragraph [ref=e37]: Second-guessing and replaying after you've already decided
+        - generic [ref=e38]:
+          - img [ref=e40]
+          - paragraph [ref=e43]: Maximizing Tendency
+          - paragraph [ref=e44]: Needing the "best" option; never satisfied with "good enough"
+        - generic [ref=e45]:
+          - img [ref=e47]
+          - paragraph [ref=e49]: Avoidance & Approval
+          - paragraph [ref=e50]: Delaying, deferring, or needing reassurance before deciding
+      - note [ref=e51]:
+        - img [ref=e53]
+        - paragraph [ref=e55]:
+          - text: "This assessment is informed by four validated instruments: the"
+          - emphasis [ref=e56]: Frost & Shows Indecisiveness Scale
+          - text: (1993), the
+          - emphasis [ref=e57]: Schwartz Maximization Scale
+          - text: (2002), the
+          - emphasis [ref=e58]: Scott & Bruce General Decision-Making Style Inventory
+          - text: (1995), and the
+          - emphasis [ref=e59]: Nolen-Hoeksema Response Styles Questionnaire
+          - text: (1991). It is an adapted screening tool, not a clinical diagnostic.
+      - button "Start the test →" [ref=e61] [cursor=pointer]
+  - contentinfo [ref=e62]:
+    - paragraph [ref=e63]: ReAnchor
+    - paragraph [ref=e64]: © 2026 ReAnchor by Lynq Tech. All data stays in your browser.
+    - generic [ref=e65]:
+      - link "Privacy" [ref=e66] [cursor=pointer]:
+        - /url: /reanchor/privacy.html
+      - link "Terms" [ref=e67] [cursor=pointer]:
+        - /url: /reanchor/terms.html
+      - link "Back to ReAnchor" [ref=e68] [cursor=pointer]:
+        - /url: /reanchor

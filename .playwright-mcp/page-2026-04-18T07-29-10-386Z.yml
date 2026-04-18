@@ -1,0 +1,9 @@
+- generic [ref=e3]:
+  - generic [ref=e4]:
+    - paragraph [ref=e5]: Founder
+    - heading "Mason Zhou" [level=1] [ref=e6]
+    - paragraph [ref=e7]: Founder of LynqTech
+    - paragraph [ref=e8]:
+      - strong [ref=e9]: Former BCG consultant, IESE MBA.
+      - text: Building tools that help people think more clearly at the moments that matter most — especially the decisions that keep you up at 2am.
+  - img [ref=e12]

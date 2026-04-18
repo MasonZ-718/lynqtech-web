@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #09090b;
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Ambient glow */
+  body::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba(52,211,153,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  /* Subtle grid */
+  body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(52,211,153,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(52,211,153,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px;
+  }
+  .logo {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(52, 211, 153, 0.8);
+    margin-bottom: 40px;
+  }
+  .logo-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #34d399;
+    margin-left: 8px;
+    vertical-align: middle;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .headline {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 72px;
+    font-weight: 300;
+    color: #f4f4f5;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  .headline em {
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .tagline {
+    font-size: 22px;
+    color: #71717a;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+  }
+  .anchor-icon {
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    opacity: 0.06;
+  }
+  .anchor-icon svg {
+    width: 180px;
+    height: 180px;
+  }
+  .corner-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    border-top: 1px solid rgba(52,211,153,0.15);
+    border-left: 1px solid rgba(52,211,153,0.15);
+  }
+  .corner-accent-br {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    border-bottom: 1px solid rgba(52,211,153,0.08);
+    border-right: 1px solid rgba(52,211,153,0.08);
+  }
+</style>
+</head>
+<body>
+  <div class="corner-accent"></div>
+  <div class="corner-accent-br"></div>
+  <div class="inner">
+    <div class="logo">LynqTech<span class="logo-dot"></span></div>
+    <h1 class="headline">Tools for<br><em>Clearer Thinking</em></h1>
+    <p class="tagline">Building products at the intersection of decision-making and technology</p>
+  </div>
+  <div class="anchor-icon" aria-hidden="true">
+    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 8 L50 78 M35 22 Q35 50 50 50 Q65 50 65 22" stroke="#34d399" stroke-width="4" stroke-linecap="round" fill="none"/>
+      <circle cx="50" cy="82" r="10" fill="#34d399" opacity="0.5"/>
+    </svg>
+  </div>
+</body>
+</html>

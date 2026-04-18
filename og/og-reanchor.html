@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #09090b;
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba(52,211,153,0.13) 0%, transparent 65%);
+    animation: glowPulse 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  }
+  body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(52,211,153,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(52,211,153,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+  }
+  .inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 40px;
+    max-width: 900px;
+  }
+  .product-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(52, 211, 153, 0.75);
+    background: rgba(52, 211, 153, 0.06);
+    border: 1px solid rgba(52, 211, 153, 0.18);
+    border-radius: 999px;
+    padding: 6px 16px;
+    margin-bottom: 32px;
+  }
+  .product-label-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #34d399;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  .headline {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: #f4f4f5;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+  .headline em {
+    font-style: italic;
+    color: #a1a1aa;
+  }
+  .subline {
+    font-size: 22px;
+    color: #71717a;
+    line-height: 1.5;
+    max-width: 640px;
+    margin: 0 auto 40px;
+  }
+  .cta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #34d399;
+    color: #09090b;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+  }
+  .anchor-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    opacity: 0.04;
+  }
+  .anchor-icon svg { width: 600px; height: 600px; }
+  .corner-tl {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 80px;
+    height: 80px;
+    border-top: 1px solid rgba(52,211,153,0.12);
+    border-left: 1px solid rgba(52,211,153,0.12);
+  }
+  .corner-br {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    width: 80px;
+    height: 80px;
+    border-bottom: 1px solid rgba(52,211,153,0.08);
+    border-right: 1px solid rgba(52,211,153,0.08);
+  }
+</style>
+</head>
+<body>
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+  <div class="anchor-icon" aria-hidden="true">
+    <svg viewBox="0 0 100 100" fill="none">
+      <path d="M50 5 L50 78 M32 20 Q32 50 50 50 Q68 50 68 20" stroke="#34d399" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <circle cx="50" cy="83" r="10" fill="#34d399"/>
+    </svg>
+  </div>
+  <div class="inner">
+    <div class="product-label">
+      <span class="product-label-dot"></span>
+      iOS App · Spring 2026
+    </div>
+    <h1 class="headline">Stop<br><em>Second-Guessing</em><br>Yourself</h1>
+    <p class="subline">Record your decisions at the moment of clarity. Return to them when doubt shows up at 2am.</p>
+    <div class="cta-pill">Join the Waitlist →</div>
+  </div>
+</body>
+</html>

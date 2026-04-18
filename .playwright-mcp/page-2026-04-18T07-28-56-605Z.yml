@@ -1,0 +1,10 @@
+- generic [active] [ref=e1]:
+  - img [ref=e5]
+  - generic [ref=e8]:
+    - generic [ref=e9]: iOS App · Spring 2026
+    - heading "Stop Second-Guessing Yourself" [level=1] [ref=e11]:
+      - text: Stop
+      - emphasis [ref=e12]: Second-Guessing
+      - text: Yourself
+    - paragraph [ref=e13]: Record your decisions at the moment of clarity. Return to them when doubt shows up at 2am.
+    - generic [ref=e14]: Join the Waitlist →

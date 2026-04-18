@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1200px;
+    height: 630px;
+    background: #09090b;
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 0 80px;
+  }
+  body::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 65%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(ellipse at center, rgba(52,211,153,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+  .left {}
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #34d399;
+    margin-bottom: 16px;
+  }
+  .name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 60px;
+    font-weight: 300;
+    color: #f4f4f5;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    margin-bottom: 16px;
+  }
+  .role {
+    font-size: 18px;
+    color: #a1a1aa;
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+  .bio {
+    font-size: 15px;
+    color: #71717a;
+    line-height: 1.7;
+    max-width: 380px;
+  }
+  .bio strong {
+    color: #a1a1aa;
+    font-weight: 500;
+  }
+  .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .photo-placeholder {
+    width: 260px;
+    height: 320px;
+    background: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(52,211,153,0.06) 0%, transparent 60%);
+  }
+  .photo-silhouette {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .corner-accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 120px;
+    border-top: 1px solid rgba(52,211,153,0.15);
+    border-left: 1px solid rgba(52,211,153,0.15);
+  }
+</style>
+</head>
+<body>
+  <div class="corner-accent"></div>
+  <div class="split">
+    <div class="left">
+      <p class="eyebrow">Founder</p>
+      <h1 class="name">Mason Zhou</h1>
+      <p class="role">Founder of LynqTech</p>
+      <p class="bio"><strong>Former BCG consultant, IESE MBA.</strong> Building tools that help people think more clearly at the moments that matter most — especially the decisions that keep you up at 2am.</p>
+    </div>
+    <div class="right">
+      <div class="photo-placeholder">
+        <svg class="photo-silhouette" width="200" height="280" viewBox="0 0 200 280" fill="none">
+          <ellipse cx="100" cy="80" rx="52" ry="52" fill="#27272a"/>
+          <path d="M20 280 Q20 180 100 170 Q180 180 180 280Z" fill="#27272a"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - generic [ref=e5]: LynqTech
+    - heading "Tools for Clearer Thinking" [level=1] [ref=e7]:
+      - text: Tools for
+      - emphasis [ref=e8]: Clearer Thinking
+    - paragraph [ref=e9]: Building products at the intersection of decision-making and technology
+  - img [ref=e11]
