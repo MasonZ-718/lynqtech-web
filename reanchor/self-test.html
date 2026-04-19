@@ -2129,52 +2129,73 @@
       setTimeout(() => animateResults(total, dimScores), 500);
     }
 
-    function renderResults(total, dimScores) {
-      // Score display
-      document.getElementById('score-display').textContent = total;
+    function renderResults(result) {
+      const { identity, intensity, percentile, showSecondary, secondaryPhrase,
+              dimScores, topIdx } = result;
 
-      // Profile
-      const profile = PROFILES.find(p => total >= p.range[0] && total <= p.range[1]);
-      document.getElementById('profile-name').textContent = profile.name;
-      document.getElementById('profile-desc').textContent = profile.desc;
-      document.getElementById('insight-text').textContent = profile.insight;
+      // Identity card
+      document.getElementById('identity-card').dataset.identity = identity.slug;
+      document.getElementById('result-emoji').textContent = identity.emoji;
+      document.getElementById('result-identity-name').textContent = identity.name;
 
-      // Ring color class
-      const ring = document.getElementById('score-ring');
-      ring.className = 'score-ring-fill ' + profile.level;
+      const secEl = document.getElementById('result-secondary-phrase');
+      if (showSecondary && secondaryPhrase) {
+        secEl.textContent = secondaryPhrase;
+        secEl.style.display = '';
+      } else {
+        secEl.style.display = 'none';
+      }
 
-      // Dim scores
-      const dimNames = ['1', '2', '3', '4'];
-      dimScores.forEach((score, i) => {
-        const dim = i + 1;
-        document.getElementById('dim-score-' + dim).textContent = score + '/20';
+      document.getElementById('result-punchline').textContent =
+        '\u201c' + identity.punchline + '\u201d';
+      document.getElementById('result-intensity-phrase').textContent =
+        'You are ' + identity.intensity[intensity];
+      document.getElementById('result-percentile').textContent =
+        'more than ' + percentile + '% of people who took this test';
 
-        // Interpretation
-        let level;
-        if (score <= 8)  level = 'low';
-        else if (score <= 12) level = 'moderate';
-        else if (score <= 16) level = 'high';
-        else level = 'severe';
+      // Share block
+      document.getElementById('result-tag-prompt').textContent = identity.tagPrompt;
 
-        document.getElementById('dim-interp-' + dim).textContent = DIM_INTERPRETATIONS[dim][level];
-      });
+      // Dignity
+      document.getElementById('result-dignity-line').textContent = identity.dignityLine;
+
+      // You likely
+      document.getElementById('result-you-likely-list').innerHTML =
+        identity.youLikely.map(item => `<li>${item}</li>`).join('');
+
+      // Closing hit
+      document.getElementById('result-closing-hit').textContent = identity.closingHit;
+
+      // Breakdown — dominant dimension first
+      const dimOrder = [topIdx, ...[0,1,2,3].filter(i => i !== topIdx)];
+      const dimNames = ['Analysis Paralysis', 'Post-Decision Rumination', 'Maximizing Tendency', 'Avoidance & Approval'];
+      const dimColors = ['var(--blue)', 'var(--danger)', 'var(--amber)', 'var(--purple)'];
+      const dimBarClasses = ['dim-1', 'dim-2', 'dim-3', 'dim-4'];
+
+      document.getElementById('breakdown-rows').innerHTML = dimOrder.map(idx => `
+        <div class="dim-row${idx === topIdx ? ' dominant' : ''}" style="margin-bottom:24px;">
+          <div class="dim-row-header">
+            <span class="dim-row-name">
+              <span class="dim-row-dot" style="background:${dimColors[idx]};"></span>
+              ${dimNames[idx]}
+              ${idx === topIdx ? '<span class="dim-dominant-marker">▸ dominant</span>' : ''}
+            </span>
+            <span class="dim-row-score">${dimScores[idx]}/20</span>
+          </div>
+          <div class="dim-bar-track">
+            <div class="dim-bar-fill ${dimBarClasses[idx]}" id="dim-bar-${idx+1}" style="width:0%"></div>
+          </div>
+        </div>
+      `).join('');
     }
 
-    function animateResults(total, dimScores) {
-      // Animate ring
-      const circumference = 283;
-      const maxScore = 80;
-      const pct = total / maxScore;
-      const offset = circumference - (circumference * pct);
-      document.getElementById('score-ring').style.strokeDashoffset = offset;
-
-      // Animate bars
-      dimScores.forEach((score, i) => {
-        const dim = i + 1;
-        const pct = (score / 20) * 100;
+    function animateBars(dimScores) {
+      [0,1,2,3].forEach((idx, order) => {
+        const pct = (dimScores[idx] / 20) * 100;
         setTimeout(() => {
-          document.getElementById('dim-bar-' + dim).style.width = pct + '%';
-        }, 100 + i * 150);
+          const bar = document.getElementById('dim-bar-' + (idx + 1));
+          if (bar) bar.style.width = pct + '%';
+        }, 100 + order * 150);
       });
     }
 
