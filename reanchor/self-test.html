@@ -381,145 +381,6 @@
       text-decoration: none;
     }
 
-    /* ── Question step ── */
-    .step-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 36px;
-    }
-    .step-dim-badge {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 999px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--muted);
-    }
-    .step-dim-badge.dim-1 { color: var(--blue); border-color: rgba(96,165,250,0.25); background: rgba(96,165,250,0.06); }
-    .step-dim-badge.dim-2 { color: var(--danger); border-color: rgba(251,113,133,0.25); background: rgba(251,113,133,0.06); }
-    .step-dim-badge.dim-3 { color: var(--amber); border-color: rgba(251,191,36,0.25); background: rgba(251,191,36,0.06); }
-    .step-dim-badge.dim-4 { color: var(--purple); border-color: rgba(167,139,250,0.25); background: rgba(167,139,250,0.06); }
-
-    .step-headline {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(20px, 3vw, 28px);
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1.35;
-      margin-bottom: 8px;
-    }
-    .step-subhead {
-      font-size: 14px;
-      color: var(--dim);
-      margin-bottom: 40px;
-    }
-
-    /* ── Question card ── */
-    .question-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 20px 20px;
-      margin-bottom: 12px;
-      transition: border-color 0.2s ease;
-    }
-    .question-card.answered {
-      border-color: rgba(52,211,153,0.18);
-    }
-    .question-num {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--dim);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-    .question-text {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(17px, 3.5vw, 20px);
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1.55;
-      margin-bottom: 24px;
-    }
-
-    /* Likert scale */
-    .likert {
-      display: flex;
-      gap: 6px;
-    }
-    .likert-option {
-      flex: 1;
-    }
-    .likert-option input[type="radio"] {
-      position: absolute;
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-    .likert-option label {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      padding: 10px 4px 8px;
-      border-radius: 10px;
-      background: var(--surface-2);
-      border: 1px solid var(--border);
-      transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
-      text-align: center;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    .likert-option label:hover {
-      background: rgba(52,211,153,0.06);
-      border-color: var(--accent-border);
-    }
-    .likert-option label:active {
-      transform: scale(0.97);
-    }
-    .likert-option input:checked + label {
-      background: rgba(52,211,153,0.12);
-      border-color: var(--accent);
-    }
-    .likert-val {
-      font-size: 15px;
-      font-weight: 700;
-      font-family: 'Fraunces', Georgia, serif;
-      color: var(--dim);
-      line-height: 1;
-    }
-    .likert-option input:checked + label .likert-val {
-      color: var(--accent);
-    }
-    .likert-lbl {
-      font-size: 10px;
-      font-weight: 500;
-      color: var(--dim);
-      letter-spacing: 0.3px;
-      line-height: 1.2;
-    }
-    .likert-option input:checked + label .likert-lbl {
-      color: var(--accent-text);
-    }
-
-    /* Scale legend */
-    .scale-legend {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 8px;
-      padding: 0 2px;
-    }
-    .scale-legend span {
-      font-size: 11px;
-      color: var(--dim);
-    }
-
     /* ── Vertical Likert ── */
     .v-likert {
       display: flex;
@@ -807,26 +668,6 @@
     }
 
     /* ── Navigation buttons ── */
-    .step-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 40px;
-      gap: 12px;
-    }
-    .btn-back {
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      color: var(--muted);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 12px 20px;
-      cursor: pointer;
-      transition: border-color 0.15s, color 0.15s;
-    }
-    .btn-back:hover { border-color: var(--muted); color: var(--text); }
     .btn-next {
       background: var(--accent);
       border: none;
@@ -838,7 +679,7 @@
       padding: 13px 28px;
       cursor: pointer;
       transition: opacity 0.15s, transform 0.1s;
-      margin-left: auto;
+      margin-top: 40px;
     }
     .btn-next:hover { opacity: 0.88; }
     .btn-next:active { transform: scale(0.98); }
@@ -847,149 +688,6 @@
       cursor: not-allowed;
     }
     .btn-next:disabled:hover { opacity: 0.35; }
-
-    .validation-msg {
-      font-size: 13px;
-      color: var(--danger);
-      display: none;
-      align-items: center;
-      gap: 6px;
-    }
-    .validation-msg.show { display: flex; }
-
-    /* ── Results step ── */
-    .results-header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .results-eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 20px;
-    }
-    .results-score-wrap {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 16px;
-    }
-    .results-score-ring {
-      width: 100px;
-      height: 100px;
-    }
-    .score-ring-bg {
-      fill: none;
-      stroke: var(--border);
-      stroke-width: 5;
-    }
-    .score-ring-fill {
-      fill: none;
-      stroke: var(--accent);
-      stroke-width: 5;
-      stroke-linecap: round;
-      stroke-dasharray: 220;
-      stroke-dashoffset: 220;
-      transform-origin: center;
-      transform: rotate(-90deg);
-      transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .score-ring-fill.low    { stroke: var(--accent); }
-    .score-ring-fill.moderate { stroke: var(--amber); }
-    .score-ring-fill.high   { stroke: var(--danger); }
-    .score-ring-fill.severe { stroke: #ef4444; }
-    .results-score-number {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 28px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1;
-    }
-    .results-score-label {
-      font-size: 12px;
-      color: var(--dim);
-      margin-top: 4px;
-    }
-
-    /* Shareable result card */
-    .result-share-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 32px 28px;
-      margin-bottom: 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .result-share-card::before {
-      content: '';
-      position: absolute;
-      top: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 400px;
-      height: 200px;
-      background: radial-gradient(ellipse at center top, rgba(52,211,153,0.08) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .result-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(52,211,153,0.08);
-      border: 1px solid var(--accent-border);
-      border-radius: 999px;
-      padding: 5px 14px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-    }
-    .result-badge svg {
-      flex-shrink: 0;
-    }
-    .results-profile-name {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(26px, 6vw, 40px);
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1.2;
-      margin-bottom: 16px;
-      letter-spacing: -0.5px;
-    }
-    .results-profile-desc {
-      font-size: 15px;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    .result-punchline {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(18px, 4vw, 24px);
-      font-weight: 400;
-      font-style: italic;
-      color: var(--accent-text);
-      line-height: 1.4;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-    .result-divider {
-      width: 40px;
-      height: 2px;
-      background: var(--accent);
-      border-radius: 2px;
-      margin: 20px auto;
-    }
 
     /* Dimension breakdown */
     .dimensions-section {
@@ -1047,37 +745,6 @@
     .dim-bar-fill.dim-2 { background: var(--danger); }
     .dim-bar-fill.dim-3 { background: var(--amber); }
     .dim-bar-fill.dim-4 { background: var(--purple); }
-    .dim-interpretation {
-      font-size: 12px;
-      color: var(--dim);
-      margin-top: 6px;
-      line-height: 1.5;
-    }
-
-    /* Insight card */
-    .insight-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 24px 28px;
-      margin-bottom: 32px;
-    }
-    .insight-card-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-    .insight-card-text {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(16px, 2vw, 20px);
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1.55;
-    }
-
     /* Results CTA */
     .results-cta {
       background: var(--surface);
@@ -1202,108 +869,6 @@
     }
     .retake-link a:hover { text-decoration: underline; }
 
-    /* Share section */
-    .share-section {
-      margin-bottom: 20px;
-    }
-    .share-section-label {
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--dim);
-      margin-bottom: 14px;
-      text-align: center;
-    }
-    .share-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px 20px;
-      margin-bottom: 12px;
-    }
-    .share-card-top {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .share-card-brand {
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .share-card-sep {
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--dim);
-    }
-    .share-card-test {
-      font-size: 10px;
-      color: var(--dim);
-    }
-    .share-card-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-    .share-card-sub {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-    .share-card-punchline {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 14px;
-      font-style: italic;
-      color: var(--accent-text);
-      margin-top: 10px;
-      padding-top: 10px;
-      border-top: 1px solid var(--border);
-    }
-    .share-card-url {
-      font-size: 10px;
-      color: var(--dim);
-      margin-top: 8px;
-    }
-    .share-btn {
-      width: 100%;
-      background: rgba(52,211,153,0.10);
-      border: 1px solid var(--accent-border);
-      border-radius: 12px;
-      color: var(--accent);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 14px 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: background 0.15s, transform 0.1s;
-      margin-bottom: 10px;
-    }
-    .share-btn:hover { background: rgba(52,211,153,0.15); }
-    .share-btn:active { transform: scale(0.98); }
-    .share-copy-hint {
-      font-size: 12px;
-      color: var(--dim);
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .share-native-hint {
-      font-size: 12px;
-      color: var(--dim);
-      text-align: center;
-    }
-
     .cta-secondary-wrap {
       margin-top: 14px;
       position: relative;
@@ -1330,14 +895,6 @@
     }
     .cta-error.show { display: block; }
 
-    .insight-card-bridge {
-      font-size: 13px;
-      color: var(--dim);
-      margin-top: 14px;
-      line-height: 1.55;
-      font-style: italic;
-    }
-
     /* Footer */
     footer {
       border-top: 1px solid var(--border);
@@ -1359,9 +916,6 @@
       .nav-back { font-size: 12px; }
       main { padding-top: 88px; }
       .dimension-grid { grid-template-columns: 1fr; }
-      .likert-lbl { display: none; }
-      .likert-val { font-size: 13px; }
-      .likert-option label { padding: 10px 2px 8px; }
       .waitlist-form-inline { flex-direction: column; }
       .waitlist-btn-inline { width: 100%; }
       .results-cta { padding: 24px 20px; }
@@ -1369,7 +923,7 @@
 
     @media (prefers-reduced-motion: reduce) {
       .step { animation: none; }
-      .score-ring-fill, .dim-bar-fill, .progress-bar-fill { transition: none; }
+      .dim-bar-fill, .progress-bar-fill { transition: none; }
     }
 
     /* Screen reader only */
@@ -1438,7 +992,7 @@
         </h1>
 
         <p class="intro-body">
-          Decision anxiety isn't one thing. It can show up as freezing before you choose, spiraling after you commit, chasing the "perfect" option indefinitely, or avoiding the choice entirely. This test maps which patterns are loudest for you — and how intense they are.
+          By the end, you'll know which pattern is loudest in your head — and how loud it is.
         </p>
 
         <div class="intro-meta">
@@ -1501,11 +1055,9 @@
           </p>
         </div>
 
-        <div class="step-nav">
-          <button class="btn-next" id="btn-start" onclick="startQuiz()">
-            Start the test &rarr;
-          </button>
-        </div>
+        <button class="btn-next" id="btn-start" onclick="startQuiz()">
+          Start the test &rarr;
+        </button>
       </div>
 
       <!-- Question steps — rendered by buildQuestions() -->
@@ -1757,64 +1309,6 @@
 
     // Representative percentiles per intensity bucket (exact score unknown in friend view)
     const INTENSITY_PERCENTILES = { low: 42, mid: 82, high: 97 };
-
-    const DIM_INTERPRETATIONS = {
-      1: {
-        low:      "You generally feel confident moving toward a decision once you have enough information. Commitment doesn't tend to be your sticking point.",
-        moderate: "You sometimes get caught in a pre-decision loop — weighing options longer than needed. This is common and manageable with a clearer decision criteria.",
-        high:     "You frequently experience the 'freeze' — difficulty committing even when logically ready. This may be costing you time and mental energy on decisions of all sizes.",
-        severe:   "Analysis paralysis is a dominant pattern for you. Even small choices become significant sources of stress before any commitment is made."
-      },
-      2: {
-        low:      "Once you decide, you tend to move forward. Post-decision doubt doesn't linger long or consume much of your headspace.",
-        moderate: "You occasionally replay past decisions, especially high-stakes ones. Most people do — the key is whether it's pulling you back productively or just generating noise.",
-        high:     "Rumination is a real presence in your life. Even after deciding, part of your mind stays in the decision — replaying, questioning, second-guessing. This is exactly what ReAnchor is built for.",
-        severe:   "Post-decision rumination is significantly affecting you. You may find it hard to feel settled after even clear, well-reasoned choices. Anchoring decisions at the moment of clarity could change this."
-      },
-      3: {
-        low:      "You're comfortable with satisficing — picking a good option without needing to verify it's the objectively best. This is a resilient, low-regret approach.",
-        moderate: "You lean toward maximizing on decisions that matter, which is reasonable — but watch for it bleeding into lower-stakes choices where it just adds friction.",
-        high:     "The drive to find the best option is costing you. It delays decisions, keeps alternatives alive too long, and makes satisfaction harder to reach after choosing.",
-        severe:   "You have a strong maximizing orientation. The constant search for 'the best' likely makes every decision feel high-stakes — and makes satisfaction after choosing rare."
-      },
-      4: {
-        low:      "You're comfortable sitting with the responsibility of your own choices. You don't heavily rely on external validation before or after deciding.",
-        moderate: "You occasionally look to others for reassurance or delay decisions hoping clarity will come on its own. In uncertain situations, this is natural — just watch for it becoming a default.",
-        high:     "Avoidance and approval-seeking are significant patterns. You may frequently delay decisions, defer to others, or feel anxious about being held responsible for your choices.",
-        severe:   "Avoidance is a primary coping mechanism. Decisions carry heavy social weight for you — the fear of judgment or responsibility may be driving more of your choices than you realize."
-      }
-    };
-
-    const PROFILES = [
-      {
-        range: [16, 31],
-        name: "Grounded Decider",
-        level: "low",
-        desc: "Decision anxiety is not a dominant force in your life. You're generally able to commit, move forward, and let go. You may still experience doubt in high-stakes situations — that's human — but it doesn't tend to persist or derail you.",
-        insight: "Your baseline is healthy. The patterns measured here — paralysis, rumination, maximizing, avoidance — are present for most people in extreme situations. For you, they don't appear to be structural. Focus stays on maintaining that groundedness when stakes are unusually high."
-      },
-      {
-        range: [32, 47],
-        name: "Occasional Doubter",
-        level: "moderate",
-        desc: "Decision anxiety shows up for you, particularly in higher-stakes situations. You can generally move forward, but doubt lingers longer than you'd like — and in certain moments, it can quietly accumulate and affect your confidence.",
-        insight: "The patterns are present but not overwhelming. Most people in this range describe a nagging feeling of not being fully at peace with past decisions, or a tendency to over-research before committing. The antidote isn't more certainty — it's a cleaner process for capturing what you knew and why you chose it."
-      },
-      {
-        range: [48, 63],
-        name: "Decision-Anxious",
-        level: "high",
-        desc: "Decision anxiety is meaningfully interfering with your life. Whether it's the freeze before choosing, the spiral after, the endless search for better options, or the reliance on others — one or more of these patterns is consuming real time and mental energy.",
-        insight: "At this level, decision anxiety often becomes self-reinforcing. Each difficult decision that doesn't go perfectly becomes evidence that the next one needs more thought, more validation, or should be avoided entirely. Breaking this loop requires anchoring your reasoning at the moment of clarity — not just deciding, but recording why."
-      },
-      {
-        range: [64, 80],
-        name: "Chronically Paralyzed",
-        level: "severe",
-        desc: "Decision anxiety is a persistent, disruptive force. It likely affects relationships, career, and daily wellbeing. The patterns measured here — across multiple dimensions — are running at high intensity and may be deeply habituated.",
-        insight: "Chronic decision paralysis isn't a character flaw — it's a learned pattern, often rooted in past experiences of regret, judgment, or unpredictable consequences. The work here is structural: building a practice of recording decisions at their clearest moment, and having a defined process for returning to them when doubt arrives — instead of fighting from memory every time."
-      }
-    ];
 
     // ─────────────────────────────────────────────
     // STATE
