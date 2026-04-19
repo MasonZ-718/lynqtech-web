@@ -2086,48 +2086,8 @@
     }
 
     // ─────────────────────────────────────────────
-    // SUBMIT & RESULTS
+    // RESULTS RENDERING
     // ─────────────────────────────────────────────
-
-    function submitTest() {
-      // Validate dim 4
-      const allAnswered = QUESTIONS[4].every((_, i) => {
-        const qKey = 'q_4_' + i;
-        return answers[qKey] !== undefined;
-      });
-
-      const valMsg = document.getElementById('val-4');
-      if (!allAnswered) {
-        valMsg.classList.add('show');
-        for (let i = 0; i < 4; i++) {
-          const qKey = 'q_4_' + i;
-          if (answers[qKey] === undefined) {
-            const card = document.getElementById('card_' + qKey);
-            card.style.borderColor = 'rgba(251,113,133,0.5)';
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            break;
-          }
-        }
-        return;
-      }
-      valMsg.classList.remove('show');
-
-      // Calculate scores
-      const dimScores = [0, 0, 0, 0];
-      for (let dim = 1; dim <= 4; dim++) {
-        for (let i = 0; i < 4; i++) {
-          dimScores[dim - 1] += answers['q_' + dim + '_' + i] || 0;
-        }
-      }
-      const total = dimScores.reduce((a, b) => a + b, 0);
-
-      // Render results
-      renderResults(total, dimScores);
-      goToStep(5);
-
-      // Animate after transition
-      setTimeout(() => animateResults(total, dimScores), 500);
-    }
 
     function renderResults(result) {
       const { identity, intensity, percentile, showSecondary, secondaryPhrase,
@@ -2200,6 +2160,60 @@
     }
 
     // ─────────────────────────────────────────────
+    // SHARE + ANALYTICS
+    // ─────────────────────────────────────────────
+
+    function buildSharePayload() {
+      if (!lastResult) return null;
+      const { identity, shareSlug } = lastResult;
+      return {
+        title: `I'm a ${identity.name} — ReAnchor Decision Anxiety Test`,
+        text: `I just found out I'm a ${identity.name}.\n\n\u201c${identity.punchline}\u201d\n\nApparently this is more accurate than I'm comfortable with.`,
+        url: `https://lynqtech.io/reanchor/self-test?r=${shareSlug}`,
+      };
+    }
+
+    async function handleSharePrimary() {
+      const payload = buildSharePayload();
+      if (!payload) return;
+      try {
+        await navigator.share(payload);
+        logShareEvent('share_native');
+      } catch (err) {
+        // AbortError = user cancelled — not a failure
+      }
+    }
+
+    async function handleCopyLink() {
+      const payload = buildSharePayload();
+      if (!payload) return;
+      const toast = document.getElementById('share-toast');
+      try {
+        await navigator.clipboard.writeText(payload.url);
+        toast.textContent = 'Link copied!';
+        setTimeout(() => { toast.textContent = ''; }, 2500);
+        logShareEvent('share_copy');
+      } catch {
+        toast.textContent = 'Could not copy — try manually.';
+        setTimeout(() => { toast.textContent = ''; }, 3000);
+      }
+    }
+
+    async function logShareEvent(ctaSource) {
+      if (!lastResult) return;
+      const { dimScores, total, identity } = lastResult;
+      await _supa.from('quiz_results').insert({
+        email: null,
+        total_score: total,
+        dim_1: dimScores[0], dim_2: dimScores[1],
+        dim_3: dimScores[2], dim_4: dimScores[3],
+        profile: identity.name,
+        answers: answers.slice(1),
+        cta_source: ctaSource,
+      });
+    }
+
+    // ─────────────────────────────────────────────
     // CTA SUBMIT
     // ─────────────────────────────────────────────
 
@@ -2207,11 +2221,10 @@
       const submitBtn = document.getElementById('cta-submit');
       if (submitBtn.disabled) return;
       const emailInput = document.getElementById('cta-email');
-      const errorEl   = document.getElementById('cta-error');
+      const errorEl = document.getElementById('cta-error');
       const waitlistLink = document.getElementById('cta-waitlist-link');
       const email = emailInput.value.trim();
 
-      // Validate email
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
         emailInput.style.borderColor = 'rgba(251,113,133,0.5)';
         emailInput.focus();
@@ -2219,29 +2232,21 @@
       }
       emailInput.style.borderColor = '';
       errorEl.classList.remove('show');
-
-      // Disable UI while submitting
       submitBtn.disabled = true;
       waitlistLink.style.pointerEvents = 'none';
       waitlistLink.style.opacity = '0.4';
 
-      // Build payload from current quiz state
-      const dimScores = [1, 2, 3, 4].map(d =>
-        [0, 1, 2, 3].reduce((sum, i) => sum + (answers['q_' + d + '_' + i] || 0), 0)
-      );
-      const total = dimScores.reduce((a, b) => a + b, 0);
-      const profile = PROFILES.find(p => total >= p.range[0] && total <= p.range[1]);
+      if (!lastResult) { submitBtn.disabled = false; return; }
+      const { dimScores, total, identity } = lastResult;
 
       const { error } = await _supa.from('quiz_results').upsert({
         email,
         total_score: total,
-        dim_1: dimScores[0],
-        dim_2: dimScores[1],
-        dim_3: dimScores[2],
-        dim_4: dimScores[3],
-        profile: profile ? profile.name : '',
-        answers: Object.assign({}, answers),
-        cta_source: source
+        dim_1: dimScores[0], dim_2: dimScores[1],
+        dim_3: dimScores[2], dim_4: dimScores[3],
+        profile: identity.name,
+        answers: answers.slice(1),
+        cta_source: source,
       }, { onConflict: 'email' });
 
       if (error) {
@@ -2252,50 +2257,38 @@
         return;
       }
 
-      // Show correct success state
+      emailSubmitted = true;
       document.getElementById('cta-form-wrap').style.display = 'none';
-      const successId = source === 'full_analysis' ? 'cta-success-analysis' : 'cta-success-waitlist';
-      document.getElementById(successId).classList.add('show');
+      document.getElementById(
+        source === 'full_analysis' ? 'cta-success-analysis' : 'cta-success-waitlist'
+      ).classList.add('show');
     }
 
     function retakeTest() {
-      // Reset state
-      answers = {};
-      currentStep = 0;
+      answers = new Array(17).fill(null);
+      lastResult = null;
+      emailSubmitted = false;
+      if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
 
-      // Reset ring and bars
-      document.getElementById('score-ring').style.strokeDashoffset = '283';
-      for (let i = 1; i <= 4; i++) {
-        document.getElementById('dim-bar-' + i).style.width = '0%';
-      }
-
-      // Reset all radio inputs
-      document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
-      document.querySelectorAll('.question-card').forEach(c => {
-        c.classList.remove('answered');
-        c.style.borderColor = '';
+      document.querySelectorAll('.v-likert-row').forEach(r => {
+        r.classList.remove('selected');
+        r.setAttribute('aria-checked', 'false');
       });
-      document.querySelectorAll('.validation-msg').forEach(m => m.classList.remove('show'));
 
-      // Go to intro
-      const resultsStep = document.getElementById('step-5');
-      resultsStep.classList.remove('active');
-      const introStep = document.getElementById('step-0');
-      introStep.classList.add('active');
-      currentStep = 0;
-      updateProgress();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      // Reset CTA
       document.getElementById('cta-form-wrap').style.display = '';
-      document.getElementById('cta-success-analysis').classList.remove('show');
-      document.getElementById('cta-success-waitlist').classList.remove('show');
+      ['cta-success-analysis', 'cta-success-waitlist'].forEach(id =>
+        document.getElementById(id).classList.remove('show')
+      );
       document.getElementById('cta-email').value = '';
       document.getElementById('cta-email').style.borderColor = '';
       document.getElementById('cta-submit').disabled = false;
       document.getElementById('cta-waitlist-link').style.pointerEvents = '';
       document.getElementById('cta-waitlist-link').style.opacity = '';
       document.getElementById('cta-error').classList.remove('show');
+      document.getElementById('share-toast').textContent = '';
+
+      document.getElementById('step-results').classList.remove('active');
+      showIntro();
     }
 
   </script>
