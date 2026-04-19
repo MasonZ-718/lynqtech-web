@@ -1864,117 +1864,225 @@
     // ─────────────────────────────────────────────
 
     function buildQuestions() {
-      for (let dim = 1; dim <= 4; dim++) {
-        const container = document.getElementById('questions-' + dim);
-        const globalOffset = (dim - 1) * 4;
-        let html = '';
-        QUESTIONS[dim].forEach((qText, i) => {
-          const qKey = 'q_' + dim + '_' + i;
-          const qNum = globalOffset + i + 1;
-          html += `
-            <div class="question-card" id="card_${qKey}" role="group" aria-labelledby="qlabel_${qKey}">
-              <p class="question-num" aria-hidden="true">Question ${qNum}</p>
-              <p class="question-text" id="qlabel_${qKey}">${qText}</p>
-              <div class="likert" role="radiogroup" aria-label="${qText}">
-                ${LIKERT_LABELS.map((lbl, v) => `
-                  <div class="likert-option">
-                    <input
-                      type="radio"
-                      name="${qKey}"
-                      id="${qKey}_${v}"
-                      value="${v + 1}"
-                      onchange="recordAnswer('${qKey}', ${v + 1}, '${dim}')"
-                    />
-                    <label for="${qKey}_${v}" title="${lbl}">
-                      <span class="likert-val">${v + 1}</span>
-                      <span class="likert-lbl">${lbl}</span>
-                    </label>
+      const container = document.getElementById('question-steps-container');
+      let html = '';
+      ALL_QUESTIONS.forEach((qText, i) => {
+        const n = i + 1;
+        html += `
+          <div class="step" id="step-q${n}" role="region" aria-label="Question ${n} of 16">
+            <div class="q-screen">
+              <p class="q-text">${qText}</p>
+              <div class="v-likert" role="radiogroup" aria-label="${qText}" id="likert-q${n}">
+                ${['Never','Rarely','Sometimes','Often','Always'].map((lbl, vi) => `
+                  <div class="v-likert-row" data-q="${n}" data-v="${vi+1}"
+                       role="radio" aria-checked="false" tabindex="${vi === 0 ? 0 : -1}">
+                    <span class="v-likert-num">${vi+1}</span>
+                    <span class="v-likert-lbl">${lbl}</span>
                   </div>
                 `).join('')}
               </div>
+              <button class="btn-back-q" data-back-q="${n}">← Back</button>
             </div>
-          `;
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+
+      container.querySelectorAll('.v-likert-row').forEach(row => {
+        row.addEventListener('click', () => handleLikertClick(row));
+        row.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleLikertClick(row); }
         });
-        container.innerHTML = html;
-      }
+      });
+
+      container.querySelectorAll('.btn-back-q').forEach(btn => {
+        btn.addEventListener('click', () => goBackQ(parseInt(btn.dataset.backQ, 10)));
+      });
     }
 
     buildQuestions();
+    initPage();
 
     // ─────────────────────────────────────────────
     // NAVIGATION
     // ─────────────────────────────────────────────
 
-    function startQuiz() {
-      goToStep(1);
-    }
+    function transitionSteps(fromId, toId) {
+      const from = fromId ? document.getElementById(fromId) : null;
+      const to = document.getElementById(toId);
+      if (!to) return;
 
-    function goToStep(n) {
-      const current = document.getElementById('step-' + currentStep);
-      const next    = document.getElementById('step-' + n);
-
-      current.classList.add('exit');
-      setTimeout(() => {
-        current.classList.remove('active', 'exit');
-        next.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        // Focus management for a11y
-        const focusTarget = next.querySelector('h1, h2, .results-eyebrow');
-        if (focusTarget) { focusTarget.setAttribute('tabindex', '-1'); focusTarget.focus(); }
-      }, 280);
-
-      currentStep = n;
-      updateProgress();
+      if (from && from.classList.contains('active')) {
+        from.classList.add('exit');
+        setTimeout(() => {
+          from.classList.remove('active', 'exit');
+          to.classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          const focus = to.querySelector('h1, h2, .q-text');
+          if (focus) { focus.setAttribute('tabindex', '-1'); focus.focus(); }
+        }, 280);
+      } else {
+        to.classList.add('active');
+      }
     }
 
     function updateProgress() {
       const wrap = document.getElementById('progress-wrap');
       const fill = document.getElementById('progress-fill');
       const label = document.getElementById('progress-label');
-
-      if (currentStep === 0 || currentStep === 5) {
-        wrap.classList.remove('show');
-        return;
-      }
+      if (currentView !== 'question') { wrap.classList.remove('show'); return; }
       wrap.classList.add('show');
-      const pct = ((currentStep - 1) / 4) * 100;
+      const pct = ((currentQ - 1) / 16) * 100;
       fill.style.width = pct + '%';
-      wrap.setAttribute('aria-valuenow', pct);
-      label.textContent = 'Step ' + currentStep + ' of 4';
+      wrap.setAttribute('aria-valuenow', Math.round(pct));
+      label.textContent = currentQ + ' / 16';
     }
 
-    function nextStep(dim) {
-      // Validate all 4 questions answered
-      const allAnswered = QUESTIONS[dim].every((_, i) => {
-        const qKey = 'q_' + dim + '_' + i;
-        return answers[qKey] !== undefined;
+    function handleLikertClick(row) {
+      const n = parseInt(row.dataset.q, 10);
+      const v = parseInt(row.dataset.v, 10);
+
+      const likert = document.getElementById('likert-q' + n);
+      likert.querySelectorAll('.v-likert-row').forEach(r => {
+        r.classList.remove('selected');
+        r.setAttribute('aria-checked', 'false');
       });
+      row.classList.add('selected', 'selecting');
+      row.setAttribute('aria-checked', 'true');
+      setTimeout(() => row.classList.remove('selecting'), 150);
 
-      const valMsg = document.getElementById('val-' + dim);
-      if (!allAnswered) {
-        valMsg.classList.add('show');
-        // Shake the first unanswered card
-        for (let i = 0; i < 4; i++) {
-          const qKey = 'q_' + dim + '_' + i;
-          if (answers[qKey] === undefined) {
-            const card = document.getElementById('card_' + qKey);
-            card.style.borderColor = 'rgba(251,113,133,0.5)';
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            break;
-          }
-        }
-        return;
-      }
-      valMsg.classList.remove('show');
-      goToStep(dim + 1);
+      answers[n] = v;
+
+      if (advanceTimer) clearTimeout(advanceTimer);
+      advanceTimer = setTimeout(() => {
+        advanceTimer = null;
+        if (n < 16) { showQuestion(n + 1); } else { finishQuiz(); }
+      }, 500);
     }
 
-    function recordAnswer(qKey, value, dim) {
-      answers[qKey] = value;
-      // Mark card as answered
-      const card = document.getElementById('card_' + qKey);
-      card.classList.add('answered');
-      card.style.borderColor = '';
+    function restoreSelection(n) {
+      const likert = document.getElementById('likert-q' + n);
+      if (!likert) return;
+      likert.querySelectorAll('.v-likert-row').forEach(r => {
+        const sel = answers[n] === parseInt(r.dataset.v, 10);
+        r.classList.toggle('selected', sel);
+        r.setAttribute('aria-checked', sel ? 'true' : 'false');
+      });
+    }
+
+    function showQuestion(n) {
+      const fromId = currentView === 'intro' ? 'step-0' :
+                     currentView === 'question' ? 'step-q' + currentQ : null;
+      transitionSteps(fromId, 'step-q' + n);
+      currentView = 'question';
+      currentQ = n;
+      updateProgress();
+      restoreSelection(n);
+    }
+
+    function goBackQ(n) {
+      if (advanceTimer) { clearTimeout(advanceTimer); advanceTimer = null; }
+      if (n === 1) { showIntro(); } else {
+        transitionSteps('step-q' + n, 'step-q' + (n - 1));
+        currentView = 'question';
+        currentQ = n - 1;
+        updateProgress();
+        restoreSelection(n - 1);
+      }
+    }
+
+    function startQuiz() { showQuestion(1); }
+
+    function showIntro() {
+      const fromId = currentView === 'friend' ? 'step-friend' :
+                     currentView === 'question' ? 'step-q' + currentQ :
+                     currentView === 'results' ? 'step-results' : null;
+      transitionSteps(fromId, 'step-0');
+      currentView = 'intro';
+      currentQ = 0;
+      updateProgress();
+    }
+
+    function finishQuiz() {
+      lastResult = computeResult();
+      renderResults(lastResult);
+      transitionSteps('step-q16', 'step-results');
+      currentView = 'results';
+      updateProgress();
+      setTimeout(() => animateBars(lastResult.dimScores), 500);
+    }
+
+    function initPage() {
+      // Friend view routing
+      const params = new URLSearchParams(window.location.search);
+      const r = params.get('r');
+      if (r) {
+        const parsed = parseFriendSlug(r);
+        if (parsed) {
+          populateFriendView(parsed);
+          document.getElementById('step-friend').classList.add('active');
+          currentView = 'friend';
+          setupFriendButtons();
+          setupShareButtons();
+          setupCtaListeners();
+          return;
+        }
+      }
+      document.getElementById('step-0').classList.add('active');
+      currentView = 'intro';
+      setupShareButtons();
+      setupCtaListeners();
+    }
+
+    function parseFriendSlug(slug) {
+      const m = slug.match(/^(freezer|loop-thinker|maximizer|avoider)-(low|mid|high)$/);
+      if (!m) return null;
+      const map = { 'freezer': 1, 'loop-thinker': 2, 'maximizer': 3, 'avoider': 4 };
+      return { identity: IDENTITIES[map[m[1]]], intensity: m[2] };
+    }
+
+    function populateFriendView({ identity, intensity }) {
+      document.getElementById('friend-emoji').textContent = identity.emoji;
+      document.getElementById('friend-identity-name').textContent = identity.name;
+      document.getElementById('friend-punchline').textContent = '\u201c' + identity.punchline + '\u201d';
+      const pct = INTENSITY_PERCENTILES[intensity];
+      document.getElementById('friend-percentile-line').textContent =
+        `${identity.friendPhrase} more than ${pct}% of people who took this test`;
+    }
+
+    function setupFriendButtons() {
+      document.getElementById('btn-friend-take-test').addEventListener('click', showIntro);
+      document.getElementById('btn-browse-dims').addEventListener('click', function() {
+        showIntro();
+        setTimeout(() => {
+          const grid = document.querySelector('.dimension-grid');
+          if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 400);
+      });
+    }
+
+    function setupShareButtons() {
+      const primary = document.getElementById('btn-share-primary');
+      const copy = document.getElementById('btn-copy-link');
+      if (!navigator.share) { primary.style.display = 'none'; }
+      else { primary.addEventListener('click', handleSharePrimary); }
+      copy.addEventListener('click', handleCopyLink);
+    }
+
+    function setupCtaListeners() {
+      document.getElementById('cta-form').addEventListener('submit', e => {
+        e.preventDefault(); handleCtaSubmit('full_analysis');
+      });
+      const waitlistLink = document.getElementById('cta-waitlist-link');
+      waitlistLink.addEventListener('click', () => handleCtaSubmit('waitlist'));
+      waitlistLink.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleCtaSubmit('waitlist'); }
+      });
+      const retakeBtn = document.getElementById('retake-btn');
+      retakeBtn.addEventListener('click', retakeTest);
+      retakeBtn.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); retakeTest(); }
+      });
     }
 
     // ─────────────────────────────────────────────
@@ -2169,32 +2277,6 @@
       document.getElementById('cta-error').classList.remove('show');
     }
 
-    // ─────────────────────────────────────────────
-    // KEYBOARD: allow Enter/Space on retake link
-    // ─────────────────────────────────────────────
-    document.querySelector('.retake-link a').addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); retakeTest(); }
-    });
-
-    // ─────────────────────────────────────────────
-    // CTA EVENT LISTENERS
-    // ─────────────────────────────────────────────
-
-    document.getElementById('cta-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      handleCtaSubmit('full_analysis');
-    });
-
-    document.getElementById('cta-waitlist-link').addEventListener('click', function () {
-      handleCtaSubmit('waitlist');
-    });
-
-    document.getElementById('cta-waitlist-link').addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        handleCtaSubmit('waitlist');
-      }
-    });
   </script>
 
 </body>
