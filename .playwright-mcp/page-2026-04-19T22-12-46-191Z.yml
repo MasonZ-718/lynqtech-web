@@ -1,0 +1,20 @@
+- generic [active] [ref=e1]:
+  - img [ref=e5]
+  - generic [ref=e8]:
+    - img [ref=e10]
+    - generic [ref=e13]:
+      - text: Lynq
+      - emphasis [ref=e14]: Tech
+  - generic [ref=e15]:
+    - generic [ref=e16]: ReAnchor · iOS · Spring 2026
+    - heading "Stop Second-Guessing Yourself" [level=1] [ref=e18]:
+      - text: Stop
+      - emphasis [ref=e19]: Second-Guessing
+      - text: Yourself
+    - paragraph [ref=e20]: Record your decisions at the moment of clarity. Return to them when doubt shows up at 2am.
+    - generic [ref=e21]:
+      - generic [ref=e22]: Join the Waitlist →
+      - generic [ref=e23]: reanchor.app
+  - generic [ref=e24]:
+    - generic [ref=e25]: lynqtech.io/reanchor
+    - generic [ref=e26]: A LynqTech product

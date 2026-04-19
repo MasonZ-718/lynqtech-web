@@ -1,0 +1,25 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e4]:
+    - img [ref=e6]
+    - generic [ref=e9]:
+      - text: Lynq
+      - emphasis [ref=e10]: Tech
+  - generic [ref=e11]:
+    - generic [ref=e12]:
+      - generic [ref=e13]: Founder
+      - heading "Mason Zhou" [level=1] [ref=e15]
+      - paragraph [ref=e16]: Founder of LynqTech
+      - generic [ref=e17]:
+        - generic [ref=e18]: BCG Alumnus
+        - generic [ref=e19]: IESE MBA
+        - generic [ref=e20]: Barcelona / SF
+      - paragraph [ref=e21]:
+        - text: Building tools that help people think more clearly
+        - strong [ref=e22]: at the moments that matter most
+        - text: — especially the decisions that keep you up at 2am.
+    - generic [ref=e24]:
+      - generic [ref=e25]: MZ
+      - generic [ref=e26]: Founder · 2026
+  - generic [ref=e27]:
+    - generic [ref=e28]: lynqtech.io/about
+    - generic [ref=e29]: People · LynqTech

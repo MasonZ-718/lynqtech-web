@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -9,126 +12,189 @@
     height: 630px;
     background: #09090b;
     font-family: 'DM Sans', -apple-system, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
     overflow: hidden;
   }
-  /* Ambient glow */
+  /* Ambient glow — offset slightly above center so the halo sits behind the headline */
   body::before {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(ellipse at center, rgba(52,211,153,0.12) 0%, transparent 65%);
+    width: 780px;
+    height: 780px;
+    background: radial-gradient(ellipse at center, rgba(52,211,153,0.14) 0%, rgba(52,211,153,0.03) 40%, transparent 70%);
     pointer-events: none;
   }
-  /* Subtle grid */
+  /* Hairline grid */
   body::after {
     content: '';
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(52,211,153,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(52,211,153,0.03) 1px, transparent 1px);
+      linear-gradient(rgba(244,244,245,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,244,245,0.025) 1px, transparent 1px);
     background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 85%);
     pointer-events: none;
   }
-  .inner {
-    position: relative;
-    z-index: 1;
+  .brand {
+    position: absolute;
+    top: 44px;
+    left: 56px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+  }
+  .brand-mark {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand-mark svg { width: 24px; height: 24px; }
+  .brand-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #f4f4f5;
+    letter-spacing: 0.2px;
+  }
+  .brand-name em {
+    font-style: normal;
+    color: #34d399;
+  }
+  .center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 40px;
+    z-index: 1;
+    padding: 0 80px;
   }
-  .logo {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 4px;
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3.2px;
     text-transform: uppercase;
-    color: rgba(52, 211, 153, 0.8);
-    margin-bottom: 40px;
+    color: rgba(52, 211, 153, 0.85);
+    margin-bottom: 36px;
+    padding: 7px 16px;
+    border: 1px solid rgba(52, 211, 153, 0.22);
+    border-radius: 999px;
+    background: rgba(52, 211, 153, 0.05);
   }
-  .logo-dot {
-    display: inline-block;
+  .eyebrow-dot {
     width: 6px;
     height: 6px;
     border-radius: 50%;
     background: #34d399;
-    margin-left: 8px;
-    vertical-align: middle;
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.6);
   }
   .headline {
     font-family: 'Fraunces', Georgia, serif;
-    font-size: 72px;
+    font-size: 88px;
     font-weight: 300;
     color: #f4f4f5;
-    line-height: 1.1;
-    letter-spacing: -1px;
-    margin-bottom: 20px;
+    line-height: 1.02;
+    letter-spacing: -2px;
+    margin-bottom: 28px;
   }
   .headline em {
     font-style: italic;
-    color: #a1a1aa;
+    font-weight: 300;
+    color: #34d399;
   }
   .tagline {
+    font-family: 'DM Sans', sans-serif;
     font-size: 22px;
-    color: #71717a;
+    color: #a1a1aa;
     font-weight: 400;
-    letter-spacing: 0.5px;
+    line-height: 1.45;
+    max-width: 680px;
   }
-  .anchor-icon {
+  .footer {
     position: absolute;
     bottom: 40px;
-    right: 60px;
-    opacity: 0.06;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 56px;
+    z-index: 2;
   }
-  .anchor-icon svg {
-    width: 180px;
-    height: 180px;
+  .footer-url {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #71717a;
+    letter-spacing: 0.4px;
   }
-  .corner-accent {
+  .footer-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #52525b;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .corner-tl {
     position: absolute;
     top: 0;
     left: 0;
-    width: 120px;
-    height: 120px;
-    border-top: 1px solid rgba(52,211,153,0.15);
-    border-left: 1px solid rgba(52,211,153,0.15);
+    width: 140px;
+    height: 140px;
+    border-top: 1px solid rgba(52,211,153,0.22);
+    border-left: 1px solid rgba(52,211,153,0.22);
   }
-  .corner-accent-br {
+  .corner-br {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 80px;
-    height: 80px;
-    border-bottom: 1px solid rgba(52,211,153,0.08);
-    border-right: 1px solid rgba(52,211,153,0.08);
+    width: 100px;
+    height: 100px;
+    border-bottom: 1px solid rgba(52,211,153,0.12);
+    border-right: 1px solid rgba(52,211,153,0.12);
   }
 </style>
 </head>
 <body>
-  <div class="corner-accent"></div>
-  <div class="corner-accent-br"></div>
-  <div class="inner">
-    <div class="logo">LynqTech<span class="logo-dot"></span></div>
-    <h1 class="headline">Tools for<br><em>Clearer Thinking</em></h1>
-    <p class="tagline">Building products at the intersection of decision-making and technology</p>
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="11" stroke="#34d399" stroke-width="1.5" opacity="0.35"/>
+        <circle cx="12" cy="12" r="5" fill="#34d399"/>
+      </svg>
+    </span>
+    <span class="brand-name">Lynq<em>Tech</em></span>
   </div>
-  <div class="anchor-icon" aria-hidden="true">
-    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 8 L50 78 M35 22 Q35 50 50 50 Q65 50 65 22" stroke="#34d399" stroke-width="4" stroke-linecap="round" fill="none"/>
-      <circle cx="50" cy="82" r="10" fill="#34d399" opacity="0.5"/>
-    </svg>
+
+  <div class="center">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      Decisions · Clarity · Software
+    </div>
+    <h1 class="headline">Tools for<br><em>Clearer Thinking</em></h1>
+    <p class="tagline">Software for the decisions that actually matter — the ones that keep you up at 2am.</p>
+  </div>
+
+  <div class="footer">
+    <span class="footer-url">lynqtech.io</span>
+    <span class="footer-tag">Est. 2026</span>
   </div>
 </body>
 </html>

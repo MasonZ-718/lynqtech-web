@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -9,163 +12,257 @@
     height: 630px;
     background: #09090b;
     font-family: 'DM Sans', -apple-system, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
     overflow: hidden;
   }
   body::before {
     content: '';
     position: absolute;
-    top: 35%;
+    top: 44%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 700px;
-    height: 700px;
-    background: radial-gradient(ellipse at center, rgba(52,211,153,0.11) 0%, transparent 65%);
-    animation: glowPulse 7s ease-in-out infinite;
+    width: 820px;
+    height: 820px;
+    background: radial-gradient(ellipse at center, rgba(52,211,153,0.15) 0%, rgba(52,211,153,0.02) 45%, transparent 70%);
     pointer-events: none;
-  }
-  @keyframes glowPulse {
-    0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
   }
   body::after {
     content: '';
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(52,211,153,0.025) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(52,211,153,0.025) 1px, transparent 1px);
+      linear-gradient(rgba(244,244,245,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,244,245,0.025) 1px, transparent 1px);
     background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 85%);
     pointer-events: none;
   }
-  .inner {
-    position: relative;
-    z-index: 1;
+  .brand {
+    position: absolute;
+    top: 44px;
+    left: 56px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+  }
+  .brand-mark {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .brand-mark svg { width: 22px; height: 22px; }
+  .brand-name {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f4f4f5;
+    letter-spacing: 0.2px;
+  }
+  .brand-name em {
+    font-style: normal;
+    color: #34d399;
+  }
+  .center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 40px;
+    z-index: 1;
+    padding: 0 80px;
   }
   .product-label {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-size: 11px;
+    gap: 10px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: rgba(52, 211, 153, 0.75);
-    margin-bottom: 28px;
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid rgba(52, 211, 153, 0.28);
+    border-radius: 999px;
+    padding: 6px 16px;
+    margin-bottom: 26px;
   }
   .product-label-dot {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: #34d399;
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.7);
   }
   .headline {
     font-family: 'Fraunces', Georgia, serif;
-    font-size: 68px;
+    font-size: 78px;
     font-weight: 300;
     color: #f4f4f5;
-    line-height: 1.1;
-    letter-spacing: -1px;
-    margin-bottom: 20px;
+    line-height: 1.02;
+    letter-spacing: -1.6px;
+    margin-bottom: 32px;
   }
   .headline em {
     font-style: italic;
-    color: #a1a1aa;
+    font-weight: 300;
+    color: #34d399;
   }
   .stats-row {
     display: flex;
     justify-content: center;
-    gap: 32px;
-    margin-bottom: 36px;
+    align-items: center;
+    gap: 36px;
+    margin-bottom: 32px;
   }
   .stat {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
   }
   .stat-num {
     font-family: 'Fraunces', Georgia, serif;
-    font-size: 36px;
-    font-weight: 600;
-    color: #34d399;
+    font-size: 44px;
+    font-weight: 400;
+    color: #f4f4f5;
     line-height: 1;
+    letter-spacing: -1px;
+  }
+  .stat-num em {
+    font-style: italic;
+    color: #34d399;
+    font-weight: 400;
   }
   .stat-label {
-    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
     color: #71717a;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
   }
   .stat-divider {
     width: 1px;
-    height: 40px;
-    background: #27272a;
+    height: 44px;
+    background: linear-gradient(180deg, transparent 0%, #3f3f46 50%, transparent 100%);
     align-self: center;
   }
   .dimensions {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    gap: 10px;
     margin-bottom: 36px;
     flex-wrap: wrap;
+    max-width: 860px;
   }
   .dim-chip {
-    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
     font-weight: 500;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 999px;
-    border: 1px solid #27272a;
-    color: #a1a1aa;
+    border: 1px solid rgba(52, 211, 153, 0.18);
+    color: #d4d4d8;
+    background: rgba(52, 211, 153, 0.04);
   }
-  .dim-chip.dim-1 { color: #60a5fa; border-color: rgba(96,165,250,0.25); background: rgba(96,165,250,0.06); }
-  .dim-chip.dim-2 { color: #fb7185; border-color: rgba(251,113,133,0.25); background: rgba(251,113,133,0.06); }
-  .dim-chip.dim-3 { color: #fbbf24; border-color: rgba(251,191,36,0.25); background: rgba(251,191,36,0.06); }
-  .dim-chip.dim-4 { color: #a78bfa; border-color: rgba(167,139,250,0.25); background: rgba(167,139,250,0.06); }
-  .cta {
+  .dim-chip-num {
+    font-family: 'Fraunces', Georgia, serif;
+    font-style: italic;
+    color: #34d399;
+    margin-right: 6px;
+    font-weight: 500;
+  }
+  .cta-row {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 18px;
+  }
+  .cta-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     background: #34d399;
     color: #09090b;
+    font-family: 'DM Sans', sans-serif;
     font-size: 15px;
     font-weight: 600;
-    padding: 14px 28px;
+    padding: 13px 26px;
     border-radius: 999px;
+    letter-spacing: 0.3px;
+    box-shadow: 0 10px 30px -10px rgba(52, 211, 153, 0.5);
+  }
+  .cta-meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #71717a;
+  }
+  .footer {
+    position: absolute;
+    bottom: 36px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 56px;
+    z-index: 2;
+  }
+  .footer-url {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #71717a;
+    letter-spacing: 0.4px;
+  }
+  .footer-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #52525b;
+    letter-spacing: 2px;
+    text-transform: uppercase;
   }
   .corner-tl {
     position: absolute;
-    top: 40px;
-    left: 40px;
-    width: 80px;
-    height: 80px;
-    border-top: 1px solid rgba(52,211,153,0.12);
-    border-left: 1px solid rgba(52,211,153,0.12);
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 140px;
+    border-top: 1px solid rgba(52,211,153,0.22);
+    border-left: 1px solid rgba(52,211,153,0.22);
   }
   .corner-br {
     position: absolute;
-    bottom: 40px;
-    right: 40px;
-    width: 80px;
-    height: 80px;
-    border-bottom: 1px solid rgba(52,211,153,0.08);
-    border-right: 1px solid rgba(52,211,153,0.08);
+    bottom: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    border-bottom: 1px solid rgba(52,211,153,0.12);
+    border-right: 1px solid rgba(52,211,153,0.12);
   }
 </style>
 </head>
 <body>
   <div class="corner-tl"></div>
   <div class="corner-br"></div>
-  <div class="inner">
+
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="11" stroke="#34d399" stroke-width="1.5" opacity="0.35"/>
+        <circle cx="12" cy="12" r="5" fill="#34d399"/>
+      </svg>
+    </span>
+    <span class="brand-name">Lynq<em>Tech</em></span>
+  </div>
+
+  <div class="center">
     <div class="product-label">
       <span class="product-label-dot"></span>
       ReAnchor · Free Self-Test
@@ -174,26 +271,34 @@
     <div class="stats-row">
       <div class="stat">
         <span class="stat-num">16</span>
-        <span class="stat-label">questions</span>
+        <span class="stat-label">Questions</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
-        <span class="stat-num">~3</span>
-        <span class="stat-label">minutes</span>
+        <span class="stat-num">~3<em>m</em></span>
+        <span class="stat-label">Minutes</span>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
         <span class="stat-num">4</span>
-        <span class="stat-label">dimensions</span>
+        <span class="stat-label">Dimensions</span>
       </div>
     </div>
     <div class="dimensions">
-      <span class="dim-chip dim-1">Analysis Paralysis</span>
-      <span class="dim-chip dim-2">Post-Decision Rumination</span>
-      <span class="dim-chip dim-3">Maximizing Tendency</span>
-      <span class="dim-chip dim-4">Avoidance &amp; Approval</span>
+      <span class="dim-chip"><span class="dim-chip-num">01</span>Analysis Paralysis</span>
+      <span class="dim-chip"><span class="dim-chip-num">02</span>Post-Decision Rumination</span>
+      <span class="dim-chip"><span class="dim-chip-num">03</span>Maximizing Tendency</span>
+      <span class="dim-chip"><span class="dim-chip-num">04</span>Avoidance &amp; Approval</span>
     </div>
-    <div class="cta">Take the Free Test →</div>
+    <div class="cta-row">
+      <span class="cta-pill">Take the Free Test →</span>
+      <span class="cta-meta">~3 min · no signup</span>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="footer-url">lynqtech.io/reanchor/self-test</span>
+    <span class="footer-tag">A ReAnchor tool</span>
   </div>
 </body>
 </html>
