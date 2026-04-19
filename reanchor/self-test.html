@@ -25,6 +25,7 @@
   <meta name="twitter:title" content="Decision Anxiety Self-Test — ReAnchor" />
   <meta name="twitter:description" content="16 questions. 3 minutes. Find out how decision anxiety shows up in your life." />
   <meta name="twitter:image" content="https://lynqtech.io/og/og-self-test.png" />
+  <meta name="x:image" content="https://lynqtech.io/og/og-self-test.png" />
 
   <!-- JSON-LD: WebApplication -->
   <script type="application/ld+json">
@@ -422,8 +423,8 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 28px 28px 24px;
-      margin-bottom: 16px;
+      padding: 24px 20px 20px;
+      margin-bottom: 12px;
       transition: border-color 0.2s ease;
     }
     .question-card.answered {
@@ -435,11 +436,11 @@
       color: var(--dim);
       letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .question-text {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(15px, 2vw, 18px);
+      font-size: clamp(17px, 3.5vw, 20px);
       font-weight: 400;
       color: var(--text);
       line-height: 1.55;
@@ -573,7 +574,7 @@
     /* ── Results step ── */
     .results-header {
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 40px;
     }
     .results-eyebrow {
       font-size: 11px;
@@ -581,16 +582,16 @@
       letter-spacing: 3px;
       text-transform: uppercase;
       color: var(--dim);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .results-score-wrap {
       position: relative;
       display: inline-block;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .results-score-ring {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
     }
     .score-ring-bg {
       fill: none;
@@ -602,8 +603,8 @@
       stroke: var(--accent);
       stroke-width: 5;
       stroke-linecap: round;
-      stroke-dasharray: 283;
-      stroke-dashoffset: 283;
+      stroke-dasharray: 220;
+      stroke-dashoffset: 220;
       transform-origin: center;
       transform: rotate(-90deg);
       transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -618,7 +619,7 @@
       left: 50%;
       transform: translate(-50%, -50%);
       font-family: 'Fraunces', Georgia, serif;
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 600;
       color: var(--text);
       line-height: 1;
@@ -628,20 +629,80 @@
       color: var(--dim);
       margin-top: 4px;
     }
+
+    /* Shareable result card */
+    .result-share-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      margin-bottom: 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .result-share-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 200px;
+      background: radial-gradient(ellipse at center top, rgba(52,211,153,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .result-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(52,211,153,0.08);
+      border: 1px solid var(--accent-border);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .result-badge svg {
+      flex-shrink: 0;
+    }
     .results-profile-name {
       font-family: 'Fraunces', Georgia, serif;
-      font-size: clamp(28px, 4.5vw, 44px);
+      font-size: clamp(26px, 6vw, 40px);
       font-weight: 400;
       color: var(--text);
-      line-height: 1.25;
-      margin-bottom: 12px;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
     }
     .results-profile-desc {
-      font-size: 16px;
+      font-size: 15px;
       color: var(--muted);
       line-height: 1.7;
-      max-width: 520px;
-      margin: 0 auto 8px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .result-punchline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: clamp(18px, 4vw, 24px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--accent-text);
+      line-height: 1.4;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .result-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 20px auto;
     }
 
     /* Dimension breakdown */
@@ -854,6 +915,108 @@
       cursor: pointer;
     }
     .retake-link a:hover { text-decoration: underline; }
+
+    /* Share section */
+    .share-section {
+      margin-bottom: 20px;
+    }
+    .share-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--dim);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .share-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 20px;
+      margin-bottom: 12px;
+    }
+    .share-card-top {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .share-card-brand {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .share-card-sep {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--dim);
+    }
+    .share-card-test {
+      font-size: 10px;
+      color: var(--dim);
+    }
+    .share-card-title {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 6px;
+    }
+    .share-card-sub {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .share-card-punchline {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 14px;
+      font-style: italic;
+      color: var(--accent-text);
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .share-card-url {
+      font-size: 10px;
+      color: var(--dim);
+      margin-top: 8px;
+    }
+    .share-btn {
+      width: 100%;
+      background: rgba(52,211,153,0.10);
+      border: 1px solid var(--accent-border);
+      border-radius: 12px;
+      color: var(--accent);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.15s, transform 0.1s;
+      margin-bottom: 10px;
+    }
+    .share-btn:hover { background: rgba(52,211,153,0.15); }
+    .share-btn:active { transform: scale(0.98); }
+    .share-copy-hint {
+      font-size: 12px;
+      color: var(--dim);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .share-native-hint {
+      font-size: 12px;
+      color: var(--dim);
+      text-align: center;
+    }
 
     .cta-secondary-wrap {
       margin-top: 14px;
@@ -1322,6 +1485,105 @@
       ]
     };
 
+    const ALL_QUESTIONS = [
+      ...QUESTIONS[1], ...QUESTIONS[2], ...QUESTIONS[3], ...QUESTIONS[4],
+    ];
+
+    const IDENTITIES = {
+      1: {
+        name: 'The Freezer', emoji: '🧊', slug: 'freezer',
+        dignityLine: "You don't move easily — because once you do, it feels irreversible.",
+        punchline: "I don't avoid decisions. I avoid not being able to undo them.",
+        intensity: {
+          low: 'slightly frozen at the starting line',
+          mid: 'often frozen at the starting line',
+          high: 'frozen at the starting line',
+        },
+        youLikely: [
+          'delay even obvious choices, hoping something settles it for you',
+          'rehearse the moment of commitment in your head, over and over',
+          "feel exhausted by decisions you haven't even made yet",
+        ],
+        closingHit: "At this point, waiting isn't protecting you. It's compressing your options until one picks you.",
+        tagPrompt: 'Tag the friend who\'s still "thinking about it" 3 months later.',
+        friendPhrase: 'they freeze on decisions',
+        accentVar: '--blue',
+      },
+      2: {
+        name: 'Loop Thinker', emoji: '🌀', slug: 'loop-thinker',
+        dignityLine: "You think this much because getting it wrong feels expensive.",
+        punchline: "I don't struggle to decide. I struggle to stop thinking.",
+        intensity: {
+          low: 'slightly stuck in your head',
+          mid: 'often stuck in your head',
+          high: 'trapped in your head',
+        },
+        youLikely: [
+          'replay the same decision for days (or weeks)',
+          'keep looking for a version of the answer that feels complete',
+          'delay action even when you already know what to do',
+        ],
+        closingHit: "Thinking isn't bringing you closer. It's keeping you where you are.",
+        tagPrompt: 'Tag the one who overthinks everything… then rethinks it again.',
+        friendPhrase: 'they overthink',
+        accentVar: '--danger',
+      },
+      3: {
+        name: 'The Maximizer', emoji: '🎯', slug: 'maximizer',
+        dignityLine: "You don't settle easily — because you've seen what happens when people do.",
+        punchline: "I'm not picky. I just can't unsee the better option.",
+        intensity: {
+          low: 'slightly chasing better',
+          mid: 'often chasing better',
+          high: 'always chasing better',
+        },
+        youLikely: [
+          'open another tab, another option, another comparison — "just to check"',
+          'feel a flash of doubt the moment after you commit',
+          "compare your choice to the path you didn't take, long after it's too late",
+        ],
+        closingHit: "At this point, the search replaced the thing you were searching for.",
+        tagPrompt: 'Tag the friend who takes 10 minutes to order… then regrets it.',
+        friendPhrase: 'they chase "better"',
+        accentVar: '--amber',
+      },
+      4: {
+        name: 'The Avoider', emoji: '🌫️', slug: 'avoider',
+        dignityLine: "You hesitate — because your choices don't just affect you.",
+        punchline: "I don't avoid decisions. I avoid the impact they have on others.",
+        intensity: {
+          low: 'slightly hoping it decides itself',
+          mid: 'often hoping it decides itself',
+          high: 'always hoping it decides itself',
+        },
+        youLikely: [
+          'ask 3 people their opinion before you let yourself have one',
+          'let timelines expire so the decision gets made for you',
+          "pick the safest option, even when you know it's not what you want",
+        ],
+        closingHit: "At this point, waiting for consensus isn't kindness. It's how you disappear from your own life.",
+        tagPrompt: 'Tag the friend who always says "you choose"… and means it.',
+        friendPhrase: 'they avoid deciding',
+        accentVar: '--purple',
+      },
+    };
+
+    const SECONDARY_PHRASES = {
+      1: 'and you often freeze before moving',
+      2: "and you can't stop replaying decisions",
+      3: 'and you keep chasing better options',
+      4: 'and you often wait for someone else to decide',
+    };
+
+    const PERCENTILE_TABLE = {
+      4: 5, 5: 15, 6: 28, 7: 42, 8: 55, 9: 62,
+      10: 68, 11: 75, 12: 82, 13: 87, 14: 91,
+      15: 94, 16: 96, 17: 98, 18: 99, 19: 99.5, 20: 99.8,
+    };
+
+    // Representative percentiles per intensity bucket (exact score unknown in friend view)
+    const INTENSITY_PERCENTILES = { low: 42, mid: 82, high: 97 };
+
     const DIM_INTERPRETATIONS = {
       1: {
         low:      "You generally feel confident moving toward a decision once you have enough information. Commitment doesn't tend to be your sticking point.",
@@ -1384,8 +1646,44 @@
     // STATE
     // ─────────────────────────────────────────────
 
-    let currentStep = 0;
-    let answers = {}; // { "q_dim_idx": value }
+    let currentView = 'intro'; // 'friend' | 'intro' | 'question' | 'results'
+    let currentQ = 0;
+    let answers = new Array(17).fill(null); // answers[1..16]
+    let advanceTimer = null;
+    let lastResult = null;
+    let emailSubmitted = false;
+
+    function computeResult() {
+      const dimScores = [0, 0, 0, 0];
+      for (let n = 1; n <= 16; n++) {
+        dimScores[Math.floor((n - 1) / 4)] += answers[n] || 0;
+      }
+
+      let topIdx = 0;
+      for (let i = 1; i < 4; i++) {
+        if (dimScores[i] > dimScores[topIdx]) topIdx = i;
+      }
+
+      let secondIdx = topIdx === 0 ? 1 : 0;
+      for (let i = 0; i < 4; i++) {
+        if (i !== topIdx && dimScores[i] > dimScores[secondIdx]) secondIdx = i;
+      }
+
+      const topScore = dimScores[topIdx];
+      const secondScore = dimScores[secondIdx];
+      const showSecondary = (topScore - secondScore) <= 10;
+      const identity = IDENTITIES[topIdx + 1];
+      const intensity = topScore <= 9 ? 'low' : topScore <= 14 ? 'mid' : 'high';
+      const percentile = PERCENTILE_TABLE[topScore];
+      const shareSlug = `${identity.slug}-${intensity}`;
+      const total = dimScores.reduce((a, b) => a + b, 0);
+
+      return {
+        dimScores, total, topIdx, secondIdx, showSecondary,
+        identity, intensity, percentile, shareSlug,
+        secondaryPhrase: showSecondary ? SECONDARY_PHRASES[secondIdx + 1] : null,
+      };
+    }
 
     // ─────────────────────────────────────────────
     // INIT
