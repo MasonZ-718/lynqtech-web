@@ -258,14 +258,10 @@ Layout (mobile-first, single-screen):
    └───────────────────────────────┘
 
    or browse decision anxiety types
-
-          ━ reanchor ━
 ```
 
 Clicking **Take your own test** → enters the normal quiz flow (intro, then 16 questions).
 Clicking the secondary link → scrolls to the 4-dimension preview in the intro.
-
-**Branding:** the Friend View carries a small ReAnchor wordmark at the bottom — same treatment as the identity card (`━ reanchor ━`, `--dim`, tiny caps). The top nav also shows the `ReAnchor` brand link so a curious friend can click through to the product page without taking the test.
 
 Copy variations per identity for the Friend View (intensity phrase adapts per §3):
 
@@ -367,21 +363,6 @@ If we want stricter separation, add two new columns:
 
 **Recommendation for v1:** reuse the existing `profile` column (store `Loop Thinker`), skip adding new columns. Can always denormalize later if analytics needs it.
 
-### 9.3 Share analytics
-
-Emit a `quiz_results` row when a user **triggers** a share, so we can measure viral coefficient. Two `cta_source` values are added:
-
-- `share_native` — user tapped the primary share button and `navigator.share` resolved (or was dismissed — both count as "intent to share")
-- `share_copy` — user tapped the fallback "copy the link" path
-
-**Write logic:**
-- If the user has **already submitted an email** earlier in this session (`full_analysis` or `waitlist` CTA), update that row's `cta_source` to reflect the share event — *or* insert a second row with the same email and new `cta_source`. Simpler is a second row; keeps each action atomic. **Decision: insert a second row.**
-- If the user has **not** submitted an email, still insert a row with `email = null` (or a session-scoped anonymous id) and `cta_source = 'share_native' | 'share_copy'`, plus the full score payload. This captures the "shared without signing up" funnel.
-
-Schema implication: `email` column must allow NULL, or we use a synthetic `anon:<uuid>` per session. **Decision: allow NULL on `email`** (add migration if the current schema requires NOT NULL).
-
-Fields set on share-event rows: `total_score`, `dim_1..4`, `profile` (identity), `answers`, `cta_source`. No new columns needed.
-
 ---
 
 ## 10. Design tokens & visual dependencies
@@ -418,9 +399,7 @@ Use sparingly — the card is primarily styled with `--accent` green. The per-id
 
 ---
 
-## 13. Resolved decisions
+## 13. Open questions (to resolve before or during implementation)
 
-All open questions from earlier drafting have been resolved in the sections above:
-
-1. **Friend-view branding** — resolved in §7: ReAnchor wordmark at bottom of Friend View + nav brand link visible.
-2. **Share analytics** — resolved in §9.3: emit `share_native` / `share_copy` rows in `quiz_results`; allow NULL email to capture share-without-signup funnel.
+1. **Friend-view branding:** does the friend view show LynqTech / ReAnchor branding, or is it framed purely around "your friend"? (Proposal: tiny brand mark at bottom, same as identity card.) --- Yes ReAnchor brand. 
+2. **Share analytics:** do we want to emit a `cta_source` value for share-button clicks (e.g., `share_native` / `share_copy`) so we can measure virality? (Proposal: yes, cheap to add; write a row to `quiz_results` with the share source when the button is pressed if the user has already submitted an email, otherwise skip.)  -- Yes agree to the proposal. 
