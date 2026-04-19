@@ -1403,9 +1403,33 @@
     <div class="step-container" id="step-container">
 
       <!-- ═══════════════════════════════
+           FRIEND VIEW
+      ═══════════════════════════════ -->
+      <div class="step" id="step-friend" role="region" aria-label="Your friend's result">
+        <div style="text-align:center; max-width:440px; margin:0 auto; padding-top:16px;">
+          <p class="identity-emoji" id="friend-emoji" style="font-size:32px; margin-bottom:16px;"></p>
+          <p style="font-size:11px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--dim); margin-bottom:12px;">Your friend is a</p>
+          <h2 class="identity-name" id="friend-identity-name" style="margin-bottom:20px;"></h2>
+          <div class="identity-divider" style="margin-bottom:20px;"></div>
+          <p class="identity-punchline" id="friend-punchline" style="margin-bottom:20px;"></p>
+          <div class="identity-divider" style="margin-bottom:20px;"></div>
+          <p style="font-size:14px; color:var(--dim); margin-bottom:40px;" id="friend-percentile-line"></p>
+          <button class="btn-next" id="btn-friend-take-test" style="width:100%; max-width:360px;">
+            Take your own test →
+          </button>
+          <p style="margin-top:16px;">
+            <button id="btn-browse-dims" style="font-size:13px; color:var(--dim); text-decoration:underline; text-underline-offset:3px; cursor:pointer; background:none; border:none; font-family:inherit;">
+              or browse decision anxiety types
+            </button>
+          </p>
+          <p class="identity-branding" style="margin-top:48px;">━&nbsp; reanchor &nbsp;━</p>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════
            STEP 0: INTRO
       ═══════════════════════════════ -->
-      <div class="step active" id="step-0" role="region" aria-label="Introduction">
+      <div class="step" id="step-0" role="region" aria-label="Introduction">
 
         <p class="intro-eyebrow">Decision Anxiety Self-Test</p>
 
@@ -1484,202 +1508,66 @@
         </div>
       </div>
 
-      <!-- ═══════════════════════════════
-           STEP 1: ANALYSIS PARALYSIS
-      ═══════════════════════════════ -->
-      <div class="step" id="step-1" role="region" aria-label="Analysis Paralysis questions">
-        <div class="step-eyebrow">
-          <span class="step-dim-badge dim-1">Dimension 1 of 4</span>
-        </div>
-        <h2 class="step-headline">The freeze before the choice</h2>
-        <p class="step-subhead">How you feel <em>before</em> a decision is made</p>
-
-        <div id="questions-1">
-          <!-- Questions injected by JS -->
-        </div>
-
-        <div class="step-nav">
-          <button class="btn-back" onclick="goToStep(0)">Back</button>
-          <span class="validation-msg" id="val-1" role="alert">Please answer all questions above</span>
-          <button class="btn-next" id="btn-next-1" onclick="nextStep(1)">Next &rarr;</button>
-        </div>
-      </div>
+      <!-- Question steps — rendered by buildQuestions() -->
+      <div id="question-steps-container"></div>
 
       <!-- ═══════════════════════════════
-           STEP 2: POST-DECISION RUMINATION
+           RESULTS VIEW
       ═══════════════════════════════ -->
-      <div class="step" id="step-2" role="region" aria-label="Post-Decision Rumination questions">
-        <div class="step-eyebrow">
-          <span class="step-dim-badge dim-2">Dimension 2 of 4</span>
-        </div>
-        <h2 class="step-headline">The spiral after the commitment</h2>
-        <p class="step-subhead">How you feel <em>after</em> a decision is made</p>
+      <div class="step" id="step-results" role="region" aria-label="Your results">
 
-        <div id="questions-2">
-          <!-- Questions injected by JS -->
-        </div>
-
-        <div class="step-nav">
-          <button class="btn-back" onclick="goToStep(1)">Back</button>
-          <span class="validation-msg" id="val-2" role="alert">Please answer all questions above</span>
-          <button class="btn-next" id="btn-next-2" onclick="nextStep(2)">Next &rarr;</button>
-        </div>
-      </div>
-
-      <!-- ═══════════════════════════════
-           STEP 3: MAXIMIZING TENDENCY
-      ═══════════════════════════════ -->
-      <div class="step" id="step-3" role="region" aria-label="Maximizing Tendency questions">
-        <div class="step-eyebrow">
-          <span class="step-dim-badge dim-3">Dimension 3 of 4</span>
-        </div>
-        <h2 class="step-headline">The hunt for the best option</h2>
-        <p class="step-subhead">Your relationship with "good enough"</p>
-
-        <div id="questions-3">
-          <!-- Questions injected by JS -->
+        <!-- 1. Identity Card -->
+        <div class="identity-card" id="identity-card">
+          <span class="identity-emoji" id="result-emoji" aria-hidden="true"></span>
+          <h2 class="identity-name" id="result-identity-name"></h2>
+          <p class="identity-secondary" id="result-secondary-phrase"></p>
+          <div class="identity-divider"></div>
+          <p class="identity-punchline" id="result-punchline"></p>
+          <div class="identity-divider"></div>
+          <p class="identity-intensity" id="result-intensity-phrase"></p>
+          <p class="identity-percentile" id="result-percentile"></p>
+          <p class="identity-branding">━&nbsp; reanchor test &nbsp;━</p>
         </div>
 
-        <div class="step-nav">
-          <button class="btn-back" onclick="goToStep(2)">Back</button>
-          <span class="validation-msg" id="val-3" role="alert">Please answer all questions above</span>
-          <button class="btn-next" id="btn-next-3" onclick="nextStep(3)">Next &rarr;</button>
-        </div>
-      </div>
-
-      <!-- ═══════════════════════════════
-           STEP 4: AVOIDANCE & APPROVAL
-      ═══════════════════════════════ -->
-      <div class="step" id="step-4" role="region" aria-label="Avoidance and Approval questions">
-        <div class="step-eyebrow">
-          <span class="step-dim-badge dim-4">Dimension 4 of 4</span>
-        </div>
-        <h2 class="step-headline">The pull toward deferral</h2>
-        <p class="step-subhead">How you handle the weight of responsibility in decisions</p>
-
-        <div id="questions-4">
-          <!-- Questions injected by JS -->
+        <!-- 2. Share block -->
+        <div class="share-block">
+          <p class="share-tag-prompt" id="result-tag-prompt"></p>
+          <button class="btn-share-primary" id="btn-share-primary">Share your result →</button>
+          <button class="btn-copy-link" id="btn-copy-link">or copy the link</button>
+          <p class="share-toast" id="share-toast" aria-live="polite"></p>
         </div>
 
-        <div class="step-nav">
-          <button class="btn-back" onclick="goToStep(3)">Back</button>
-          <span class="validation-msg" id="val-4" role="alert">Please answer all questions above</span>
-          <button class="btn-next" id="btn-submit" onclick="submitTest()">See my results &rarr;</button>
-        </div>
-      </div>
+        <!-- 3. Dignity line -->
+        <p class="result-dignity-line" id="result-dignity-line"></p>
 
-      <!-- ═══════════════════════════════
-           STEP 5: RESULTS
-      ═══════════════════════════════ -->
-      <div class="step" id="step-5" role="region" aria-label="Your results">
-
-        <div class="results-header">
-          <p class="results-eyebrow">Your Results</p>
-
-          <div class="results-score-wrap" aria-label="Overall score">
-            <svg class="results-score-ring" viewBox="0 0 120 120" aria-hidden="true">
-              <circle class="score-ring-bg" cx="60" cy="60" r="45"/>
-              <circle class="score-ring-fill" id="score-ring" cx="60" cy="60" r="45"/>
-            </svg>
-            <div class="results-score-number" id="score-display" aria-live="polite">—</div>
-          </div>
-          <p class="results-score-label">out of 80</p>
-
-          <h2 class="results-profile-name" id="profile-name"></h2>
-          <p class="results-profile-desc" id="profile-desc"></p>
+        <!-- 4. You likely -->
+        <div class="result-you-likely">
+          <p class="result-you-likely-title">You likely:</p>
+          <ul id="result-you-likely-list"></ul>
         </div>
 
-        <!-- Dimension breakdown -->
+        <!-- 5. Closing hit -->
+        <p class="result-closing-hit" id="result-closing-hit"></p>
+
+        <!-- 6. Dimension breakdown -->
         <div class="dimensions-section">
           <p class="dimensions-title">Breakdown by dimension</p>
-
-          <div class="dim-row">
-            <div class="dim-row-header">
-              <span class="dim-row-name">
-                <span class="dim-row-dot" style="background: var(--blue);"></span>
-                Analysis Paralysis
-              </span>
-              <span class="dim-row-score" id="dim-score-1">—/20</span>
-            </div>
-            <div class="dim-bar-track">
-              <div class="dim-bar-fill dim-1" id="dim-bar-1"></div>
-            </div>
-            <p class="dim-interpretation" id="dim-interp-1"></p>
-          </div>
-
-          <div class="dim-row">
-            <div class="dim-row-header">
-              <span class="dim-row-name">
-                <span class="dim-row-dot" style="background: var(--danger);"></span>
-                Post-Decision Rumination
-              </span>
-              <span class="dim-row-score" id="dim-score-2">—/20</span>
-            </div>
-            <div class="dim-bar-track">
-              <div class="dim-bar-fill dim-2" id="dim-bar-2"></div>
-            </div>
-            <p class="dim-interpretation" id="dim-interp-2"></p>
-          </div>
-
-          <div class="dim-row">
-            <div class="dim-row-header">
-              <span class="dim-row-name">
-                <span class="dim-row-dot" style="background: var(--amber);"></span>
-                Maximizing Tendency
-              </span>
-              <span class="dim-row-score" id="dim-score-3">—/20</span>
-            </div>
-            <div class="dim-bar-track">
-              <div class="dim-bar-fill dim-3" id="dim-bar-3"></div>
-            </div>
-            <p class="dim-interpretation" id="dim-interp-3"></p>
-          </div>
-
-          <div class="dim-row">
-            <div class="dim-row-header">
-              <span class="dim-row-name">
-                <span class="dim-row-dot" style="background: var(--purple);"></span>
-                Avoidance &amp; Approval
-              </span>
-              <span class="dim-row-score" id="dim-score-4">—/20</span>
-            </div>
-            <div class="dim-bar-track">
-              <div class="dim-bar-fill dim-4" id="dim-bar-4"></div>
-            </div>
-            <p class="dim-interpretation" id="dim-interp-4"></p>
-          </div>
+          <div id="breakdown-rows"></div>
         </div>
 
-        <!-- Personalized insight -->
-        <div class="insight-card" id="insight-card">
-          <p class="insight-card-label">What this means for you</p>
-          <p class="insight-card-text" id="insight-text"></p>
-          <p class="insight-card-bridge">Your full analysis goes deeper on your highest dimension and what to focus on first.</p>
-        </div>
-
-        <!-- CTA -->
+        <!-- 7. Email CTA -->
         <div class="results-cta">
-          <p class="results-cta-eyebrow">Your results are ready</p>
-          <h3 class="results-cta-headline">Get your full analysis — free.</h3>
+          <p class="results-cta-eyebrow">Want to go deeper?</p>
+          <h3 class="results-cta-headline">Want the full map of your decision anxiety?</h3>
           <p class="results-cta-sub">
             We'll send a personalized breakdown for your highest dimension, with what it means and where to start. You'll also be first in line when ReAnchor launches.
           </p>
-
           <div id="cta-form-wrap">
             <form class="waitlist-form-inline" id="cta-form" novalidate>
               <label for="cta-email" class="sr-only">Email address</label>
-              <input
-                type="email"
-                id="cta-email"
-                name="email"
-                class="waitlist-input-inline"
-                placeholder="your@email.com"
-                autocomplete="email"
-                required
-              />
-              <button type="submit" class="waitlist-btn-inline" id="cta-submit">
-                Send my analysis →
-              </button>
+              <input type="email" id="cta-email" name="email" class="waitlist-input-inline"
+                     placeholder="your@email.com" autocomplete="email" required />
+              <button type="submit" class="waitlist-btn-inline" id="cta-submit">Send my analysis →</button>
             </form>
             <p class="cta-secondary-wrap">
               <a class="cta-secondary-link" id="cta-waitlist-link" role="button" tabindex="0">
@@ -1688,7 +1576,6 @@
             </p>
             <p class="cta-error" id="cta-error" role="alert" aria-live="assertive">Something went wrong — try again.</p>
           </div>
-
           <div class="inline-success" id="cta-success-analysis" role="status" aria-live="polite">
             <div class="inline-success-icon">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -1698,7 +1585,6 @@
             <p class="inline-success-text">Your analysis is on its way.</p>
             <p class="inline-success-sub">Check your inbox — we'll also let you know when ReAnchor launches.</p>
           </div>
-
           <div class="inline-success" id="cta-success-waitlist" role="status" aria-live="polite">
             <div class="inline-success-icon">
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -1710,9 +1596,11 @@
           </div>
         </div>
 
+        <!-- 8. Retake -->
         <p class="retake-link">
-          <a onclick="retakeTest()" role="button" tabindex="0">Retake the test</a>
+          <a id="retake-btn" role="button" tabindex="0">Retake the test</a>
         </p>
+
       </div>
 
     </div><!-- /step-container -->
